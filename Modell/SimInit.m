@@ -1,13 +1,21 @@
+% Initialisierung der Simulation
 
+% Berechne symbolische DGLs des Schlittenpendels
 equations = SchlittenPendelSym()
 
-MotorParameter = struct("Umin",-1,"Umax",1,"Fmax",1,"Fmin",-1) %dummy
-%SchlittenPendelParameter = 
+% Übergebe Motor- und Schlittenpendelparameter
+MotorParams = struct("Umin",-1,"Umax",1,"Fmax",1,"Fmin",-1) %dummy
+SchlittenPendelParams = getDPendulumParam_Apprich09();
 
-sys = SchlittenPendelNLZSR(equations,SchlittenPendelParameter)
-sys2sfct(sys,'SchlittenPendelFunc','M')
 
-SchlittenPendelParameter.x0 = [0 0 pi 0 0.1 0];
+% Erstelle eine S-Function des nichtlinearen Zustandsraummodells des
+% Schlittependels
+sys = SchlittenPendelNLZSR(equations,SchlittenPendelParams);
+sys2sfct(sys,'\Modell\SchlittenPendelFunc','M');
 
-simparams.gesamtmodell.motor=MotorParameter;
-simparams.gesamtmodell.schlittenpendel=SchlittenPendelParameter;
+% --- paste your comment here ---
+SchlittenPendelParams.x0 = [0 0 pi 0 0.1 0];
+
+% Übergebe Motor- und Schlittenpendelparameter für die Simulation
+simparams.gesamtmodell.motor=MotorParams;
+simparams.gesamtmodell.schlittenpendel=SchlittenPendelParams;
