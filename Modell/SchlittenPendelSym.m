@@ -1,4 +1,4 @@
-function sys = SchlittenPendel(parameter)
+function equations = SchlittenPendelSym() %parameter
 
 %% Variablen
 
@@ -15,11 +15,11 @@ qt  = str2sym({ 'x0(t)', 'phi1(t)', 'phi2(t)', ...
 
 %% Parameter
 
-syms  m0 m1 m2  l1 l2  J1 J2  s1 s2  d0 d1 d2  g  positive;
-
-if exist('parameter')
-    ...
-end
+ syms  m0 m1 m2  l1 l2  J1 J2  s1 s2  d0 d1 d2  g  positive;
+% 
+% if exist('parameter')
+%     ...
+% end
 
 
 %% Kinematik
@@ -73,14 +73,12 @@ L_phi2_p_t = subs( diff( subs(L_phi2_p,q,qt)), qt,q);
 
 
 %% Berechnung der LAGRANGEschen Gleichung
+
 Sol = solve( [L_x0_p_t-L_x0 == Q0, L_phi1_p_t-L_phi1 == Q1, L_phi2_p_t-L_phi2 == Q2] , ...
         [x0_pp, phi1_pp, phi2_pp ] ,"ReturnConditions",true);%
 Sol.parameters
 Sol.conditions
 
-sys.u = F;
-sys.x = [x0; x0_p; phi1; phi1_p; phi2; phi2_p ];
-sys.f = [x0_p; simplify(Sol.x0_pp); phi1_p; simplify(Sol.phi1_pp); phi2_p; simplify(Sol.phi2_pp) ];
-sys.h = [x0; phi1; phi2 ];
+equations = [simplify(Sol.x0_pp);  simplify(Sol.phi1_pp);  simplify(Sol.phi2_pp) ];
 
 end
