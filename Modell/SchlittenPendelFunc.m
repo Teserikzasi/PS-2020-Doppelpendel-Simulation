@@ -1,6 +1,6 @@
-% Level 2 m-s-function : '\Modell\SchlittenPendelFunc.m'
+% Level 2 m-s-function : 'SchlittenPendelFunc.m'
 %
-% Created by sys2sfct at 03-Jul-2020 16:01:07 from the following system:
+% Created by sys2sfct at 07-Jul-2020 18:45:34 from the following system:
 % Name        : SchlittenPendelNLZSR
 % Description : Nichtlineare Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems
 %
@@ -20,7 +20,7 @@
 %
 %
 
-function \Modell\SchlittenPendelFunc(block)
+function SchlittenPendelFunc(block)
 
   setup(block);
   
