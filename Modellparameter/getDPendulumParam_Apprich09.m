@@ -22,7 +22,7 @@ function stP = getDPendulumParam_Apprich09()
 	stP.punit.s1 = 'm';
 
 	stP.d1 = 0.0091;
-	stP.pdesc.d1 = 'Viskose Dämpfung Stab 1';
+	stP.pdesc.d1 = 'Viskose Dämpfung Stab 1 nach [Kisner 2011]';
 	stP.punit.d1 = 'N s rad^-1';
 
 	stP.m2 = 0.347;  
@@ -42,7 +42,7 @@ function stP = getDPendulumParam_Apprich09()
 	stP.punit.s2 = 'm';
 
 	stP.d2 = 0.0006905;
-	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2';
+	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2 nach [Kisner 2011]';
 	stP.punit.d2 = 'N s rad^-1';
 	
 	stP.m0 = 16.5;
