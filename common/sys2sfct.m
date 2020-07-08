@@ -29,7 +29,7 @@ function sys2sfct(stSys, szSFctName, eszType, varargin)
         szFullFctName = [szPath '\' szSFctName '.c'];
         szFullTemplateName = which('csfct_System_TEMPLATE.c');
     else
-        szFullFctName = [szPath '\Modell\' szSFctName '.m']; % modifiziert
+        szFullFctName = [szPath '\' szSFctName '.m'];
         szFullTemplateName = which('msfct_System_TEMPLATE.m');
     end
     
