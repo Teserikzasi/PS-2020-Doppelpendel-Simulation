@@ -4,7 +4,7 @@
 equations = SchlittenPendelSym()
 
 % Übergebe Motor- und Schlittenpendelparameter
-MotorParams = getMotorParam(); 
+MotorParams = getMotorParam_Franke97(); 
 SchlittenPendelParams = getDPendulumParam_Apprich09();
 
 

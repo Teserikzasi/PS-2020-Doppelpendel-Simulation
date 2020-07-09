@@ -1,9 +1,9 @@
 function stP = getDPendulumParam_Apprich09()
-% Gibt Schlittenpendelparameter nach [Apprich 2009] zurück
+% Gibt Schlittenpendelparameter nach [Apprich 2009] und Dämpfungskonstanten nach [Kisner 2011] zurück
 
 	% Pendeldaten
-	stP.name = 'Doppelpendel rtm (Apprich)';
-	stP.desc = 'Doppelpendel rtm, S. Apprich 2009 (Dämpfungen unsicher)';
+	stP.name = 'Doppelpendel rtm (Apprich & Kisner)';
+	stP.desc = 'Doppelpendel rtm, S. Apprich 2009 (Dämpfungen nach Kisner 2011)';
 
 	stP.m1 = 0.615;
 	stP.pdesc.m1 = 'Masse Stab 1';

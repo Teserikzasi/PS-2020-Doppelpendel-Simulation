@@ -21,7 +21,7 @@ function stP = getDPendulumParam_Ribeiro20()
 	stP.pdesc.s1 = 'Schwerpunktlage Stab 1';
 	stP.punit.s1 = 'm';
 
-	stP.d1 = 0.00768; % ???
+	stP.d1 = 0.00768;
 	stP.pdesc.d1 = 'Viskose Dämpfung Stab 1';
 	stP.punit.d1 = 'N s rad^-1';
 
@@ -41,7 +41,7 @@ function stP = getDPendulumParam_Ribeiro20()
 	stP.pdesc.s2 = 'Schwerpunktlage Stab 2';
 	stP.punit.s2 = 'm';
 
-	stP.d2 = 0.000285; %???
+	stP.d2 = 0.000285;
 	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2';
 	stP.punit.d2 = 'N s rad^-1';
 	
