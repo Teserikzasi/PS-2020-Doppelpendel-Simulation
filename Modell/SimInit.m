@@ -18,5 +18,5 @@ SchlittenPendelParams.x0 = [0 0 0 0 0+eps 0];
 
 % Übergebe Motor- und Schlittenpendelparameter für die Simulation
 simparams.gesamtmodell.motor = MotorParams;
-simparams.gesamtmodell.schlittenpendel = SchlittenPendelParams;
+Fc0alpha = SchlittenPendelParameter.Fc0alpha;
 
