@@ -1,4 +1,4 @@
-function stP = getDPendulumParam_Apprich09()
+function stP = SchlittenPendelParams_Apprich09()
 % Gibt Schlittenpendelparameter nach [Apprich 2009] und Dämpfungskonstanten nach [Kisner 2011] zurück
 
 	% Pendeldaten
@@ -65,7 +65,7 @@ function stP = getDPendulumParam_Apprich09()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
-    stP.fc1 =1;
-    stP.fc2 =1;
+    stP.Fc0 = 10;  % DUMMY bitte noch realen Wert einsetzen
+    stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
 
-end % function getDPendulumParam_Apprich09
+end
