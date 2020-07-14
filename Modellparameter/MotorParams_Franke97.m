@@ -1,4 +1,4 @@
-function stM = getMotorParam_Franke97()
+function stM = MotorParams_Franke97()
 % Gibt alle relevanten Parameter von Motor und Getriebe zurück nach [Franke 1997].
 %
 % Hinweis: Bei Hinzufügen neuer Parameter sollten diese sinnvollerweise auch in der Maske
@@ -19,8 +19,7 @@ stM.Umin = -10;
 stM.Umax = 10;
 
 % Dummy-Werte
-stM.Fmax = 421;
 stM.Fmin = -421;
+stM.Fmax = 421;
 
 end
-
