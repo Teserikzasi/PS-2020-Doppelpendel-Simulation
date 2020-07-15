@@ -54,28 +54,21 @@ function plot_outputs(out, save, name, path, format, resolution)
     filePath = fullfile(cd(), 'Plots');
     fileFormat = '.png';
     fileReso = 300;
-    % Argumente prüfen    
-    switch nargin
-        case 2
-            fileSave = save;
-        case 3
-            fileSave = save;
+    % Argumente prüfen        
+    if nargin>1
+        fileSave = save;
+        if nargin>2
             fileName = name;
-        case 4
-            fileSave = save;
-            fileName = name;
-            filePath = path;
-        case 5
-            fileSave = save;
-            fileName = name;
-            filePath = path;
-            fileFormat = format;
-        case 6
-            fileSave = save;
-            fileName = name;
-            filePath = path;
-            fileFormat = format;
-            fileReso = resolution;
+            if nargin>3
+                filePath = path;
+                if nargin>4
+                    fileFormat = format;
+                    if nargin==6
+                        fileReso = resolution;
+                    end
+                end
+            end
+        end
     end
     % speichern
     if fileSave
