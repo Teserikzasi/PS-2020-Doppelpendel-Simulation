@@ -13,32 +13,47 @@ function plot_outputs(out, save, name, path, format, resolution)
     x1 = [];
     phi1 = [];
     phi2 = [];
-    for i=1:length(out.mY.Data(1,1,:))
-       x1(i) = out.mY.Data(1, 1, i);
-       phi1(i) = out.mY.Data(2, 1, i);
-       phi2(i) = out.mY.Data(2, 1, i);
+    for k=1:length(out.mY.Time)
+       x1(k) = out.mY.Data(1, 1, k);
+       phi1(k) = out.mY.Data(2, 1, k);
+       phi2(k) = out.mY.Data(2, 1, k);
+       stellF(k) = out.vF.Data(k);
+       stellU(k) = out.vU.Data(k);
+       
     end
     
     %% Plot
     fgh = figure();
     
-    subplot(3,1,1);
-	plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410]);
+    subplot(5,1,1);
+	plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);
     title('Position x');
 	ylabel('x [m]');
-    axis equal
+    grid on;
     
-    subplot(3,1,2);
-	plot(out.mY.Time, phi1, 'Color', [0.8500 0.3250 0.0980]);
+    subplot(5,1,2);
+	plot(out.mY.Time, phi1, 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
     title('Winkel \phi_{1}')
 	ylabel('\phi_{1} [rad]');
-    axis equal
+    grid on;
     
-    subplot(3,1,3);
-	plot(out.mY.Time, phi2, 'Color', [0.9290 0.6940 0.1250]);
+    subplot(5,1,3);
+	plot(out.mY.Time, phi2, 'Color', [0.9290 0.6940 0.1250], 'LineWidth', 1);
     title('Winkel \phi_{2}')
 	ylabel('\phi_{2} [rad]');
-    axis equal
+    grid on;
+    
+    subplot(5,1,4);
+	plot(out.mY.Time, x1, 'Color', [0.3010 0.7450 0.9330], 'LineWidth', 1);
+    title('Kraft F');
+	ylabel('F [N]');
+    grid on;
+    
+    subplot(5,1,5);
+	plot(out.mY.Time, x1, 'Color', [0.4940 0.1840 0.5560], 'LineWidth', 1);
+    title('Spannung U');
+	ylabel('U [V]');
+    grid on;
     
     xlabel('Zeit t [s]');
     
