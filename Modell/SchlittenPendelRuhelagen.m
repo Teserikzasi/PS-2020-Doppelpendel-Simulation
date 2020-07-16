@@ -8,9 +8,9 @@ end
 
 u=0;
 
-RL(1) = struct('u',u, 'x', [x0 0 pi 0 pi 0] );
-RL(2) = struct('u',u, 'x', [x0 0 pi 0 0  0] );
-RL(3) = struct('u',u, 'x', [x0 0 0  0 pi 0] );
-RL(4) = struct('u',u, 'x', [x0 0 0  0 0  0] );
+RL(1) = struct('u', u, 'x', [x0 0 pi 0 pi 0]' );
+RL(2) = struct('u', u, 'x', [x0 0 pi 0 0  0]' );
+RL(3) = struct('u', u, 'x', [x0 0 0  0 pi 0]' );
+RL(4) = struct('u', u, 'x', [x0 0 0  0 0  0]' );
 
 end
