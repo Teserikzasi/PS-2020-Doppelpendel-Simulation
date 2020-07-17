@@ -10,13 +10,15 @@ function plot_outputs(out, save, name, path, format, resolution)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
     %% Data konvertieren von 3D zu 1D
-    x1 = [];
-    phi1 = [];
-    phi2 = [];
+    x1 = zeros(1, length(out.mY.Time));
+    phi1 = zeros(1, length(out.mY.Time));
+    phi2 = zeros(1, length(out.mY.Time));
+    stellF = zeros(1, length(out.mY.Time));
+    stellU = zeros(1, length(out.mY.Time));
     for k=1:length(out.mY.Time)
        x1(k) = out.mY.Data(1, 1, k);
        phi1(k) = out.mY.Data(2, 1, k);
-       phi2(k) = out.mY.Data(2, 1, k);
+       phi2(k) = out.mY.Data(3, 1, k);
        stellF(k) = out.vF.Data(k);
        stellU(k) = out.vU.Data(k);
        
@@ -44,13 +46,13 @@ function plot_outputs(out, save, name, path, format, resolution)
     grid on;
     
     subplot(5,1,4);
-	plot(out.mY.Time, x1, 'Color', [0.3010 0.7450 0.9330], 'LineWidth', 1);
+	plot(out.mY.Time, stellF, 'Color', [0.3010 0.7450 0.9330], 'LineWidth', 1);
     title('Kraft F');
 	ylabel('F [N]');
     grid on;
     
     subplot(5,1,5);
-	plot(out.mY.Time, x1, 'Color', [0.4940 0.1840 0.5560], 'LineWidth', 1);
+	plot(out.mY.Time, stellU, 'Color', [0.4940 0.1840 0.5560], 'LineWidth', 1);
     title('Spannung U');
 	ylabel('U [V]');
     grid on;
