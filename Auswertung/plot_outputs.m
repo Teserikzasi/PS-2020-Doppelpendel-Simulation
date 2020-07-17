@@ -10,12 +10,13 @@ function plot_outputs(out, save, name, path, format, resolution)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
     %% Data konvertieren von 3D zu 1D
-    x1 = zeros(1, length(out.mY.Time));
-    phi1 = zeros(1, length(out.mY.Time));
-    phi2 = zeros(1, length(out.mY.Time));
-    stellF = zeros(1, length(out.mY.Time));
-    stellU = zeros(1, length(out.mY.Time));
-    for k=1:length(out.mY.Time)
+    n = length(out.mY.Time);
+    x1 = zeros(1, n);
+    phi1 = zeros(1, n);
+    phi2 = zeros(1, n);
+    stellF = zeros(1, n);
+    stellU = zeros(1, n);
+    for k=1:n
        x1(k) = out.mY.Data(1, 1, k);
        phi1(k) = out.mY.Data(2, 1, k);
        phi2(k) = out.mY.Data(3, 1, k);
@@ -25,12 +26,12 @@ function plot_outputs(out, save, name, path, format, resolution)
     end
     
     %% Plot
-    fgh = figure();
+    hFig = figure();
     
     subplot(5,1,1);
 	plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);
     title('Position x');
-	ylabel('x [m]');
+	ylabel('x [m]');    
     grid on;
     
     subplot(5,1,2);
@@ -89,6 +90,6 @@ function plot_outputs(out, save, name, path, format, resolution)
     end
     % speichern
     if fileSave
-        exportgraphics(fgh, [filePath '\' fileName fileFormat], 'Resolution', fileReso);
+        exportgraphics(hFig, [filePath '\' fileName fileFormat], 'Resolution', fileReso);
     end
 end
