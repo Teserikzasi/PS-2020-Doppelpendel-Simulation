@@ -1,6 +1,12 @@
 function animate_outputs(out,SchlittenPendelParams, save, name, path)
-    % Plottet Animation des Schlittendoppelpendels
-    %   ...
+    % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
+    % ein Videofile im avi-Format
+    % 
+    % Optionale Argumente, um Animation als .avi abzuspeichern:
+    %
+    % save = Boolean (Default: false)
+    % name = Dateiname (Default: yyyy-MM-dd_HH-mm-ss_plot)
+    % path = Dateipfad (Default: \Plots)
     
     %% Parameter der Animation
     nFrames = length(out.mY.Time); % Anzahl aller Frames
