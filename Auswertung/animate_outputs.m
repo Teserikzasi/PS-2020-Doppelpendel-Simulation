@@ -1,19 +1,29 @@
-function animate_outputs(out,spParams)
+function animate_outputs(out,SchlittenPendelParams, save, name, path)
     % Plottet Animation des Schlittendoppelpendels
     %   ...
-
+    
     %% Parameter der Animation
     nFrames = length(out.mY.Time); % Anzahl aller Frames
     startTime = out.mY.Time(1); % Startzeit der Simulation
     stopTime = out.mY.Time(end); % Stopzeit der Simulation
     duration = stopTime - startTime;
     tSample = duration/(nFrames-1); % Abtastzeit in Simulation (ToWorkflow)
-    fps = 1/tSample; % Frames per second
+    fps = 1/tSample; % Framerate in Frames per second
+      
+    % Pendelparameter
+    l1 = SchlittenPendelParams.l1;
+    l2 = SchlittenPendelParams.l2;
     
-    loopTime = 0.005; % mittlere Rechenzeit der for-Schleife pro Zyklus
-    
-    l1 = spParams.l1;
-    l2 = spParams.l2;
+    %% Prüfe Save-Argument
+    fileSave = false; % Default
+    if nargin > 2
+        fileSave = save;
+    end
+    % Falls Animation gespeichert werden soll, reserviere Speicher
+    if fileSave
+        animatedFrames = struct('cdata', cell(1, nFrames), ...
+                                'colormap', cell(1, nFrames));
+    end
     
     %% Ortsvektoren
     % Data konvertieren von 3D zu 1D
@@ -54,7 +64,9 @@ function animate_outputs(out,spParams)
         [yStab1Head(1) yStab2Head(1)]);
 
     %% Animation
+    % loopTime = 0.005; % ungefähre Rechenzeit der for-Schleife pro Zyklus
     for f = 1:nFrames 
+        tic
         % Title mit Echtzeit-Informationen zu Zeit, fps und Frames
         infoTitle = ['t = ' num2str( (f-1) * tSample, '%05.2f') ' sec ', ...
                         '(fps = ' num2str(fps) ', ' ...
@@ -92,14 +104,41 @@ function animate_outputs(out,spParams)
             plot(hAxes, ...
                 xStab2Head(f-1:f), yStab2Head(f-1:f), 'g');
         end
-
-        % Samplezeit bei Wiedergabe berücksichtigen (Pro Schleife ein Sample)
-        pause(tSample - loopTime);
+                
+        % optionales Speichern
+        if fileSave
+            % Frames schnell abspeichern ohne Absolutzeitwiedergabe
+            animatedFrames(f) = getframe(hFig);
+        else
+            % Absolutzeitwiedergabe 
+            loopTime = toc;
+            pause(tSample - loopTime);
+        end
+        
     end
     
     hold(hAxes, 'off');
     
-    
+    %% Speichern der Animation   
+    if fileSave 
+        % Name und Dateipfad spezifizieren
+        currDate = datetime();
+        currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
+        fileName = [char(currDate) '_' 'Animation'];        
+        filePath = fullfile(cd(), 'Plots');   
+        if nargin>3
+            fileName = name;
+            if nargin>4
+                filePath = path;
+            end
+        end
+        % Speichern mit korrekter Framerate
+        v = VideoWriter([filePath '\' fileName '.avi']);
+        v.FrameRate = fps;
+        open(v);
+        writeVideo(v, animatedFrames);
+        close(v)
+    end
     
 end
 
