@@ -1,6 +1,11 @@
 function plot_outputs(out, save, name, path, format, resolution)
     % Erstellt Subplots von x, phi1 und phi2
-    %
+    % Die Funktion bekommt als Argument "out" die über ToWorkspace
+    % in den Base Workspace abgelegten Ausgänge des Simulink Modells. 
+    % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
+    % "mY" wiederum enthält die aufgezeichnete Timeseries-Struktur mit 
+    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen)
+    % 
     % Optionale Argumente, um Plot abzuspeichern:
     %
     % save = Boolean (Default: false)
@@ -10,25 +15,28 @@ function plot_outputs(out, save, name, path, format, resolution)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
     %% Data konvertieren von 3D zu 1D
-    x1 = [];
-    phi1 = [];
-    phi2 = [];
-    for k=1:length(out.mY.Time)
+    n = length(out.mY.Time);
+    x1 = zeros(1, n);
+    phi1 = zeros(1, n);
+    phi2 = zeros(1, n);
+    stellF = zeros(1, n);
+    stellU = zeros(1, n);
+    for k=1:n
        x1(k) = out.mY.Data(1, 1, k);
        phi1(k) = out.mY.Data(2, 1, k);
-       phi2(k) = out.mY.Data(2, 1, k);
+       phi2(k) = out.mY.Data(3, 1, k);
        stellF(k) = out.vF.Data(k);
        stellU(k) = out.vU.Data(k);
        
     end
     
     %% Plot
-    fgh = figure();
+    hFig = figure();
     
     subplot(5,1,1);
 	plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);
     title('Position x');
-	ylabel('x [m]');
+	ylabel('x [m]');    
     grid on;
     
     subplot(5,1,2);
@@ -44,13 +52,13 @@ function plot_outputs(out, save, name, path, format, resolution)
     grid on;
     
     subplot(5,1,4);
-	plot(out.mY.Time, x1, 'Color', [0.3010 0.7450 0.9330], 'LineWidth', 1);
+	plot(out.mY.Time, stellF, 'Color', [0.3010 0.7450 0.9330], 'LineWidth', 1);
     title('Kraft F');
 	ylabel('F [N]');
     grid on;
     
     subplot(5,1,5);
-	plot(out.mY.Time, x1, 'Color', [0.4940 0.1840 0.5560], 'LineWidth', 1);
+	plot(out.mY.Time, stellU, 'Color', [0.4940 0.1840 0.5560], 'LineWidth', 1);
     title('Spannung U');
 	ylabel('U [V]');
     grid on;
@@ -87,6 +95,6 @@ function plot_outputs(out, save, name, path, format, resolution)
     end
     % speichern
     if fileSave
-        exportgraphics(fgh, [filePath '\' fileName fileFormat], 'Resolution', fileReso);
+        exportgraphics(hFig, [filePath '\' fileName fileFormat], 'Resolution', fileReso);
     end
 end
