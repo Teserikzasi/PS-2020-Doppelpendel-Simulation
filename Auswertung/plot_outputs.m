@@ -1,6 +1,11 @@
 function plot_outputs(out, save, name, path, format, resolution)
     % Erstellt Subplots von x, phi1 und phi2
-    %
+    % Die Funktion bekommt als Argument "out" die über ToWorkspace
+    % in den Base Workspace abgelegten Ausgänge des Simulink Modells. 
+    % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
+    % "mY" wiederum enthält die aufgezeichnete Timeseries-Struktur mit 
+    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen)
+    % 
     % Optionale Argumente, um Plot abzuspeichern:
     %
     % save = Boolean (Default: false)

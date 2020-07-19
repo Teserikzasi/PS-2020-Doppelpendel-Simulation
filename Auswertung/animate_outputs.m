@@ -1,7 +1,11 @@
 function animate_outputs(out,SchlittenPendelParams, save, name, path)
     % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
-    % ein Videofile im avi-Format
-    % 
+    % ein Videofile im avi-Format.
+    % Die Funktion bekommt als Argument "out" die über ToWorkspace
+    % in den Base Workspace abgelegten Ausgänge des Simulink Modells. 
+    % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
+    % "mY" wiederum enthält die aufgezeichnete Timeseries-Struktur mit 
+    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen) 
     % Optionale Argumente, um Animation als .avi abzuspeichern:
     %
     % save = Boolean (Default: false)

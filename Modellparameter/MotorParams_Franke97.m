@@ -14,11 +14,15 @@ function stM = MotorParams_Franke97()
     % Motorreibungskonstanten
     stM.d0_MG = 0.052; % konstante Reibung in Nm
     stM.dw_MG = 0.0000574; % geschwindigkeitsabhängige Reibung in Nm/(rad/s)
-
+    
+    % Steuerspannung
     stM.Umin = -10;
     stM.Umax = 10;
-
-    % Dummy-Werte
+    
+    % Maximale Stellkraft
+    % -> Max. Impustrom ist 20A, Drehmomentkonstante 0,153, Getriebe i=60/16,
+    %    Antriebsradius r=0,0255
+    % Fmax = 20*0,153*60/16/0,0255 = 420,75 < 421
     stM.Fmin = -421;
     stM.Fmax = 421;
 
