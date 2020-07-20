@@ -69,6 +69,9 @@ function stP = SchlittenPendelParams_Chang19()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
+    % Coulombsche Reibung
+    stP.Mc1 = 0.0538;
+    stP.Mc2 = 0.0000912;
     stP.Fc0 = 17.5; % Chang19 S.66, im Modell steht 17
     stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
 end
