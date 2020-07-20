@@ -15,20 +15,11 @@ function plot_outputs(out, save, name, path, format, resolution)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
     %% Data konvertieren von 3D zu 1D
-    n = length(out.mY.Time);
-    x1 = zeros(1, n);
-    phi1 = zeros(1, n);
-    phi2 = zeros(1, n);
-    stellF = zeros(1, n);
-    stellU = zeros(1, n);
-    for k=1:n
-       x1(k) = out.mY.Data(1, 1, k);
-       phi1(k) = out.mY.Data(2, 1, k);
-       phi2(k) = out.mY.Data(3, 1, k);
-       stellF(k) = out.vF.Data(k);
-       stellU(k) = out.vU.Data(k);
-       
-    end
+    x1 = squeeze(out.mY.Data(1, 1, :))';
+    phi1 = squeeze(out.mY.Data(2, 1, :))';
+    phi2 = squeeze(out.mY.Data(3, 1, :))';
+    stellF = squeeze(out.vF.Data(1, 1, :))';
+    stellU = (out.vU.Data)';   
     
     %% Plot
     hFig = figure();
