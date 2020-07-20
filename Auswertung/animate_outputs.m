@@ -37,14 +37,10 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     
     %% Ortsvektoren
     % Data konvertieren von 3D zu 1D
-    x1 = zeros(1, nFrames);
-    phi1 = zeros(1, nFrames);
-    phi2 = zeros(1, nFrames);
-    for k=1:nFrames
-       x1(k) = out.mY.Data(1, 1, k);
-       phi1(k) = out.mY.Data(2, 1, k);
-       phi2(k) = out.mY.Data(3, 1, k);
-    end 
+    x1 = squeeze(out.mY.Data(1, 1, :))';
+    phi1 = squeeze(out.mY.Data(2, 1, :))';
+    phi2 = squeeze(out.mY.Data(3, 1, :))';
+    
     % Ortsvektoren berechnen
     xStab1Head = x1 - l1 * sin(phi1);
     yStab1Head = l1 * cos(phi1);
