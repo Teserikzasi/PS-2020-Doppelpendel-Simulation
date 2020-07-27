@@ -1,9 +1,9 @@
 function stP = SchlittenPendelParams_Apprich09()
-% Gibt Schlittenpendelparameter nach [Apprich 2009] und Dämpfungskonstanten nach [Kisner 2011] zurück
+% Gibt Schlittenpendelparameter nach [Apprich 2009],[Kisner 2011] und [Brehl 2014] zurück
 
 	% Pendeldaten
-	stP.name = 'Doppelpendel rtm (Apprich & Kisner)';
-	stP.desc = 'Doppelpendel rtm, S. Apprich 2009 (Dämpfungen nach Kisner 2011)';
+	stP.name = 'Doppelpendel rtm (Apprich, Kisner, Brehl)';
+	stP.desc = 'Doppelpendel rtm, S. Apprich 2009, Kisner 2011 und Brehl 2014)';
 
 	stP.m1 = 0.615;
 	stP.pdesc.m1 = 'Masse Stab 1';
@@ -21,9 +21,9 @@ function stP = SchlittenPendelParams_Apprich09()
 	stP.pdesc.s1 = 'Schwerpunktlage Stab 1';
 	stP.punit.s1 = 'm';
 
-	stP.d1 = 0.0091;
+	stP.d1 = 0.0091; % 0.0091 Schätzung Kisner11 S.48
 	stP.pdesc.d1 = 'Viskose Dämpfung Stab 1 nach [Kisner 2011]';
-	stP.punit.d1 = 'N s rad^-1';
+	stP.punit.d1 = 'N s rad^-1'; % Falsche Einheit?
 
 	stP.m2 = 0.347;  
 	stP.pdesc.m2 = 'Masse Stab 2';
@@ -41,15 +41,15 @@ function stP = SchlittenPendelParams_Apprich09()
 	stP.pdesc.s2 = 'Schwerpunktlage Stab 2';
 	stP.punit.s2 = 'm';
 
-	stP.d2 = 0.0006905;
-	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2 nach [Kisner 2011]';
+	stP.d2 = 0.0006905; % Brehl14 S.36
+	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2 nach [Brehl 2014]';
 	stP.punit.d2 = 'N s rad^-1';
 	
-	stP.m0 = 16.5;
+	stP.m0 = 16.5; % Schätzwert von Kisner11
 	stP.pdesc.m0 = 'Masse Schlitten mit Antrieb';
 	stP.punit.m0 = 'kg';
 
-	stP.d0 = 17.00;
+	stP.d0 = 17.00; % 7.466 Ns/m Apprich09, 26.86 Ns/m Kisner11, 1,4 Ns/m Franke07...
 	stP.pdesc.d0 = 'Viskose Dämpfung Schlitten';
 	stP.punit.d0 = 'N s m^-1';
 	
@@ -65,7 +65,10 @@ function stP = SchlittenPendelParams_Apprich09()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
-    stP.Fc0 = 10;  % DUMMY bitte noch realen Wert einsetzen
+    % Coulombsche Reibung
+    stP.Mc1 = 0;
+    stP.Mc2 = 0;
+    stP.Fc0 = 16.232; % 16.232 N  Apprich09 S.28
     stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
 
 end

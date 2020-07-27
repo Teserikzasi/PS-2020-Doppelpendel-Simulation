@@ -23,7 +23,7 @@ function stP = SchlittenPendelParams_Ribeiro20()
 
 	stP.d1 = 0.00768;
 	stP.pdesc.d1 = 'Viskose Dämpfung Stab 1';
-	stP.punit.d1 = 'N s rad^-1';
+	stP.punit.d1 = 'Nm s rad^-1';
 
 	stP.m2 = 0.3957;  
 	stP.pdesc.m2 = 'Masse Stab 2';
@@ -43,13 +43,13 @@ function stP = SchlittenPendelParams_Ribeiro20()
 
 	stP.d2 = 0.000285;
 	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2';
-	stP.punit.d2 = 'N s rad^-1';
+	stP.punit.d2 = 'Nm s rad^-1';
 	
 	stP.m0 = 16.5;
 	stP.pdesc.m0 = 'Masse Schlitten mit Antrieb';
 	stP.punit.m0 = 'kg';
 
-	stP.d0 = 17.00; % ???
+	stP.d0 = 17.00; % Wert von Chang19. Bei Ribeiro20 wurde nur Haftreibung bestimmt
 	stP.pdesc.d0 = 'Viskose Dämpfung Schlitten';
 	stP.punit.d0 = 'N s m^-1';
 	
@@ -65,7 +65,11 @@ function stP = SchlittenPendelParams_Ribeiro20()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
-    stP.Fc0 = 10;  % DUMMY bitte noch realen Wert einsetzen
+    % Coulombsche Reibung
+    stP.Mc1 = 0.0538;
+    stP.Mc2 = 0.0000912;
+    stP.Fc0 = 13.43; % Ribeiro20 S.32 mittlerer Gesamtwert in Plot abgelesen 
+                    % durch Messen bei hoher Skalierung (5N=39,2cm) und Dreisatz
     stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
 
 end
