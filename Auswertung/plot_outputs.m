@@ -18,8 +18,8 @@ function plot_outputs(out, save, name, path, format, resolution)
     x1 = squeeze(out.mY.Data(1, 1, :))';
     phi1 = squeeze(out.mY.Data(2, 1, :))';
     phi2 = squeeze(out.mY.Data(3, 1, :))';
-    stellF = squeeze(out.vF.Data(1, 1, :))';
-    stellU = (out.vU.Data)';   
+    stellF = out.vF.Data;
+    stellU = out.vU.Data;   
     
     %% Plot
     hFig = figure();
