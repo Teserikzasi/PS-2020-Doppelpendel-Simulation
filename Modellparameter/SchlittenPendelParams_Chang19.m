@@ -70,9 +70,13 @@ function stP = SchlittenPendelParams_Chang19()
 	stP.punit.x0_max = 'm';
     
     % Coulombsche Reibung
-    stP.Mc1 = 0.0538;
-    stP.Mc2 = 0.0000912;
     stP.Fc0 = 17.5; % Chang19 S.66, im Modell steht 17
-    stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
+    stP.Mc10 = 0.0538;
+    stP.Mc20 = 0.0000912;
+    % Skalierungsparameter für die Annäherung von signum mit atan
+    % Geschwindigkeit, bei der gerade die Hälfte von Fc0/Mc0 erreicht ist
+    stP.x0_p_c2 = 0.01;
+    stP.phi1_p_c2 = 0.01;   
+    stP.phi2_p_c2 = 0.01;
+    
 end
-

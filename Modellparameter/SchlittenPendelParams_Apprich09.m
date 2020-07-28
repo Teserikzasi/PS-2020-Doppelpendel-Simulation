@@ -66,9 +66,13 @@ function stP = SchlittenPendelParams_Apprich09()
 	stP.punit.x0_max = 'm';
     
     % Coulombsche Reibung
-    stP.Mc1 = 0;
-    stP.Mc2 = 0;
     stP.Fc0 = 16.232; % 16.232 N  Apprich09 S.28
-    stP.Fc0alpha = 100;  % Skalierungsparameter für die Annäherung von signum mit atan
+    stP.Mc10 = 0;
+    stP.Mc20 = 0;
+    % Skalierungsparameter für die Annäherung von signum mit atan
+    % Geschwindigkeit, bei der gerade die Hälfte von Fc0/Mc0 erreicht ist
+    stP.x0_p_c2 = 0.01;
+    stP.phi1_p_c2 = 0.01;   
+    stP.phi2_p_c2 = 0.01;
 
 end
