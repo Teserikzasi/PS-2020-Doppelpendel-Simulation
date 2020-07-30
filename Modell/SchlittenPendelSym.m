@@ -1,4 +1,4 @@
-function equations = SchlittenPendelSym() %parameter
+function equations = SchlittenPendelSym()
 % Symbolische Berechnung des Schlitten-Doppelpendel-Systems mithilfe der Lagrange-Gleichungen
 
 %% Variablen
@@ -16,11 +16,7 @@ qt  = str2sym({ 'x0(t)', 'phi1(t)', 'phi2(t)', ...
 
 %% Parameter
 
-syms  m0 m1 m2  l1 l2  J1 J2  s1 s2  d0 d1 d2  g  positive;
-% 
-% if exist('parameter')
-%     ...
-% end
+syms  m0 m1 m2  J1 J2  l1 l2  s1 s2  d0 d1 d2  Fc0 Mc10 Mc20 x0_p_c2 phi1_p_c2 phi2_p_c2  g  positive;
 
 
 %% Kinematik
@@ -48,14 +44,20 @@ U = g*m1*y1 + g*m2*y2;
 
 L = T-U;
 
-% Nicht-konservative Kräfte
-Fd0 = -d0*x0_p;
+% viskose Dämpfung
+Fd  = -d0*x0_p;
 Md1 = -d1*phi1_p;
 Md2 = -d2*(phi2_p-phi1_p);
 
-Q0 = F + Fd0;
-Q1 = Md1 - Md2;
-Q2 = Md2;
+% Coulomb-Kräfte
+Fc  = -Fc0 *2/pi*atan(x0_p/x0_p_c2);%sign(x0_p);
+Mc1 = -Mc10*2/pi*atan(phi1_p/phi1_p_c2);
+Mc2 = -Mc20*2/pi*atan((phi2_p-phi1_p)/phi2_p_c2);
+
+% Nicht-konservative Kräfte
+Q0 = F + Fd + Fc;
+Q1 = Md1 + Mc1 - Md2 - Mc2;
+Q2 = Md2 + Mc2;
 
 
 %% Ableitung nach generalisierten Koordinaten
