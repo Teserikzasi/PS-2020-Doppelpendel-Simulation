@@ -4,10 +4,14 @@ function RegData = AP_Regelung_init(sys, APs, riccdata, beobPole)
 
 for i=1:4
     syslin = Linearisierung(sys, APs(i));
+    syslin.name = ['SchlittenPendel AP' int2str(i)];
+    syslin.desc = ['Linearisierte Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems ' ...
+        '(Arbeitspunkt ' int2str(i) ')' ];
     [K, pole] = LQRegler(syslin, riccdata(i));
-    L = PlaceBeobachter(syslin, beobPole(i));
+    beobPole = pole - 250;
+    L = PlaceBeobachter(syslin, beobPole);
     
-    RegData(i) = struct('K', K, 'pole', pole, 'L', L );
+    RegData(i) = struct('K', K, 'pole', pole, 'L', L, 'beobPole', beobPole, 'syslin', syslin );
 end
 
 end
