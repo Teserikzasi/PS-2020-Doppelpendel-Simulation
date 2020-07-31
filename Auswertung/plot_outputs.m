@@ -19,7 +19,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     phi1 = squeeze(out.mY.Data(2, 1, :));
     phi2 = squeeze(out.mY.Data(3, 1, :));
     stellF = squeeze(out.vF.Data);
-    stellU = squeeze(out.vU.Data);   
+    stellU = out.vU.Data;   
     
     %% Plot
     hFig = figure();
@@ -31,15 +31,15 @@ function plot_outputs(out, save, name, path, format, resolution)
     grid on;
     
     subplot(5,1,2);
-	plot(out.mY.Time, phi1, 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
+	plot(out.mY.Time, phi1*180/pi, 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
     title('Winkel \phi_{1}')
-	ylabel('\phi_{1} [rad]');
+	ylabel('\phi_{1} [grad]');
     grid on;
     
     subplot(5,1,3);
-	plot(out.mY.Time, phi2, 'Color', [0.9290 0.6940 0.1250], 'LineWidth', 1);
+	plot(out.mY.Time, phi2*180/pi, 'Color', [0.9290 0.6940 0.1250], 'LineWidth', 1);
     title('Winkel \phi_{2}')
-	ylabel('\phi_{2} [rad]');
+	ylabel('\phi_{2} [grad]');
     grid on;
     
     subplot(5,1,4);
