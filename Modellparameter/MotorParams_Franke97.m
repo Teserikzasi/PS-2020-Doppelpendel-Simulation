@@ -26,4 +26,5 @@ function stM = MotorParams_Franke97()
     stM.Fmin = -421;
     stM.Fmax = 421;
 
+    stM.staticGain = stM.K_UI*stM.K_I/stM.K_G/stM.r32; % statische Verstärkung u->F
 end
