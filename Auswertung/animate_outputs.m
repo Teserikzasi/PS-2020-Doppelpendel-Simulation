@@ -21,8 +21,13 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     fps = 1/tSample; % Framerate in Frames per second
       
     % Pendelparameter
-    l1 = SchlittenPendelParams.l1;
-    l2 = SchlittenPendelParams.l2;
+    if ~exist('SchlittenPendelParams')
+        l1 = 1;
+        l2 = 1;
+    else
+        l1 = SchlittenPendelParams.l1;
+        l2 = SchlittenPendelParams.l2;
+    end
     
     %% Prüfe Save-Argument
     fileSave = false; % Default

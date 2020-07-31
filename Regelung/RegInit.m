@@ -4,6 +4,15 @@ riccdata = AP_QR_Chang19();
 
 APRegData = AP_Regelung_init(sys, Ruhelagen, riccdata);
 
-simparams.Ruhelagen = Ruhelagen;
-simparams.APRegData = APRegData;
-simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(1).x' + [0 0 0 0 0.1 0];
+TestAP = 1;
+delta_x0 = [0 0 0.2 0 -0.4 0];
+
+simparams.AP = Ruhelagen(TestAP);
+simparams.APRegData = APRegData(TestAP);
+simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(TestAP).x' + delta_x0;
+simparams.MotorGain = MotorParams.staticGain;
+
+%plot_outputs(out)
+%plot_outputs(out,true,'AP1 ?','Plots\AP Regelung')
+%animate_outputs(out)
+%animate_outputs(out,SchlittenPendelParams,true,'AP1 ?','Plots\AP Regelung')
