@@ -76,6 +76,7 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
 
     %% Animation
     % loopTime = 0.005; % ungefähre Rechenzeit der for-Schleife pro Zyklus
+    try  % falls Fenster geschlossen wird
     for f = 1:nFrames 
         tic
         % Title mit Echtzeit-Informationen zu Zeit, fps und Frames
@@ -129,6 +130,9 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     end
     
     hold(hAxes, 'off');
+    catch
+        disp("Fenster vor Animationsende geschlossen")
+    end
     
     %% Speichern der Animation   
     if fileSave 
