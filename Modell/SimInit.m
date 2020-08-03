@@ -16,7 +16,7 @@ sys = SchlittenPendelNLZSR(equations, SchlittenPendelParams);
 sys2sfct(sys,'SchlittenPendelFunc','M','Path','Modell');
 
 % Anfangswerte
-SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-7 0];
+SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];
 
 % Übergebe Motor- und Schlittenpendelparameter für die Simulation
 simparams.tows_ts = 1/30;
