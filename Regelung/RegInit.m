@@ -5,7 +5,7 @@ riccdata = AP_QR_Chang19();
 APRegData = AP_Regelung_init(sys, Ruhelagen, riccdata);
 
 TestAP = 1;
-delta_x0 = [0 0 0.2 0 -0.4 0];
+delta_x0 = [0 0 1 0 -0.4 0];
 
 simparams.AP = Ruhelagen(TestAP);
 simparams.APRegData = APRegData(TestAP);
