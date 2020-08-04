@@ -1,4 +1,4 @@
-function equations = SchlittenPendelSym()
+function [eqSolved, eqCoupled] = SchlittenPendelSymF()
 % Symbolische Berechnung des Schlitten-Doppelpendel-Systems mithilfe der Lagrange-Gleichungen
 
 %% Variablen
@@ -77,10 +77,10 @@ L_phi2_p_t = subs( diff( subs(L_phi2_p,q,qt)), qt,q);
 
 %% Berechnung der LAGRANGEschen Gleichung
 
-Sol = solve( [L_x0_p_t-L_x0 == Q0, L_phi1_p_t-L_phi1 == Q1, L_phi2_p_t-L_phi2 == Q2] , ...
-        [x0_pp, phi1_pp, phi2_pp ] );%, 'ReturnConditions', true 
+eqCoupled = [L_x0_p_t-L_x0 == Q0; L_phi1_p_t-L_phi1 == Q1; L_phi2_p_t-L_phi2 == Q2];
+Sol = solve( eqCoupled , [x0_pp, phi1_pp, phi2_pp ] );%, 'ReturnConditions', true 
 %Sol.conditions
 
-equations = [simplify(Sol.x0_pp);  simplify(Sol.phi1_pp);  simplify(Sol.phi2_pp) ];
+eqSolved = [simplify(Sol.x0_pp);  simplify(Sol.phi1_pp);  simplify(Sol.phi2_pp) ];
 
 end

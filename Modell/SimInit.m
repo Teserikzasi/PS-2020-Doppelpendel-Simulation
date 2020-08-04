@@ -1,7 +1,7 @@
 % Initialisierung der Simulation
 
 % Berechne symbolische DGLs des Schlittenpendels
-equations = SchlittenPendelSym();
+equations = SchlittenPendelSymF();
 Ruhelagen = SchlittenPendelRuhelagen();
 
 % Übergebe Motor- und Schlittenpendelparameter
