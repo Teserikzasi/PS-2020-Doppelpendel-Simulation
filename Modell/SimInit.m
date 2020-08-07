@@ -1,7 +1,8 @@
 % Initialisierung der Simulation
 
 % Berechne symbolische DGLs des Schlittenpendels
-equations = SchlittenPendelSymF();
+equationsF = SchlittenPendelSymF();
+equationsA = SchlittenPendelSymA();
 Ruhelagen = SchlittenPendelRuhelagen();
 
 % Übergebe Motor- und Schlittenpendelparameter
@@ -12,8 +13,9 @@ SchlittenPendelParams = SchlittenPendelParams_Apprich09();
 
 
 % Erstelle eine S-Function des nichtlinearen Zustandsraummodells des Schlittependels
-sys = SchlittenPendelNLZSR(equations, SchlittenPendelParams);
-sys2sfct(sys,'SchlittenPendelFunc','M','Path','Modell');
+sysF = SchlittenPendelNLZSR(equationsF, SchlittenPendelParams, 'F');
+sysA = SchlittenPendelNLZSR(equationsA, SchlittenPendelParams, 'a');
+sys2sfct(sysF,'SchlittenPendelFunc','M','Path','Modell');
 
 % Anfangswerte
 SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];
