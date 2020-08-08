@@ -1,4 +1,4 @@
-function RegData = AP_Regelung_init(sys, APs, riccdata, beobPole)
+function RegData = AP_Regelung_init(sys, APs, riccdata )
 % Linearisiert alle Arbeitspunkte und berechnet Regler und Beobachter für
 % gegebene Werte
 
@@ -7,11 +7,13 @@ for i=1:4
     syslin.name = ['SchlittenPendel AP' int2str(i)];
     syslin.desc = ['Linearisierte Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems ' ...
         '(Arbeitspunkt ' int2str(i) ')' ];
-    [K, pole] = LQRegler(syslin, riccdata(i));
-    beobPole = pole - 25;
+    [K, regPole] = LQRegler(syslin, riccdata(i));
+    beobPole = regPole - 25;
     L = PlaceBeobachter(syslin, beobPole);
+    kpv = 150;
     
-    RegData(i) = struct('K', K, 'pole', pole, 'L', L, 'beobPole', beobPole, 'syslin', syslin );
+    RegData(i) = struct('K', K, 'regPole', regPole, 'L', L, 'beobPole', beobPole, ...
+        'syslin', syslin, 'kpv', kpv, 'riccdata', riccdata(i) );
 end
 
 end
