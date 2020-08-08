@@ -140,11 +140,11 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
         currDate = datetime();
         currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
         fileName = [char(currDate) '_' 'Animation'];        
-        filePath = fullfile(cd(), 'Plots');   
+        filePath = 'Plots';   
         if nargin>3
             fileName = name;
             if nargin>4
-                filePath = path;
+                filePath = [filePath '\' path];
             end
         end
         % Speichern mit korrekter Framerate
