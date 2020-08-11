@@ -21,7 +21,7 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     fps = 1/tSample; % Framerate in Frames per second
       
     % Pendelparameter
-    if ~exist('SchlittenPendelParams')
+    if ~exist('SchlittenPendelParams') || isempty(SchlittenPendelParams)
         l1 = 1;
         l2 = 1;
     else
@@ -76,6 +76,7 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
 
     %% Animation
     % loopTime = 0.005; % ungefähre Rechenzeit der for-Schleife pro Zyklus
+    try  % falls Fenster geschlossen wird
     for f = 1:nFrames 
         tic
         % Title mit Echtzeit-Informationen zu Zeit, fps und Frames
@@ -129,6 +130,9 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     end
     
     hold(hAxes, 'off');
+    catch
+        disp("Fenster vor Animationsende geschlossen")
+    end
     
     %% Speichern der Animation   
     if fileSave 
@@ -136,11 +140,11 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
         currDate = datetime();
         currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
         fileName = [char(currDate) '_' 'Animation'];        
-        filePath = fullfile(cd(), 'Plots');   
+        filePath = 'Plots';   
         if nargin>3
             fileName = name;
             if nargin>4
-                filePath = path;
+                filePath = [filePath '\' path];
             end
         end
         % Speichern mit korrekter Framerate

@@ -19,7 +19,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     phi1 = squeeze(out.mY.Data(2, 1, :));
     phi2 = squeeze(out.mY.Data(3, 1, :));
     stellF = squeeze(out.vF.Data);
-    stellU = out.vU.Data;   
+    stellU = squeeze(out.vU.Data);   
     
     %% Plot
     hFig = figure();
@@ -65,7 +65,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
     fileName = [char(currDate) '_' 'plot'];
     fileSave = false;    
-    filePath = fullfile(cd(), 'Plots');
+    filePath = 'Plots';
     fileFormat = '.png';
     fileReso = 300;
     % Argumente prüfen        
@@ -74,7 +74,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         if nargin>2
             fileName = name;
             if nargin>3
-                filePath = path;
+                filePath = [filePath '\' path];
                 if nargin>4
                     fileFormat = format;
                     if nargin==6
