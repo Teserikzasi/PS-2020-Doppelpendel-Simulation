@@ -2,6 +2,7 @@ function results = APAuswertung(out)
 % Wertet die Simulation von AP Regelung Test aus
 
 Tsim = out.tout(end)-out.tout(1);
+F = squeeze(out.vF.Data);
 u = squeeze(out.delta_u.Data);
 x = squeeze(out.delta_x.Data);
 xest = squeeze(out.delta_x_est.Data);
@@ -21,6 +22,7 @@ end
 Q = eye(6);
 R = 1;
 
+results.Jf = F'*R*F * dt;
 results.Ju = u'*R*u * dt;
 results.Jx = sum(diag(x'*Q*x)) * dt;
 results.Jxest = sum(diag(xesterr'*Q*xesterr)) * dt;

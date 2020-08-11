@@ -5,8 +5,8 @@ riccdata = AP_QR_Chang19();
 APRegDataA = AP_Regelung_init(sysA, Ruhelagen, riccdata);
 APRegDataF = AP_Regelung_init(sysF, Ruhelagen, riccdata);
 
-TestAP = 1;
-delta_x0 = [-2 0 0.2 0 -0.4 0];
+TestAP = 3;
+delta_x0 = [0 0 0 0 -0.1 0];
 
 simparams.AP = Ruhelagen(TestAP);
 simparams.APRegDataA = APRegDataA(TestAP);
@@ -19,6 +19,8 @@ simparams.vorst.D = false;
 % Zustandsmessung: 0 , Beobachter: 1 , Differenzieren: 2
 simparams.Zustandsermittlung = 0;
 
+
+%plot_outputs(out)
+%animate_outputs(out)
 %plotanimate(out)
-%plotanimate(out,'AP1 ?','AP Regelung')
-%SchlittenPendelParams
+%plotanimate(out,'AP1 ?','AP Regelung', SchlittenPendelParams)
