@@ -48,7 +48,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     title('Position x');
 	ylabel('x [m]');
     if estExist
-        plot(out.mY.Time, x1_est*180/pi, 'c', 'LineWidth', 1);
+        plot(out.mY.Time, x1_est, 'c', 'LineWidth', 1);
         legend('x', 'x_{est}');
     end
        
