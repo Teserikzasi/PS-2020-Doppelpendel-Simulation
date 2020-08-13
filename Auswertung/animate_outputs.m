@@ -22,10 +22,8 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     fps = 1/tSample; % Framerate in Frames per second    
     
     % Faktor der Wiedergabegeschwindigkeit (1=Echtzeitwiedergabe)
-    if ~exist('speedFactor', 'var') || isempty(speedFactor)
-        speedfact = 1; % Default
-    else
-        speedfact = speedFactor;
+    if ~exist('speedFactor', 'var') || isempty(speedFactor)  % was ist eig var?
+        speedFactor= 1; % Default
     end
              
     % Pendelparameter
@@ -133,7 +131,7 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
         else
             % Absolutzeitwiedergabe 
             loopTime = toc;
-            waitTime = tSample/speedfact - loopTime;
+            waitTime = tSample/speedFactor - loopTime;
             pause(waitTime);
         end
         
