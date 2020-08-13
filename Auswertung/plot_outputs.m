@@ -48,7 +48,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     title('Position x');
 	ylabel('x [m]');
     if estExist
-        plot(out.mY.Time, x1_est, 'c', 'LineWidth', 1);
+        plot(out.mY.Time, x1_est*180/pi, 'c', 'LineWidth', 1);
         legend('x', 'x_{est}');
     end
        
@@ -60,7 +60,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     title('Winkel \phi_{1}')
 	ylabel('\phi_{1} [grad]');
     if estExist
-        plot(out.mY.Time, phi1_est, 'm', 'LineWidth', 1);
+        plot(out.mY.Time, phi1_est*180/pi, 'm', 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-est}'); 
     end   
     grid on;
@@ -71,7 +71,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     title('Winkel \phi_{2}')
 	ylabel('\phi_{2} [grad]');
     if estExist
-        plot(out.mY.Time, phi2_est, 'g', 'LineWidth', 1);
+        plot(out.mY.Time, phi2_est*180/pi, 'g', 'LineWidth', 1);
         legend('\phi_{2}', '\phi_{2-est}'); 
     end    
     grid on;
