@@ -1,13 +1,14 @@
-function animate_outputs(out,SchlittenPendelParams, save, name, path)
+function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, path)
     % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
-    % ein Videofile im avi-Format.
-    % Die Funktion bekommt als Argument "out" die über ToWorkspace
-    % in den Base Workspace abgelegten Ausgänge des Simulink Modells. 
+    % ein Videofile im avi-Format. 
     % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
     % "mY" wiederum enthält die aufgezeichnete Timeseries-Struktur mit 
-    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen) 
+    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen)
+    % 
     % Optionale Argumente, um Animation als .avi abzuspeichern:
     %
+    % SchlittenpendelParams = Struktur mit l1 und l2 (Default l1=l2=1)   
+    % speedFactor = Wiedergabegeschwindigkeitsfaktor (Default: 1 [Echtzeit])
     % save = Boolean (Default: false)
     % name = Dateiname (Default: yyyy-MM-dd_HH-mm-ss_plot)
     % path = Dateipfad (Default: \Plots)
@@ -18,10 +19,17 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     stopTime = out.mY.Time(end); % Stopzeit der Simulation
     duration = stopTime - startTime;
     tSample = duration/(nFrames-1); % Abtastzeit in Simulation (ToWorkflow)
-    fps = 1/tSample; % Framerate in Frames per second
-      
+    fps = 1/tSample; % Framerate in Frames per second    
+    
+    % Faktor der Wiedergabegeschwindigkeit (1=Echtzeitwiedergabe)
+    if ~exist('speedFactor', 'var') || isempty(speedFactor)
+        speedfact = 1; % Default
+    else
+        speedfact = speedFactor;
+    end
+             
     % Pendelparameter
-    if ~exist('SchlittenPendelParams') || isempty(SchlittenPendelParams)
+    if ~exist('SchlittenPendelParams', 'var') || isempty(SchlittenPendelParams)
         l1 = 1;
         l2 = 1;
     else
@@ -30,8 +38,9 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
     end
     
     %% Prüfe Save-Argument
-    fileSave = false; % Default
-    if nargin > 2
+    if ~exist('save', 'var')
+        fileSave = false; % Default
+    else
         fileSave = save;
     end
     % Falls Animation gespeichert werden soll, reserviere Speicher
@@ -119,12 +128,13 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
                 
         % optionales Speichern
         if fileSave
-            % Frames schnell abspeichern ohne Absolutzeitwiedergabe
+            % Frames abspeichern 
             animatedFrames(f) = getframe(hFig);
         else
             % Absolutzeitwiedergabe 
             loopTime = toc;
-            pause(tSample - loopTime);
+            waitTime = (tSample - loopTime)/speedfact;
+            pause(waitTime);
         end
         
     end
@@ -139,14 +149,16 @@ function animate_outputs(out,SchlittenPendelParams, save, name, path)
         % Name und Dateipfad spezifizieren
         currDate = datetime();
         currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
-        fileName = [char(currDate) '_' 'Animation'];        
-        filePath = 'Plots';   
-        if nargin>3
+        fileName = [char(currDate) '_' 'Animation'];
+        filePath = 'Plots';
+        
+        if exist('name', 'var')
             fileName = name;
-            if nargin>4
-                filePath = [filePath '\' path];
-            end
+        end       
+        if exist('path', 'var')
+            filePath = [filePath '\' path];
         end
+        
         % Speichern mit korrekter Framerate
         v = VideoWriter([filePath '\' fileName '.avi']);
         v.FrameRate = fps;
