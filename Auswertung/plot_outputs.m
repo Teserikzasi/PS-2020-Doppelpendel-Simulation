@@ -43,10 +43,10 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     hFig = figure();
     
     subplot(4,1,1);       
-	plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);  
+	  plot(out.mY.Time, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);  
     hold on;
     title('Position x');
-	ylabel('x [m]');
+	  ylabel('x [m]');
     if estExist
         plot(out.mY.Time, x1_est, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
         legend('x', 'x_{est}');
@@ -58,7 +58,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     plot(out.mY.Time, phi1*180/pi, 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
     hold on;	
     title('Winkel \phi_{1}')
-	ylabel('\phi_{1} [grad]');
+	  ylabel('\phi_{1} [grad]');
     if estExist
         plot(out.mY.Time, phi1_est*180/pi, 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-est}'); 
@@ -69,7 +69,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     plot(out.mY.Time, phi2*180/pi, 'Color', [0.4940, 0.1840, 0.5560], 'LineWidth', 1);   
     hold on;	
     title('Winkel \phi_{2}')
-	ylabel('\phi_{2} [grad]');
+	  ylabel('\phi_{2} [grad]');
     if estExist
         plot(out.mY.Time, phi2_est*180/pi, 'Color', [0.4660, 0.6740, 0.1880], 'LineWidth', 1);
         legend('\phi_{2}', '\phi_{2-est}'); 
@@ -79,9 +79,9 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     subplot(4,1,4);
     plot(out.mY.Time, stellU*staticGain, 'Color', [0.8, 0.0780, 0.1840], 'LineWidth', 1);
     hold on;
- 	plot(out.mY.Time, stellF, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);   
+ 	  plot(out.mY.Time, stellF, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);   
     title('Sollkraft F_{soll} und Kraftausgang F_{out}');
-	ylabel('F [N]');
+	  ylabel('F [N]');
     legend('F_{soll}', 'F_{out}');
     grid on;
 

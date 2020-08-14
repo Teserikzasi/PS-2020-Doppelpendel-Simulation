@@ -131,7 +131,7 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
         else
             % Absolutzeitwiedergabe 
             loopTime = toc;
-            waitTime = tSample/speedFactor - loopTime;
+            waitTime = (tSample/speedFactor - loopTime);
             pause(waitTime);
         end
         
@@ -166,4 +166,3 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     end
     
 end
-

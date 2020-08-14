@@ -2,16 +2,18 @@
 riccdata = AP_QR_Chang19();
 %riccdata = AP_QR_Ribeiro20();
 
+% Daten für AP-Regelung: K, regPolo, L, beobPole, syslin, kpv, riccdata=Q,R
 APRegDataA = AP_Regelung_init(sysA, Ruhelagen, riccdata);
 APRegDataF = AP_Regelung_init(sysF, Ruhelagen, riccdata);
 
-TestAP = 2;
+testAP = 2;
 delta_x0 = [0 0 0 0 0.2 0];
 
-simparams.AP = Ruhelagen(TestAP);
-simparams.APRegDataA = APRegDataA(TestAP);
-simparams.APRegDataF = APRegDataF(TestAP);
-simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(TestAP).x' + delta_x0;
+
+simparams.AP = Ruhelagen(testAP);
+simparams.APRegDataA = APRegDataA(testAP);
+simparams.APRegDataF = APRegDataF(testAP);
+simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
 simparams.MotorGain = MotorParams.staticGain;
 simparams.vorst.C = false;
 simparams.vorst.D = false;
