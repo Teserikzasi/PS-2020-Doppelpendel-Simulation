@@ -166,4 +166,3 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     end
     
 end
-
