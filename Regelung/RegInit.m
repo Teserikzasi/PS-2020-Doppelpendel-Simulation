@@ -24,6 +24,6 @@ simparams.Zustandsermittlung = 0;
 
 %plot_outputs(out)
 %animate_outputs(out)
-%animate_outputs(out,SchlittenPendelParams,1/4)
+%animate_outputs(out,SchlittenPendelParams, 1/4 )
 %plotanimate(out)
-%plotanimate(out,'AP1 ?','AP Regelung', SchlittenPendelParams)
+%plotanimate(out,'AP ?','AP Regelung', SchlittenPendelParams, MotorParams)

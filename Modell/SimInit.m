@@ -24,3 +24,10 @@ SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];
 simparams.tows_ts = 1/30;
 simparams.gesamtmodell.motor = MotorParams;
 simparams.gesamtmodell.schlittenpendel = SchlittenPendelParams;
+
+
+%plot_outputs(out)
+%animate_outputs(out)
+%animate_outputs(out,SchlittenPendelParams, 1/4 )
+%plotanimate(out)
+%plotanimate(out,'AP ?','Modell Tests', SchlittenPendelParams, MotorParams)
