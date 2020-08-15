@@ -16,14 +16,21 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
     %% Daten und Parameter
-    x1 = squeeze(out.mY.Data(1, 1, :));    
-    phi1 = squeeze(out.mY.Data(2, 1, :));    
-    phi2 = squeeze(out.mY.Data(3, 1, :));   
-    stellF = squeeze(out.vF.Data);
-    stellU = squeeze(out.vU.Data);
+    x1 = squeeze(out.mY.Data(1, 1, :));
+    phi1 = squeeze(out.mY.Data(2, 1, :));
+    phi2 = squeeze(out.mY.Data(3, 1, :));
+    Freal = squeeze(out.vF.Data);
+    Ureal = squeeze(out.vU.Data);
     
-    % Prüfe, ob Beobachterschätzwerte vorhanden
-    if ismember('x_est', out.who)
+    if ismember('Fsoll', out.who) % Daten der Vorsteuerung (bei Regelung)
+        vorst = true;
+        Fsoll = squeeze(out.Fsoll.Data);
+        Usoll = squeeze(out.Usoll.Data);
+    else
+        vorst = false;
+    end
+    
+    if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
         estExist = true;
         x1_est = squeeze(out.x_est.Data(1, 1, :));
         phi1_est = squeeze(out.x_est.Data(3, 1, :));
@@ -38,6 +45,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     else
         staticGain = motorParams.staticGain;
     end
+    
     
     %% Plot
     hFig = figure();
@@ -77,16 +85,26 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     grid on;
     
     subplot(4,1,4);
-    plot(out.mY.Time, stellU*staticGain, 'Color', [0.8, 0.0780, 0.1840], 'LineWidth', 1);
-    hold on;
- 	  plot(out.mY.Time, stellF, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);   
-    title('Sollkraft F_{soll} und Kraftausgang F_{out}');
-	  ylabel('F [N]');
-    legend('F_{soll}', 'F_{out}');
+    plot(out.vU.Time, Ureal*staticGain, 'Color', [1, 0.5, 0.1], 'LineWidth', 1);
+    hold on; 
+    if vorst
+        plot(out.Fsoll.Time, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);   
+        legendFsoll='F_{soll}';
+    else
+        legendFsoll=[];
+    end
+ 	plot(out.vF.Time, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);  
+    title('Stellgröße (Kraft F)');
+	ylabel('F [N]');
+    if ~isempty(legendFsoll)  % Ich wünschte es würde einfacher gehen...
+        legend('U_{in}*MotGain', legendFsoll, 'F_{out}');
+    else
+        legend('U_{in}*MotGain', 'F_{out}')
+    end
     grid on;
 
-    
     xlabel('Zeit t [s]');
+    
     
     %% Plot speichern
     if nargin==1
