@@ -22,10 +22,11 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     Freal = squeeze(out.vF.Data);
     Ureal = squeeze(out.vU.Data);
     
-    if ismember('Fsoll', out.who) % Daten der Vorsteuerung (bei Regelung)
+    if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
         vorst = true;
-        Fsoll = squeeze(out.Fsoll.Data);
-        Usoll = squeeze(out.Usoll.Data);
+        Freg = squeeze(out.F_soll_reg.Data);
+        Fsoll = squeeze(out.F_soll_real.Data);
+        %Usoll = squeeze(out.Usoll.Data);
     else
         vorst = false;
     end
@@ -59,7 +60,6 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         plot(out.mY.Time, x1_est, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
         legend('x', 'x_{est}');
     end
-       
     grid on;
     
     subplot(4,1,2);    
@@ -85,22 +85,19 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     grid on;
     
     subplot(4,1,4);
-    plot(out.vU.Time, Ureal*staticGain, 'Color', [1, 0.5, 0.1], 'LineWidth', 1);
     hold on; 
     if vorst
-        plot(out.Fsoll.Time, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);   
-        legendFsoll='F_{soll}';
+        plot(out.tout, Freg, 'Color', [1, 0.5, 0.1], 'LineWidth', 1);
+        plot(out.tout, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        legend('F_{reg}', 'F_{soll}', 'F_{out}');
     else
-        legendFsoll=[];
-    end
- 	plot(out.vF.Time, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);  
-    title('Stellgröße (Kraft F)');
-	ylabel('F [N]');
-    if ~isempty(legendFsoll)  % Ich wünschte es würde einfacher gehen...
-        legend('U_{in}*MotGain', legendFsoll, 'F_{out}');
-    else
+        plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('U_{in}*MotGain', 'F_{out}')
     end
+    title('Stellgröße (Kraft F)');
+	ylabel('F [N]');
     grid on;
 
     xlabel('Zeit t [s]');
