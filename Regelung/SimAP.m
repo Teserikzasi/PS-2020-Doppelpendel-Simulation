@@ -16,10 +16,8 @@ else
     results.xend
 end
 
-if any(out.MotorSatState.Data)
-    disp("Motor in Sättigung!")
-end
+fprintf('Maximal: x %f, phi1 %f, phi2 %f\n', results.x(1).max, results.x(3).max, results.x(5).max)
 
-plotanimate(out)
+Auswertung
 
 %end
