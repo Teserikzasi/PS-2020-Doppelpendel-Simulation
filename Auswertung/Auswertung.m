@@ -10,5 +10,8 @@ end
 if any(out.MotorSat_w.Data)
     disp("Motor in Sättigung! (kein max Strom möglich)")
 end
+if any(out.satState_u.Data)
+    disp("Regler in Stellgrößenbegrenzung! (Motorspannung begrenzt)")
+end
 
 %end
