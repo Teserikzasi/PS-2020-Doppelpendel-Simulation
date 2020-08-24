@@ -6,10 +6,10 @@ function results = AuswertungSignal(x,in)
     results.xend = x(end);
     results.J = sum(x.^2);
     
-    results.tein = 1;
+    results.in = 1;
     for i=length(x):-1:1 
         if abs(x(i))>in
-            results.tein = i;
+            results.in = i;
             break;
         end
     end

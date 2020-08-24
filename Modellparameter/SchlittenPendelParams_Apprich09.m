@@ -65,6 +65,8 @@ function stP = SchlittenPendelParams_Apprich09()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
+    stP.M = stP.m0 + stP.m1 + stP.m2;
+    
     % Coulombsche Reibung
     stP.Fc0 = 16.232; % 16.232 N  Apprich09 S.28
     stP.Mc10 = 0;

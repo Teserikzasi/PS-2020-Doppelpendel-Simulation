@@ -16,7 +16,8 @@ else
     results.xend
 end
 
-fprintf('Maximal: x %f, phi1 %f, phi2 %f\n', results.x(1).max, results.x(3).max, results.x(5).max)
+fprintf('Maximal: x: %.3f, phi1: %.2f°, phi2: %.2f°\n', ...
+    results.x(1).max, results.x(3).max*180/pi, results.x(5).max*180/pi)
 
 Auswertung
 
