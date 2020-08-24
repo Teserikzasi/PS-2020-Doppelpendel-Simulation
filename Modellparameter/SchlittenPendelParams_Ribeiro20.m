@@ -65,6 +65,8 @@ function stP = SchlittenPendelParams_Ribeiro20()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
+    stP.M = stP.m0 + stP.m1 + stP.m2;
+    
     % Coulombsche Reibung
     stP.Fc0 = 13.43; % Ribeiro20 S.32 mittlerer Gesamtwert in Plot abgelesen, durch Messen bei hoher Skalierung (5N=39,2cm) und Dreisatz
     stP.Mc10 = 0.0538;

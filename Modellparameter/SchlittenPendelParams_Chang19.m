@@ -69,6 +69,8 @@ function stP = SchlittenPendelParams_Chang19()
 	stP.pdesc.x0_max = 'Maximale Schlittenposition';
 	stP.punit.x0_max = 'm';
     
+    stP.M = stP.m0 + stP.m1 + stP.m2;
+    
     % Coulombsche Reibung
     stP.Fc0 = 17.5; % Chang19 S.66, im Modell steht 17
     stP.Mc10 = 0.0538;
