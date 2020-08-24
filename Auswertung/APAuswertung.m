@@ -27,8 +27,10 @@ results.Ju = u'*R*u * dt;
 results.Jx = sum(diag(x'*Q*x)) * dt; % Gütefunktional zum Zustandsverlauf
 results.Jxest = sum(diag(xesterr'*Q*xesterr)) * dt; % Gütefunktional zum Zustandsfehler
 
+in = [0.05, 0.1, 0.05, 0.1, 0.05, 0.1 ];
 for i=1:6
-    results.x(i) = AuswertungSignal(x(i,:), 0.05 );
+    results.x(i) = AuswertungSignal(x(i,:), in(i) );
+    %results.x(i).tein = out.delta_x_real.Time(results.x(i).in);  %Subscripted assignment between dissimilar structures. ???
 end
 
 end
