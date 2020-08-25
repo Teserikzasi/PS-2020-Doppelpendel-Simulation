@@ -1,13 +1,25 @@
-%function [simout,results] = SimAP(simparams)
-% Simuliert eine AP-Regelung
+function [simout, results] = SimAP(testAP, delta_x0, Tsim)
+% Simuliert eine AP-Regelung mit gegebenem AP und x0
 
-Tsim = 10;
+if ~exist('Tsim', 'var')
+    Tsim = 10;
+end
 
-disp(['Simuliere AP-Regelung (AP ' int2str(simparams.AP.i) ')' ])
-out = sim('AP_Regelung_Test', Tsim);
+global simparams;
+global APRegDataA;
+global APRegDataF;
+global Ruhelagen;
+simparams.AP = Ruhelagen(testAP);
+simparams.APRegDataA = APRegDataA(testAP);
+simparams.APRegDataF = APRegDataF(testAP);
+simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
 
-results = APAuswertung(out)
-%results.xend_norm
+disp(['Simuliere AP-Regelung (AP ' int2str(simparams.AP.i) ') ...' ])
+simout = sim('AP_Regelung_Test', Tsim);
+
+results = APAuswertung(simout);
+fprintf('Gütemaße:  Jx = %.2f, Jxest = %.2f, Jf = %.0f\n', ...
+    results.Jx, results.Jxest, results.Jf )
 
 if results.stabilised
     disp('Um AP stabilisiert')
@@ -16,9 +28,4 @@ else
     results.xend
 end
 
-fprintf('Maximal: x: %.3f, phi1: %.2f°, phi2: %.2f°\n', ...
-    results.x(1).max, results.x(3).max*180/pi, results.x(5).max*180/pi)
-
-Auswertung
-
-%end
+end

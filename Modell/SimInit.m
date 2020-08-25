@@ -3,6 +3,7 @@
 % Berechne symbolische DGLs des Schlittenpendels
 equationsF = SchlittenPendelSymF();
 equationsA = SchlittenPendelSymA();
+global Ruhelagen
 Ruhelagen = SchlittenPendelRuhelagen();
 
 % Übergebe Motor- und Schlittenpendelparameter
@@ -21,9 +22,10 @@ sys2sfct(sysF,'SchlittenPendelFunc','M','Path','Modell');
 SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];
 
 % Übergebe Motor- und Schlittenpendelparameter für die Simulation
-simparams.tows_ts = 1/30;
+global simparams
 simparams.gesamtmodell.motor = MotorParams;
 simparams.gesamtmodell.schlittenpendel = SchlittenPendelParams;
+simparams.tows_ts = 1/30;
 
 
 %plot_outputs(out)
