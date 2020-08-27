@@ -24,8 +24,8 @@ R = 1;
 
 results.Jf = F'*R*F * dt;  % Gütefunktional zur Stellgröße
 results.Ju = u'*R*u * dt;
-results.Jx = sum(diag(x'*Q*x)) * dt; % Gütefunktional zum Zustandsverlauf
-results.Jxest = sum(diag(xesterr'*Q*xesterr)) * dt; % Gütefunktional zum Zustandsfehler
+results.Jx = sum(diag(Q*x*x')) * dt; % Gütefunktional zum Zustandsverlauf
+results.Jxest = sum(diag(Q*xesterr*xesterr')) * dt; % Gütefunktional zum Zustandsfehler
 
 in = [0.05, 0.1, 0.05, 0.1, 0.05, 0.1 ];
 for i=1:6
