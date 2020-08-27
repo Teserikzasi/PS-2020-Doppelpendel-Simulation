@@ -9,12 +9,19 @@ global simparams;
 global APRegDataA;
 global APRegDataF;
 global Ruhelagen;
+global Zustandsermittlung;
 simparams.AP = Ruhelagen(testAP);
 simparams.APRegDataA = APRegDataA(testAP);
 simparams.APRegDataF = APRegDataF(testAP);
 simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
 
-disp(['Simuliere AP-Regelung (AP ' int2str(simparams.AP.i) ') ...' ])
+fprintf('\nSimuliere AP-Regelung (AP %d) ...\n',  simparams.AP.i )
+fprintf('Zustandsermittlung: %s   Vorsteuerung: c = %d, d = %d \n', ...
+    Zustandsermittlung(simparams.Zustandsermittlung), ...
+    simparams.vorst.C, simparams.vorst.D )
+fprintf('delta x0:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
+    delta_x0(1), rad2deg(delta_x0(3)), rad2deg(delta_x0(5)) )
+
 simout = sim('AP_Regelung_Test', Tsim);
 
 results = APAuswertung(simout);

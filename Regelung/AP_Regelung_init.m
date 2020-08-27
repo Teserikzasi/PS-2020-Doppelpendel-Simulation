@@ -8,7 +8,7 @@ for i=1:4
     syslin.desc = ['Linearisierte Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems ' ...
         '(Arbeitspunkt ' int2str(i) ')' ];
     [K, regPole] = LQRegler(syslin, riccdata(i));
-    beobPole = regPole - 25;
+    beobPole = BeobachterPole(regPole);
     L = PlaceBeobachter(syslin, beobPole);
     kpv = 150;
     
