@@ -16,7 +16,8 @@ qt  = str2sym({ 'x0(t)', 'phi1(t)', 'phi2(t)', ...
 
 %% Parameter
 
-syms  m0 m1 m2  J1 J2  l1 l2  s1 s2  d0 d1 d2  Fc0 Mc10 Mc20 x0_p_c2 phi1_p_c2 phi2_p_c2  g  positive;
+syms  m0 m1 m2  J1 J2  l1 l2  s1 s2  d0 d1 d2 ...
+     Fc0 Mc10 Mc20 x0_p_c076 phi1_p_c076 phi2_p_c076  g  positive;
 
 
 %% Kinematik
@@ -45,14 +46,14 @@ U = g*m1*y1 + g*m2*y2;
 L = T-U;
 
 % viskose Dämpfung
-Fd  = -d0*x0_p;
-Md1 = -d1*phi1_p;
-Md2 = -d2*(phi2_p-phi1_p);
+Fd  = -d0 * x0_p;
+Md1 = -d1 * phi1_p;
+Md2 = -d2 * (phi2_p-phi1_p);
 
 % Coulomb-Kräfte
-Fc  = -Fc0 *2/pi*atan(x0_p/x0_p_c2);%sign(x0_p);
-Mc1 = -Mc10*2/pi*atan(phi1_p/phi1_p_c2);
-Mc2 = -Mc20*2/pi*atan((phi2_p-phi1_p)/phi2_p_c2);
+Fc  = -Fc0  * tanh(x0_p/x0_p_c076); %2/pi*atan(x0_p/x0_p_c2); %sign(x0_p);
+Mc1 = -Mc10 * tanh(phi1_p/phi1_p_c076); %2/pi*atan(phi1_p/phi1_p_c2);
+Mc2 = -Mc20 * tanh((phi2_p-phi1_p)/phi2_p_c076); %2/pi*atan((phi2_p-phi1_p)/phi2_p_c2);
 
 % Nicht-konservative Kräfte
 Q0 = F + Fd + Fc;

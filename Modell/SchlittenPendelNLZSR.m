@@ -11,7 +11,7 @@ sys.desc = ['Nichtlineare Zustandsraumdarstellung des Schlitten-Doppelpendel-Sys
 u = {eingang};
 x = {'x0' 'x0_p' 'phi1' 'phi1_p' 'phi2' 'phi2_p' };
 y = {'x0' 'phi1' 'phi2' };
-p = {'m0' 'm1' 'm2' 'J1' 'J2' 'l1' 'l2' 's1' 's2' 'd0' 'd1' 'd2' 'Fc0' 'Mc10' 'Mc20' 'x0_p_c2' 'phi1_p_c2' 'phi2_p_c2' 'g'}; 
+p = {'m0' 'm1' 'm2' 'J1' 'J2' 'l1' 'l2' 's1' 's2' 'd0' 'd1' 'd2' 'Fc0' 'Mc10' 'Mc20' 'x0_p_c076' 'phi1_p_c076' 'phi2_p_c076' 'g'}; 
 
 sys.u.var = u;
 sys.u.name = u;

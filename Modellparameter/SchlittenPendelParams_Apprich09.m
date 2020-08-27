@@ -71,10 +71,13 @@ function stP = SchlittenPendelParams_Apprich09()
     stP.Fc0 = 16.232; % 16.232 N  Apprich09 S.28
     stP.Mc10 = 0;
     stP.Mc20 = 0;
-    % Skalierungsparameter für die Annäherung von signum mit atan
-    % Geschwindigkeit, bei der gerade die Hälfte von Fc0/Mc0 erreicht ist
-    stP.x0_p_c2 = 0.01;
-    stP.phi1_p_c2 = 0.01;   
-    stP.phi2_p_c2 = 0.01;
+    
+    % alt: Skalierungsparameter für die Annäherung von signum mit atan
+    % alt: x0_p_c2 Geschwindigkeit, bei der gerade die Hälfte von Fc0|Mc0 erreicht ist
+    % jetzt mit tanh(x0_p/x0_p_c076)  
+    % x|phi_p_c076: Geschwindigkeit, bei der tanh(1)=0.7616 von Fc0|Mc0 erreicht ist
+    stP.x0_p_c076 = 0.01;
+    stP.phi1_p_c076 = 0.01;   
+    stP.phi2_p_c076 = 0.01;
 
 end
