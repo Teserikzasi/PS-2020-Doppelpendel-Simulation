@@ -1,8 +1,9 @@
 % Initialisierung der AP-Regelung
 
 %% Reglerparameter (Q,R)
-riccdata = AP_QR_Chang19();
+%riccdata = AP_QR_Chang19();
 %riccdata = AP_QR_Ribeiro20();
+riccdata = AP_QR_20_neu();
 
 %% Berechnung Daten für alle APs (K,L,linsys)
 global APRegDataF
