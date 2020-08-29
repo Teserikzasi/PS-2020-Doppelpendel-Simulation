@@ -4,23 +4,28 @@
 riccdata = AP_QR_Chang19();
 %riccdata = AP_QR_Ribeiro20();
 
-%% Berechnung Daten für alle APs (K,L,linsys,kpv)
+%% Berechnung Daten für alle APs (K,L,linsys)
 global APRegDataF
 global APRegDataA
 APRegDataF = AP_Regelung_init(sysF, Ruhelagen, riccdata);
 APRegDataA = AP_Regelung_init(sysA, Ruhelagen, riccdata); 
 
-matlabFunctionBlock('Schlitten_Beschleunigung/x0_pp', sysF.f(2) ); % Gleichung für die Beschleunigung. Simulink muss geöffnet sein
+%% Gleichungen F<->a
+equation_a = sysF.f(2); % Gleichung für die Beschleunigung
+equation_F = solve(str2sym('a')==equation_a, str2sym('F')); % Gleichung für die Kraft
+matlabFunctionBlock('Schlitten_Beschleunigung/x0_pp', equation_a ); % Simulink muss geöffnet sein
+matlabFunctionBlock('Schlitten_Kraft/F0', equation_F );
 
 %% Simulationsparameter
 % Art der Zustandsermittlung
 global Zustandsermittlung
 Zustandsermittlung = ["Zustandsmessung","Beobachter","Differenzieren"];
-simparams.Zustandsermittlung = 1; % Zustandsmessung: 1 , Beobachter: 2 , Differenzieren: 3
+simparams.Zustandsermittlung = 2; % Zustandsmessung: 1 , Beobachter: 2 , Differenzieren: 3
 % Vorsteuerung
 simparams.vorst.C = true;
 simparams.vorst.D = true;
 simparams.vorst.x0_p_c076 = 0.1;  % 10*realer Wert
+simparams.kpv = 150;
 
 %% Arbeitspunkt
 testAP = 3;
