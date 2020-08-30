@@ -10,10 +10,9 @@ for i=1:4
     [K, regPole] = LQRegler(syslin, riccdata(i));
     beobPole = BeobachterPole(regPole);
     L = PlaceBeobachter(syslin, beobPole);
-    kpv = 150;
     
     RegData(i) = struct('K', K, 'regPole', regPole, 'L', L, 'beobPole', beobPole, ...
-        'syslin', syslin, 'kpv', kpv, 'riccdata', riccdata(i) );
+        'syslin', syslin, 'riccdata', riccdata(i) );
 end
 
 end
