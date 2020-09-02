@@ -22,7 +22,7 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     fps = 1/tSample; % Framerate in Frames per second    
     
     % Faktor der Wiedergabegeschwindigkeit (1=Echtzeitwiedergabe)
-    if ~exist('speedFactor', 'var') || isempty(speedFactor)  % was ist eig var?
+    if ~exist('speedFactor', 'var') || isempty(speedFactor)
         speedFactor= 1; % Default
     end
              
@@ -90,7 +90,7 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
         infoTitle = ['t = ' num2str( (f-1) * tSample, '%05.2f') ' sec ', ...
                         '(fps = ' num2str(fps) ', ' ...
                         'Frame ' num2str(f) '/' num2str(nFrames) ')'];
-        title (hAxes, infoTitle); 
+        title(hAxes, infoTitle); 
 
         % Im ersten Frame die Plots erstellen, danach plots aktualisieren
         xCart = x1(f);
@@ -143,7 +143,7 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     end
     
     %% Speichern der Animation   
-    if fileSave 
+    if fileSave
         % Name und Dateipfad spezifizieren
         currDate = datetime();
         currDate.Format = 'yyyy-MM-dd_HH-mm-ss';
@@ -152,16 +152,16 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
         
         if exist('name', 'var')
             fileName = name;
-        end       
+        end
         if exist('path', 'var')
             filePath = [filePath '\' path];
         end
         
         % Speichern mit korrekter Framerate
         v = VideoWriter([filePath '\' fileName '.avi']);
-        v.FrameRate = fps;
+        v.FrameRate = fps*speedFactor;
         open(v);
-        writeVideo(v, animatedFrames);
+        writeVideo(v, animatedFrames(1:(f-1)) ); % gültiges Format für Datei bei Abbruch
         close(v)
     end
     
