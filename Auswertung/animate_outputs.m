@@ -1,4 +1,4 @@
-function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, path)
+function animate_outputs(out, speedFactor, save, name, path)
     % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
     % ein Videofile im avi-Format. 
     % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
@@ -23,10 +23,11 @@ function animate_outputs(out, SchlittenPendelParams, speedFactor, save, name, pa
     
     % Faktor der Wiedergabegeschwindigkeit (1=Echtzeitwiedergabe)
     if ~exist('speedFactor', 'var') || isempty(speedFactor)
-        speedFactor= 1; % Default
+        speedFactor = 1; % Default
     end
              
     % Pendelparameter
+    global SchlittenPendelParams
     if ~exist('SchlittenPendelParams', 'var') || isempty(SchlittenPendelParams)
         l1 = 1;
         l2 = 1;
