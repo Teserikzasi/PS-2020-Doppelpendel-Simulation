@@ -11,28 +11,26 @@ global APRegDataF;
 global Ruhelagen;
 global Zustandsermittlung;
 simparams.AP = Ruhelagen(testAP);
+simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
 simparams.APRegDataA = APRegDataA(testAP);
 simparams.APRegDataF = APRegDataF(testAP);
-simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
+simparams.APRegDataA.xb0 = delta_x0';
+simparams.APRegDataF.xb0 = delta_x0';
 
-fprintf('\nSimuliere AP-Regelung (AP %d) ...\n',  simparams.AP.i )
-fprintf('Zustandsermittlung: %s   Vorsteuerung: c = %d, d = %d \n', ...
-    Zustandsermittlung(simparams.Zustandsermittlung), ...
-    simparams.vorst.C, simparams.vorst.D )
+fprintf('\nSimuliere AP-Regelung (AP %d)...   Zustandsermittlung: %s\n', ...
+    simparams.AP.i, Zustandsermittlung(simparams.Zustandsermittlung) )
+%   Vorsteuerung: c = %d, d = %d , ...    simparams.vorst.C, simparams.vorst.D
 fprintf('delta x0:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
     delta_x0(1), rad2deg(delta_x0(3)), rad2deg(delta_x0(5)) )
 
 simout = sim('AP_Regelung_Test', Tsim);
-
 results = APAuswertung(simout);
-fprintf('Gütemaße:  Jx = %.2f, Jxest = %.2f, Jf = %.0f\n', ...
-    results.Jx, results.Jxest, results.Jf )
 
 if results.stabilised
     disp('Um AP stabilisiert')
 else
-    disp(['AP wurde nicht stabilisiert. Abweichung:'])
-    results.xend
+    fprintf('AP wurde NICHT stabilisiert. Abweichung:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
+        results.xend(1), rad2deg(results.xend(3)), rad2deg(results.xend(5)) )
 end
 
 end
