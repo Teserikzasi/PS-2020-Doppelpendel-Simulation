@@ -20,7 +20,9 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     phi1 = squeeze(out.mY.Data(2, 1, :));
     phi2 = squeeze(out.mY.Data(3, 1, :));
     Freal = squeeze(out.vF.Data);
-    Ureal = squeeze(out.vU.Data);
+    if isfield(out, 'vU')
+        Ureal = squeeze(out.vU.Data);
+    end
     
     if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
         vorst = true;
@@ -92,7 +94,9 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
     else
-        plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        if exist('Ureal', 'var')
+            plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        end
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('U_{in}*MotGain', 'F_{out}')
     end
