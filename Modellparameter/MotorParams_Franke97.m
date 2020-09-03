@@ -24,7 +24,7 @@ function stM = MotorParams_Franke97()
     stM.d0_MG = 0.052; % konstante Reibung in Nm
     stM.dw_MG = 0.0000574; % geschwindigkeitsabhängige Reibung in Nm/(rad/s)
     
-    
     %% statische Verstärkung u->F
     stM.staticGain = stM.K_UI*stM.K_I/stM.K_G/stM.r32; 
+    stM.Fmax = stM.Umax_in*stM.staticGain;
 end
