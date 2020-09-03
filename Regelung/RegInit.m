@@ -14,8 +14,8 @@ APRegDataA = AP_Regelung_init(sysA, Ruhelagen, riccdata);
 %% Gleichungen F<->a
 equation_a = sysF.f(2); % Gleichung für die Beschleunigung
 equation_F = solve(str2sym('a')==equation_a, str2sym('F')); % Gleichung für die Kraft
-matlabFunctionBlock('Schlitten_Beschleunigung/x0_pp', equation_a ); % Simulink muss geöffnet sein
-matlabFunctionBlock('Schlitten_Kraft/F0', equation_F );
+matlabFunctionBlock('SchlittenGleichungBeschleunigung/x0_pp', equation_a ); % Simulink muss geöffnet sein
+matlabFunctionBlock('SchlittenGleichungKraft/F0', equation_F );
 
 %% Simulationsparameter
 % Art der Zustandsermittlung

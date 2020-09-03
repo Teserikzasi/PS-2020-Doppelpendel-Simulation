@@ -1,13 +1,10 @@
-function plotanimate(out, name, path, SchlittenPendelParams, MotorParams)
+function plotanimate(out, name, path)
 % plot und animate, optional mit speichern
 % path relativ zu Plots
+global MotorParams
+global SchlittenPendelParams
 speedFactor = 1;
-if ~exist('SchlittenPendelParams', 'var')
-    SchlittenPendelParams=[];
-end
-if ~exist('MotorParams', 'var')
-    MotorParams=[];
-end
+
 
 if nargin==1
     plot_outputs(out)
