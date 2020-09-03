@@ -25,7 +25,7 @@ global simparams
 SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];  % Anfangswerte
 simparams.gesamtmodell.motor = MotorParams;
 simparams.gesamtmodell.schlittenpendel = SchlittenPendelParams;
-simparams.tows_ts = 1/60;  % fps für x,phi1,phi2 für Animation
+simparams.tows_ts = 1/50;  % fps für x,phi1,phi2 für Animation
 
 %% Auswertung
 %plot_outputs(out)
