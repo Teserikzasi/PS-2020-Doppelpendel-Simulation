@@ -38,9 +38,9 @@ simparams.APRegDataF = APRegDataF(testAP);
 simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
 %[out, results] = SimAP(testAP, delta_x0 );
 
-%%
+%% Auswertung
 %plot_outputs(out)
 %animate_outputs(out)
-%animate_outputs(out,SchlittenPendelParams, 1/4 )
+%animate_outputs(out, 1/4 )
 %plotanimate(out)
-%plotanimate(out,'AP ?','AP Regelung', SchlittenPendelParams, MotorParams)
+%plotanimate(out,'AP ?','AP Regelung' )
