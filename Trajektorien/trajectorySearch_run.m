@@ -125,7 +125,7 @@ for k_ubx0=1 : 5   % Variation der Positionsbeschränkung
                         '_dev' num2str(dev_x0(k_pos)) '_' sprintf('%0.2f',devInitPhi1) '_' ...
                       sprintf('%0.2f',devInitPhi2) '_x0max'  num2str(x0_max) '.mat'];
                 filePath = fullfile(pwd, fullFolderPath, fileName);                 
-                save(filePath, 'results_traj', 'x_init', 'x_end', 'x0_max', 'T', 'devInitPhi1', 'devInitPhi2'); % ggf. alte Files überschreiben
+                save(filePath, 'results_traj', 'x_init', 'x_end', 'x0_max', 'T', 'N', 'devInitPhi1', 'devInitPhi2'); % ggf. alte Files überschreiben
                     
 %                     % plotten
 %                     parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
