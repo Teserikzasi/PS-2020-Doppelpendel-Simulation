@@ -22,6 +22,8 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     Freal = squeeze(out.vF.Data);
     if isfield(out, 'vU')
         Ureal = squeeze(out.vU.Data);
+    else
+        Ureal = [];
     end
     
     if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
@@ -51,6 +53,7 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     
     
     %% Plot
+    set(groot, 'DefaultTextInterpreter', 'tex')
     hFig = figure();
     
     subplot(4,1,1);       
@@ -93,12 +96,13 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         plot(out.tout, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
-    else
-        if exist('Ureal', 'var')
-            plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        end
+    elseif ~isempty(Ureal)        
+        plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('U_{in}*MotGain', 'F_{out}')
+    else
+        plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        legend('F_{out}')
     end
     title('Stellgröße (Kraft F)');
 	ylabel('F [N]');
