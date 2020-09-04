@@ -33,9 +33,9 @@ x0max = conficMPC.x0_max;
 %% Optimal Control Problem
 
 % Zustandsgleichungen (Kraftmodell)
-coulomb = false;
-%[ode, x, u] = getODE(coulomb);
-[ode, x, u] = getODE_Fauve();
+ode = conficMPC.ode;
+x = conficMPC.x;
+u = conficMPC.u;
 xLength = length(x);
 
 % Symbolische Ausdrücke für gesamten Zeithorizont
@@ -127,18 +127,18 @@ results.g_traj = full(solution.g);
 
 
 % Zulässigkeitsprüfung
+x_end_mpc = results.x_traj(:,end);
+dev = norm(x_end-x_end_mpc, 2);
+results.dev = dev;
+
 if isfield(conficMPC, 'condition') && ~isempty(conficMPC.condition)
     condition = conficMPC.condition;    
 else
     condition = 1e-2;
 end
-x_end_mpc = results.x_traj(:,end);
-dev = norm(x_end-x_end_mpc, 2);
 if  dev < condition 
-    results.condition = 1;
     fprintf('Trajektorie gefunden für xinit = [%0.2f %0.2f %0.2f %0.2f %0.2f %0.2f] und xend = [%0.2f %0.2f %0.2f %0.2f %0.2f %0.2f]\n', x_init, x_end)
-else
-    results.condition = 0;
+    fprintf('Fehler: %0.5f', dev)
 end
     
 end
