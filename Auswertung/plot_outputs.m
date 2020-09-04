@@ -1,4 +1,4 @@
-function plot_outputs(out, motorParams, save, name, path, format, resolution)
+function plot_outputs(out, save, name, path, format, resolution)
     % Erstellt Subplots von x, phi1 und phi2
     % Die Funktion bekommt als Argument "out" die über ToWorkspace
     % in den Base Workspace abgelegten Ausgänge des Simulink Modells. 
@@ -8,14 +8,22 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
     % 
     % Optionale Argumente, um Plot abzuspeichern:
     %
-    % motorParams = Struktur.staticGain (Default: 1.87*0.153*60/16/0.0255)
     % save = Boolean (Default: false)
     % name = Dateiname (Default: yyyy-MM-dd_HH-mm-ss_plot)
     % path = Dateipfad (Default: \Plots)
     % format = Bildformat (Default: .png)
     % resolution = Grafikauflösung in DPI (Default: 300)
     
-    %% Daten und Parameter
+    %% Parameter
+    global MotorParams
+    % Static Gain
+%     if ~exist('motorParams', 'var')
+%         staticGain = 1.87*0.153*60/16/0.0255; % Default
+%     else
+        staticGain = MotorParams.staticGain;
+%     end
+    
+    %% Daten 
     x1 = squeeze(out.mY.Data(1, 1, :));
     phi1 = squeeze(out.mY.Data(2, 1, :));
     phi2 = squeeze(out.mY.Data(3, 1, :));
@@ -24,15 +32,6 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         Ureal = squeeze(out.vU.Data);
     else
         Ureal = [];
-    end
-    
-    if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
-        vorst = true;
-        Freg = squeeze(out.F_soll_reg.Data);
-        Fsoll = squeeze(out.F_soll_real.Data);
-        %Usoll = squeeze(out.Usoll.Data);
-    else
-        vorst = false;
     end
     
     if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
@@ -44,13 +43,14 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         estExist = false;
     end
     
-    % Static Gain
-    if ~exist('motorParams', 'var')
-        staticGain = 1.87*0.153*60/16/0.0255; % Default
+    if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
+        vorst = true;
+        Freg = squeeze(out.F_soll_reg.Data);
+        Fsoll = squeeze(out.F_soll_real.Data);
+        %Usoll = squeeze(out.Usoll.Data);
     else
-        staticGain = motorParams.staticGain;
+        vorst = false;
     end
-    
     
     %% Plot
     set(groot, 'DefaultTextInterpreter', 'tex')
@@ -102,7 +102,6 @@ function plot_outputs(out, motorParams, save, name, path, format, resolution)
         legend('U_{in}*MotGain', 'F_{out}')
     else
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
-        legend('F_{out}')
     end
     title('Stellgröße (Kraft F)');
 	ylabel('F [N]');
