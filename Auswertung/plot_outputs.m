@@ -27,6 +27,12 @@ function plot_outputs(out, save, name, path, format, resolution)
     x1 = squeeze(out.mY.Data(1, 1, :));
     phi1 = squeeze(out.mY.Data(2, 1, :));
     phi2 = squeeze(out.mY.Data(3, 1, :));
+    Freal = squeeze(out.vF.Data);
+    if isfield(out, 'vU')
+        Ureal = squeeze(out.vU.Data);
+    else
+        Ureal = [];
+    end
     
     if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
         estExist = true;
@@ -36,12 +42,6 @@ function plot_outputs(out, save, name, path, format, resolution)
     else
         estExist = false;
     end
-    
-    if isfield(out, 'vU')
-        Ureal = squeeze(out.vU.Data);
-    end
-    
-    Freal = squeeze(out.vF.Data);
     
     if ismember('F_soll_reg', out.who) % Daten der Vorsteuerung (bei Regelung)
         vorst = true;
@@ -53,6 +53,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     end
     
     %% Plot
+    set(groot, 'DefaultTextInterpreter', 'tex')
     hFig = figure();
     
     subplot(4,1,1);       
@@ -95,14 +96,12 @@ function plot_outputs(out, save, name, path, format, resolution)
         plot(out.tout, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
         plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
+    elseif ~isempty(Ureal)        
+        plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        legend('U_{in}*MotGain', 'F_{out}')
     else
-        if exist('Ureal', 'var')
-            plot(out.tout, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-            plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
-            legend('U_{in}*MotGain', 'F_{out}')
-        else
-            plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
-        end
+        plot(out.tout, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
     end
     title('Stellgröße (Kraft F)');
 	ylabel('F [N]');
