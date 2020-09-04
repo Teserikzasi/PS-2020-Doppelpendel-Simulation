@@ -13,19 +13,21 @@ MotorParams = MotorParams_Franke97();
 SchlittenPendelParams = SchlittenPendelParams_Apprich09();
 %SchlittenPendelParams = SchlittenPendelParams_Chang19();
 %SchlittenPendelParams = SchlittenPendelParams_Ribeiro20();
-SchlittenPendelParams.Fc0 = 0; % Coulomb-Reibung deaktivieren
+%SchlittenPendelParams.Fc0 = 0; % Coulomb-Reibung deaktivieren
 
 %% Erstelle nichtlineares parametrisiertes Zustandsraummodell und S-Function
+global sysF
+global sysA
 sysF = SchlittenPendelNLZSR(equationsF, SchlittenPendelParams, 'F');
 sysA = SchlittenPendelNLZSR(equationsA, SchlittenPendelParams, 'a');
 sys2sfct(sysF,'SchlittenPendelFunc','M','Path','Modell');
 
 %% Übergebe Motor- und Schlittenpendelparameter für die Simulation
 global simparams
-SchlittenPendelParams.x0 = Ruhelagen(4).x' + [0 0 0 0 1e-2 0];  % Anfangswerte
+simparams.tows_ts = 1/50;  % fps für x,phi1,phi2 für Animation
 simparams.gesamtmodell.motor = MotorParams;
 simparams.gesamtmodell.schlittenpendel = SchlittenPendelParams;
-simparams.tows_ts = 1/50;  % fps für x,phi1,phi2 für Animation
+simparams.gesamtmodell.schlittenpendel.x0 = [0 0 0 0 1e-2 0];  % Anfangswerte
 
 %% Auswertung
 %plot_outputs(out)

@@ -1,6 +1,6 @@
-function RegData = AP_Regelung_init(sys, APs, riccdata )
-% Linearisiert alle Arbeitspunkte und berechnet Regler und Beobachter für
-% gegebene Werte
+function RegData = AP_RegData_calc(sys, APs, riccdata )
+% Linearisiert alle Arbeitspunkte des nichtlinearen Systems und 
+% berechnet Regler und Beobachter für gegebene Werte
 
 for i=1:4
     syslin = Linearisierung(sys, APs(i));

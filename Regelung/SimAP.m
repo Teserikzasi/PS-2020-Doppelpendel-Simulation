@@ -6,14 +6,13 @@ if ~exist('Tsim', 'var')
 end
 
 global simparams;
-global APRegDataA;
-global APRegDataF;
+global APRegData;
 global Ruhelagen;
 global Zustandsermittlung;
 simparams.AP = Ruhelagen(testAP);
 simparams.gesamtmodell.schlittenpendel.x0 = Ruhelagen(testAP).x' + delta_x0;
-simparams.APRegDataA = APRegDataA(testAP);
-simparams.APRegDataF = APRegDataF(testAP);
+simparams.APRegDataA = APRegData.A(testAP);
+simparams.APRegDataF = APRegData.F(testAP);
 simparams.APRegDataA.xb0 = delta_x0';
 simparams.APRegDataF.xb0 = delta_x0';
 
