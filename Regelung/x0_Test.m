@@ -1,4 +1,4 @@
-function [max_y0, delta_max, guete] = SimAP_x0_Test(AP, x_st, phi1_st, phi2_st, plotall)
+function [max_y0, delta_max, guete] = x0_Test(AP, x_st, phi1_st, phi2_st, plotall)
 % Simuliert nacheinander immer höhere Anfangswerte bis zur Instabilität
 
 if ~exist('plot', 'var')
@@ -34,7 +34,7 @@ figure
 plot(0:i-2,delta_max,'o--')
 grid on
 legend('x_{max}','\phi1_{max}','\phi2_{max}')
-title('Maximale Abweichung vom AP')
+title(sprintf('Maximale Abweichung vom AP (%d)', AP))
 
 figure
 subplot(3,1,1)

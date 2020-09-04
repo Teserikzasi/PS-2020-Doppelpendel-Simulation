@@ -12,5 +12,3 @@ fprintf('Gütemaße:  Jx = %.2f, Jxest = %.2f, Jf = %.0f\n', ...
 Auswertung(out)
 
 plotanimate(out)
-
-%SimAP_x0_Test( testAP, 0, deg2rad(0), deg2rad(5), true )
