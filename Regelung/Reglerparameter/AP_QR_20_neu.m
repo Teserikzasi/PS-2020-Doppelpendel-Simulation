@@ -1,6 +1,6 @@
 function QRs = AP_QR_20_neu()
 % Hier werden die Parameter des Riccati-Reglers aller Arbeitspunkte definiert
-% nach Ribeiro20
+% Neudefinition PS2020 Gebhard/Tesar
 
 QRs(1) = struct('R', 0.001, 'Q', diag([80, 1, 10, 1, 10, 1 ]) );
 QRs(2) = struct('R', 0.001, 'Q', diag([10, 1, 10, 1, 90, 1 ]) );  % Pendel 2 instabil
