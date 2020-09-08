@@ -1,6 +1,8 @@
 % Initialisierung der Simulation
+clear global
 
 %% Berechne symbolische DGL des Schlittenpendels
+global equationsF % zum Überschreiben bei simTraj_FauveODE
 equationsF = SchlittenPendelSymF();
 equationsA = SchlittenPendelSymA();
 global Ruhelagen
@@ -16,7 +18,7 @@ SchlittenPendelParams = SchlittenPendelParams_Apprich09();
 %SchlittenPendelParams.Fc0 = 0; % Coulomb-Reibung deaktivieren
 
 %% Erstelle nichtlineares parametrisiertes Zustandsraummodell und S-Function
-global sysF
+global sysF % zum Überschreiben bei simTraj_FauveODE
 global sysA
 sysF = SchlittenPendelNLZSR(equationsF, SchlittenPendelParams, 'F');
 sysA = SchlittenPendelNLZSR(equationsA, SchlittenPendelParams, 'a');
