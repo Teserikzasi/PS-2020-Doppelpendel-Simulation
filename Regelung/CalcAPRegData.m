@@ -1,4 +1,4 @@
-function RegData = AP_RegData_calc(sys, APs, riccdata )
+function RegData = CalcAPRegData(sys, APs, riccdata )
 % Linearisiert alle Arbeitspunkte des nichtlinearen Systems und 
 % berechnet Regler und Beobachter für gegebene Werte
 
