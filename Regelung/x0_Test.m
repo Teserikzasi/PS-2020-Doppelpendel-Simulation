@@ -1,12 +1,20 @@
-function [max_y0, delta_max, guete] = x0_Test(AP, x_st, phi1_st, phi2_st, plotall)
+function [max_y0, delta_max, guete] = x0_Test(AP, y_st, plotres, plotall)
 % Simuliert nacheinander immer höhere Anfangswerte bis zur Instabilität
+% y_st = [x_st, phi1_st, phi2_st]
 
-if ~exist('plot', 'var')
+if ~exist('plotall', 'var')
     plotall=false;
 end
+if ~exist('plotres', 'var')
+    plotres=true;
+end
+
+x_st    = y_st(1);
+phi1_st = y_st(2);
+phi2_st = y_st(3);
 
 fprintf('\nSim AP %d Anfangswert-Test...\n', AP )
-fprintf('Step delta x0:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
+fprintf('Step delta y0:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
     x_st, rad2deg(phi1_st), rad2deg(phi2_st) )
 
 i=0;
@@ -14,7 +22,7 @@ while (i==0 || results.stabilised)
     dx0    = i*x_st;
     dphi10 = i*phi1_st;
     dphi20 = i*phi2_st;
-    [simout, results] = SimAP(AP, [dx0 0 dphi10 0 dphi20 0] );
+    [simout, results] = SimAP(AP, [dx0 0 dphi10 0 dphi20 0], 10, ~plotall );
     if results.stabilised
         delta_max(i+1,:) = [results.x(1).max, results.x(3).max, results.x(5).max];
         guete(i+1,:) = [results.Jx, results.Jxest, results.Jf];
@@ -29,27 +37,11 @@ max_x0    = (i-2)*x_st;
 max_phi10 = (i-2)*phi1_st;
 max_phi20 = (i-2)*phi2_st;
 max_y0 = [max_x0, max_phi10, max_phi20];
+fprintf('Max delta y0:  x = %.2f  phi1 = %.0f°  phi2 = %.0f°\n', ...
+    max_x0, rad2deg(max_phi10), rad2deg(max_phi20) )
 
-figure
-plot(0:i-2,delta_max,'o--')
-grid on
-legend('x_{max}','\phi1_{max}','\phi2_{max}')
-title(sprintf('Maximale Abweichung vom AP (%d)', AP))
-
-figure
-subplot(3,1,1)
-plot(0:i-2,guete(:,1),'o--')
-grid on
-title('Jx')
-
-subplot(3,1,2)
-plot(0:i-2,guete(:,2),'o--')
-grid on
-title('Jxest')
-
-subplot(3,1,3)
-plot(0:i-2,guete(:,3),'o--')
-grid on
-title('Jf')
+if plotres
+    plot_x0_Test(delta_max,guete,AP)
+end
 
 end

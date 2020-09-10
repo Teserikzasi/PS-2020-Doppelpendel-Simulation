@@ -1,17 +1,25 @@
+function res = x0_Test_APs(stepdeg)
+% Macht die kritischen Anfangswert-Tests für AP 2,3,4
 
-% Macht mehrere Anfangswert-Tests für AP 2,3,4
+if ~exist('step', 'var')
+    stepdeg=1;
+end
 
-[max_y0_2, delta_max_2, guete_2] = x0_Test(2, 0, 0, deg2rad(1) ); % Pendel 2 instabil
-[max_y0_3, delta_max_3, guete_3] = x0_Test(3, 0, deg2rad(1), 0 ); % Pendel 1 instabil
-[max_y0_41, delta_max_41, guete_41] = x0_Test(4, 0, deg2rad(1), 0 );
-[max_y0_42, delta_max_42, guete_42] = x0_Test(4, 0, 0,  deg2rad(1) );
+global simparams;
+global Zustandsermittlung;
+fprintf('\nKritische Anfangswert-Tests (AP2 phi2, AP3 phi1, AP4 phi1, AP4 phi2) ...\n')
+fprintf('Zustandsermittlung: %s\n', Zustandsermittlung(simparams.Zustandsermittlung))
 
-fprintf('AP2 max phi20 = %.0f°\n', rad2deg(max_y0_2(3)) )
-fprintf('AP3 max phi10 = %.0f°\n', rad2deg(max_y0_3(2)) )
-fprintf('AP4 max phi10 = %.0f°\n', rad2deg(max_y0_41(2)) )
-fprintf('AP4 max phi20 = %.0f°\n', rad2deg(max_y0_42(3)) )
+[res.ap2.max_y0,  res.ap2.y_max,  res.ap2.guete ] = x0_Test(2, [0, 0, deg2rad(stepdeg)], false ); % Pendel 2 instabil
+[res.ap3.max_y0,  res.ap3.y_max,  res.ap3.guete ] = x0_Test(3, [0, deg2rad(stepdeg), 0], false ); % Pendel 1 instabil
+[res.ap41.max_y0, res.ap41.y_max, res.ap41.guete] = x0_Test(4, [0, deg2rad(stepdeg), 0], false );
+[res.ap42.max_y0, res.ap42.y_max, res.ap42.guete] = x0_Test(4, [0, 0, deg2rad(stepdeg)], false );
 
+disp(' ')
+fprintf('AP2 max phi20 = %.0f°\n', rad2deg(res.ap2.max_y0(3)) )
+fprintf('AP3 max phi10 = %.0f°\n', rad2deg(res.ap3.max_y0(2)) )
+fprintf('AP4 max phi10 = %.0f°\n', rad2deg(res.ap41.max_y0(2)) )
+fprintf('AP4 max phi20 = %.0f°\n', rad2deg(res.ap42.max_y0(3)) )
 
-
-%x0_Test( testAP, 0, deg2rad(0), deg2rad(5), true )
-
+end
+%x0_Test( testAP, [0, deg2rad(0), deg2rad(2)], true, true )

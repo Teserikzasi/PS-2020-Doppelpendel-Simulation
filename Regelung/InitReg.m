@@ -2,7 +2,6 @@
 
 InitVorstBeob_Fa()  % Gleichungen F<->a
 
-% Regler Initialisierung
 global APRegData  
 %InitAPRegData(AP_QR_Chang19())
 %InitAPRegData(AP_QR_Ribeiro20())
@@ -11,6 +10,6 @@ InitAPRegData(AP_QR_20_neu())
 InitSimReg
 
 % Simulation Arbeitspunkt
-testAP = 3;  
+testAP = 3;
 delta_x0 = [0 0 deg2rad(5) 0 deg2rad(10) 0];
 %SimAP_run
