@@ -7,6 +7,8 @@ global sysF
 global sysA
 
 APRegData.F = CalcAPRegData(sysF, Ruhelagen, riccdata);
-APRegData.A = CalcAPRegData(sysA, Ruhelagen, riccdata); 
+APRegData.A = CalcAPRegData(sysA, Ruhelagen, riccdata);
+
+fprintf('AP-Regler initialisiert für QR-Werte von %s\n', riccdata(1).name)
 
 end

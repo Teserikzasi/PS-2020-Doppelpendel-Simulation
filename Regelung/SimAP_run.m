@@ -12,7 +12,6 @@ fprintf('Gütemaße:  Jx = %.2f, Jxest = %.2f, Jf = %.0f\n', ...
 Auswertung(out)
 plotanimate(out)
 
-%% Auswertung
 %plot_outputs(out)
 %animate_outputs(out)
 %animate_outputs(out, 1/4 )

@@ -1,4 +1,4 @@
-function InitVorstBeob_Fa(sysF)
+function InitVorstBeob_Fa()
 % Berechnet die notwendigen Gleichungen zwischen F<->a und initialisiert
 % die betreffenden Simulink-Module für die Vorsteuerung und die Ermittlung
 % der tatsächlichen Beschleunigung für den Beobachter.
@@ -6,9 +6,13 @@ function InitVorstBeob_Fa(sysF)
 % matlab Funktion geschrieben. 
 % Dazu muss Simulink geöffnet sein und es muss danach gespeichert werden.
 
+global sysF
+
 equation_a = sysF.f(2); % Gleichung für die Beschleunigung x0_pp
 equation_F = solve(str2sym('a')==equation_a, str2sym('F')); % Gleichung für die Kraft in Abh. von a
 matlabFunctionBlock('SchlittenGleichungBeschleunigung/x0_pp', equation_a );
 matlabFunctionBlock('SchlittenGleichungKraft/F0', equation_F );
+
+disp('Simulink Module für Vorsteuerung/Beobachter F<->a aktualisiert (evtl Speichern notwendig)')
 
 end
