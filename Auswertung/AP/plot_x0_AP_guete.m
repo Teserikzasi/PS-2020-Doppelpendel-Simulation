@@ -25,7 +25,7 @@ for i=1:3
     legend(leg)
     ylabel(ylab(i))
     if i==1
-        title(titl)
+        title(['Gütemaße ' titl])
     end
 end
 

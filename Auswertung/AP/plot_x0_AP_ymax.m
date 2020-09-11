@@ -1,4 +1,4 @@
-function plot_x0_AP_dmax(data,leg,titl)
+function plot_x0_AP_ymax(data,leg,titl)
 % Plottet die Maximalabweichungen des Anfangswerttest
 % data: Ein oder mehrere structs mit y_max und max_y0
 
@@ -41,7 +41,7 @@ for i=1:3
     legend([leg y0leg(i)])
     ylabel(ylab(i))
     if i==1
-        title(titl)
+        title(['Maximalabweichungen ' titl])
     end
 end
 

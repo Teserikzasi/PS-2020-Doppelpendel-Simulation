@@ -13,6 +13,7 @@ Auswertung(out)
 plotanimate(out)
 
 %plot_outputs(out)
+%plot(out.tout,results.xnorm)
 %animate_outputs(out)
 %animate_outputs(out, 1/4 )
 %plotanimate(out)
