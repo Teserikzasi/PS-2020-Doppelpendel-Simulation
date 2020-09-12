@@ -23,6 +23,7 @@ end
 
 legend(leg)
 ylabel(ylab)
+xlabel(xlab(x0varidx))
 title(['Einschwingzeiten ' titl])
 
 end
