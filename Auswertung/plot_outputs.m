@@ -71,7 +71,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     plot(out.mY.Time, phi1*180/pi, 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
     hold on;	
     title('Winkel \phi_{1}')
-	  ylabel('\phi_{1} [grad]');
+	  ylabel('\phi_{1} [°]');
     if estExist
         plot(out.mY.Time, phi1_est*180/pi, 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-est}'); 
@@ -82,7 +82,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     plot(out.mY.Time, phi2*180/pi, 'Color', [0.4940, 0.1840, 0.5560], 'LineWidth', 1);   
     hold on;	
     title('Winkel \phi_{2}')
-	  ylabel('\phi_{2} [grad]');
+	  ylabel('\phi_{2} [°]');
     if estExist
         plot(out.mY.Time, phi2_est*180/pi, 'Color', [0.4660, 0.6740, 0.1880], 'LineWidth', 1);
         legend('\phi_{2}', '\phi_{2-est}'); 

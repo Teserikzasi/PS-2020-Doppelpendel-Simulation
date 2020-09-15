@@ -45,7 +45,7 @@ function stP = SchlittenPendelParams_Ribeiro20()
 	stP.pdesc.d2 = 'Viskose Dämpfung Stab 2';
 	stP.punit.d2 = 'Nm s rad^-1';
 	
-	stP.m0 = 16.5;
+	stP.m0 = 16.5; % Schlitten + Motor&Getriebe
 	stP.pdesc.m0 = 'Masse Schlitten mit Antrieb';
 	stP.punit.m0 = 'kg';
 

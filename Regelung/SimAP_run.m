@@ -10,7 +10,11 @@ fprintf('Gütemaße:  Jx = %.2f, Jxest = %.2f, Jf = %.0f\n', ...
     results.Jx, results.Jxest, results.Jf )
 
 Auswertung(out)
-
 plotanimate(out)
 
-%SimAP_x0_Test( testAP, 0, deg2rad(0), deg2rad(5), true )
+%plot_outputs(out)
+%plot(out.tout,results.xnorm)
+%animate_outputs(out)
+%animate_outputs(out, 1/4 )
+%plotanimate(out)
+%plotanimate(out,'AP ?','AP Regelung' )
