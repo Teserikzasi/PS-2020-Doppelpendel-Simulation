@@ -1,13 +1,15 @@
 % Initialisierung der AP-Regelung
 
-InitVorstBeob_Fa()  % Gleichungen F<->a
+InitSystemReg  % Modell für den Regler
+
+InitVorstBeob_Fa(sysRegF)  % Gleichungen F<->a
 
 global APRegData  
 %InitAPRegData(AP_QR_Chang19())
 %InitAPRegData(AP_QR_Ribeiro20())
-InitAPRegData(AP_QR_20_neu())
+InitAPRegData(AP_QR_20_neu())  % in Abh von sysReg
 
-InitSimReg
+InitSimReg  % Initialisiert Simulation
 
 % Simulation Arbeitspunkt
 testAP = 3;
