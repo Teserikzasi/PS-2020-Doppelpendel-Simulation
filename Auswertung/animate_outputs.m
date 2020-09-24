@@ -1,13 +1,10 @@
 function animate_outputs(out, speedFactor, save, name, path)
     % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
     % ein Videofile im avi-Format. 
-    % "out" ist eine Struktur, die das Feld "mY" aufweisen muss.
-    % "mY" wiederum enthält die aufgezeichnete Timeseries-Struktur mit 
-    % den Simulationswerten (in ToWorkspace-Block "Timeseries" einstellen)
+    % Inputs: 
+    % out = tscollection mit der Timeseries "mY" (Ausgang y des Pedelsystems)
     % 
-    % Optionale Argumente, um Animation als .avi abzuspeichern:
-    %
-    % SchlittenpendelParams = Struktur mit l1 und l2 (Default l1=l2=1)   
+    % Optionale Inputs: 
     % speedFactor = Wiedergabegeschwindigkeitsfaktor (Default: 1 [Echtzeit])
     % save = Boolean (Default: false)
     % name = Dateiname (Default: yyyy-MM-dd_HH-mm-ss_plot)

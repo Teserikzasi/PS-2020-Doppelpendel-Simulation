@@ -5,12 +5,17 @@ function [results] = calculateTrajectory(conficMPC)
 % Fields: 
 %     N Zeithorizont
 %     T Schrittweite
-%     Q Zustands-Gewichtungsmatrix der Kostenfunktion 
-%     R Stellgrößen-Gewichtungsmatrix der Kostenfunktion 
+%     Q Zustands-Gewichtung der Kostenfunktion 
+%     R Stellgrößen-Gewichtung der Kostenfunktion
+%     S Glättungsgewichtung
 %     x_init Initialzustand
 %     x_end Zielzustand
 %     x0_max Positionsbegrenzung
 %     u_max Stellgrößenbegrenzung
+%     ode Casadi Gleichungssystem
+%     x casadi Zustandsvektor
+%     u casadi Eingangsvektor
+%     simSol Integrationsverfahren für Kontinuitätsbedingung
 % Optional:
 %     opts Optionen für nlpsol [Default: leer]
 %     u0init Schätzung für Eingangs-Startwerte [Default: zeros(1, N)]
@@ -24,10 +29,12 @@ N = conficMPC.N;
 T = conficMPC.T;
 Q = conficMPC.Q;
 R = conficMPC.R;
+S = conficMPC.S;
 x_init = conficMPC.x_init;
 x_end = conficMPC.x_end;
 Fmax = conficMPC.u_max;
 x0max = conficMPC.x0_max;
+simSol = conficMPC.simSol;
 
 
 %% Optimal Control Problem
@@ -48,18 +55,40 @@ g = SX.zeros(xLength*(N+1), 1);
 % Anfangsbedingung
 g(1:xLength) = X(:,1) - P(1:xLength);
 
-% Zielfunktion und Kontinuitätsbedingung (Integrator: Euler)
+% Zielfunktion und Kontinuitätsbedingung
 J = 0;
-for k=1 : N
+
+
+for k=1:N
     x_k = X(:,k); 
     u_k = U(:,k);
+    
     % Zielfunktion
-    J = J + transpose(x_k - P(xLength+1:2*xLength))*Q*(x_k - P(xLength+1:2*xLength)) + u_k*R*u_k;
+    if k==1
+        J = J + transpose(x_k - P(xLength+1:2*xLength))*Q*(x_k - P(xLength+1:2*xLength)) + u_k*R*u_k;
+    else
+        u_k_old = U(:,k-1);
+        J = J + transpose(x_k - P(xLength+1:2*xLength))*Q*(x_k - P(xLength+1:2*xLength)) + u_k*R*u_k + ...
+             (u_k-u_k_old)*S*(u_k-u_k_old);           
+    end
     
     % Kontinuitätsbedingung Multiple Shooting
-    x_next = X(:,k+1);   
-    x_next_euler = x_k + T * f(x_k,u_k); %Euler   
-    g(k*xLength+1 : k*xLength+xLength) = x_next - x_next_euler; 
+    x_next = X(:,k+1);
+    if strcmp(simSol, 'Euler')
+        x_next_sim = x_k + T * f(x_k,u_k); %Euler 
+    elseif strcmp(simSol, 'RK4')
+        % Runge Kutta 4
+        k1 = f(x_k, u_k);
+        k2 = f(x_k + T/2*k1, u_k);
+        k3 = f(x_k + T/2*k2, u_k);
+        k4 = f(x_k + T/2*k3, u_k);
+        x_next_sim = x_k + T/6 * (k1 + 2*k2 + 2*k3 + k4);
+    else
+        disp('Bitte wähle ein gültiges Integrationsverfahren aus.') 
+        return
+    end
+    
+    g(k*xLength+1 : k*xLength+xLength) = x_next - x_next_sim;        
 end 
 
 % Nebenbedingungen
