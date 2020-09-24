@@ -26,12 +26,12 @@ searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_Mc_maxIt10000\E
 printDev(searchPath)
 
 %% Lade und simuliere eigene Trajektorien
-filePath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\RK4_MPC';
-%filePath = 'Trajektorien\searchResults\Results_odeTesGeb_Coul_maxIt10000';
+filePath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\Euler_MPC';
+%filePath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_maxIt10000\Euler_MPC';
 %filePath = 'Trajektorien\savedTrajectories';
-% fileName = 'Traj14_dev0_3.14_3.14_x0max0.8'; % Vergleichstrajektorie
-fileName = 'Traj14_dev0.1_-3.14_-3.14_x0max1.2';
-
+fileName = 'Traj14_dev0_-3.14_-3.14_x0max0.8'; % direkte Vergleichstrajektorie
+% fileName = 'Traj14_dev0.1_-3.14_-3.14_x0max1.2';
+%fileName = 'Traj14_dev0.1_3.14_3.14_x0max0.6';
 fullName = fullfile(filePath, fileName);
 try
     trj = load([fullName '.mat']);
@@ -40,12 +40,19 @@ catch
 end
 simout = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init);
 disp('Simulation abgeschlossen.')
-parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
-PlotTraj_ij(parent, trj.x0_max, trj.results_traj.x_traj', SchlittenPendelParams, trj.results_traj.u_traj, trj.T, trj.x_init, trj.x_end);
+% parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
+% PlotTraj_ij(parent, trj.x0_max, trj.results_traj.x_traj', SchlittenPendelParams, trj.results_traj.u_traj, trj.T, trj.x_init, trj.x_end);
 
 %% Visualisiere Simulationsergebnisse
-plot_velocities(simout)
-plotanimate(simout);
+%plot_velocities(simout)
+%plotanimate(simout);
+animate_outputs(simout, 100)
+
+%% Visualisiere Simulationsergebnisse mit Common Tool
+outData.T.data = simout.mX.time;
+outData.X.data = squeeze(simout.mX.data)';
+outData.Y.data = squeeze(simout.mY.data)';
+animateDPendulum(outData, SchlittenPendelParams, 1);
 %% Speichern
 plot_velocities(simout, true, [fileName '_velocities'], 'Trajektorien_Tests')
 plotanimate(simout, fileName, 'Trajektorien_Tests')
@@ -58,9 +65,9 @@ vT = 0 : trj.T : (trj.T)*(trj.N);
 y_traj = trj.results_traj.x_traj([1 3 5],:);
 mY = timeseries(y_traj, vT, 'Name', 'mY'); 
 outTraj = tscollection({mY});
-animate_outputs(outTraj, 1);
+animate_outputs(outTraj, 1/trj.T);
 
-%% Visualisiere Trajektorie mit Erics Tools
+%% Visualisiere Trajektorie mit Common Tools
 vT = 0 : trj.T : (trj.T)*(trj.N);
 stTraj.T.data = vT';
 stTraj.X.data = (trj.results_traj.x_traj)';
