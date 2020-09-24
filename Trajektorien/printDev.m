@@ -16,7 +16,8 @@ end
 res.maxDev = 0;
 res.maxDevInit = 0;
 res.name = '';
-fprintf('\n%-40s %-17s %s\n', 'Trajektorie', 'Anfangswertfehler', 'Endwertfehler');
+fprintf('\n--- Anfangswertfehler und Endwertfehler für alle Trajektorien ---\n')
+fprintf('%-40s %-17s %s\n', 'Trajektorie', 'Anfangswertfehler', 'Endwertfehler');
 for k_ubx0=1 : 5   % Variation der Positionsbeschränkung
     x0_max = 0.4+0.2*k_ubx0;      
     for k_pos=1 : length(dev_x0)  % Variation der Position
