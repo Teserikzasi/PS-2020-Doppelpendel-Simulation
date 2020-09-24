@@ -4,20 +4,21 @@
 %% Manuelle Trajektorien-Selektion
 searchPath = 'Trajektorien\searchResults\Results_odeFauve_maxIt10000\Euler_MPC';
 %selectTrajectories_best_End(false, searchPath); % beste 12 Trajektorien, falls gültig
-selectTrajectories_best_InitEnd(true, searchPath);
+selectTrajectories_best_InitEnd(false, searchPath);
 %selectTrajectories_cond(0.1, false, searchPath); % selektiert nach Fehlerbedingung
 
 %% Manuell "Ergbenisse.txt"-File schreiben
-searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_Mc_maxIt10000\Euler_MPC';
+searchPath = 'Trajektorien\searchResults\Results_odeFauve_maxIt10000\Euler_MPC';
 dfile = fullfile(searchPath, 'Ergebnisse.txt');
 if exist(dfile, 'file'); delete(dfile); end
 diary(dfile)
 diary on
-selectTrajectories_best_InitEnd(false, searchPath); % beste 12 Trajektorien, falls gültig
+selectTrajectories_best_InitEnd(false, searchPath); % beste 12 Trajektorien
 selectTrajectories_best_End(false, searchPath);
-selectTrajectories_cond(0.01, false, searchPath); % selektiert nach Fehlerbedingung
+selectTrajectories_cond(0.01, false, searchPath); % Selektion nach Endwertfehlerbedingung + Gültigkeitsprüfung
 selectTrajectories_cond(0.1, false, searchPath);
 selectTrajectories_cond(1, false, searchPath);
+printDev(searchPath)
 diary off
 
 %% Gib devs auf Konsole aus

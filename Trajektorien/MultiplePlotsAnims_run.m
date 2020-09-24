@@ -1,6 +1,6 @@
 % Macht Plots und Animationen für alle Trajektorien in einem Ordner
 
-nameList = getTrajFileNames();
+[nameList, ~, ~, ~] = getTrajFileNames();
 
 % ACHTUNG --> "Selection"-Ordner auswählen, sonst werden es seeeehr viele Files
 searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_Mc_maxIt10000\Euler_MPC\Selection_Best';
