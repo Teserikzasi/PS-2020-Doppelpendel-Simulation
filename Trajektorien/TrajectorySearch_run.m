@@ -12,8 +12,8 @@ R = 0.0000005;
 S = 1.5*1e-8;
 
 % --------Modellparameter--------------------------------------------------
-% params_Apprich = SchlittenPendelParams_Apprich09();
-params_Ribeiro = SchlittenPendelParams_Ribeiro20();
+params_Apprich = SchlittenPendelParams_Apprich09();
+%params_Ribeiro = SchlittenPendelParams_Ribeiro20();
 
 params = [];
 if exist('params_Apprich', 'var')
