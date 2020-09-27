@@ -26,7 +26,7 @@ plotanimate_traj(trj, fileName, 'Trajektorien_Tests')
 %% Simulation 
 mdl = 'Trajektorien_test';
 
-sol = 'ode4'; fixedStep = trj.T;
+sol = 'ode1'; fixedStep = trj.T;
 out1 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
 plotanimate(out1, [fileName '_' sol], 'Trajektorien_Tests')
 
