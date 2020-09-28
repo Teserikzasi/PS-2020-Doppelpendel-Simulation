@@ -21,11 +21,12 @@ mdl = 'Trajektorienfolgeregelung_test';
 
 sol = 'ode1'; fixedStep = trj.T;
 out1 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
-plotanimate(out1, [fileName '_' sol '_TFReg'], 'Trajektorien_Tests')
+%plotanimate(out1, [fileName '_' sol '_TFReg'], 'Trajektorien_Tests')
+plotanimate(out1)
 
 %% Simulation 2 
 sol = 'ode45';
 out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol);
-plotanimate(out2, [fileName '_' sol '_TFReg'], 'Trajektorien_Tests')
+%plotanimate(out2, [fileName '_' sol '_TFReg'], 'Trajektorien_Tests')
 %plotanimate(out2)
 

@@ -9,6 +9,6 @@ regData.K.data = getTrajFBController_LQR(syslin, stTraj, regData.Q, regData.R);
 regData.K.data = squeeze(regData.K.data);
 
 [regData.L.data, regData.A.data, regData.B.data] = getTrajFBObserver_LQR(syslin, stTraj, beoData.Q, beoData.R);
-
+ regData.C.data = [1 0 1 0 1 0];
 						
 end
