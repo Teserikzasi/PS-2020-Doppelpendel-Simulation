@@ -1,4 +1,4 @@
-function simout = simTraj(u_traj, x_traj, N, T, x_init, mdl, sol, fixedStep)
+function simout = simTraj(u_traj, x_traj, N, T, x_init)
 % Simuliere Trajektorie am Gesamtmodell
 
 t = 0: T :N*T;
@@ -12,18 +12,6 @@ simparams.Traj.x = x_sim;
 simparams.gesamtmodell.schlittenpendel.x0 = x_init; % Anfangswerte
 
 tsim = N*T;
-
-if ~exist('mdl', 'var')
-    mdl = 'Trajektorien_test';
-end
-if exist('sol', 'var')
-    set_param(mdl, 'Solver', sol);
-end
-if exist('fixedStep', 'var')
-    set_param(mdl, 'Solver', sol, 'StopTime', num2str(tsim), 'FixedStep', num2str(fixedStep));
-end
-set_param(mdl,'StopTime', num2str(tsim));    
-
-simout = sim(mdl);
+simout = sim('Trajektorien_test', tsim);
 
 end
