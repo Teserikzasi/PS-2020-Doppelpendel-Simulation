@@ -1,12 +1,20 @@
-% Initialisierung
+% Initialisierung der Simulation
 
 InitSymEq  % Symbolische Systemgleichungen
 
-InitParams  % Parameter einlesen
+global MotorParams
+global SchlittenPendelParams
+MotorParams = MotorParams_Franke97();
+SchlittenPendelParams = SchlittenPendelParams_Apprich09();
+%SchlittenPendelParams = SchlittenPendelParams_Chang19();
+%SchlittenPendelParams = SchlittenPendelParams_Ribeiro20();
+SchlittenPendelParams.Fc0 = 0; % Coulomb-Reibung deaktivieren
+SchlittenPendelParams.Mc10 = 0;
+SchlittenPendelParams.Mc20 = 0;
 
-InitSystem  % Parametrisierung (in Abh von SchlittenPendelParams)
+InitSystem  % in Abh von SchlittenPendelParams
 
-InitSim  % Initialisiert Simulation (in Abh von MotorParams)
+InitSim  % Initialisiere simparams
 
 
 % Auswertung
