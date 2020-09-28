@@ -21,8 +21,8 @@ results.Jxest = sum(diag(Q*xesterr*xesterr')) * dt; % Gütefunktional zum Zustan
 results.xnorm = sum(Q*x.^2,1); % Verlauf der "norm"
 results.xend_norm = results.xend'*Q*results.xend;
 
-maxnormstab = 20;
-if results.xend_norm < maxnormstab && ~any(out.outofcontrol.Data)
+maxnormstab = 3;
+if results.xend_norm < maxnormstab
     results.stabilised = true;
 else
     results.stabilised = false;

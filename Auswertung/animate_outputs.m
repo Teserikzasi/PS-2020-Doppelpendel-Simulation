@@ -1,26 +1,35 @@
-function animate_outputs(out, speedFactor, save, name, path)
+function animate_outputs(out, fps, speedFactor, save, name, path)
     % Animiert Schlittendoppelpendel in realer Wiedergabezeit oder erstellt
     % ein Videofile im avi-Format. 
     % Inputs: 
     % out = tscollection mit der Timeseries "mY" (Ausgang y des Pedelsystems)
     % 
     % Optionale Inputs: 
+    % fps = gewünschte Framerate in Frames per second [Default: 100 fps) 
     % speedFactor = Wiedergabegeschwindigkeitsfaktor (Default: 1 [Echtzeit])
     % save = Boolean (Default: false)
     % name = Dateiname (Default: yyyy-MM-dd_HH-mm-ss_plot)
     % path = Dateipfad (Default: \Plots)
     
-    %% Parameter der Animation
-    nFrames = length(out.mY.Time); % Anzahl aller Frames
+    %% Parameter der Animation 
     startTime = out.mY.Time(1); % Startzeit der Simulation
     stopTime = out.mY.Time(end); % Stopzeit der Simulation
-    duration = stopTime - startTime;
-    tSample = duration/(nFrames-1); % Abtastzeit in Simulation (ToWorkflow)
-    fps = 1/tSample; % Framerate in Frames per second    
+    if ~exist('fps', 'var')
+        fps = 100;
+    end
+    tSample = 1/fps; % Abtastzeit in Simulation (ToWorkflow)
+    vT = startTime : tSample : stopTime; % an Wunsch-fps-Zahl angepasster Zeitvektor -->Interpolation s.u.)
+    nFrames = length(vT); % Anzahl aller Frames
+    
     
     % Faktor der Wiedergabegeschwindigkeit (1=Echtzeitwiedergabe)
     if ~exist('speedFactor', 'var') || isempty(speedFactor)
         speedFactor = 1; % Default
+    end
+    if speedFactor==1
+        spFstr = '';
+    else
+        spFstr = [' [Speed=' num2str(speedFactor) ']'];
     end
              
     % Pendelparameter
@@ -45,11 +54,13 @@ function animate_outputs(out, speedFactor, save, name, path)
                                 'colormap', cell(1, nFrames));
     end
     
-    %% Ortsvektoren
-    % Data konvertieren von 3D zu 1D
-    x1 = squeeze(out.mY.Data(1, 1, :))';
-    phi1 = squeeze(out.mY.Data(2, 1, :))';
-    phi2 = squeeze(out.mY.Data(3, 1, :))';
+    %% Ortsvektoren    
+    % Interpolation der Ausgänge (für beliebige fps)
+    mY = interp1(out.mY.time, squeeze(out.mY.Data)', vT, 'pchip', nan);
+    
+    x1 = mY(:, 1)';
+    phi1 = mY(:, 2)';
+    phi2 = mY(:, 3)';
     
     % Ortsvektoren berechnen
     xStab1Head = x1 - l1 * sin(phi1);
@@ -87,7 +98,7 @@ function animate_outputs(out, speedFactor, save, name, path)
         % Title mit Echtzeit-Informationen zu Zeit, fps und Frames
         infoTitle = ['t = ' num2str( (f-1) * tSample, '%05.2f') ' sec ', ...
                         '(fps = ' num2str(fps) ', ' ...
-                        'Frame ' num2str(f) '/' num2str(nFrames) ')'];
+                        'Frame ' num2str(f) '/' num2str(nFrames) ')' spFstr];
         title(hAxes, infoTitle); 
 
         % Im ersten Frame die Plots erstellen, danach plots aktualisieren
