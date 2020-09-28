@@ -20,14 +20,18 @@ catch
     disp('Fehler beim Laden der Trajektorie.')
 end
 
-% Simulation 
+% Trajektorie visualisieren
+plotanimate_traj(trj, fileName, 'Trajektorien_Tests')
+
+%% Simulation 
 mdl = 'Trajektorien_test';
 
 sol = 'ode1'; fixedStep = trj.T;
-outOde1 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
-plotanimate(outOde1, [fileName '_' sol], 'Trajektorien_Tests')
+out1 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
+plotanimate(out1, [fileName '_' sol], 'Trajektorien_Tests')
 
+%%
 sol = 'ode45';
-outOde45 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol);
-plotanimate(outOde1, [fileName '_' sol], 'Trajektorien_Tests')
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol);
+plotanimate(out2, [fileName '_' sol], 'Trajektorien_Tests')
 

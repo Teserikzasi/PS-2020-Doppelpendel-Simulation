@@ -53,6 +53,7 @@ outData.T.data = simout.mX.time;
 outData.X.data = squeeze(simout.mX.data)';
 outData.Y.data = squeeze(simout.mY.data)';
 animateDPendulum(outData, SchlittenPendelParams, 1);
+
 %% Speichern
 plot_velocities(simout, true, [fileName '_velocities'], 'Trajektorien_Tests')
 plotanimate(simout, fileName, 'Trajektorien_Tests')
@@ -61,17 +62,14 @@ plotanimate(simout, fileName, 'Trajektorien_Tests')
 %% Visualisiere Trajektorie
 parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
 PlotTraj_ij(parent, trj.x0_max, trj.results_traj.x_traj', SchlittenPendelParams, trj.results_traj.u_traj, trj.T, trj.x_init, trj.x_end);
-vT = 0 : trj.T : (trj.T)*(trj.N);
-y_traj = trj.results_traj.x_traj([1 3 5],:);
-mY = timeseries(y_traj, vT, 'Name', 'mY'); 
-outTraj = tscollection({mY});
-animate_outputs(outTraj, 1/trj.T);
+plotanimate_traj(trj)
+
 
 %% Visualisiere Trajektorie mit Common Tools
 vT = 0 : trj.T : (trj.T)*(trj.N);
 stTraj.T.data = vT';
 stTraj.X.data = (trj.results_traj.x_traj)';
-stTraj.U.data = trj.results_traj.u_traj;
+stTraj.U.data = [trj.results_traj.u_traj; 0];
 stTraj.Y.data = stTraj.X.data(:,[1 3 5]);
 % Hinweise zur Animation: 
 % - der dTimeFactor hat aufgrund der Interpolation starken Einfluss auf die Auflösung des Trajektorienpfads

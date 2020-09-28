@@ -367,6 +367,648 @@ Traj43_dev0.3_0.00_-3.14_x0max1.mat
 Traj41_dev0.1_3.14_3.14_x0max1.mat
 Traj41_dev0.1_-3.14_3.14_x0max1.mat
 Traj41_dev0.1_-3.14_-3.14_x0max1.mat
+if system_dependent('IsDebugMode')==1, dbquit; end
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('horzcat')" style="font-weight:bold">horzcat</a>
+Dimensions of arrays being concatenated are not consistent.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('TrajectoryTesting', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\TrajectoryTesting.m', 72)" style="font-weight:bold">TrajectoryTesting</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\TrajectoryTesting.m',72,0)">line 72</a>)
+stTraj.U.data = [trj.results_traj.u_traj 0];
+
+Current plot held
+Current plot held
+
+X =
+
+         0         0   -3.1416         0   -3.1416         0
+         0         0         0         0         0         0
+
+
+Axis =
+
+   -0.1000    0.1000   -0.7293    0.7293
+
+Current plot held
+Current plot held
+[Warning: Error updating Text.
+
+ String scalar or character vector must have valid interpreter syntax:
+x_{init}
+-------
+0
+0
+-180
+0
+-180
+0
+] 
+[Warning: Error updating Text.
+
+ String scalar or character vector must have valid interpreter syntax:
+x_{end}
+-------
+0
+0
+0
+0
+0
+0
+] 
+plot_traj
+{Not enough input arguments.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_traj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Auswertung\Traj\plot_traj.m', 5)" style="font-weight:bold">plot_traj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Auswertung\Traj\plot_traj.m',5,0)">line 5</a>)
+vT = 0 : trj.T : (trj.T)*(trj.N);
+} 
+opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Auswertung\Traj\plot_traj.m',5,0)
+plot_traj(trj)
+
+ans = 
+
+  <a href="matlab:helpPopup matlab.ui.Figure" style="font-weight:bold">Figure</a> (1) with properties:
+
+      Number: 1
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [488 342 560 420]
+       Units: 'pixels'
+
+  Show <a href="matlab:if exist('ans', 'var'), matlab.graphics.internal.getForDisplay('ans', ans, 'matlab.ui.Figure'), else, matlab.graphics.internal.getForDisplay('ans'), end">all properties</a>
+
+MultiplePlotsAnims_run
+[Warning: Exported image displays axes toolbar. To remove axes toolbar from image, export again.] 
+MultiplePlotsAnims_run
+MultiplePlotsAnims_run
+InitTrajReg
+InitTrajReg
+[Warning: Cannot find library called 'AdditionalBlocks_lib'.  ] 
+InitReg
+Simulink Module für Vorsteuerung/Beobachter F<->a aktualisiert (evtl Speichern notwendig)
+AP-Regler initialisiert für QR-Werte von 20_neu
+InitSimReg
+InitTrajReg
+InitTrajReg
+sim_run
+{Unable to perform assignment because brace indexing is not supported for variables of this type.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 7)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',7,0)">line 7</a>)
+searchPath{1} = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\Euler_MPC';
+} 
+opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',7,0)
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+In block '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table','error')">Trajektorienfolgeregelung_test/1-D Lookup Table</a>', the number of dimensions specified by the 'Table data'
+parameter (3) must match the 'Number of table dimensions' parameter value (1).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+} 
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+In block '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table','error')">Trajektorienfolgeregelung_test/1-D Lookup Table</a>', the number of dimensions specified by the 'Table data'
+parameter (3) must match the 'Number of table dimensions' parameter value (1).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+} 
+InitTrajReg
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+Error due to multiple causes.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Matrix multiply dimensions propagation error. Error occurred while setting '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 2);">Input Port 2</a>' of
+    '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' to have the dimensions [6 x 1]. A possible cause for this error is that
+    these dimensions do not agree with the partial dimensions information present on other ports - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Sum'], 'Outport', 1);">Output Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Sum','error')">Trajektorienfolgeregelung_test/Sum</a>' is a [6x1] matrix. -
+    <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+} 
+interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);
+
+Displaying stack trace:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">sim_run</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">line 26</a>)
+clc
+sim_run
+[Warning: '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 1);">Input Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' is not connected.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+[Warning: '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 2);">Input Port 2</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' is not connected.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+[Warning: Unconnected output line found on '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table','error')">Trajektorienfolgeregelung_test/1-D Lookup Table</a>' (output port: 1)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+[Warning: Unconnected output line found on '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Sum','error')">Trajektorienfolgeregelung_test/Sum</a>' (output port: 1)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+Error due to multiple causes.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Invalid setting in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table1','error')">Trajektorienfolgeregelung_test/1-D Lookup Table1</a>' for parameter 'Table'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+        Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+        Error evaluating parameter <a href="matlab:Simulink.internal.OpenBlockParamsDialog(['Trajektorienfolgeregelung_test/1-D Lookup Table1'],'Table');">'Table'</a> in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table1','error')">Trajektorienfolgeregelung_test/1-D Lookup Table1</a>' - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+        trace</a>
+            Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+            Index in position 3 exceeds array bounds (must not exceed 1). - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Invalid setting in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table2','error')">Trajektorienfolgeregelung_test/1-D Lookup Table2</a>' for parameter 'Table'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+        Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+        Error evaluating parameter <a href="matlab:Simulink.internal.OpenBlockParamsDialog(['Trajektorienfolgeregelung_test/1-D Lookup Table2'],'Table');">'Table'</a> in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table2','error')">Trajektorienfolgeregelung_test/1-D Lookup Table2</a>' - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+        trace</a>
+            Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+            Index in position 3 exceeds array bounds (must not exceed 1). - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Invalid setting in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table3','error')">Trajektorienfolgeregelung_test/1-D Lookup Table3</a>' for parameter 'Table'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+        Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+        Error evaluating parameter <a href="matlab:Simulink.internal.OpenBlockParamsDialog(['Trajektorienfolgeregelung_test/1-D Lookup Table3'],'Table');">'Table'</a> in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table3','error')">Trajektorienfolgeregelung_test/1-D Lookup Table3</a>' - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+        trace</a>
+            Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+            Index in position 3 exceeds array bounds (must not exceed 1). - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Invalid setting in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table4','error')">Trajektorienfolgeregelung_test/1-D Lookup Table4</a>' for parameter 'Table'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+        Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+        Error evaluating parameter <a href="matlab:Simulink.internal.OpenBlockParamsDialog(['Trajektorienfolgeregelung_test/1-D Lookup Table4'],'Table');">'Table'</a> in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table4','error')">Trajektorienfolgeregelung_test/1-D Lookup Table4</a>' - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+        trace</a>
+            Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+            Index in position 3 exceeds array bounds (must not exceed 1). - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Invalid setting in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table5','error')">Trajektorienfolgeregelung_test/1-D Lookup Table5</a>' for parameter 'Table'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+        Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+        Error evaluating parameter <a href="matlab:Simulink.internal.OpenBlockParamsDialog(['Trajektorienfolgeregelung_test/1-D Lookup Table5'],'Table');">'Table'</a> in '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/1-D Lookup Table5','error')">Trajektorienfolgeregelung_test/1-D Lookup Table5</a>' - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+        trace</a>
+            Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+            Index in position 3 exceeds array bounds (must not exceed 1). - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+} 
+interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);
+
+Displaying stack trace:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">sim_run</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">line 26</a>)
+clc
+sim_run
+[Warning: '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 1);">Input Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' is not connected.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+[Warning: '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 2);">Input Port 2</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' is not connected.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+[Warning: Unconnected output line found on '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Sum','error')">Trajektorienfolgeregelung_test/Sum</a>' (output port: 1)] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)] 
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+Error due to multiple causes.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Matrix multiply dimensions propagation error. Error occurred while setting '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 2);">Input Port 2</a>' of
+    '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>' to have the dimensions [6 x 1]. A possible cause for this error is that
+    these dimensions do not agree with the partial dimensions information present on other ports - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack
+    trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Sum'], 'Outport', 1);">Output Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Sum','error')">Trajektorienfolgeregelung_test/Sum</a>' is a [6x1] matrix. -
+    <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+} 
+interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);
+
+Displaying stack trace:
+Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">simTraj</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28)">line 28</a>)
+	   • In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">sim_run</a> (<a href="matlab:opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26)">line 26</a>)
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+Error due to multiple causes.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Subsystem Schlitten-Doppelpendel/F'], 'Outport', 1);">Output Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Subsystem Schlitten-Doppelpendel/F','error')">Trajektorienfolgeregelung_test/Subsystem
+    Schlitten-Doppelpendel/F</a>' is a [6x1] matrix. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Subsystem Schlitten-Doppelpendel/Level-2 MATLAB S-Function'], 'Inport', 1);">Input Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Subsystem Schlitten-Doppelpendel/Level-2 MATLAB S-Function','error')">Trajektorienfolgeregelung_test/Subsystem
+    Schlitten-Doppelpendel/Level-2 MATLAB S-Function</a>' is a [1x1] matrix. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+} 
+open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Subsystem Schlitten-Doppelpendel/F','error')
+clc
+sim_run
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+Error due to multiple causes.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sim_run', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m', 26)" style="font-weight:bold">sim_run</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m',26,0)">line 26</a>)
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol); - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete
+stack trace</a>
+Caused by:
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. Invalid dimension has been specified for '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Product'], 'Inport', 2);">Input Port 2</a>' of
+    '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Product','error')">Trajektorienfolgeregelung_test/Product</a>'. - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+    Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('simTraj', 'D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m', 28)" style="font-weight:bold">simTraj</a> (<a href="matlab: opentoline('D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m',28,0)">line 28</a>)
+    Error in port widths or dimensions. '<a href="matlab:slprivate('open_and_hilite_port_hyperlink', 'hilite', ['Trajektorienfolgeregelung_test/Reshape1'], 'Outport', 1);">Output Port 1</a>' of '<a href="matlab:open_and_hilite_hyperlink ('Trajektorienfolgeregelung_test/Reshape1','error')">Trajektorienfolgeregelung_test/Reshape1</a>' is a [6x1] matrix.
+    - <a href="matlab:interactive_actions_helper.displayMStack([struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorien\simTraj.m','line',28,'name','simTraj'),struct('file','D:\Users\Frederik Tesar\Documents\_Studium\12. Semester\Projektseminar Regelungstechnik\PS 2020 Doppelpendel Simulation\Trajektorienfolgeregelung\sim_run.m','line',26,'name','sim_run')]);">Show complete stack trace</a>
+} 
+clc
+sim_run
+sim_run
+[Warning: File not found or permission denied] 
+
+
+---Beste Trajektorien bezüglich Anfangs- und Endwertfehler (Schwelle: 1.000000)---
+Trajektorie                              Endwertfehler     J_dev=sqrt(dev_end^2+dev_init^2)
+Traj12_dev0.1_0.00_3.14_x0max1.4.mat     0.033471          0.033471
+Traj13_dev0.3_3.14_0.00_x0max1.mat       0.003268          0.003268
+Traj14_dev0.3_-3.14_-3.14_x0max1.2.mat   0.000651          0.000651
+Traj21_dev0_0.00_3.14_x0max1.2.mat       0.015875          0.015875
+Traj23_dev0_3.14_3.14_x0max0.8.mat       0.110979          0.110979
+Traj24                                   Inf               Inf
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat    0.014548          0.014548
+Traj32_dev0.1_-3.14_3.14_x0max1.mat      0.003233          0.003233
+Traj34                                   Inf               Inf
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat   0.006081          0.006081
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat    0.003598          0.003598
+Traj43_dev0.3_0.00_-3.14_x0max1.4.mat    0.000729          0.000729
+
+
+---Beste Trajektorien bezüglich Endwertfehler (Schwelle nur für Anfangswertfehler: 1.000000)---
+Trajektorie                              Endwertfehler/dev
+Traj12_dev0.1_0.00_3.14_x0max1.4.mat     0.033471
+Traj13_dev0.3_3.14_0.00_x0max1.mat       0.003268
+Traj14_dev0.3_-3.14_-3.14_x0max1.2.mat   0.000651
+Traj21_dev0_0.00_3.14_x0max1.2.mat       0.015875
+Traj23_dev0_3.14_3.14_x0max0.8.mat       0.110979
+Traj24                                   Inf
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat    0.014548
+Traj32_dev0.1_-3.14_3.14_x0max1.mat      0.003233
+Traj34                                   Inf
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat   0.006081
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat    0.003598
+Traj43_dev0.3_0.00_-3.14_x0max1.4.mat    0.000729
+
+
+----------------gültige Trajektorien mit Endwertfehler<=0.010000----------------
+Traj14_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj14_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat
+Traj32_dev0_-3.14_3.14_x0max0.6.mat
+Traj13_dev0_3.14_0.00_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj43_dev0.3_0.00_-3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat
+Traj32_dev0_-3.14_3.14_x0max0.8.mat
+Traj43_dev0_0.00_-3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.mat
+Traj13_dev0.3_3.14_0.00_x0max1.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.mat
+Traj32_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_3.14_x0max1.mat
+Traj32_dev0_-3.14_3.14_x0max1.mat
+Traj43_dev0_0.00_-3.14_x0max1.mat
+Traj14_dev0_-3.14_-3.14_x0max1.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.2.mat
+Traj14_dev0.3_-3.14_-3.14_x0max1.2.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj43_dev0.1_0.00_-3.14_x0max1.2.mat
+Traj43_dev0_0.00_-3.14_x0max1.2.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.4.mat
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat
+Traj43_dev0_0.00_-3.14_x0max1.4.mat
+
+Ergebnis
+Traj12: 0
+Traj13: 2
+Traj14: 8
+Traj21: 0
+Traj23: 0
+Traj24: 0
+Traj31: 0
+Traj32: 8
+Traj34: 0
+Traj41: 6
+Traj42: 7
+Traj43: 10
+Gesamt: 41
+
+
+----------------gültige Trajektorien mit Endwertfehler<=0.100000----------------
+Traj41_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj21_dev0.5_0.00_3.14_x0max0.6.mat
+Traj32_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj13_dev0.5_3.14_0.00_x0max0.6.mat
+Traj14_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.3_3.14_0.00_x0max0.6.mat
+Traj21_dev0.3_0.00_3.14_x0max0.6.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj13_dev0.3_3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.1_3.14_0.00_x0max0.6.mat
+Traj21_dev0.1_0.00_3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj14_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0_-3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0_-3.14_0.00_x0max0.6.mat
+Traj31_dev0_3.14_0.00_x0max0.6.mat
+Traj21_dev0_0.00_3.14_x0max0.6.mat
+Traj32_dev0_-3.14_3.14_x0max0.6.mat
+Traj42_dev0_-3.14_0.00_x0max0.6.mat
+Traj13_dev0_3.14_0.00_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.5_0.00_3.14_x0max0.8.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj41_dev0.3_3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj31_dev0.3_3.14_0.00_x0max0.8.mat
+Traj21_dev0.3_0.00_3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj43_dev0.3_0.00_-3.14_x0max0.8.mat
+Traj41_dev0.1_3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj31_dev0.1_3.14_0.00_x0max0.8.mat
+Traj21_dev0.1_0.00_3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj41_dev0_3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0_-3.14_0.00_x0max0.8.mat
+Traj31_dev0_3.14_0.00_x0max0.8.mat
+Traj21_dev0_0.00_3.14_x0max0.8.mat
+Traj32_dev0_-3.14_3.14_x0max0.8.mat
+Traj42_dev0_-3.14_0.00_x0max0.8.mat
+Traj43_dev0_0.00_-3.14_x0max0.8.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.mat
+Traj21_dev0.5_0.00_3.14_x0max1.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.mat
+Traj41_dev0.3_3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.mat
+Traj31_dev0.3_3.14_0.00_x0max1.mat
+Traj21_dev0.3_0.00_3.14_x0max1.mat
+Traj32_dev0.3_-3.14_3.14_x0max1.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.mat
+Traj13_dev0.3_3.14_0.00_x0max1.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.mat
+Traj41_dev0.1_3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.mat
+Traj31_dev0.1_3.14_0.00_x0max1.mat
+Traj32_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0_3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_-3.14_x0max1.mat
+Traj31_dev0_-3.14_0.00_x0max1.mat
+Traj31_dev0_3.14_0.00_x0max1.mat
+Traj21_dev0_0.00_3.14_x0max1.mat
+Traj32_dev0_-3.14_3.14_x0max1.mat
+Traj42_dev0_-3.14_0.00_x0max1.mat
+Traj43_dev0_0.00_-3.14_x0max1.mat
+Traj14_dev0_-3.14_-3.14_x0max1.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj41_dev0.3_3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj31_dev0.3_3.14_0.00_x0max1.2.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.2.mat
+Traj14_dev0.3_-3.14_-3.14_x0max1.2.mat
+Traj41_dev0.1_3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj31_dev0.1_3.14_0.00_x0max1.2.mat
+Traj21_dev0.1_0.00_3.14_x0max1.2.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat
+Traj43_dev0.1_0.00_-3.14_x0max1.2.mat
+Traj41_dev0_3.14_3.14_x0max1.2.mat
+Traj41_dev0_-3.14_3.14_x0max1.2.mat
+Traj41_dev0_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0_-3.14_0.00_x0max1.2.mat
+Traj31_dev0_3.14_0.00_x0max1.2.mat
+Traj21_dev0_0.00_3.14_x0max1.2.mat
+Traj42_dev0_-3.14_0.00_x0max1.2.mat
+Traj13_dev0_3.14_0.00_x0max1.2.mat
+Traj43_dev0_0.00_-3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj21_dev0.5_0.00_3.14_x0max1.4.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj41_dev0.3_3.14_3.14_x0max1.4.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.3_3.14_0.00_x0max1.4.mat
+Traj21_dev0.3_0.00_3.14_x0max1.4.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.4.mat
+Traj41_dev0.1_3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.1_3.14_0.00_x0max1.4.mat
+Traj21_dev0.1_0.00_3.14_x0max1.4.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj12_dev0.1_0.00_3.14_x0max1.4.mat
+Traj14_dev0.1_3.14_3.14_x0max1.4.mat
+Traj41_dev0_3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0_-3.14_0.00_x0max1.4.mat
+Traj31_dev0_3.14_0.00_x0max1.4.mat
+Traj21_dev0_0.00_3.14_x0max1.4.mat
+Traj42_dev0_-3.14_0.00_x0max1.4.mat
+Traj43_dev0_0.00_-3.14_x0max1.4.mat
+
+Ergebnis
+Traj12: 2
+Traj13: 5
+Traj14: 9
+Traj21: 17
+Traj23: 0
+Traj24: 0
+Traj31: 35
+Traj32: 10
+Traj34: 0
+Traj41: 52
+Traj42: 19
+Traj43: 10
+Gesamt: 159
+
+
+----------------gültige Trajektorien mit Endwertfehler<=1.000000----------------
+Traj41_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.5_3.14_0.00_x0max0.6.mat
+Traj21_dev0.5_0.00_3.14_x0max0.6.mat
+Traj32_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.5_0.00_3.14_x0max0.6.mat
+Traj13_dev0.5_3.14_0.00_x0max0.6.mat
+Traj14_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.3_3.14_0.00_x0max0.6.mat
+Traj21_dev0.3_0.00_3.14_x0max0.6.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.3_0.00_3.14_x0max0.6.mat
+Traj13_dev0.3_3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.1_3.14_0.00_x0max0.6.mat
+Traj21_dev0.1_0.00_3.14_x0max0.6.mat
+Traj32_dev0.1_3.14_3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.1_0.00_3.14_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj14_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0_-3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0_-3.14_0.00_x0max0.6.mat
+Traj31_dev0_3.14_0.00_x0max0.6.mat
+Traj21_dev0_0.00_3.14_x0max0.6.mat
+Traj32_dev0_-3.14_3.14_x0max0.6.mat
+Traj42_dev0_-3.14_0.00_x0max0.6.mat
+Traj12_dev0_0.00_3.14_x0max0.6.mat
+Traj13_dev0_3.14_0.00_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.5_0.00_3.14_x0max0.8.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj41_dev0.3_3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj31_dev0.3_3.14_0.00_x0max0.8.mat
+Traj21_dev0.3_0.00_3.14_x0max0.8.mat
+Traj32_dev0.3_3.14_3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj12_dev0.3_0.00_3.14_x0max0.8.mat
+Traj43_dev0.3_0.00_-3.14_x0max0.8.mat
+Traj41_dev0.1_3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj31_dev0.1_3.14_0.00_x0max0.8.mat
+Traj21_dev0.1_0.00_3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj12_dev0.1_0.00_3.14_x0max0.8.mat
+Traj41_dev0_3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0_-3.14_0.00_x0max0.8.mat
+Traj31_dev0_3.14_0.00_x0max0.8.mat
+Traj21_dev0_0.00_3.14_x0max0.8.mat
+Traj32_dev0_-3.14_3.14_x0max0.8.mat
+Traj42_dev0_-3.14_0.00_x0max0.8.mat
+Traj23_dev0_3.14_3.14_x0max0.8.mat
+Traj43_dev0_0.00_-3.14_x0max0.8.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.mat
+Traj21_dev0.5_0.00_3.14_x0max1.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.mat
+Traj41_dev0.3_3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.mat
+Traj31_dev0.3_3.14_0.00_x0max1.mat
+Traj21_dev0.3_0.00_3.14_x0max1.mat
+Traj32_dev0.3_-3.14_3.14_x0max1.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.mat
+Traj12_dev0.3_0.00_3.14_x0max1.mat
+Traj23_dev0.3_3.14_3.14_x0max1.mat
+Traj13_dev0.3_3.14_0.00_x0max1.mat
+Traj43_dev0.3_0.00_-3.14_x0max1.mat
+Traj41_dev0.1_3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.mat
 Traj31_dev0.1_-3.14_0.00_x0max1.mat
 Traj31_dev0.1_3.14_0.00_x0max1.mat
 Traj32_dev0.1_-3.14_3.14_x0max1.mat

@@ -11,8 +11,9 @@ simparams.Traj.F = u_sim; % Trajektorie
 simparams.Traj.x = x_sim;
 simparams.gesamtmodell.schlittenpendel.x0 = x_init; % Anfangswerte
 
-tsim = N*T;
+open_system(mdl);
 
+tsim = N*T;
 if ~exist('mdl', 'var')
     mdl = 'Trajektorien_test';
 end
