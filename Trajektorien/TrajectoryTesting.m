@@ -1,14 +1,14 @@
 % HINWEIS: Das Skript ist für die abschnittsweise Ausführung konzipiert!
 % Editor--> "Run Section"
+%% Initialisiere Suchpfad
+searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\RK4_MPC';
 
 %% Manuelle Trajektorien-Selektion
-searchPath = 'Trajektorien\searchResults\Results_odeFauve_maxIt10000\Euler_MPC';
 %selectTrajectories_best_End(false, searchPath); % beste 12 Trajektorien, falls gültig
-selectTrajectories_best_InitEnd(false, searchPath);
+selectTrajectories_best_InitEnd(true, searchPath);
 %selectTrajectories_cond(0.1, false, searchPath); % selektiert nach Fehlerbedingung
 
 %% Manuell "Ergbenisse.txt"-File schreiben
-searchPath = 'Trajektorien\searchResults\Results_odeFauve_maxIt10000\Euler_MPC';
 dfile = fullfile(searchPath, 'Ergebnisse.txt');
 if exist(dfile, 'file'); delete(dfile); end
 diary(dfile)
@@ -22,26 +22,22 @@ printDev(searchPath)
 diary off
 
 %% Gib devs auf Konsole aus
-searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_Mc_maxIt10000\Euler_MPC';
 printDev(searchPath)
 
-%% Lade und simuliere eigene Trajektorien
-filePath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\Euler_MPC';
-%filePath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_maxIt10000\Euler_MPC';
-%filePath = 'Trajektorien\savedTrajectories';
-fileName = 'Traj14_dev0_-3.14_-3.14_x0max0.8'; % direkte Vergleichstrajektorie
-% fileName = 'Traj14_dev0.1_-3.14_-3.14_x0max1.2';
+%% Lade und simuliere eine Trajektorien
+fileName = 'Traj14_dev0_-3.14_-3.14_x0max0.8'; % Vergleichstrajektorie
+%fileName = 'Traj14_dev0.1_-3.14_-3.14_x0max1.2';
 %fileName = 'Traj14_dev0.1_3.14_3.14_x0max0.6';
-fullName = fullfile(filePath, fileName);
+fullName = fullfile(searchPath, fileName);
 try
-    trj = load([fullName '.mat']);
+    trjTest = load([fullName '.mat']);
 catch
     disp('Fehler beim Laden der Trajektorie.')
 end
-simout = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init);
+sol = 'ode4'; fixedStep = trjTest.T;
+mdl = 'Trajektorienfolgeregelung_test';
+simout = simTraj(trjTest.results_traj.u_traj, trjTest.results_traj.x_traj, trjTest.N, trjTest.T, trjTest.x_init, mdl, sol, fixedStep);
 disp('Simulation abgeschlossen.')
-% parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
-% PlotTraj_ij(parent, trj.x0_max, trj.results_traj.x_traj', SchlittenPendelParams, trj.results_traj.u_traj, trj.T, trj.x_init, trj.x_end);
 
 %% Visualisiere Simulationsergebnisse
 %plot_velocities(simout)
@@ -61,15 +57,15 @@ plotanimate(simout, fileName, 'Trajektorien_Tests')
 
 %% Visualisiere Trajektorie
 parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
-PlotTraj_ij(parent, trj.x0_max, trj.results_traj.x_traj', SchlittenPendelParams, trj.results_traj.u_traj, trj.T, trj.x_init, trj.x_end);
-plotanimate_traj(trj)
+PlotTraj_ij(parent, trjTest.x0_max, trjTest.results_traj.x_traj', SchlittenPendelParams, trjTest.results_traj.u_traj, trjTest.T, trjTest.x_init, trjTest.x_end);
+plotanimate_traj(trjTest)
 
 
 %% Visualisiere Trajektorie mit Common Tools
-vT = 0 : trj.T : (trj.T)*(trj.N);
+vT = 0 : trjTest.T : (trjTest.T)*(trjTest.N);
 stTraj.T.data = vT';
-stTraj.X.data = (trj.results_traj.x_traj)';
-stTraj.U.data = [trj.results_traj.u_traj; 0];
+stTraj.X.data = (trjTest.results_traj.x_traj)';
+stTraj.U.data = [trjTest.results_traj.u_traj; 0];
 stTraj.Y.data = stTraj.X.data(:,[1 3 5]);
 % Hinweise zur Animation: 
 % - der dTimeFactor hat aufgrund der Interpolation starken Einfluss auf die Auflösung des Trajektorienpfads
@@ -83,10 +79,10 @@ plotTraj(stTraj, {'X' 'U'});
 
 %% Fauve Test-Trajektorie
 fileName = 'Fauve_MPC_Traj2_0.6_0.3_result_04';
-trj = load([fileName '.mat']);
+trjTest = load([fileName '.mat']);
 parent = uipanel('Position', [0, 0.75, 1, 0.25],'Title', fileName);
-PlotTraj_ij(parent, trj.ubx1, trj.X_prediction, trj.Pendulum_Param, trj.u_prediction, trj.T, trj.x_init, trj.x_end);
-simout = simTraj(trj.u_prediction, trj.X_prediction', trj.N, trj.T, trj.x_init);
+PlotTraj_ij(parent, trjTest.ubx1, trjTest.X_prediction, trjTest.Pendulum_Param, trjTest.u_prediction, trjTest.T, trjTest.x_init, trjTest.x_end);
+simout = simTraj(trjTest.u_prediction, trjTest.X_prediction', trjTest.N, trjTest.T, trjTest.x_init);
 % plot_velocities(simout, true, [fileName '_velocities'], 'Trajektorien_Tests')
 % plotanimate(simout, fileName, 'Trajektorien_Tests')
 plot_velocities(simout)

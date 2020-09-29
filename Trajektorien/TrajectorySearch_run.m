@@ -4,8 +4,8 @@
 import casadi.*
 
 %% Wähle Parameter für Trajektorienberechnung
-N = 350; % Zeithorizont
-T = 0.01; % Schrittweite
+N = 500; % Zeithorizont
+T = 0.005; % Schrittweite
 ipopt_max_iter = 10000; %3000;
 Q = diag([500, 0.01, 100, 0.1, 100, 0.1]);
 R = 0.0000005; 
@@ -62,7 +62,7 @@ u_max = 400; % Fauve
 %% Speicherordner
 
 subfolderPath1 = 'Trajektorien\searchResults';
-subfolderPath2 = ['Results' odeStr paramsStr coulStatus '_maxIt' num2str(ipopt_max_iter)];
+subfolderPath2 = ['Results' odeStr paramsStr coulStatus '_T' num2str(T) 'N' num2str(N)];
 resFolderName = [simSol '_MPC'];
 fullFolderPath = fullfile(subfolderPath1, subfolderPath2, resFolderName);
 if ~exist(fullFolderPath, 'dir')
@@ -77,12 +77,12 @@ x_end = [];
 x0_max = []; 
 
 % Trajektoriensuche
-for k_ubx0=1 : 5   % Variation der Positionsbeschränkung
+for k_ubx0=2%1 : 5   % Variation der Positionsbeschränkung
     x0_max = 0.4+0.2*k_ubx0;   
     
-    for k_pos=1 : length(dev_x0)  % Variation der Position
-        for AP_end=1 : 4    % Variation des Ziel-Arbeitspunkts
-            for k_dev_phi=1 : length(dev_AP_phi1)   % Variation der Pendelausgangslage
+    for k_pos=4%1 : length(dev_x0)  % Variation der Position
+        for AP_end=4%1 : 4    % Variation des Ziel-Arbeitspunkts
+            for k_dev_phi=4%1 : length(dev_AP_phi1)   % Variation der Pendelausgangslage
                 devInitPhi1 = dev_AP_phi1(k_dev_phi);
                 devInitPhi2 = dev_AP_phi2(k_dev_phi);
                 x_init = Ruhelagen(AP_end).x + [-dev_x0(k_pos) 0 devInitPhi1 0 devInitPhi2 0]';
