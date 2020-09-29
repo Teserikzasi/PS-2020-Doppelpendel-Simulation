@@ -1,0 +1,58 @@
+\chapter{Verzeichnisstruktur und vordefinierte Befehle der IAT-Vorlage}
+\label{cha:Verzeichnisstruktur}
+Es handelt sich bei diesem \LaTeX-Dokument um ein für studentische Arbeiten am Institut für Automatisierungstechnik vorbereitetes Dokument auf Basis der Klasse \verb|tudreport|, \dah die Schriftarten, Pakete und Klassen des TU Designs, wie es vom Fachgebiet Festkörperphysik oder dem Referat Kommunikation angeboten wird, müssen installiert sein, damit ein Dokument mit der Vorlage erstellt werden kann.
+Es ist keine neue, abgeleitete Klasse definiert!
+Eine Liste von nützlichen Befehlen, die das Paket \texttt{iatsada} zur Verfügung stellt, findet sich in der Dokumentation des Paketes.
+Die Dokumentation lässt sich durch Kompilierung der Datei \texttt{iatsada.dtx} erzeugen.
+
+Die Klasse \verb|tudreport| ist aus der Standard-Klasse \verb|scrreprt| abgeleitet und stellt nur wenige neue Befehle zur Verfügung; weitere Funktionen können bei
+Bedarf durch Zusatzpakete eingebunden oder selbst definiert werden.
+Die Klasse ist daher auch so aufgebaut, dass sie mit möglichst vielen Paketen zusammen arbeitet.
+Im Wesentlichen wird das Layout angepasst, wie es in \cite{Richtlinien} festgelegt ist und sich für solche Arbeiten bewährt hat, \zB:
+\begin{itemize}
+	\item Es wird doppelseitig auf DIN-A4-Papier geschrieben.
+	In die zu erstellende PDF-Version werden Bookmarks und Hyperlinks (nicht farbig!) integriert.
+	\item Der Abstand der Zeilen beträgt das 1,25-fache des Standard-Abstands von \LaTeX.
+	Da technische Arbeiten viele Formeln und Bilder enthalten, werden Absätze durch einen zusätzlichen vertikalen Zwischenraum statt durch einen Einzug getrennt.
+	\item Kapitel beginnen immer auf einer neuen Seite.
+	\item Die Titelseite hat ein festes Layout mit dem Logo der TU~Darmstadt.
+	\item Durch Verwendung der Paketoption \texttt{onlycolorfront=true} des Paketes \texttt{iatsada} werden die Identitätsleisten auf allen Seiten nach dem Deckblatt in Graustufen aufgeführt um Farbe zu sparen.
+\end{itemize}
+%
+%
+\section{Verzeichnisse}
+
+\begin{itemize}
+	\item \verb|bib|\\Hier wird standardmäßig die Datei \verb|literature.bib| mit den Bibtex-Einträgen erwartet.
+	\item \verb|Bilder|\\Vorgesehen für Bilder
+	\item \verb|common|\\Allgemeinere Dateien, in die Teile der Definitionen ausgelagert sind, damit die Hauptdatei nicht überfrachtet wird.
+	\item \verb|inc|\\Vorgesehen für tex-Dateien mit eigentlichem Inhalt
+\end{itemize}
+
+
+\subsection{Verzeichnis \texttt{common}}
+Damit das Hauptdokument nicht überfrachtet wird, sind die folgenden längeren \glqq{}Abschnitte\grqq{} in die angegebenen Dateien im Unterverzeichnis \verb|common| ausgelagert:
+\begin{itemize}
+	\item \verb|commonmacros.tex|\\
+		Definiert einige nützliche Befehle
+	\item \verb|header_includes.tex|
+		Einbinden der Konfigurationsdateien in der Präambel
+	\item \verb|includes.tex|\\
+		Beinhaltet alle \verb|\usepackage|-Befehle
+	\item \verb|mymacros.tex|
+		Definiert eigenen Makros
+	\item \verb|pgfplotssetup.tex|
+		Definiert Einstellungen und Makros für \texttt{pgfplots}
+	\item \verb|pgfsetup.tex|
+		Läd alle benötigten \texttt{tikz}-Bibliotheken
+	\item \verb|preface.tex|\\
+		Generiert die ersten Seiten der Arbeit (Aufgabenstellung, Erklärung, Inhaltsverzeichnis, \etc)
+	\item \verb|SADA_Abstract.tex|\\
+		Kurzfassung der Arbeit in deutscher und englischer Sprache.
+	\item \verb|SADA_Aufgabenstellung.tex|\\
+		Aufgabenstellung bei einer studentischen Arbeit. Achtung: für den FB16 muss für das offizielle Exemplar die im Original unterschriebene Aufgabenstellung an dieser Stelle mit gebunden werden.
+	\item \verb|TikZ_BSBnormal.tex|
+		Definiert einige Makros für Blockschaltbilder
+\end{itemize}
+
+
