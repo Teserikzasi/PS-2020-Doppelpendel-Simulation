@@ -1,0 +1,137 @@
+
+\documentclass[
+	ngerman,
+	ruledheaders=section,%Ebene bis zu der die Überschriften mit Linien abgetrennt werden, vgl. DEMO-TUDaPub
+	class=report,% Basisdokumentenklasse. Wählt die Korrespondierende KOMA-Script Klasse
+	thesis={type=projektseminar},% Dokumententyp Thesis
+	accentcolor=2c,% Auswahl der Akzentfarbe
+	custommargins=false,% Ränder werden mithilfe von typearea automatisch berechnet
+	marginpar=false,% Kopfzeile und Fußzeile erstrecken sich nicht über die Randnotizspalte
+	BCOR=10mm,%Bindekorrektur, falls notwendig
+	parskip=half-,%Absatzkennzeichnung durch Abstand vgl. KOMA-Sript
+	fontsize=11pt,%Basisschriftgröße laut Corporate Design ist mit 9pt häufig zu klein
+  twoside,
+  %ignore-missing-data=true,
+  IMRAD=false,
+  numbers=noendperiod,
+  fleqn,
+]{tudapub}
+
+% Der folgende Block ist nur bei pdfTeX auf Versionen vor April 2018 notwendig
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[utf8]{inputenc}%kompatibilität mit TeX Versionen vor April 2018
+\fi
+
+%%%%%%%%%%%%%%%%%%%
+%Sprachanpassung & Verbesserte Trennregeln
+%%%%%%%%%%%%%%%%%%%
+\usepackage[english, main=ngerman]{babel}
+\usepackage[autostyle]{csquotes}% Anführungszeichen vereinfacht
+\usepackage{microtype}
+
+
+%%%%%%%%%%%%%%%%%%%
+%Literaturverzeichnis
+%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,bibencoding=utf8]{biblatex}   % Literaturverzeichnis
+\bibliography{bib/literature} % Name der Bib-Datei ! OHNE ENDUNG .BIB !
+
+
+\input{common/includes.tex}
+
+\input{common/include_and_setup_lstlistings.tex}
+\input{common/include_and_setup_pgf.tex}
+
+\input{common/commonmacros.tex}
+
+
+\newcommand*{\Miktex}{\textsc{MiKTeX}\xspace}
+\newcommand*{\texlive}{\textsc{texlive}\xspace}
+\newcommand{\Texstudio}{\textsc{TeXStudio}\xspace}
+\newcommand{\Texniccenter}{\textsc{TeXnicCenter}\xspace}
+\newcommand{\Sumatra}{\textsc{Sumatra}\xspace}
+\newcommand*{\zitat}[1]{\glqq{}#1\grqq{}}
+
+
+\captionsetup{format=plain,labelsep=colon,justification=centering}
+\setkomafont{caption}{\sffamily}
+\setkomafont{captionlabel}{\bfseries\sffamily}
+%\KOMAoption{captions}{justification=centering}
+
+\addtokomafont{section}{\fontsize{12}{18}\selectfont}
+
+
+\renewcommand{\ttdefault}{lcmtt}
+  
+
+\begin{document}
+
+\Metadata{
+	title=Steuerung und Regelung eines Doppelpendels,
+	author=Tobias Gebhard und Frederik Tesar,
+}
+
+\title{Steuerung und Regelung eines Doppelpendels}
+\author[T. Gebhard \and F. Tesar]{Tobias Gebhard \and Frederik Tesar}%optionales Argument ist die Signatur, 
+%\birthplace{Geburtsort}%Geburtsort, bei Dissertationen zwingend notwendig
+\reviewer{Prof. Dr.-Ing. Ulrich Konigorski \and Dr.-Ing. Eric Lenz}%Gutachter
+
+%Diese Felder erden untereinander auf der Titelseite platziert. 
+%\department ist eine notwendige Angabe, siehe auch dem Abschnitt `Abweichung von den Vorgaben für die Titelseite'
+\department{etit} % Das Kürzel wird automatisch ersetzt und als Studienfach gewählt, siehe Liste der Kürzel im Dokument.
+%\institute{Institut}
+
+\addTitleBox{\includegraphics[width=\linewidth]{common/rtm_mit_schrift}}
+
+\submissiondate{\today}
+
+\maketitle
+
+\affidavit
+
+\tableofcontents
+
+\cleardoublepage
+
+
+\input{./inc/mymacros.tex}
+
+\input{./Kapitel/Einleitung.tex}
+\input{./Kapitel/Grundlagen.tex}
+\input{./Kapitel/Modell.tex}
+\input{./Kapitel/APRegelung.tex}
+
+
+
+%\input{./inc/Einfuehrung.tex}
+%\input{./inc/Tipps.tex}
+%\input{./inc/Hinweise_LaTeX.tex}
+%\input{./inc/Verzeichnisstruktur.tex}
+%\input{./inc/Zusammenfassung.tex}
+
+
+
+% =================================================================================
+% Anhang
+% =================================================================================
+\appendix % Damit wird der Anhang begonnen. Die Kapitel werden ab jetzt mit Buchstaben nummeriert
+
+%\input{./inc/Anhang.tex}
+
+%\input{./inc/commonmacros_desc.tex}
+
+
+
+% =================================================================================
+% Literaturverzeichnis
+% =================================================================================
+\cleardoublepage        % Auf eine leere Seite einfügen
+\phantomsection         % Für Aufnahme ins Inhaltsverzeichnis
+\addcontentsline{toc}{chapter}{\bibname}  % In Inhaltsverzeichnis von
+                                          % Dokument und pdf aufnehmen
+\printbibliography 
+% =================================================================================
+
+	
+\end{document}
