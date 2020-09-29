@@ -1,13 +1,15 @@
 % Initialisierung der Trajektorienfolgeregelung
 global TrajRegData
 global Zustandsermittlung 
-global sysF;
+global sysF
 global simparams
+global trj
+global trajName
 
 %% Trajektorie
-searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\Euler_MPC';
-fileName = 'Traj14_dev0_-3.14_-3.14_x0max0.8.mat';
-trj = load(fullfile(searchPath, fileName));
+trajPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_T0.01N350\Euler_MPC';
+trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8.mat';
+trj = load(fullfile(trajPath, trajName));
 vT = 0 : trj.T : (trj.T)*(trj.N);
 stTraj.T.data = vT';
 stTraj.X.data = (trj.results_traj.x_traj)';

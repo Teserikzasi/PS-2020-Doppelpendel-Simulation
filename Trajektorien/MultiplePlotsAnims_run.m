@@ -3,7 +3,7 @@
 [nameList, ~, ~, ~] = getTrajFileNames();
 
 % ACHTUNG --> "Selection"-Ordner auswählen, sonst werden es seeeehr viele Files
-searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\Euler_MPC\Selection_Best_InitEnd';
+searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_maxIt10000\RK4_MPC\Selection_Best_InitEnd';
 plotsPath = 'Trajektorien_Tests';
 
 for k=1 : length(nameList)
