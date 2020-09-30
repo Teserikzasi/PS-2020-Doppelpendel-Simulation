@@ -6,7 +6,7 @@ function sys = SchlittenPendelNLZSR(equations,parameter,eingang)
 
 sys.name = ['SchlittenPendel NLZSR (' eingang ')' ];
 sys.desc = ['Nichtlineare Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems ' ...
-            '(Eingang: ' eingang ' )' ];
+            '(Eingang: ' eingang ') (Parameter: ' parameter.name ')' ];
 
 u = {eingang};
 x = {'x0' 'x0_p' 'phi1' 'phi1_p' 'phi2' 'phi2_p' };

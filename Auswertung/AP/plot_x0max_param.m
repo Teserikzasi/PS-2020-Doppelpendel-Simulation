@@ -1,4 +1,4 @@
-function plot_x0max_param(data,param,par_xlab,titl)
+function plot_x0max_param(data,param,par_xlab,titl,paramlog)
 % Plottet die maximalen Startabweichungen in Abhängigkeit eines Parameters
 
 ylab = ["x_{0max} [m]","\phi_{1,0max} [°]","\phi_{2,0max} [°]"];
@@ -15,7 +15,12 @@ for j=1:l
     end
 end
 
-semilogx(param, maxy0, 'o-')
+if exist('paramlog', 'var') && paramlog==true
+    semilogx(param, maxy0, 'o-')
+else
+    plot(param, maxy0, 'o-')
+end
+
 grid on
 
 ylabel(ylab(x0varidx))

@@ -39,7 +39,7 @@ end
 
 for j=y_sel
     titl = sprintf('AP %d (Auslenkung %s)  Variation: %s', AP, ausl(j), vari );
-    plot_x0max_param(res_y(j,:), range, vari, titl)
+    plot_x0max_param(res_y(j,:), range, vari, titl, true)
     plot_x0_ymax(res_y(j,:), range, titl )
     plot_x0_guete(res_y(j,:), range, titl )
     plot_x0_xin(res_y(j,:), range, titl )
