@@ -62,7 +62,7 @@
 }
 
 @Misc{chang,
-  author = {Feiyu Chang; Nicolas Fauvé; Antonia Gießler; Charles Studd Tchoutchui},
+  author = {Feiyu Chang Nicolas Fauvé, Antonia Gießler und Charles Studd Tchoutchui},
   title  = {Konstruktion und Regelung eines inversen Doppelpendels},
   year   = {2019},
   note   = {Projektseminar},
@@ -89,7 +89,7 @@
 }
 
 @Misc{ribeiro,
-  author = {Igor de Sousa Ribeiro; Thomas Gassen; Vitaliy Omelchuk},
+  author = {Igor de Sousa Ribeiro, Thomas Gassen, Vitaliy Omelchuk},
   title  = {Steuerung und Regelung eines inversen Doppelpendels},
   year   = {2020},
   note   = {Projektseminar},

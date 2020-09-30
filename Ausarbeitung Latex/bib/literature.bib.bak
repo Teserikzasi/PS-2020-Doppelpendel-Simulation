@@ -89,7 +89,7 @@
 }
 
 @Misc{ribeiro,
-  author = {Igor de Sousa Ribeiro; Thomas Gassen; Vitaliy Omelchuk},
+  author = {Igor de Sousa Ribeiro, Thomas Gassen, Vitaliy Omelchuk},
   title  = {Steuerung und Regelung eines inversen Doppelpendels},
   year   = {2020},
   note   = {Projektseminar},
