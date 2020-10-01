@@ -1,26 +1,34 @@
+function res = SysParameter_Variation(SchlittenPendelParams, vari, range, stepdeg)
+% Variiert einen System-Parameter in dem angegebenen Bereich und wertet die x0 Tests aus
+% vari: Parameter von SchlittenPendelParams (z.B. 'm1')
+% range: Testbereich für den Parameter
+% stepdeg: Schrittweite für x0 Test in ° (optional)
 
-simparams.Zustandsermittlung = 1;  % ZM
-range = 0.2:0.2:2;
-vari = 'm2';
+if ~exist('stepdeg', 'var')
+    stepdeg=1;
+end
 
-%MotorParams = MotorParams_Franke97();
-SchlittenPendelParams = SchlittenPendelParams_Ribeiro20();
+riccdata = AP_QR_20_neu();
+global sysRegF
 
 i=1;
+tic
 for P=range
     fprintf('%s = %f\n', vari, P)
     SchlittenPendelParams.(vari) = P;
     
     InitSystem(SchlittenPendelParams)  % Parametrisierung
     %InitSim  % Initialisiert Simulation (in Abh von MotorParams)
-    InitSystemReg
+    InitSystemReg()
     InitVorstBeob_Fa(sysRegF)
-    InitAPRegData(AP_QR_20_neu())
-    InitSimReg
+    InitAPRegData(riccdata)
+    InitSimReg(1)
 
-    res(i) = x0_Test_APs();
+    res(i) = x0_Test_APs(stepdeg);
     i=i+1;
 end
+toc
 
 plot_x0_APs(res, range, vari )
 
+end

@@ -1,6 +1,5 @@
 function res_y = QR_Variation(AP, riccdata, vari, range, y_sel, y_step)
-% Variiert einen Q oder R Parameter in dem angegebenen Bereich und wertet
-% die x0 Tests aus
+% Variiert einen Q oder R Parameter in dem angegebenen Bereich und wertet die x0 Tests aus
 % vari: Parameter 'R' oder 'Qi'
 % range: Testbereich für den Parameter
 % y_sel: Führt nur Auslenkungen von (x,phi1,phi2) aus (1,2,3) (optional)
@@ -21,6 +20,7 @@ if QorR=='Q'
 end
 
 i=1;
+tic
 for P=range
     fprintf('%s = %f\n', vari, P)
     if QorR=='R'
@@ -36,6 +36,7 @@ for P=range
     end
     i=i+1;
 end
+toc
 
 for j=y_sel
     titl = sprintf('AP %d (Auslenkung %s)  Variation: %s', AP, ausl(j), vari );

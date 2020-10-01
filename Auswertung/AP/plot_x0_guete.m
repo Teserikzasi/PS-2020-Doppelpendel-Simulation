@@ -9,7 +9,7 @@ l = length(data);
 [~ , x0varidx] = max(data(1).max_y0+data(end).max_y0);  % Bestimmung der variierten Variable
 
 figure
-if l>5
+if l>4
     colororder([linspace(0,0.9,l)' linspace(0,0,l)' linspace(1,0.1,l)'])
 end
 
