@@ -74,7 +74,7 @@ function plot_outputs(out, save, name, path, format, resolution)
 	plot(vT, x1, 'Color', [0 0.4470 0.7410], 'LineWidth', 1);  
     hold on;
     title('Position x');
-	  ylabel('x [m]');
+	ylabel('x [m]');
     if estExist
         plot(vT, x1_est, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
         legend('x', 'x_{est}');
@@ -89,7 +89,7 @@ function plot_outputs(out, save, name, path, format, resolution)
     plot(vT, rad2deg(phi1), 'Color', [0.8500 0.3250 0.0980], 'LineWidth', 1);
     hold on;	
     title('Winkel \phi_{1}')
-	  ylabel('\phi_{1} [°]');
+	ylabel('\phi_{1} [°]');
     if estExist
         plot(vT, rad2deg(phi1_est), 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-est}'); 

@@ -13,16 +13,22 @@ if any(out.mY.Data(1,1,:) > SchlittenPendelParams.x0_max) || ...
     disp("Schlitten außerhalb der Begrenzung!")
 end
 
-if any(out.MotorSat_I.Data)
-    disp("Motor in Stellgrößenbegrenzung! (Soll Strom > max Strom)")
+if ismember('MotorSat_I', out.who)
+    if any(out.MotorSat_I.Data)
+        disp("Motor in Stellgrößenbegrenzung! (Soll Strom > max Strom)")
+    end
 end
 
-if any(out.MotorSat_w.Data)
-    disp("Motor in Sättigung! (kein max Strom möglich)")
+if ismember('MotorSat_w', out.who)
+    if any(out.MotorSat_w.Data)
+        disp("Motor in Sättigung! (kein max Strom möglich)")
+    end
 end
 
-if any(out.satState_u.Data)
-    disp("Regler in Stellgrößenbegrenzung! (Motorspannung begrenzt)")
+if ismember('satState_u', out.who)
+    if any(out.satState_u.Data)
+        disp("Regler in Stellgrößenbegrenzung! (Motorspannung begrenzt)")
+    end
 end
 
 end
