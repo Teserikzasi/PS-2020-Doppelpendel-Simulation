@@ -1,0 +1,40 @@
+\section{Modell des \spd-Systems}
+
+Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der vergangenen Arbeiten. Diese bezogen sich meist auf die Herleitung von \cite{modpen}. Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt, welche am Schlitten wirkt, sowie das vereinfachte \emph{Beschleunigungssystem}, das direkt die Beschleunigung des Schlittens als Eingang erhält.
+
+\subsection{Koordinaten}
+
+%\begin{figure}[bp]
+	%\centering
+		%\includegraphics[width=0.7\textwidth]{Bilder/intro.pdf}
+	%\caption{Idee des zentralen Reglerentwurfs}
+	%\label{fig:intro}
+%\end{figure}
+
+Die Minimal-Koordinaten sind 
+\begin{align*}
+	q_0 = x_0  \\
+	q_1 = \varphi_1  \\
+	q_2 = \varphi_2
+\end{align*}
+
+\subsection{Herleitung der Bewegungsgleichungen}
+
+Um auf die Bewegungsgleichungen des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet.
+
+\subsection{Ruhelagen}
+
+
+
+\subsection{\crb}
+
+Da die \crb sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. In den bisherigen Modellierungen wurde höchstens die \crb des Schlittens berücksichtigt. Da jedoch durch die Neukonstruktion des \dpd s die Messsignalübertragung (zur Vermeidung einer Kabelaufwickelung) über einen Schleifring realisiert wurde, besteht die Vermutung, dass dieser für eine erhöhte \crb verantwortlich ist. Dies würde das System bereits um einen sehr kleinen Arbeitsbereich nicht-linear machen, was die Regelung erschwert.
+
+Im vorigen Projektseminar \cite{ribeiro} wurde die Reibung der Pendelstäbe mittels Identifikation ermittelt, aufgeteilt auf den viskosen und den Coulombanteil.
+
+Die Formel der Gleitreibung lautet eigentlich 
+	\[
+	F_c = F_{c0}  \cdot  \sign{\dot{x}} ,
+\]
+allerdings führt diese Implementierung aufgrund der signum-Funktion zu Komplikationen in der Simulation. Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
+

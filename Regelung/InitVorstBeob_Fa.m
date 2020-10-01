@@ -6,6 +6,7 @@ function InitVorstBeob_Fa(sysF)
 % matlab Funktion geschrieben. 
 % Dazu muss Simulink geöffnet sein und es muss danach gespeichert werden.
 % Mit save_system wird automatisch gespeichert.
+% Eventuell müssen die beiden Module im Hintergrund geöffnet sein.
 
 equation_a = sysF.f(2); % Gleichung für die Beschleunigung x0_pp
 equation_F = solve(str2sym('a')==equation_a, str2sym('F')); % Gleichung für die Kraft in Abh. von a
@@ -14,6 +15,6 @@ matlabFunctionBlock('SchlittenGleichungKraft/F0', equation_F );
 save_system('SchlittenGleichungBeschleunigung');
 save_system('SchlittenGleichungKraft');
 
-disp('Simulink Module für Vorsteuerung/Beobachter F<->a aktualisiert')% (evtl Speichern notwendig)
+disp('Simulink Module für Vorsteuerung/Beobachter F<->a aktualisiert')
 
 end

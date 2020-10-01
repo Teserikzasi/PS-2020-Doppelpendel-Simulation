@@ -4,7 +4,9 @@ InitSymEq  % Symbolische Systemgleichungen
 
 InitParams  % Parameter einlesen
 
-InitSystem  % Parametrisierung (in Abh von SchlittenPendelParams)
+global sysF
+global sysA
+InitSystem(SchlittenPendelParams)  % Parametrisierung
 
 InitSim  % Initialisiert Simulation (in Abh von MotorParams)
 
