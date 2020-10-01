@@ -6,10 +6,19 @@ global simparams
 global trj
 global trajName
 
+%% Parameter
+SchlittenPendelParams = SchlittenPendelParams_Apprich09();
+SchlittenPendelParams.Fc0 = 0;
+SchlittenPendelParams.Mc10 = 0;
+SchlittenPendelParams.Mc20 = 0;
+InitSystem
 %% Trajektorie
-trajPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_T0.01N350\Euler_MPC';
-trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8.mat';
-trj = load(fullfile(trajPath, trajName));
+%trajPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_T0.01N350\RK4_MPC';
+trajPath = 'Trajektorien\ParameterExams_app09';
+
+%trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8';
+trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_J1_0.002';
+trj = load(fullfile(trajPath, [trajName '.mat']));
 vT = 0 : trj.T : (trj.T)*(trj.N);
 stTraj.T.data = vT';
 stTraj.X.data = (trj.results_traj.x_traj)';
