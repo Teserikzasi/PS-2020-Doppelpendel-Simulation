@@ -1,0 +1,117 @@
+% Encoding: UTF-8
+
+@BOOK{AdamyRT2,
+  title = {Systemdynamik und Regelungstechnik II},
+  publisher = {Shaker},
+  year = {2007},
+  author = {Adamy, Jürgen},
+  owner = {elenz},
+  timestamp = {2008.03.18}
+}
+
+@BOOK{AdamyRT3,
+  title = {Systemdynamik und Regelungstechnik III},
+  publisher = {Shaker},
+  year = {2007},
+  author = {Adamy, Jürgen},
+  owner = {elenz},
+  timestamp = {2008.03.18}
+}
+
+@Book{modsim,
+  title     = {Mehrgrößenreglerentwurf im Zustandsraum},
+  publisher = {Skript},
+  year      = {2018},
+  author    = {Ulrich Konigorski},
+  address   = {Darmstadt},
+  owner     = {elenz},
+  timestamp = {2008.05.09},
+}
+
+@BOOK{Lunze1,
+  title = {Regelungstechnik 1},
+  publisher = {Springer},
+  year = {2007},
+  author = {Lunze, Jan},
+  address = {Berlin etc.},
+  edition = {6},
+  keywords = {LZI, SISO, Zustandsraum, Grundlagen RT},
+  owner = {elenz},
+  timestamp = {2008.01.03}
+}
+
+@Book{Lunze2,
+  title     = {Regelungstechnik 2},
+  publisher = {Springer},
+  year      = {2006},
+  author    = {Lunze, Jan},
+  address   = {Berlin etc.},
+  edition   = {4},
+  isbn      = {978-3-642-29561-4},
+  keywords  = {LZI, MIMO, Digitale Regelung},
+  owner     = {elenz},
+  timestamp = {2008.01.03},
+}
+
+@Misc{apprich,
+  author = {Apprich, Stefanie},
+  title  = {Konstruktion und Regelung eines inversiven Doppelpendels},
+  year   = {2009},
+  note   = {Studienarbeit},
+  school = {Technische Universität Darmstadt},
+}
+
+@Misc{chang,
+  author = {Feiyu Chang; Nicolas Fauvé; Antonia Gießler; Charles Studd Tchoutchui},
+  title  = {Konstruktion und Regelung eines inversen Doppelpendels},
+  year   = {2019},
+  note   = {Projektseminar},
+  school = {Technische Universität Darmstadt},
+}
+
+@Misc{kisner,
+  author = {Kisner, Viktor},
+  title  = {Trajektorienfolgerelung eines inversen Doppelpendels},
+  year   = {2011},
+  note   = {Bachelorarbeit},
+  school = {Technische Universität Darmstadt},
+}
+
+@Misc{brehl,
+  author   = {Brehl, Daniel},
+  title    = {Implementierung und Vergleich verschiedener Reglervarianten zur Regelung eines inversen Doppelpendels},
+  year     = {2014},
+  note     = {Bachelorarbeit},
+  abstract = {Technische Universität Darmstadt},
+  comment  = {Technische Universität Darmstadt},
+  owner    = {Technische Universität Darmstadt},
+  school   = {Technische Universität Darmstadt},
+}
+
+@Misc{ribeiro,
+  author = {Igor de Sousa Ribeiro, Thomas Gassen, Vitaliy Omelchuk},
+  title  = {Steuerung und Regelung eines inversen Doppelpendels},
+  year   = {2020},
+  note   = {Projektseminar},
+  school = {Technische Universität Darmstadt},
+}
+
+@Misc{modpen,
+  author = {Eric Lenz},
+  title  = {Modellierung Pendel},
+  note   = {Technische Universität Darmstadt, Fachgebiet rtm},
+}
+
+@Book{MIMO_SS_Koni,
+  title     = {Mehrgrößenreglerentwurf im Zustandsraum},
+  publisher = {Skript},
+  year      = {2007},
+  author    = {Ulrich Konigorski},
+  address   = {Darmstadt},
+  owner     = {elenz},
+  timestamp = {2008.05.09},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
+
+@Comment{jabref-meta: selector_keywords:Mathematik;SVP;}
