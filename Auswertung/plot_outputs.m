@@ -32,16 +32,17 @@ function plot_outputs(out, save, name, path, format, resolution)
        return
     end
     
-    if isfield(out, 'vU')
-        Ureal = squeeze(out.vU.Data);
-    else
-        Ureal = [];
-    end
     
     estExist = false;
     vorst = false;
     trajExist = false;
     try
+        if ismember('vU', out.who)
+            Ureal = squeeze(out.vU.Data);
+        else
+            Ureal = [];
+        end
+        
         if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
             estExist = true;
             x1_est = squeeze(out.x_est.Data(1, 1, :));
