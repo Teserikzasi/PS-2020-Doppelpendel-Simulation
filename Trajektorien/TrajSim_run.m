@@ -1,16 +1,22 @@
+% Trajektoriensimulation ohne Regler
+% Vorraussetzung: InitTrajreg
 
-%% Trajektorie visualisieren
+% Trajektorie visualisieren
 plotanimate_traj(trj, trajName, 'Trajektorien_Tests')
 
-%% Simulation 
 mdl = 'Trajektorien_test';
 
-sol = 'ode4'; fixedStep = trj.T;
+%% Simulation 1
+sol = 'ode1'; fixedStep = trj.T;
 out1 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
 plotanimate(out1, [trajName '_' sol], 'Trajektorien_Tests')
 
-%%
-sol = 'ode45';
-out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol);
+%% Simulation 2
+sol = 'ode4'; fixedStep = trj.T;
+out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol, fixedStep);
 plotanimate(out2, [trajName '_' sol], 'Trajektorien_Tests')
 
+%% Simulation 3 
+sol = 'ode45';
+out3 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, sol);
+plotanimate(out3, [trajName '_' sol], 'Trajektorien_Tests')

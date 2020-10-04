@@ -165,7 +165,9 @@ function animate_outputs(out, fps, speedFactor, save, name, path)
         if exist('path', 'var')
             filePath = [filePath '\' path];
         end
-        
+        if ~exist(filePath, 'dir')
+            mkdir(filePath)
+        end
         % Speichern mit korrekter Framerate
         v = VideoWriter([filePath '\' fileName '.avi']);
         v.FrameRate = fps*speedFactor;
