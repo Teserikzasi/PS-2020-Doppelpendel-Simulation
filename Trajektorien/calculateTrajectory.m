@@ -153,7 +153,7 @@ solution = solver('x0', sol.w0, 'p', sol.p, 'lbx', args.lbx, 'ubx', args.ubx, 'l
 results.u_traj = full( solution.x(xLength*(N+1)+1 : end) );
 results.x_traj = reshape( full( solution.x(1 : xLength*(N+1)))', xLength, N+1);
 results.g_traj = full(solution.g);
-
+results.success = solver.stats().success;
 
 % Zulässigkeitsprüfung
 x_end_mpc = results.x_traj(:,end);
