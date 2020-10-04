@@ -1,6 +1,6 @@
 % Level 2 m-s-function : 'SchlittenPendelFunc.m'
 %
-% Created by sys2sfct at 01-Oct-2020 15:12:18 from the following system:
+% Created by sys2sfct at 04-Oct-2020 11:40:29 from the following system:
 % Name        : SchlittenPendel NLZSR (F)
 % Description : Nichtlineare Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems (Eingang: F) (Parameter: Doppelpendel rtm (Ribeiro))
 %

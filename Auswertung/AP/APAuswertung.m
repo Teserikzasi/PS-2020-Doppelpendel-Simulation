@@ -8,10 +8,13 @@ dt = Tsim/length(u); % Konstante Schrittweite angenommen
 
 x = squeeze(out.delta_x_real.Data);
 xest = squeeze(out.delta_x_est.Data);
+if size(xest,1)>6 % strange bug
+    xest = xest';
+end
 xesterr = x - xest;
 results.xend = x(:,end);
 
-Q = diag([50, 1, 50, 1, 50, 1 ]);
+Q = diag([25, 1, 50, 1, 50, 1 ]);
 R = 1;
 
 results.Jf = F'*R*F * dt;  % Gütefunktional zur Stellgröße (real)
@@ -21,7 +24,7 @@ results.Jxest = sum(diag(Q*xesterr*xesterr')) * dt; % Gütefunktional zum Zustan
 results.xnorm = sum(Q*x.^2,1); % Verlauf der "norm"
 results.xend_norm = results.xend'*Q*results.xend;
 
-maxnormstab = 20;
+maxnormstab = 100; % auch Grenzzyklen berücksichtigen
 if results.xend_norm < maxnormstab && ~any(out.outofcontrol.Data)
     results.stabilised = true;
 else
