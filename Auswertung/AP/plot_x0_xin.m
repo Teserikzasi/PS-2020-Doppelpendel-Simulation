@@ -11,7 +11,7 @@ l = length(data);
 figure
 grid on
 hold on
-if l>5
+if l>4
     colororder([linspace(1,0.8,l)' linspace(0,0.7,l)' linspace(0,0,l)'])
 end
 
