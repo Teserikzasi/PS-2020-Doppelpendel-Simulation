@@ -2,27 +2,21 @@
 
 %% Initialisiere Suchpfad
 %searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_T0.01N350\Euler_MPC';
-searchPath = 'Trajektorien\ParameterExams_app09';
-%% Manuelle Trajektorien-Selektion
-%selectTrajectories_best_End(false, searchPath); % beste 12 Trajektorien, falls gültig
-selectTrajectories_best_InitEnd(true, searchPath);
-%selectTrajectories_cond(0.1, false, searchPath); % selektiert nach Fehlerbedingung
+searchPath = 'Trajektorien\searchResults\Results_odeTesGeb_app09_T0.01N350\Euler_MPC';
+%% Trajektorien-Selektion
+mode=1; nameExtension='_Fmax400';
+selectTrajectories(mode, searchPath, nameExtension)
 
 %% Manuell "Ergbenisse.txt"-File schreiben
 dfile = fullfile(searchPath, 'Ergebnisse.txt');
 if exist(dfile, 'file'); delete(dfile); end
 diary(dfile)
 diary on
-selectTrajectories_best_InitEnd(false, searchPath); % beste 12 Trajektorien
-selectTrajectories_best_End(false, searchPath);
-selectTrajectories_cond(0.01, false, searchPath); % Selektion nach Endwertfehlerbedingung + Gültigkeitsprüfung
-selectTrajectories_cond(0.1, false, searchPath);
-selectTrajectories_cond(1, false, searchPath);
-printDev(searchPath)
+modes = [1 2 3 4];
+for i=1 : length(modes)
+selectTrajectories(modes(i), searchPath, nameExtension) % beste 12 Trajektorien
+end
 diary off
-
-%% Gib devs auf Konsole aus
-printDev(searchPath)
 
 %% Lade eine Trajektorien
 fileName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_m1_0.3'; % Vergleichstrajektorie
