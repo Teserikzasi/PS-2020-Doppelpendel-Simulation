@@ -30,18 +30,18 @@ function plot_velocities(out, save, name, path, format, resolution)
     else
        disp('out.mX.Time und out.vF.Time haben verschiedene Dimensionen.')
        return
-    end
-    
-    if isfield(out, 'vU')
-        Ureal = squeeze(out.vU.Data);
-    else
-        Ureal = [];
-    end
+    end   
     
     estExist = false;
     vorst = false;
     trajExist = false;
     try
+        if ismember('vU', out.who)
+            Ureal = squeeze(out.vU.Data);
+        else
+            Ureal = [];
+        end
+        
         if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
             estExist = true;
             x1_p_est = squeeze(out.x_est.Data(1, 1, :));
