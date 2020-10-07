@@ -35,12 +35,13 @@ function plot_outputs(out, save, name, path, format, resolution)
     
     estExist = false;
     vorst = false;
-    trajExist = false;
+    urealExist = false;
+    xtrajExist = false;
+    utrajExist = false;
     try
         if ismember('vU', out.who)
             Ureal = squeeze(out.vU.Data);
-        else
-            Ureal = [];
+            urealExist = true;
         end
         
         if ismember('x_est', out.who) % Beobachterschätzwerte (nur bei Regelung)
@@ -56,9 +57,14 @@ function plot_outputs(out, save, name, path, format, resolution)
             Fsoll = squeeze(out.F_soll_real.Data);
             %Usoll = squeeze(out.Usoll.Data);
         end
+        
+        if ismember('vF_traj', out.who) % Daten der Vorsteuerung (bei Regelung)
+            F_traj = squeeze(out.vF_traj.Data);
+            utrajExist = true;
+        end
 
         if ismember('mX_traj', out.who)
-            trajExist = true;
+            xtrajExist = true;
             x1_traj = squeeze(out.mX_traj.Data(1, 1, :));
             phi1_traj = squeeze(out.mX_traj.Data(3, 1, :));
             phi2_traj = squeeze(out.mX_traj.Data(5, 1, :));
@@ -80,7 +86,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         plot(vT, x1_est, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
         legend('x', 'x_{est}');
     end
-    if trajExist
+    if xtrajExist
         plot(vT, x1_traj, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
         legend('x', 'x_{traj}');
     end
@@ -95,7 +101,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         plot(vT, rad2deg(phi1_est), 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-est}'); 
     end 
-    if trajExist
+    if xtrajExist
         plot(vT, rad2deg(phi1_traj), 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
         legend('\phi_{1}', '\phi_{1-traj}'); 
     end
@@ -110,7 +116,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         plot(vT, rad2deg(phi2_est), 'Color', [0.4660, 0.6740, 0.1880], 'LineWidth', 1);
         legend('\phi_{2}', '\phi_{2-est}'); 
     end    
-    if trajExist
+    if xtrajExist
         plot(vT, rad2deg(phi2_traj), 'Color', [0.4660, 0.6740, 0.1880], 'LineWidth', 1);
         legend('\phi_{2}', '\phi_{2-traj}'); 
     end   
@@ -123,10 +129,19 @@ function plot_outputs(out, save, name, path, format, resolution)
         plot(vT, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
         plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
-    elseif ~isempty(Ureal)        
+    elseif urealExist && utrajExist     
+        plot(vT, F_traj, 'Color', [1, 0.8824, 0.1294], 'LineWidth', 1);
         plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
+        legend('F_{traj}', 'U_{in}*MotGain', 'F_{out}')
+    elseif urealExist
+        plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
+        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
         legend('U_{in}*MotGain', 'F_{out}')
+    elseif utrajExist
+        plot(vT, F_traj, 'Color', [1, 0.8824, 0.1294], 'LineWidth', 1);
+        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
+        legend('F_{traj}', 'F_{out}')
     else
         plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
     end
