@@ -52,11 +52,7 @@
     <requires type="static">
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
-<<<<<<< HEAD
       <file>blx-case-expl3.def</file>
-      <file>blx-bibtex.def</file>
-=======
->>>>>>> master
       <file>biblatex.def</file>
       <file>standard.bbx</file>
       <file>numeric.bbx</file>
@@ -67,13 +63,8 @@
       <file>english.lbx</file>
     </requires>
   </internal>
-<<<<<<< HEAD
   <external package="biblatex" priority="5" active="1">
-    <generic>bibtex</generic>
-=======
-  <external package="biblatex" priority="5" active="0">
     <generic>biber</generic>
->>>>>>> master
     <cmdline>
       <binary>biber</binary>
       <infile>Schlitten-Doppelpendel</infile>
