@@ -8,7 +8,7 @@ function stM = MotorParams_Franke97()
     stM.Umax_in = 10; % max. Steuerspannung [+-V]
     stM.K_UI = 1.87; % V/A Wandler: Verstärkungsfaktor, am Wandler theoretisch einstellbar bis K_UI = 2 A/V
     stM.T_UI = 0.00075; % V/A Wandler: Zeitkonstante
-    stM.Imax = 20; % Impulsstrom [+-A] für max 4 sec
+    stM.Imax = stM.Umax_in*stM.K_UI; % Impulsstrom [+-A] (für K_UI=2 max 4 sec.)
     stM.Umax_out = 65; % Maximalspannung  [+-V]
     
     %% Motor

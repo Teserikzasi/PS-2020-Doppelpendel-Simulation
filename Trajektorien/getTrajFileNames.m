@@ -1,4 +1,4 @@
-function [nameList, x_init_List, AP_init_List, AP_end_List] = getTrajFileNames()
+function [nameList, x_init_List, AP_init_List, AP_end_List] = getTrajFileNames(nameExtension)
 %Gibt Liste aller Namenskombinationen für Trajektorien zurück
 
 global Ruhelagen
@@ -7,6 +7,13 @@ x_init_List = zeros(6, 640);
 AP_init_List = zeros(640, 1);
 AP_end_List = zeros(640, 1);
 i = 1;
+if ~exist('nameExtension', 'var')
+    nameExt = '';
+elseif strcmp(nameExtension(1), '_')
+    nameExt=nameExtension;     
+else
+    nameExt = ['_' nameExtension];
+end
 % Rekonstruktion des Dateinamens (definiert in trajectorySearch)
 [dev_x0, dev_AP_phi1, dev_AP_phi2] = getInitDev();
 for k_ubx0=1 : 5   % Variation der Positionsbeschränkung
@@ -22,7 +29,7 @@ for k_ubx0=1 : 5   % Variation der Positionsbeschränkung
                 
                 fileName = ['Traj' num2str(AP_init) num2str(AP_end)  ...
                         '_dev' num2str(dev_x0(k_pos)) '_' sprintf('%0.2f',devInitPhi1) '_' ...
-                      sprintf('%0.2f',devInitPhi2) '_x0max'  num2str(x0_max) '.mat'];
+                      sprintf('%0.2f',devInitPhi2) '_x0max'  num2str(x0_max) nameExt '.mat'];
                 nameList{i} = fileName;
                 
                 x_init_List(:, i) = Ruhelagen(AP_end).x + [-dev_x0(k_pos) 0 devInitPhi1 0 devInitPhi2 0]';

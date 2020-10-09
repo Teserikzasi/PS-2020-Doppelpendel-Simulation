@@ -50,16 +50,16 @@ f = Function('f', {x, u}, {ode});
 U = SX.sym('U', 1, N);
 X = SX.sym('X', xLength, N+1);
 P = SX.sym('P', xLength + xLength);
-g = SX.zeros(xLength*(N+1), 1);
+g = SX.zeros(xLength*(N+1)+2*N, 1);
 
 % Anfangsbedingung
 g(1:xLength) = X(:,1) - P(1:xLength);
 
-% Zielfunktion und Kontinuitätsbedingung
-J = 0;
-
-
-for k=1:N
+% Zielfunktion und Nebenbedingungen
+J = 0; 
+mp = MotorParams_Franke97();
+K_G=mp.K_G; K_I=mp.K_I; r32=mp.r32; Umax_out=mp.Umax_out; Ra=mp.R;
+for k=1:N 
     x_k = X(:,k); 
     u_k = U(:,k);
     
@@ -86,22 +86,27 @@ for k=1:N
     else
         disp('Bitte wähle ein gültiges Integrationsverfahren aus.') 
         return
-    end
+    end   
+    g(k*xLength+1 : (k+1)*xLength) = x_next - x_next_sim;  
     
-    g(k*xLength+1 : k*xLength+xLength) = x_next - x_next_sim;        
+    % Motorsättigungsbedingung   
+    g(xLength*(N+1)+k) = (-K_I*x_k(2) + K_G*Umax_out*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k; 
+    g(xLength*(N+1)+N+k) = (-K_I*x_k(2) - K_G*Umax_out*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k;
 end 
-
-% Nebenbedingungen
 args = struct;
-args.lbg(1:xLength*(N+1)) = 0;  % initialisiere g-Grenzen
+args.lbg(1:xLength*(N+1)) = 0;  % lbg<=g(w)<=ubg für Anfangs- und Konti-Bedingung
 args.ubg(1:xLength*(N+1)) = 0;
+args.lbg(xLength*(N+1)+1 : xLength*(N+1)+N) = 0; % für Motorsättigungsbedingung
+args.ubg(xLength*(N+1)+1 : xLength*(N+1)+N) = inf;
+args.lbg(xLength*(N+1)+N+1 : xLength*(N+1)+2*N) = -inf; 
+args.ubg(xLength*(N+1)+N+1 : xLength*(N+1)+2*N) = 0;
 args.lbx(1 : xLength : xLength*(N+1), 1) = -x0max;  % x0 Begrenzung
 args.ubx(1 : xLength : xLength*(N+1), 1) = x0max;
 for i=2 : xLength % restliche Zustände ohne Begrenzung
     args.lbx(i : xLength: xLength*(N+1), 1) = -inf;
     args.ubx(i : xLength: xLength*(N+1), 1) = inf;
 end
-args.lbx(xLength*(N+1)+1 : xLength*(N+1)+N,1) = -Fmax; % Stellgrößenbeschränkung
+args.lbx(xLength*(N+1)+1 : xLength*(N+1)+N,1) = -Fmax; % allgemeine Stellgrößenbeschränkung
 args.ubx(xLength*(N+1)+1 : xLength*(N+1)+N,1) = Fmax;
 
 
@@ -154,21 +159,10 @@ results.u_traj = full( solution.x(xLength*(N+1)+1 : end) );
 results.x_traj = reshape( full( solution.x(1 : xLength*(N+1)))', xLength, N+1);
 results.g_traj = full(solution.g);
 results.success = solver.stats().success;
-
-% Zulässigkeitsprüfung
+% Endwertfehler
 x_end_mpc = results.x_traj(:,end);
 dev = norm(x_end-x_end_mpc, 2);
 results.dev = dev;
-
-if isfield(conficMPC, 'condition') && ~isempty(conficMPC.condition)
-    condition = conficMPC.condition;    
-else
-    condition = 1e-2;
-end
-if  dev < condition 
-    fprintf('Trajektorie gefunden für xinit = [%0.2f %0.2f %0.2f %0.2f %0.2f %0.2f] und xend = [%0.2f %0.2f %0.2f %0.2f %0.2f %0.2f]\n', x_init, x_end)
-    fprintf('Fehler: %0.5f', dev)
-end
     
 end
 

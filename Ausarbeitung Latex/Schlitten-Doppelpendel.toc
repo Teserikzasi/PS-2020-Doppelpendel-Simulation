@@ -28,24 +28,30 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Motor-Modell}{9}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Modellparameter}{9}{section.3.3}%
+\contentsline {subsection}{\numberline {3.2.1}Spannungs-Strom-Wandler}{10}{subsection.3.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Aufbau in \textsc {Simulink}}{10}{section.3.4}%
+\contentsline {subsection}{\numberline {3.2.2}Gleichstrommotor}{10}{subsection.3.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Implementierung in \textsc {Matlab}}{10}{section.3.5}%
+\contentsline {subsection}{\numberline {3.2.3}Getriebe}{11}{subsection.3.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Arbeitspunkt-Regelung}{11}{chapter.4}%
+\contentsline {section}{\numberline {3.3}Modellparameter}{12}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Einleitung}{11}{section.4.1}%
+\contentsline {section}{\numberline {3.4}Aufbau in \textsc {Simulink}}{12}{section.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Aufbau in \textsc {Simulink}}{11}{section.4.2}%
+\contentsline {section}{\numberline {3.5}Implementierung in \textsc {Matlab}}{12}{section.3.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Implementierung in \textsc {Matlab}}{11}{section.4.3}%
+\contentsline {chapter}{\numberline {4}Arbeitspunkt-Regelung}{13}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Anfangswert-Tests}{11}{section.4.4}%
+\contentsline {section}{\numberline {4.1}Einleitung}{13}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.5}QR Parameter Tests}{11}{section.4.5}%
+\contentsline {section}{\numberline {4.2}Aufbau in \textsc {Simulink}}{13}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.6}System Parameter Tests}{11}{section.4.6}%
+\contentsline {section}{\numberline {4.3}Implementierung in \textsc {Matlab}}{13}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatur}{13}{section*.4}%
+\contentsline {section}{\numberline {4.4}Anfangswert-Tests}{13}{section.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}QR Parameter Tests}{13}{section.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.6}System Parameter Tests}{13}{section.4.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatur}{15}{section*.5}%

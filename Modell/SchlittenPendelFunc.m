@@ -1,6 +1,10 @@
 % Level 2 m-s-function : 'SchlittenPendelFunc.m'
 %
+%<<<<<<< tobi-Regelung
 % Created by sys2sfct at 09-Oct-2020 15:03:26 from the following system:
+%=======
+% Created by sys2sfct at 09-Oct-2020 10:40:57 from the following system:
+%>>>>>>> master
 % Name        : SchlittenPendel NLZSR (F)
 % Description : Nichtlineare Zustandsraumdarstellung des Schlitten-Doppelpendel-Systems (Eingang: F) (Parameter: Doppelpendel rtm (Ribeiro))
 %
