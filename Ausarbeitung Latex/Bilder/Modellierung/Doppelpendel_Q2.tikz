@@ -1,0 +1,27 @@
+\begin{tikzpicture}[scale=1, auto, >=stealth',x=1cm,y=1cm]
+
+	\def\po{50}
+	\def\lo{2.5}
+	\def\so{1}
+
+	\begin{scope}[rotate=\po]
+		\draw[fill=white,thick] (1mm,0) -- (1mm, \lo) arc[start angle=0, end angle=180, radius=1mm] 
+						-- (-1mm, 0) arc[start angle=180, end angle=360, radius=1mm];
+		\draw[] (0,0) circle[radius=0.5mm];
+		%\draw[fill=black] (0, \so) circle[radius=0.5mm];
+		
+		\path (0, \so) coordinate (so);
+		\path (0, \lo) coordinate (lo);
+	\end{scope}
+
+	\path (0, 0) coordinate (lu);
+	
+	\draw[thick,white,->] (lu) ++(0,1.8) arc[start angle=90, end angle=90+\po, radius=1.8cm];
+	\draw[thin,->] (lu) ++(0,1.8) arc[start angle=90, end angle=90+\po, radius=1.8cm];
+	\path (lu) +(90+\po/2:1.5cm) node {$\varphi_2$};
+	\draw[thin,dashed] (lu) -- ++(0, 2);
+
+	\draw[->] (lu) ++(-45:4mm) arc[start angle=-45, end angle=45, radius=4mm];
+	\path (0:4mm) node[anchor=west,inner sep=2pt]{$M_\mrm{d2}$};
+	
+\end{tikzpicture}

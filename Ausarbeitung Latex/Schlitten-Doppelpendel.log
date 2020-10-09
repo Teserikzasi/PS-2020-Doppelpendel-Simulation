@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.9.29)  8 OCT 2020 14:58
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.27)  9 OCT 2020 12:33
+>>>>>>> master
 entering extended mode
 **./Schlitten-Doppelpendel.tex
 (Schlitten-Doppelpendel.tex
@@ -1205,6 +1209,7 @@ Package biblatex Info: ... file 'blx-case-expl3.def' found.
 ("C:\Program Files\MiKTeX\tex/latex/biblatex\blx-case-expl3.def"
 File: blx-case-expl3 2020/08/23 v3.15a expl3 case changing code for biblatex
 )
+<<<<<<< HEAD
 Package biblatex Info: Trying to load BibTeX backend compatibility...
 Package biblatex Info: ... file 'blx-bibtex.def' found.
 
@@ -1228,6 +1233,21 @@ File: biblatex.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
 \c@biburlnumpenalty=\count398
 \c@biburlucpenalty=\count399
 \c@biburllcpenalty=\count400
+=======
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+("C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.def"
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count391
+\c@textcitetotal=\count392
+\c@textcitemaxnames=\count393
+\c@biburlbigbreakpenalty=\count394
+\c@biburlbreakpenalty=\count395
+\c@biburlnumpenalty=\count396
+\c@biburlucpenalty=\count397
+\c@biburllcpenalty=\count398
+>>>>>>> master
 \biburlbigskip=\muskip17
 \biburlnumskip=\muskip18
 \biburlucskip=\muskip19
@@ -2307,10 +2327,7 @@ File: english.lbx 2020/08/23 v3.15a biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Data encoding 'utf8' specified.
 (biblatex)             No need to reencode data.
-Package biblatex Info: Input encoding 'utf8' specified.
-Package biblatex Info: Data encoding 'utf8' specified.
-(biblatex)             No need to reencode data.
-\openout4 = `Schlitten-Doppelpendel-blx.bib'.
+\openout4 = `Schlitten-Doppelpendel.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Schlitten-Doppelpendel.bbl' found.
@@ -2448,7 +2465,11 @@ Package tocbasic Info: character protrusion at toc deactivated on input line 93
 .
  (Schlitten-Doppelpendel.toc
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/sc' will be
+<<<<<<< HEAD
 (Font)              scaled to size 10.95pt on input line 33.
+=======
+(Font)              scaled to size 10.95pt on input line 31.
+>>>>>>> master
 )
 \tf@toc=\write8
 \openout8 = `Schlitten-Doppelpendel.toc'.
@@ -2480,12 +2501,14 @@ Class scrreprt Warning: \float@addtolists detected!
 
 ]
 chapter 2.
-) (Kapitel/Modell.tex [6
+(Kapitel/Grundlagen_MPC.tex) (Kapitel/Grundlagen_Sim.tex)) (Kapitel/Modell.tex
+[6
 
 ]
 chapter 3.
 (Kapitel/Modell_SP.tex
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
+<<<<<<< HEAD
 (Font)              scaled to size 10.95pt on input line 4.
  [7
 
@@ -2507,6 +2530,16 @@ e 47.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9])
+=======
+(Font)              scaled to size 10.95pt on input line 3.
+ (Bilder/Modellierung/Doppelpendel.tikz
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 71.
+) [7
+
+] [8])
+(Kapitel/Modell_Mot.tex)
+>>>>>>> master
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/sc' aliased to
 (Font)              `T1/Roboto-LF/bold/sc' on input line 22.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
@@ -2514,6 +2547,7 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/Roboto-LF/bold/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
+<<<<<<< HEAD
 ) (Kapitel/APRegelung.tex [10 <../../Literatur/Bilder/Getriebe.PNG>]
 [11]
 chapter 4.
@@ -2522,6 +2556,16 @@ chapter 4.
 ] [13
 
 
+=======
+) (Kapitel/APRegelung.tex [9] [10]
+chapter 4.
+) [11
+
+] [12
+
+
+] [13
+>>>>>>> master
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 137.
@@ -2549,11 +2593,19 @@ Package logreq Info: Writing requests to 'Schlitten-Doppelpendel.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  63181 strings out of 481199
  1423836 string characters out of 2915320
  2358258 words of memory out of 3000000
  77485 multiletter control sequences out of 15000+200000
  647199 words of font info for 168 fonts, out of 3000000 for 9000
+=======
+ 62997 strings out of 480790
+ 1420947 string characters out of 2907052
+ 2372493 words of memory out of 3000000
+ 77704 multiletter control sequences out of 15000+200000
+ 644796 words of font info for 164 fonts, out of 3000000 for 9000
+>>>>>>> master
  1143 hyphenation exceptions out of 8191
  85i,21n,142p,10670b,2353s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX/fonts/enc/dvips/roboto/rbto_shbyjm.enc}{C:/Program F
@@ -2561,6 +2613,7 @@ iles/MiKTeX/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}{C:/Program Files/MiKTeX/fo
 nts/enc/dvips/xcharter/xch_lotb2t.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/
 roboto/rbto_b5rac7.enc}<C:/Program Files/MiKTeX/fonts/type1/google/roboto/Robot
 o-Bold.pfb><C:/Program Files/MiKTeX/fonts/type1/google/roboto/Roboto-Regular.pf
+<<<<<<< HEAD
 b><C:/Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Bold.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/Program 
 Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Program Files/M
@@ -2573,4 +2626,20 @@ PDF statistics:
  314 PDF objects out of 1000 (max. 8388607)
  47 named destinations out of 1000 (max. 500000)
  28480 words of extra memory for PDF output out of 29859 (max. 10000000)
+=======
+b><C:/Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/
+Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Schlitten-Doppelpendel.pdf (13 pages, 323920 bytes).
+PDF statistics:
+ 315 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 28475 words of extra memory for PDF output out of 29859 (max. 10000000)
+>>>>>>> master
 

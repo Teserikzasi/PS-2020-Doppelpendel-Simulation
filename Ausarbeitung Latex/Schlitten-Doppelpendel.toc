@@ -8,20 +8,27 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Grundlagen}{6}{chapter.2}%
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}MPC}{6}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Simulation}{6}{section.2.2}%
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Modellierung}{7}{chapter.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Modell des Schlitten-Pendel-Systems}{7}{section.3.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.1}Koordinaten}{7}{subsection.3.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.2}Herleitung der Bewegungsgleichungen}{7}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.2}Herleitung der Bewegungsgleichungen}{8}{subsection.3.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.3}Ruhelagen}{7}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.3}Coulomb-Reibung}{9}{subsection.3.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.4}Coulomb-Reibung}{7}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.4}Zustandsraummodell}{9}{subsection.3.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Motor-Modell}{8}{section.3.2}%
+\contentsline {subsection}{\numberline {3.1.5}Ruhelagen}{9}{subsection.3.1.5}%
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Motor-Modell}{9}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+<<<<<<< HEAD
 \contentsline {subsection}{\numberline {3.2.1}Spannungs-Strom-Wandler}{8}{subsection.3.2.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.2}Gleichstrommotor}{9}{subsection.3.2.2}%
@@ -48,4 +55,26 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.6}System Parameter Tests}{12}{section.4.6}%
 \defcounter {refsection}{0}\relax 
+=======
+\contentsline {section}{\numberline {3.3}Modellparameter}{9}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Aufbau in \textsc {Simulink}}{10}{section.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Implementierung in \textsc {Matlab}}{10}{section.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Arbeitspunkt-Regelung}{11}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Einleitung}{11}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Aufbau in \textsc {Simulink}}{11}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Implementierung in \textsc {Matlab}}{11}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Anfangswert-Tests}{11}{section.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}QR Parameter Tests}{11}{section.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.6}System Parameter Tests}{11}{section.4.6}%
+\defcounter {refsection}{0}\relax 
+>>>>>>> master
 \contentsline {chapter}{Literatur}{13}{section*.4}%

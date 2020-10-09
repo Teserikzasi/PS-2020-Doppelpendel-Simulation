@@ -3,11 +3,43 @@
 \newcommand{\spd}{Schlitten-Pendel}
 \newcommand{\crb}{Coulomb-Reibung}
 \newcommand{\drb}{viskose Reibung}
+\newcommand{\koor}{Koordinaten}
+\newcommand{\bwgl}{Bewegungsgleichungen}
+\newcommand{\zrm}{Zustandsraummodell}
+\newcommand{\nlzrm}{nichtlineare \zrm}
 
+\newcommand{\einhalb}{\frac{1}{2}}
 
 \newcommand{\sign}[1]{\ensuremath{\mrm{sign}\left(#1\right)}}
 
-
+\newcommand{\xo}{x_0}  % Zahlen im Befehl nicht möglich
+\newcommand{\xe}{x_1}
+\newcommand{\xz}{x_2}
+\newcommand{\yo}{y_0}
+\newcommand{\ye}{y_1}
+\newcommand{\yz}{y_2}
+\newcommand{\xop}{\dot{x}_0}
+\newcommand{\xep}{\dot{x}_1}
+\newcommand{\xzp}{\dot{x}_2}
+\newcommand{\yop}{\dot{y}_0}
+\newcommand{\yep}{\dot{y}_1}
+\newcommand{\yzp}{\dot{y}_2}
+\newcommand{\phe}{\varphi_1}
+\newcommand{\phz}{\varphi_2}
+\newcommand{\phep}{\dot{\varphi}_1}
+\newcommand{\phzp}{\dot{\varphi}_2}
+\newcommand{\Fc}{F_c}
+\newcommand{\Fco}{F_{c0}}
+\newcommand{\Mce}{M_{c1}}
+\newcommand{\Mcz}{M_{c2}}
+\newcommand{\Mceo}{M_{c10}}
+\newcommand{\Mczo}{M_{c20}}
+\newcommand{\xopth}{\dot{x}_{0,c76}}
+\newcommand{\pheth}{\dot{\varphi}_{1,c76}}
+\newcommand{\phzth}{\dot{\varphi}_{2,c76}}
+\newcommand{\Fd}{F_d}
+\newcommand{\Mde}{M_{d1}}
+\newcommand{\Mdz}{M_{d2}}
 
 
 
@@ -18,59 +50,16 @@
 \newcommand{\nge}{\ensuremath{n_{\mathrm{PV}}}}
 \newcommand{\nla}{\ensuremath{n_{\mathrm{PQ}}}}
 
-\newcommand{\clx}[1]{\ul{#1}}
-\newcommand{\uc}{\clx{U}}
-\newcommand{\ub}{U}
-\newcommand{\uk}{u}
-\newcommand{\uh}{\clx{u}}
-\newcommand{\ubi}{\ub_i}
-\newcommand{\ubj}{\ub_j}
-\newcommand{\uki}{\uk_i}
-\newcommand{\ukj}{\uk_j}
-\newcommand{\ukk}{\uk_k}
-\newcommand{\ukl}{\uk_l}
-\newcommand{\uko}{\uk_1}
-\newcommand{\ukn}{\uk_{\n}}
-\newcommand{\ubjo}{\ub_{j+1}}
-\newcommand{\ubn}{\ub_{\n}}
-\newcommand{\veu}{\clx{\ve{u}}}
-\newcommand{\ic}{\clx{I}}
-\newcommand{\ib}{I}
-\newcommand{\ibi}{\ib_i}
-\newcommand{\vei}{\clx{\ve{i}}}
-\newcommand{\matY}{\clx{\mat{Y}}}
-\newcommand{\vess}{\clx{\ve{s}}}
-\newcommand{\inj}{\ensuremath{i\rightarrow j}}
-\newcommand{\jni}{\ensuremath{i\leftarrow j}}
-
-\newcommand{\vl}{\mathrm{v}}
-\newcommand{\fl}{\mathrm{f}}
-\newcommand{\sh}{\mathrm{sh}}
-\newcommand{\Rea}[1]{\mrm{Re}\left\{#1\right\}}
-\newcommand{\Ima}[1]{\mrm{Im}\left\{#1\right\}}
 \newcommand\circlearound[1]{\tikz[baseline]\node[draw,shape=circle,anchor=base] {#1} ;}
 
 \newcommand{\qq}[1]{\glqq#1\grqq}
-\newcommand{\adm}{Admittanzmatrix}
-\newcommand{\rui}{Real- und Imaginärteil}
-\newcommand{\wub}{Wirk- und Blindleistung}
-\newcommand{\pim}{$\pi$-Modell}
-\newcommand{\pimb}{\textbf{$\boldsymbol{\pi}$-Modell}}
-\newcommand{\lfb}{Lastflussberechnung}
-\newcommand{\pu}{p.\thinspace{}u.}
-\newcommand{\nrv}{Newton-Raphson-Verfahren}
 \newcommand{\nv}{Newton-Verfahren}
 \newcommand{\jm}{Jakobi-Matrix}
 \newcommand{\alg}{Algorithmus}
 \newcommand{\ml}{\Matlab}
-\newcommand{\mtp}{\textsc{Matpower}}
-\newcommand{\zs}{Zustandsschätzung}
-\newcommand{\nzs}{Netzzustandsschätzung}
 \newcommand{\rf}{Redundanzfaktor}
 \newcommand{\std}{Standardabweichung}
 \newcommand{\gls}{Gleichungssystem}
-\newcommand{\ims}{Impedanzschätzung}
-\newcommand{\mcs}{Monte-Carlo-Simulation}
 \newcommand{\urll}{\textsc{url: }}
 
 \newcommand{\exref}[1]{Beispiel \ref{#1}}
@@ -124,121 +113,15 @@
 
 \newcommand{\dx}[1]{\delta_{#1}}
 \newcommand{\dd}{\delta}
-\newcommand{\de}{\delta_1}
-\newcommand{\dz}{\delta_2}
 \newcommand{\di}{\delta_i}
-\newcommand{\djj}{\delta_j}
-\newcommand{\djjo}{\delta_{j+1}}
-\newcommand{\dk}{\delta_k}
-\newcommand{\dn}{\delta_{\n}}
 \newcommand{\dij}{\delta_i-\delta_j}
 \newcommand{\dik}{\delta_i-\delta_k}
 \newcommand{\dil}{\delta_i-\delta_l}
 \newcommand{\doj}{\delta_1-\delta_j}
 \newcommand{\dnj}{\delta_\n-\delta_j}
 \newcommand{\cosdi}{\cos(\di)}
-\newcommand{\cosdj}{\cos(\djj)}
-\newcommand{\cosdk}{\cos(\dk)}
-\newcommand{\sindi}{\sin(\di)}
-\newcommand{\sindj}{\sin(\djj)}
-\newcommand{\sindk}{\sin(\dk)}
-\newcommand{\cosdij}{\cos(\dij)}
-\newcommand{\sindij}{\sin(\dij)}
-\newcommand{\cosdik}{\cos(\dik)}
-\newcommand{\sindik}{\sin(\dik)}
-\newcommand{\cosdil}{\cos(\dil)}
-\newcommand{\sindil}{\sin(\dil)}
 
 \newcommand{\yij}{\clx{Y}_{ij}}
-\newcommand{\yji}{\clx{Y}_{ji}}
-\newcommand{\yik}{\clx{Y}_{ik}}
-\newcommand{\yii}{\clx{Y}_{ii}}
 \newcommand{\rij}{r_{ij}}
-\newcommand{\rji}{r_{ji}}
-\newcommand{\rik}{r_{ik}}
-\newcommand{\rk}{r_{k}}
-\newcommand{\xij}{x_{ij}}
-\newcommand{\xji}{x_{ji}}
-\newcommand{\xik}{x_{ik}}
-\newcommand{\xk}{x_{k}}
-\newcommand{\bsij}{b_{ij}}
-\newcommand{\gij}{G_{ij}}
-\newcommand{\gji}{G_{ji}}
-\newcommand{\gik}{G_{ik}}
-\newcommand{\gii}{G_{ii}}
-\newcommand{\gkl}{G_{kl}}
-\newcommand{\goj}{G_{1j}}
-\newcommand{\gnj}{G_{\n j}}
-\newcommand{\bij}{B_{ij}}
-\newcommand{\bji}{B_{ji}}
-\newcommand{\bik}{B_{ik}}
-\newcommand{\bii}{B_{ii}}
-\newcommand{\bkl}{B_{kl}}
-\newcommand{\boj}{B_{1j}}
-\newcommand{\bnj}{B_{\n j}}
-\newcommand{\gk}{G_{k}}
-\newcommand{\bk}{B_{k}}
-\newcommand{\gl}{G_{l}}
-\newcommand{\bl}{B_{l}}
-\newcommand{\go}{G_{1}}
-\newcommand{\bo}{B_{1}}
-\newcommand{\gm}{G_{\nl}}
-\newcommand{\bm}{B_{\nl}}
-\newcommand{\gshi}{g_{\sh,i}}
-\newcommand{\bshi}{b_{\sh,i}}
-
 \newcommand{\pbi}{p_i}
-\newcommand{\pbj}{p_j}
-\newcommand{\pbo}{p_1}
-\newcommand{\pbn}{p_{\n}}
-\newcommand{\Pbi}{P_i}
-\newcommand{\Pbj}{P_j}
-\newcommand{\qbi}{q_i}
-\newcommand{\qbj}{q_j}
-\newcommand{\qbo}{q_1}
-\newcommand{\qbn}{q_{\n}}
-\newcommand{\Qbi}{Q_i}
-\newcommand{\Qbj}{Q_j}
-\newcommand{\hpi}{h_{p,i}}
-\newcommand{\hqi}{h_{q,i}}
-\newcommand{\pshi}{p_{\sh,i}}
-\newcommand{\qshi}{q_{\sh,i}}
-
 \newcommand{\pij}{\ensuremath{p_{ij}}}
-\newcommand{\pji}{\ensuremath{p_{ji}}}
-\newcommand{\qij}{\ensuremath{q_{ij}}}
-\newcommand{\qji}{\ensuremath{q_{ji}}}
-\newcommand{\pfij}{\ensuremath{p_{\fl,ij}}}
-\newcommand{\pfji}{\ensuremath{p_{\fl,ji}}}
-\newcommand{\qfij}{\ensuremath{q_{\fl,ij}}}
-\newcommand{\qfji}{\ensuremath{q_{\fl,ji}}}
-\newcommand{\Pfij}{\ensuremath{P_{\fl,ij}}}
-\newcommand{\Pfji}{\ensuremath{P_{\fl,ji}}}
-\newcommand{\Qfij}{\ensuremath{Q_{\fl,ij}}}
-\newcommand{\Qfji}{\ensuremath{Q_{\fl,ji}}}
-\newcommand{\pk}{\ensuremath{p_{\fl,k}}}
-\newcommand{\pks}{\ensuremath{p_{\fl,k}^{'}}}
-\newcommand{\qk}{\ensuremath{q_{\fl,k}}}
-\newcommand{\qks}{\ensuremath{q_{\fl,k}^{'}}}
-\newcommand{\pko}{\ensuremath{p_{\fl,1}}}
-\newcommand{\pkm}{\ensuremath{p_{\fl,\nl}}}
-\newcommand{\pkos}{\ensuremath{p_{\fl,1}^{'}}}
-\newcommand{\pkms}{\ensuremath{p_{\fl,\nl}^{'}}}
-\newcommand{\qko}{\ensuremath{q_{\fl,1}}}
-\newcommand{\qkm}{\ensuremath{q_{\fl,\nl}}}
-\newcommand{\qkos}{\ensuremath{q_{\fl,1}^{'}}}
-\newcommand{\qkms}{\ensuremath{q_{\fl,\nl}^{'}}}
-\newcommand{\hpk}{\ensuremath{h_{\pk}}}
-\newcommand{\hpks}{\ensuremath{h_{\pks}}}
-\newcommand{\hqk}{\ensuremath{h_{\qk}}}
-\newcommand{\hqks}{\ensuremath{h_{\qks}}}
-\newcommand{\Pk}{\ensuremath{P_{\fl,k}}}
-\newcommand{\Pks}{\ensuremath{P_{\fl,k}^{'}}}
-\newcommand{\Qk}{\ensuremath{Q_{\fl,k}}}
-\newcommand{\Qks}{\ensuremath{Q_{\fl,k}^{'}}}
-\newcommand{\pv}{\ensuremath{P_{\vl}}}
-\newcommand{\pvij}{\ensuremath{p_{\vl,ij}}}
-\newcommand{\qvij}{\ensuremath{q_{\vl,ij}}}
-\newcommand{\Pvij}{\ensuremath{P_{\vl,ij}}}
-\newcommand{\Qvij}{\ensuremath{Q_{\vl,ij}}}
-\newcommand{\qvcij}{\ensuremath{q_{\vl C,ij}}}

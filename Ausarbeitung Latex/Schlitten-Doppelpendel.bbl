@@ -3,8 +3,8 @@
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
-% This file may safely be deleted. It will be recreated as
-% required.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
 %
 \begingroup
 \makeatletter
@@ -16,6 +16,7 @@
   {}
 \endgroup
 
+<<<<<<< HEAD
 \datalist[entry]{nty/global//global/global}
   \entry{apprich}{thesis}{}
     \name{author}{1}{}{%
@@ -192,4 +193,149 @@
     \field{year}{2020}
   \endentry
 \enddatalist
+=======
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{apprich}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7060566cc16df82955cdbe472de7ad09}{%
+           family={Apprich},
+           familyi={A\bibinitperiod},
+           given={Stefanie},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{fullhash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{bibnamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authorbibnamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authornamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authorfullhash}{7060566cc16df82955cdbe472de7ad09}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Studienarbeit}
+      \field{title}{Konstruktion und Regelung eines inversiven Doppelpendels}
+      \field{year}{2009}
+    \endentry
+    \entry{brehl}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5f66a3d5c2f9d2be3c1a7a089e09fa50}{%
+           family={Brehl},
+           familyi={B\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{fullhash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{bibnamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authorbibnamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authornamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authorfullhash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bachelorarbeit}
+      \field{title}{Implementierung und Vergleich verschiedener Reglervarianten zur Regelung eines inversen Doppelpendels}
+      \field{year}{2014}
+    \endentry
+    \entry{modpen}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a9efff80974e8377561c4027a4ca8c3e}{%
+           family={Lenz},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt, Fachgebiet rtm}%
+      }
+      \strng{namehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{fullhash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{bibnamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authorbibnamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authornamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authorfullhash}{a9efff80974e8377561c4027a4ca8c3e}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modellierung Pendel}
+    \endentry
+    \entry{ribeiro}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=33d5077f41e7b2f762fa139854745a1b}{%
+           family={Sousa\bibnamedelimb Ribeiro;\bibnamedelimb Thomas\bibnamedelimb Gassen;\bibnamedelimb Vitaliy\bibnamedelima Omelchuk},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{fullhash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{bibnamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authorbibnamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authornamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authorfullhash}{33d5077f41e7b2f762fa139854745a1b}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Projektseminar}
+      \field{title}{Steuerung und Regelung eines inversen Doppelpendels}
+      \field{year}{2020}
+    \endentry
+    \entry{chang}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=45c0ab62a648f5deceb53481ccd76a3f}{%
+           family={Tchoutchui},
+           familyi={T\bibinitperiod},
+           given={Feiyu\bibnamedelimb Chang;\bibnamedelimb Nicolas\bibnamedelimb Fauvé;\bibnamedelimb Antonia\bibnamedelimb Gießler;\bibnamedelimb Charles\bibnamedelima Studd},
+           giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{fullhash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{bibnamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authorbibnamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authornamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authorfullhash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Projektseminar}
+      \field{title}{Konstruktion und Regelung eines inversen Doppelpendels}
+      \field{year}{2019}
+    \endentry
+  \enddatalist
+\endrefsection
+>>>>>>> master
 \endinput
+
