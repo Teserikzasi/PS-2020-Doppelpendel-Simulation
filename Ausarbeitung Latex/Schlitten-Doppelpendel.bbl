@@ -17,7 +17,7 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
-  \entry{apprich}{misc}{}
+  \entry{apprich}{thesis}{}
     \name{author}{1}{}{%
       {{hash=AS}{%
          family={Apprich},
@@ -32,12 +32,38 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{A}
     \field{sortinithash}{A}
-    \field{note}{Studienarbeit}
     \field{title}{Konstruktion und Regelung eines inversiven Doppelpendels}
     \list{institution}{1}{%
       {Technische Universität Darmstadt}%
     }
+    \field{type}{Studienarbeit}
     \field{year}{2009}
+  \endentry
+
+  \entry{binder}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BA}{%
+         family={Binder},
+         familyi={B\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag Berlin Heidelberg}%
+    }
+    \strng{namehash}{BA1}
+    \strng{fullhash}{BA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{Elektrische Maschinen und Antriebe - Grundlagen,
+  Betriebsverhalten}
+    \list{location}{1}{%
+      {Darmstadt}%
+    }
+    \field{year}{2012}
   \endentry
 
   \entry{brehl}{misc}{}
@@ -65,6 +91,59 @@
       {Technische Universität Darmstadt}%
     }
     \field{year}{2014}
+  \endentry
+
+  \entry{chang}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FCNFAGuCST}{%
+         family={Feiyu Chang Nicolas\bibnamedelima Fauvé},
+         familyi={F\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim
+  N\bibinitperiod\bibinitdelim F\bibinitperiod},
+         given={Antonia Gießler und Charles Studd\bibnamedelima Tchoutchui},
+         giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim
+  u\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim
+  S\bibinitperiod\bibinitdelim T\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FCNFAGuCST1}
+    \strng{fullhash}{FCNFAGuCST1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{note}{Projektseminar}
+    \field{title}{Konstruktion und Regelung eines inversen Doppelpendels}
+    \list{institution}{1}{%
+      {Technische Universität Darmstadt}%
+    }
+    \field{year}{2019}
+  \endentry
+
+  \entry{franke}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=FA}{%
+         family={Franke},
+         familyi={F\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FA1}
+    \strng{fullhash}{FA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{Modellierung und Regelung einesmechatronischen Systems - Eine
+  Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor}
+    \list{location}{1}{%
+      {Clausthal}%
+    }
+    \list{institution}{1}{%
+      {TU Clausthal}%
+    }
+    \field{type}{Diplomarbeit}
+    \field{year}{1997}
   \endentry
 
   \entry{modpen}{misc}{}
@@ -111,33 +190,6 @@
       {Technische Universität Darmstadt}%
     }
     \field{year}{2020}
-  \endentry
-
-  \entry{chang}{misc}{}
-    \name{author}{1}{}{%
-      {{hash=TFCNFAGCS}{%
-         family={Tchoutchui},
-         familyi={T\bibinitperiod},
-         given={Feiyu Chang; Nicolas Fauvé; Antonia Gießler;
-  Charles\bibnamedelima Studd},
-         giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim
-  N\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
-  A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim
-  C\bibinitperiod\bibinitdelim S\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{TFCNFAGCS1}
-    \strng{fullhash}{TFCNFAGCS1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{T}
-    \field{sortinithash}{T}
-    \field{note}{Projektseminar}
-    \field{title}{Konstruktion und Regelung eines inversen Doppelpendels}
-    \list{institution}{1}{%
-      {Technische Universität Darmstadt}%
-    }
-    \field{year}{2019}
   \endentry
 \enddatalist
 \endinput

@@ -53,16 +53,16 @@
   timestamp = {2008.01.03},
 }
 
-@Misc{apprich,
+@MastersThesis{apprich,
   author = {Apprich, Stefanie},
+  school = {Technische Universität Darmstadt},
   title  = {Konstruktion und Regelung eines inversiven Doppelpendels},
   year   = {2009},
-  note   = {Studienarbeit},
-  school = {Technische Universität Darmstadt},
+  type   = {Studienarbeit},
 }
 
 @Misc{chang,
-  author = {Feiyu Chang; Nicolas Fauvé; Antonia Gießler; Charles Studd Tchoutchui},
+  author = {Feiyu Chang Nicolas Fauvé, Antonia Gießler und Charles Studd Tchoutchui},
   title  = {Konstruktion und Regelung eines inversen Doppelpendels},
   year   = {2019},
   note   = {Projektseminar},
@@ -110,6 +110,15 @@
   address   = {Darmstadt},
   owner     = {elenz},
   timestamp = {2008.05.09},
+}
+
+@MastersThesis{franke,
+  author  = {Franke, Andreas},
+  school  = {TU Clausthal},
+  title   = {Modellierung und Regelung einesmechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor},
+  year    = {1997},
+  address = {Clausthal},
+  type    = {Diplomarbeit},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

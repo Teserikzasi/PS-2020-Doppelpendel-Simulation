@@ -22,47 +22,47 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: Schlitten-Doppelpendel-blx.bib
 Database file #2: bib/literature.bib
-Biblatex version: 3.13
+Biblatex version: 3.15
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 6 entries,
-            6365 wiz_defined-function locations,
-            1217 strings with 9552 characters,
-and the built_in function-call counts, 32665 in all, are:
-= -- 2487
-> -- 588
-< -- 250
-+ -- 528
-- -- 148
-* -- 2178
-:= -- 3055
+You've used 8 entries,
+            6393 wiz_defined-function locations,
+            1238 strings with 9949 characters,
+and the built_in function-call counts, 43053 in all, are:
+= -- 3221
+> -- 811
+< -- 363
++ -- 711
+- -- 196
+* -- 2791
+:= -- 3854
 add.period$ -- 0
-call.type$ -- 6
-change.case$ -- 172
+call.type$ -- 8
+change.case$ -- 257
 chr.to.int$ -- 42
-cite$ -- 10
-duplicate$ -- 2660
-empty$ -- 3163
-format.name$ -- 241
-if$ -- 7273
+cite$ -- 14
+duplicate$ -- 3732
+empty$ -- 4162
+format.name$ -- 339
+if$ -- 9555
 int.to.chr$ -- 0
-int.to.str$ -- 14
+int.to.str$ -- 22
 missing$ -- 0
-newline$ -- 138
-num.names$ -- 341
-pop$ -- 1707
+newline$ -- 189
+num.names$ -- 498
+pop$ -- 2362
 preamble$ -- 1
-purify$ -- 182
+purify$ -- 271
 quote$ -- 0
-skip$ -- 1244
+skip$ -- 1752
 stack$ -- 0
-substring$ -- 4719
-swap$ -- 726
-text.length$ -- 145
-text.prefix$ -- 5
+substring$ -- 5826
+swap$ -- 1033
+text.length$ -- 195
+text.prefix$ -- 7
 top$ -- 1
-type$ -- 192
+type$ -- 250
 warning$ -- 0
-while$ -- 316
+while$ -- 408
 width$ -- 0
-write$ -- 133
+write$ -- 182
