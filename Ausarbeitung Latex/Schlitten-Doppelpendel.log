@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.9.29)  9 OCT 2020 14:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.9.29)  9 OCT 2020 14:57
 entering extended mode
 **./Schlitten-Doppelpendel.tex
 (Schlitten-Doppelpendel.tex
@@ -2473,80 +2473,22 @@ chapter 2.
 ]
 chapter 3.
 (Kapitel/Modell_SP.tex
-
-LaTeX Warning: Citation 'modpen' on page 7 undefined on input line 4.
-
-LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 4.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
 (Font)              scaled to size 10.95pt on input line 4.
-(Bilder/Modellierung/Doppelpendel.tikz
+ (Bilder/Modellierung/Doppelpendel.tikz
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
 (Font)              scaled to size 6.0pt on input line 71.
 ) [7
 
-]
-
-LaTeX Warning: Citation 'modpen' on page 8 undefined on input line 42.
-
-
-Overfull \hbox (2.60188pt too wide) in paragraph at lines 42--43
-\T1/XCharter-TLF/m/n/10.95 (-20) Um auf die Be-we-gungs-glei-chun-gen-des Sys-t
-ems zu ge-lan-gen, wird in [[]] der \T1/XCharter-TLF/m/it/10.95 (-20) La-gran-g
-e\T1/XCharter-TLF/m/n/10.95 (-20) -Formalismus
- []
-
-[8]
-
-LaTeX Warning: Citation 'ribeiro' on page 9 undefined on input line 74.
-
-) (Kapitel/Modell_Mot.tex
-
-LaTeX Warning: Citation 'franke' on page 9 undefined on input line 3.
-
-[9]
-
-LaTeX Warning: Citation 'franke' on page 10 undefined on input line 14.
-
-
-LaTeX Warning: Citation 'franke' on page 10 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'binder' on page 10 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'franke' on page 10 undefined on input line 30.
-
-[10]
-<../../Literatur/Bilder/Getriebe.PNG, id=154, 483.0045pt x 429.40425pt>
+] [8])
+(Kapitel/Modell_Mot.tex [9] [10]
+<../../Literatur/Bilder/Getriebe.PNG, id=165, 483.0045pt x 429.40425pt>
 File: ../../Literatur/Bilder/Getriebe.PNG Graphic file (type png)
 <use ../../Literatur/Bilder/Getriebe.PNG>
 Package pdftex.def Info: ../../Literatur/Bilder/Getriebe.PNG  used on input lin
 e 48.
 (pdftex.def)             Requested size: 241.50165pt x 214.70158pt.
-
-
-LaTeX Warning: Citation 'franke' on page 11 undefined on input line 49.
-
-
-LaTeX Warning: Citation 'franke' on page 11 undefined on input line 49.
-
-
-LaTeX Warning: Citation 'apprich' on page 11 undefined on input line 53.
-
-[11 <../../Literatur/Bilder/Getriebe.PNG>])
-
-LaTeX Warning: Citation 'apprich' on page 12 undefined on input line 13.
-
-
-LaTeX Warning: Citation 'chang' on page 12 undefined on input line 15.
-
-
-LaTeX Warning: Citation 'brehl' on page 12 undefined on input line 17.
-
-
-LaTeX Warning: Citation 'ribeiro' on page 12 undefined on input line 19.
-
+ [11 <../../Literatur/Bilder/Getriebe.PNG>])
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/sc' aliased to
 (Font)              `T1/Roboto-LF/bold/sc' on input line 22.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
@@ -2554,67 +2496,54 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/Roboto-LF/bold/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
-) (Kapitel/APRegelung.tex [12]
+)
+(Kapitel/APRegelung.tex [12]
 chapter 4.
 ) [13
 
 ] [14
 
 
+] [15
+
 ]
-
-LaTeX Warning: Empty bibliography on input line 133.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 137.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 137.
-(Schlitten-Doppelpendel.aux)
+ (Schlitten-Doppelpendel.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 137.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 137.
 Package rerunfilecheck Info: File `Schlitten-Doppelpendel.out' has not changed.
 
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                Schlitten-Doppelpendel
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'Schlitten-Doppelpendel.run.xml'.
 \openout1 = `Schlitten-Doppelpendel.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 63196 strings out of 481199
- 1426646 string characters out of 2915320
+ 63262 strings out of 481199
+ 1428341 string characters out of 2915320
  2407378 words of memory out of 3000000
- 77484 multiletter control sequences out of 15000+200000
- 654116 words of font info for 173 fonts, out of 3000000 for 9000
+ 77516 multiletter control sequences out of 15000+200000
+ 650874 words of font info for 189 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
  85i,21n,142p,10670b,2353s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{section*.5} has been referenced but does not exis
-t, replaced by a fixed one
-
-{C:/Program Files/MiKTeX/fonts/enc/dvips/roboto/rbto_shbyjm.enc}{C:/Program Fil
-es/MiKTeX/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}{C:/Program Files/MiKTeX/font
-s/enc/dvips/xcharter/xch_lotb2t.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/ro
-boto/rbto_b5rac7.enc}<C:/Program Files/MiKTeX/fonts/type1/google/roboto/Roboto-
-Bold.pfb><C:/Program Files/MiKTeX/fonts/type1/google/roboto/Roboto-Regular.pfb>
-<C:/Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Bold.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Program Files/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-mi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
-rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Schlitten-Doppelpendel.pdf (14 pages, 438912 bytes).
+{C:/Program Files/MiKTeX/fonts/enc/dvips/roboto/rbto_shbyjm.enc}{C:/Program F
+iles/MiKTeX/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}{C:/Program Files/MiKTeX/fo
+nts/enc/dvips/xcharter/xch_lotb2t.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/
+roboto/rbto_b5rac7.enc}<C:/Program Files/MiKTeX/fonts/type1/google/roboto/Robot
+o-Bold.pfb><C:/Program Files/MiKTeX/fonts/type1/google/roboto/Roboto-Regular.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/
+Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Schlitten-Doppelpendel.pdf (15 pages, 392194 bytes).
 PDF statistics:
- 331 PDF objects out of 1000 (max. 8388607)
- 48 named destinations out of 1000 (max. 500000)
- 29016 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 355 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
+ 28504 words of extra memory for PDF output out of 29859 (max. 10000000)
 

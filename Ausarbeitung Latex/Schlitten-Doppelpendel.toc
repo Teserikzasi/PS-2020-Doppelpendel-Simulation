@@ -53,3 +53,5 @@
 \contentsline {section}{\numberline {4.5}QR Parameter Tests}{13}{section.4.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.6}System Parameter Tests}{13}{section.4.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatur}{15}{section*.5}%
