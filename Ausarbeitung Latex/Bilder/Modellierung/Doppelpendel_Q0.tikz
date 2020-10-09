@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale=1, auto, >=stealth',x=1cm,y=1cm]
+
+	\draw[thick] (-1,-0.5) |- (1,0.5) |- cycle;
+
+	\draw[->] (1, 0.25) -- ++(1, 0) node[anchor=west]{$F_0$};
+	\draw[->] (1, -0.25) -- ++(1, 0) node[anchor=west]{$F_\mrm{d0}$};
+	
+	\draw (0,0) circle[radius=0.5mm];
+	
+	\draw[<-,black!25] (0,0) (135:4mm) arc[start angle=135, end angle=225, radius=4mm];
+	\draw[<-,black!25] (0,0) (240:4mm) arc[start angle=240, end angle=330, radius=4mm] node[anchor=west, inner sep=2pt]{\tiny $M_\mrm{d1}$};
+	%\draw[<-,black!25] (0,0) (135:4mm) arc[start angle=135, end angle=225, radius=4mm];
+	\path (0,0) (180:4mm) node[black!25,anchor=east,inner sep=2pt]{\tiny $M_1$};
+	
+	\draw[thin] (-1.5,-1) -- ++(0,-0.5);
+	\draw[thin,->] (-1.5,-1.25) -- node{$x_0$} (0,-1.25); 
+	
+\end{tikzpicture}

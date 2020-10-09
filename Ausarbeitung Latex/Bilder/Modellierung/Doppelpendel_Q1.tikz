@@ -1,0 +1,31 @@
+\begin{tikzpicture}[scale=1, auto, >=stealth',x=1cm,y=1cm]
+
+	\def\pu{30}
+	\def\lu{3}
+	\def\su{2}
+	
+	\begin{scope}[rotate=\pu]
+		\draw[fill=white,thick] (1mm,0) -- (1mm, \lu) arc[start angle=0, end angle=180, radius=1mm] 
+						-- (-1mm, 0) arc[start angle=180, end angle=360, radius=1mm];
+		\draw[] (0,0) circle[radius=0.5mm];
+%		\draw[fill=black] (0, \su) circle[radius=0.5mm];
+		
+		\path (0, \su) coordinate (su);
+		\path (0, \lu) coordinate (lu);
+	\end{scope}
+	
+	\draw[] (lu) circle[radius=0.5mm];
+
+	\draw[thick,white,->] (0,1.8) arc[start angle=90, end angle=90+\pu, radius=1.8cm];
+	\draw[thin,->] (0,1.8) arc[start angle=90, end angle=90+\pu, radius=1.8cm];
+	\node at (90+\pu/2:1.5cm) {$\varphi_1$};
+	\draw[thin,dashed] (0,0) -- (0, 2);
+
+	\draw[->] (0,0) (135:4mm) arc[start angle=135, end angle=225, radius=4mm];
+	\draw[->] (0,0) (240:4mm) arc[start angle=240, end angle=330, radius=4mm] node[anchor=west, inner sep=2pt]{$M_\mrm{d1}$};
+	%\draw[<-,black!25] (0,0) (135:4mm) arc[start angle=135, end angle=225, radius=4mm];
+	\path (180:4mm) node[anchor=east,inner sep=2pt]{$M_1$};
+	
+	\draw[->] (lu) ++(135:4mm) arc[start angle=135, end angle=45, radius=4mm] node[anchor=west, inner sep=2pt]{$M_\mrm{d2}$};
+
+\end{tikzpicture}
