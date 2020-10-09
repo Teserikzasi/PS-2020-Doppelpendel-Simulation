@@ -122,12 +122,11 @@
 }
 
 @MastersThesis{franke,
-  author  = {Franke, Andreas},
-  school  = {TU Clausthal},
-  title   = {Modellierung und Regelung einesmechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor},
-  year    = {1997},
-  address = {Clausthal},
-  type    = {Diplomarbeit},
+  author = {Franke, Andreas},
+  school = {TU Clausthal},
+  title  = {Modellierung und Regelung einesmechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor},
+  year   = {1997},
+  type   = {Diplomarbeit},
 }
 
 @Book{binder,

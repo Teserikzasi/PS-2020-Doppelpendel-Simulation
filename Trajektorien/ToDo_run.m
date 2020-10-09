@@ -15,37 +15,18 @@ u_max = 410;
 simSol='RK4';
 paramsSource= 'app09';
 
-poi = 'm2';
-poi_val = 0.01:0.01:0.1;
+poi = 'J2';
+val = 0:0.0001:0.02; del = 0:0.002:0.02;
+poi_val = []; cnt = 1;
+for i=1 : length(val)
+    if ~ismember(val(i),del)
+        poi_val(cnt)=val(i); cnt=cnt+1;
+    end
+end
 examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.41:0.01:1.59;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.61:0.01:1.79;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.81:0.01:1.99;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
+poi = 'J1';
+examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
 
-poi = 'm1';
-poi_val = 0.01:0.01:0.1;
-examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 0.11:0.01:0.19;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 0.21:0.01:0.39;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 0.41:0.01:0.49;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 0.91:0.01:0.99;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.01:0.01:1.19;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.21:0.01:1.39;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.41:0.01:1.59;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.61:0.01:1.79;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
-% poi_val = 1.81:0.01:1.99;
-% examParameters(poi, poi_val, N, T, simSol, paramsSource, u_max)
 % poi = ["m1", "m2", "J1", "J2", "s1", "s2"];
 % rib20 = SchlittenPendelParams_Ribeiro20(); 
 % for k=1 : length(poi)

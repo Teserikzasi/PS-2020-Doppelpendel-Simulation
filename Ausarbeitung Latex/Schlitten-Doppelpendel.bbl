@@ -113,9 +113,6 @@
       \list{institution}{1}{%
         {TU Clausthal}%
       }
-      \list{location}{1}{%
-        {Clausthal}%
-      }
       \strng{namehash}{0a2e7fbd071b77977840395a0b09a734}
       \strng{fullhash}{0a2e7fbd071b77977840395a0b09a734}
       \strng{bibnamehash}{0a2e7fbd071b77977840395a0b09a734}
@@ -141,6 +138,9 @@
            suffixi={T\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
       }
       \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
         {Technische Universität Darmstadt}%
       }
       \strng{namehash}{3bfbf8ced52e9c7ef98d9259bf00451c}
