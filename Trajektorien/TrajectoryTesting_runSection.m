@@ -40,7 +40,7 @@ disp('Simulation abgeschlossen.')
 %% Visualisiere Simulationsergebnisse
 %plot_velocities(simout)
 %plotanimate(simout);
-animate_outputs(simout, 100)
+animate_outputs(simout)
 
 %% Visualisiere Simulationsergebnisse mit Common Tool
 outData.T.data = simout.mX.time;
