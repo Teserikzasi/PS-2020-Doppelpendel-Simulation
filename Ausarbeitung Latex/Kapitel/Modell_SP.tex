@@ -1,8 +1,7 @@
 \section{Modell des \spd-Systems}
 
-Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der vergangenen Arbeiten. Diese bezogen sich meist auf die Herleitung von \cite{modpen}. Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt, welche am Schlitten wirkt, sowie das vereinfachte \emph{Beschleunigungssystem}, das direkt die Beschleunigung des Schlittens als Eingang erhält.
+Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der vergangenen Arbeiten. Diese bezogen sich auf die Herleitung von \cite{modpen}. Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt, welche am Schlitten wirkt, sowie das vereinfachte \emph{Beschleunigungssystem}, das direkt die Beschleunigung des Schlittens als Eingang erhält.
 
-\subsection{Koordinaten}
 
 %\begin{figure}[bp]
 	%\centering
@@ -11,18 +10,59 @@ Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der 
 	%\label{fig:intro}
 %\end{figure}
 
-Die Minimal-Koordinaten sind 
+\begin{figure}[h]
+	\centering
+		\input{Bilder/Modellierung/Doppelpendel.tikz}
+			\caption{\dpd}
+	 \label{fig:koord}
+\end{figure}
+
+\subsection{Koordinaten}
+
+Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den Minimal-\koor 
 \begin{align*}
 	q_0 = x_0  \\
 	q_1 = \varphi_1  \\
 	q_2 = \varphi_2
 \end{align*}
+beschrieben werden. Die Koordinaten sind nach \figref{fig:koord} definiert.
+
+Die \koor\ der Schwerpunkte der Pendelstäbe ergeben sich zu
+\begin{align*}
+	\xe &= \xo - s_1 \sin{\phe}  \\
+	\ye &=       s_1 \cos{\phe}  \\
+	\xz &= \xo - l_1 \sin{\phe} - s_2 \sin{\phz}  \\
+	\yz &=       l_1 \cos{\phe} + s_2 \cos{\phz}  \ .
+\end{align*}
+
 
 \subsection{Herleitung der Bewegungsgleichungen}
 
-Um auf die Bewegungsgleichungen des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet.
+Um auf die \bwgl des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet. Dazu werden zunächst die kinetische und potentielle Energie des Gesamtsystems bestimmt sowie die nicht-konservativen Kräfte/Momente. Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die \koor. Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
-\subsection{Ruhelagen}
+Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. In dieser Arbeit werden die \bwgl\ mithilfe der symbolischen Toolbox von \ml\ gelöst. Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
+
+Die kinetische Gesamtenergie ergibt sich zu
+	\[
+	T = \einhalb m_0 \, \xop^2 + \einhalb m_1 (\xep^2+\yep^2) + \einhalb m_2 (\xzp^2+\yzp^2) + \einhalb J_1 \, \phep^2 + \einhalb J_2 \, \phzp^2
+\]
+und die potentielle Energie beträgt
+	\[
+	U = m_1\, g\, \ye + m_2\, g\, \yz  \ .
+\]
+
+Die nicht-konservativen Kräfte/Momente setzen sich aus der Antriebskraft $F$ am Schlitten (in~$\xo$~-~Richtung) und den Reibungs-Kräften/Momenten zusammen und lauten
+\begin{align*}
+	Q_0^* &= F + \Fd + \Fc  \\
+	Q_1^* &= \Mde + \Mce - \Mdz - \Mcz  \\
+	Q_2^* &= \Mdz + \Mcz
+\end{align*}
+mit den viskosen Dämpfungen
+\begin{align*}
+	\Fd  &= -d_0 \cdot \xop  \\
+	\Mde &= -d_1 \cdot \phep  \\
+	\Mdz &= -d_2 \cdot \left(\phzp-\phep\right)  \ .
+\end{align*}
 
 
 
@@ -34,7 +74,26 @@ Im vorigen Projektseminar \cite{ribeiro} wurde die Reibung der Pendelstäbe mitt
 
 Die Formel der Gleitreibung lautet eigentlich 
 	\[
-	F_c = F_{c0}  \cdot  \sign{\dot{x}} ,
+	\Fc = \Fco  \cdot  \sign{\dot{x}} \ ,
 \]
-allerdings führt diese Implementierung aufgrund der signum-Funktion zu Komplikationen in der Simulation. Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
+allerdings führt diese Implementierung aufgrund der \mrm{signum}-Funktion zu Komplikationen in der Simulation. Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
+%2/pi*atan(x0_p/x0_p_c2)
+
+\begin{align}
+	\Fc  &= -\Fco  \cdot \tanh{\left(\frac{\xop}{\xopth}\right)}  \\
+	\Mce &= -\Mceo \cdot \tanh{\left(\frac{\phep}{\pheth}\right)}  \\
+	\Mcz &= -\Mczo \cdot \tanh{\left(\frac{\phzp-\phep}{\phzth}\right)}
+\end{align}
+
+Dabei ist $\xopth$ gerade die Geschwindigkeit, bei der $\tanh(1)=0.7616$ von $\Fco$ erreicht ist.
+
+
+
+\subsection{\zrm}
+
+Mit den \bwgl\ ergibt sich das \nlzrm\ wie folgt:
+
+
+
+\subsection{Ruhelagen}
 

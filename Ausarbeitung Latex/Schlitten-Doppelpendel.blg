@@ -1,68 +1,17 @@
-This is BibTeX, Version 0.99d
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: Schlitten-Doppelpendel.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
-The style file: biblatex.bst
-Reallocating 'name_of_file' (item size: 1) to 27 items.
-Reallocating 'name_of_file' (item size: 1) to 15 items.
-Reallocating 'glb_str_end' (item size: 4) to 20 items.
-Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
-Reallocating 'global_strs' (item size: 1) to 4000000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'wiz_functions' (item size: 4) to 6000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Database file #1: Schlitten-Doppelpendel-blx.bib
-Database file #2: bib/literature.bib
-Biblatex version: 3.13
-Reallocating 'wiz_functions' (item size: 4) to 9000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 6 entries,
-            6365 wiz_defined-function locations,
-            1217 strings with 9552 characters,
-and the built_in function-call counts, 32665 in all, are:
-= -- 2487
-> -- 588
-< -- 250
-+ -- 528
-- -- 148
-* -- 2178
-:= -- 3055
-add.period$ -- 0
-call.type$ -- 6
-change.case$ -- 172
-chr.to.int$ -- 42
-cite$ -- 10
-duplicate$ -- 2660
-empty$ -- 3163
-format.name$ -- 241
-if$ -- 7273
-int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 0
-newline$ -- 138
-num.names$ -- 341
-pop$ -- 1707
-preamble$ -- 1
-purify$ -- 182
-quote$ -- 0
-skip$ -- 1244
-stack$ -- 0
-substring$ -- 4719
-swap$ -- 726
-text.length$ -- 145
-text.prefix$ -- 5
-top$ -- 1
-type$ -- 192
-warning$ -- 0
-while$ -- 316
-width$ -- 0
-write$ -- 133
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'Schlitten-Doppelpendel.blg'
+[117] biber-MSWIN64:322> INFO - === 
+[141] Biber.pm:415> INFO - Reading 'Schlitten-Doppelpendel.bcf'
+[320] Biber.pm:943> INFO - Found 5 citekeys in bib section 0
+[343] Biber.pm:4256> INFO - Processing section 0
+[343] Utils.pm:75> INFO - Globbing data source 'bib/literature.bib'
+[362] Utils.pm:91> INFO - Globbed data source 'bib/literature.bib' to bib/literature.bib
+[385] Biber.pm:4455> INFO - Looking for bibtex format file 'bib/literature.bib' for section 0
+[390] bibtex.pm:1653> INFO - LaTeX decoding ...
+[427] bibtex.pm:1471> INFO - Found BibTeX data source 'bib/literature.bib'
+[505] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[506] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[506] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[506] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
+[514] bbl.pm:652> INFO - Writing 'Schlitten-Doppelpendel.bbl' with encoding 'UTF-8'
+[518] bbl.pm:755> INFO - Output to Schlitten-Doppelpendel.bbl

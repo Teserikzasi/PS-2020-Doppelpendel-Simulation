@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.27)  30 SEP 2020 18:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.27)  9 OCT 2020 12:33
 entering extended mode
 **./Schlitten-Doppelpendel.tex
 (Schlitten-Doppelpendel.tex
@@ -1188,20 +1188,10 @@ Package biblatex Info: ... file 'blx-compat.def' found.
 ("C:\Program Files\MiKTeX\tex/latex/biblatex\blx-compat.def"
 File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
 )
-Package biblatex Info: Trying to load BibTeX backend compatibility...
-Package biblatex Info: ... file 'blx-bibtex.def' found.
-
-("C:\Program Files\MiKTeX\tex/latex/biblatex\blx-bibtex.def"
-File: blx-bibtex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
-
-
-Package biblatex Warning: Using fall-back BibTeX(8) backend:
-(biblatex)                functionality may be reduced/unavailable.
-
-)
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
- ("C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.def"
+
+("C:\Program Files\MiKTeX\tex/latex/biblatex\biblatex.def"
 File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
 \c@textcitecount=\count391
 \c@textcitetotal=\count392
@@ -2290,10 +2280,7 @@ File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Data encoding 'utf8' specified.
 (biblatex)             No need to reencode data.
-Package biblatex Info: Input encoding 'utf8' specified.
-Package biblatex Info: Data encoding 'utf8' specified.
-(biblatex)             No need to reencode data.
-\openout4 = `Schlitten-Doppelpendel-blx.bib'.
+\openout4 = `Schlitten-Doppelpendel.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Schlitten-Doppelpendel.bbl' found.
@@ -2431,7 +2418,7 @@ Package tocbasic Info: character protrusion at toc deactivated on input line 93
 .
  (Schlitten-Doppelpendel.toc
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 27.
+(Font)              scaled to size 10.95pt on input line 31.
 )
 \tf@toc=\write8
 \openout8 = `Schlitten-Doppelpendel.toc'.
@@ -2463,16 +2450,21 @@ Class scrreprt Warning: \float@addtolists detected!
 
 ]
 chapter 2.
-) (Kapitel/Modell.tex [6
+(Kapitel/Grundlagen_MPC.tex) (Kapitel/Grundlagen_Sim.tex)) (Kapitel/Modell.tex
+[6
 
 ]
 chapter 3.
 (Kapitel/Modell_SP.tex
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
 (Font)              scaled to size 10.95pt on input line 3.
- [7
+ (Bilder/Modellierung/Doppelpendel.tikz
+LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 71.
+) [7
 
-]) (Kapitel/Modell_Mot.tex)
+] [8])
+(Kapitel/Modell_Mot.tex)
 LaTeX Font Info:    Font shape `T1/Roboto-LF/b/sc' aliased to
 (Font)              `T1/Roboto-LF/bold/sc' on input line 20.
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
@@ -2480,15 +2472,14 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/bold/sc' will be
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/Roboto-LF/bold/sc/12'.
 (microtype)             Ignoring protrusion settings for this character.
-) (Kapitel/APRegelung.tex
-[8]
+) (Kapitel/APRegelung.tex [9] [10]
 chapter 4.
-) [9
+) [11
 
-] [10
+] [12
 
 
-] [11
+] [13
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 137.
@@ -2504,13 +2495,13 @@ Package logreq Info: Writing requests to 'Schlitten-Doppelpendel.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 62889 strings out of 480790
- 1415979 string characters out of 2907052
- 2343950 words of memory out of 3000000
- 77651 multiletter control sequences out of 15000+200000
- 634013 words of font info for 138 fonts, out of 3000000 for 9000
+ 62997 strings out of 480790
+ 1420947 string characters out of 2907052
+ 2372493 words of memory out of 3000000
+ 77704 multiletter control sequences out of 15000+200000
+ 644796 words of font info for 164 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
- 85i,20n,142p,10670b,2353s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 85i,21n,142p,10670b,2353s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX/fonts/enc/dvips/roboto/rbto_shbyjm.enc}{C:/Program F
 iles/MiKTeX/fonts/enc/dvips/xcharter/xch_uy5hgr.enc}{C:/Program Files/MiKTeX/fo
 nts/enc/dvips/xcharter/xch_lotb2t.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/
@@ -2518,14 +2509,16 @@ roboto/rbto_b5rac7.enc}<C:/Program Files/MiKTeX/fonts/type1/google/roboto/Robot
 o-Bold.pfb><C:/Program Files/MiKTeX/fonts/type1/google/roboto/Roboto-Regular.pf
 b><C:/Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Italic.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/xcharter/XCharter-Roman.pfb><C:/Program
- Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb>
-Output written on Schlitten-Doppelpendel.pdf (11 pages, 281306 bytes).
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Schlitten-Doppelpendel.pdf (13 pages, 323920 bytes).
 PDF statistics:
- 270 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
- 27939 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 315 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 28475 words of extra memory for PDF output out of 29859 (max. 10000000)
 
