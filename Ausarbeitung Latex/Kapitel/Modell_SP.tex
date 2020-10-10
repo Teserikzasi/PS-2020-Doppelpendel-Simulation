@@ -1,7 +1,9 @@
 \section{Modell des \spd-Systems}\label{sec:spdModell}
 
 
-Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der vergangenen Arbeiten. Diese bezogen sich auf die Herleitung von \cite{modpen}. Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt, welche am Schlitten wirkt, sowie das vereinfachte \emph{Beschleunigungssystem}, das direkt die Beschleunigung des Schlittens als Eingang erhält.
+Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der vergangenen Arbeiten. 
+Diese bezogen sich auf die Herleitung von \cite{modpen}. 
+Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt, welche am Schlitten wirkt, sowie das vereinfachte \emph{Beschleunigungssystem}, das direkt die Beschleunigung des Schlittens als Eingang erhält.
 
 
 %\begin{figure}[bp]
@@ -20,7 +22,7 @@ Die Modellierung des \spd-Systems orientiert sich zunächst an den Modellen der 
 
 \subsection{Koordinaten}
 
-Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den Minimal-\koor 
+Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den \textbf{Minimal-\koor} 
 \begin{align*}
 	q_0 = x_0  \\
 	q_1 = \varphi_1  \\
@@ -28,7 +30,7 @@ Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den Mini
 \end{align*}
 beschrieben werden. Die Koordinaten sind nach \figref{fig:koord} definiert.
 
-Die \koor\ der Schwerpunkte der Pendelstäbe ergeben sich zu
+Die Schwerpunktskoordinaten der Pendelstäbe ergeben sich zu
 \begin{align*}
 	\xe &= \xo - s_1 \sin{\phe}  \\
 	\ye &=       s_1 \cos{\phe}  \\
@@ -39,9 +41,10 @@ Die \koor\ der Schwerpunkte der Pendelstäbe ergeben sich zu
 
 \subsection{Herleitung der Bewegungsgleichungen}
 
-Um auf die \bwgl des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet. Dazu werden zunächst die kinetische und potentielle Energie des Gesamtsystems bestimmt sowie die nicht-konservativen Kräfte/Momente. Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die \koor. Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
-
-Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. In dieser Arbeit werden die \bwgl\ mithilfe der symbolischen Toolbox von \ml\ gelöst. Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
+Um auf die \bwgl\ des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet. 
+Dazu werden zunächst die kinetische und potentielle Energie des Gesamtsystems bestimmt sowie die nicht-konservativen Kräfte/Momente. 
+Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die Minimal-\koor. 
+Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
 Die kinetische Gesamtenergie ergibt sich zu
 	\[
@@ -52,7 +55,7 @@ und die potentielle Energie beträgt
 	U = m_1\, g\, \ye + m_2\, g\, \yz  \ .
 \]
 
-Die nicht-konservativen Kräfte/Momente setzen sich aus der Antriebskraft $F$ am Schlitten (in~$\xo$~-~Richtung) und den Reibungs-Kräften/Momenten zusammen und lauten
+Die nicht-konservativen Kräfte/Momente setzen sich aus der Antriebskraft $F$ am Schlitten (in~$\xo$-Richtung) und den Reibungs-Kräften/Momenten zusammen und lauten
 \begin{align*}
 	Q_0^* &= F + \Fd + \Fc  \\
 	Q_1^* &= \Mde + \Mce - \Mdz - \Mcz  \\
@@ -60,16 +63,85 @@ Die nicht-konservativen Kräfte/Momente setzen sich aus der Antriebskraft $F$ am
 \end{align*}
 mit den viskosen Dämpfungen
 \begin{align*}
-	\Fd  &= -d_0 \cdot \xop  \\
-	\Mde &= -d_1 \cdot \phep  \\
-	\Mdz &= -d_2 \cdot \left(\phzp-\phep\right)  \ .
+	\Fd  &= -d_0 \xop  \\
+	\Mde &= -d_1 \phep  \\
+	\Mdz &= -d_2 \left(\phzp-\phep\right)  \ .
+\end{align*}
+
+Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
+In dieser Arbeit werden die \bwgl\ mithilfe der \textbf{symbolischen Toolbox} von \ml\ gelöst. 
+Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
+
+Mit den obigen Gleichungen werden in \ml\ die für den \emph{Lagrange}-Formalismus benötigten Ableitungen symbolisch berechnet und das \gls\ mit dem symbolischen Solver gelöst und vereinfacht. 
+Damit ergeben sich die \bwgl\ als Funktion der Minimal-\koor, der Systemparameter und des Eingangs.
+\begin{align*}
+	\xopp  &= f_{\xo}(\dots)  \\
+	\phepp &= f_{\phe}(\dots)  \\
+	\phzpp &= f_{\phz}(\dots)
+\end{align*}
+
+
+\subsection{\zrm}
+
+Mit den \bwgl\ ergibt sich das eingangsafﬁne, \nlzrm\ mit Eingangsgröße $u=F$ wie folgt:
+\begin{align*}
+	\vexp &= \ve{f}(\vex,u) = \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \\\vspace{100cm}
+	\ddt \begin{bmatrix}
+		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
+	\end{bmatrix} &= \begin{bmatrix}
+		\xop \\ a_2(\vex) \\ \phep \\  a_4(\vex) \\ \phzp \\  a_6(\vex)
+	\end{bmatrix} + \begin{bmatrix}
+		0 \\ b_2(\vex) \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
+	\end{bmatrix} \cdot F
+\end{align*}
+
+Beim Beschleunigungssystem gilt für den Eingang $u=\xopp=a$, womit die Schlittenbeschleunigung direkt vorgegeben und die Dynamik des Schlittens umgangen wird. 
+Damit wird die erste der drei gekoppelten Bewegungsgleichungen ersetzt. 
+Das geänderte \gls\ muss wieder gelöst werden und es ergibt sich das folgende \zrm:
+\begin{align*}
+	\ddt \begin{bmatrix}
+		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
+	\end{bmatrix} &= \begin{bmatrix}
+		\xop \\ 0 \\ \phep \\  a_4(\vex) \\ \phzp \\  a_6(\vex)
+	\end{bmatrix} + \begin{bmatrix}
+		0 \\ 1 \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
+	\end{bmatrix} \cdot a
+\end{align*}
+
+Folgende Tabelle \ref{tab:abh} gibt Aufschluss über die Abhängigkeiten von Zuständen und \syp n. 
+Graue Variablen sind nur im Kraftmodell vorhanden. 
+Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
+\begin{table}[h]
+	\centering
+		\begin{tabular}[t]{cc}
+		\toprule
+			Zustände	&	\textcolor{grey}{\xop}, \phe, \phep, \phz, \phzp	\\
+			Geometrieparameter	&	$l_1$, $s_1$, $s_2$	\\
+			Trägheitsparameter	&	\textcolor{grey}{$m_0$}, $m_1$, $m_2$, $J_1$, $J_2$ \\
+			Reibungsparameter	&	\textcolor{grey}{$d_0$}, $d_1$, $d_2$, \textcolor{grey}{\Fco}, \Mceo, \Mczo, \textcolor{grey}{\xopth}, \pheth, \phzth	\\
+			Umgebungskonstanten & $g$	\\
+			\bottomrule
+		\end{tabular}
+	\caption{Abhängigkeiten}
+	\label{tab:abh}
+\end{table}
+
+
+Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sensoren gemessen werden. Daher ergibt sich für den Ausgang des Systems jeweils
+\begin{align*}
+	\ve{y} = \ve{h}(\vex) = \begin{bmatrix}
+		\xo \\ \phe \\ \phz
+	\end{bmatrix}  \ .
 \end{align*}
 
 
 
 \subsection{\crb}
 
-Da die \crb sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. In den bisherigen Modellierungen wurde höchstens die \crb des Schlittens berücksichtigt. Da jedoch durch die Neukonstruktion des \dpd s die Messsignalübertragung (zur Vermeidung einer Kabelaufwickelung) über einen Schleifring realisiert wurde, besteht die Vermutung, dass dieser für eine erhöhte \crb verantwortlich ist. Dies würde das System bereits um einen sehr kleinen Arbeitsbereich nicht-linear machen, was die Regelung erschwert.
+Da die \crb\ sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. 
+In den bisherigen Modellierungen wurde höchstens die \crb\ des Schlittens berücksichtigt. 
+Da jedoch durch die Neukonstruktion des \dpd s die Messsignalübertragung (zur Vermeidung einer Kabelaufwickelung) über einen Schleifring realisiert wurde, besteht die Vermutung, dass dieser für eine erhöhte \crb\ verantwortlich ist. 
+Dies würde das System bereits um einen sehr kleinen Arbeitsbereich nicht-linear machen, was die Regelung erschwert.
 
 Im vorigen Projektseminar \cite{ribeiro} wurde die Reibung der Pendelstäbe mittels Identifikation ermittelt, aufgeteilt auf den viskosen und den Coulombanteil.
 
@@ -77,7 +149,8 @@ Die Formel der Gleitreibung lautet eigentlich
 	\[
 	\Fc = \Fco  \cdot  \sign{\dot{x}} \ ,
 \]
-allerdings führt diese Implementierung aufgrund der \mrm{signum}-Funktion zu Komplikationen in der Simulation. Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
+allerdings führt diese Implementierung aufgrund der \mrm{signum}-Funktion zu Komplikationen in der Simulation. 
+Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
 %2/pi*atan(x0_p/x0_p_c2)
 
 \begin{align}
@@ -90,11 +163,33 @@ Dabei ist $\xopth$ gerade die Geschwindigkeit, bei der $\tanh(1)=0.7616$ von $\F
 
 
 
-\subsection{\zrm}
-
-Mit den \bwgl\ ergibt sich das \nlzrm\ wie folgt:
-
 
 
 \subsection{Ruhelagen}
 
+Die Ruhelagen \bzw \ap e eines nichtlinearen Systems ergeben sich aus
+	\[
+	\vexp = \ve{f}(\vex_0,u_0) = 0  \ .
+\]
+Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoretisch unendlich viele Ruhelagen. Es werden daher die folgenden 4 prinzipiell unterschiedlichen betrachtet:
+\begin{table}[h]
+	\centering
+		\begin{tabular}{lllllllll}
+		\toprule
+			\ap  & $u$ & \xo & \xop & \phe & \phep & \phz & \phzp & Stabilität  \\
+			\midrule
+			1	&	0 &	\xoo	&	0	&	\pii	&	0	&	\pii	&	0	& stabil  \\
+			2	&	0 &	\xoo	&	0	&	\pii	&	0	&	0			&	0	& instabil  \\
+			3	&	0 &	\xoo	&	0	&	0			&	0	&	\pii	&	0	& instabil  \\
+			4	&	0 &	\xoo	&	0	&	0			&	0	&	0			&	0	& instabil  \\
+			\bottomrule
+		\end{tabular}
+	\caption{Arbeitspunkte}
+	\label{tab:aps}
+\end{table}
+
+Die Schlittenposition \xo\ ist dabei beliebig, da der Schlitten an jeder Position eine Ruhelage annehmen kann.
+Die Reihenfolge der \ap e entspricht den Pendelpositionen \qq{von unten nach oben}.
+
+
+%Position des Schlittenmittelpunktes x m −0,8 ≤ x ≤ 0,8
