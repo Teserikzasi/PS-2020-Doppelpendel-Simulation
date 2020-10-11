@@ -12,13 +12,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
-Document=Schlitten-Doppelpendel.tex
+Document=Kapitel\APRegelung.tex
 
 [Frame0_View0,0]
-TopLine=23
-Cursor=3186
+TopLine=0
+Cursor=608
 
 [Frame1]
 Flags=0
@@ -30,13 +30,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
-Document=Kapitel\Einleitung.tex
+Document=Schlitten-Doppelpendel.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=53
+TopLine=71
+Cursor=3112
 
 [Frame2]
 Flags=0
@@ -48,13 +48,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
-Document=Kapitel\Grundlagen.tex
+Document=Kapitel\Einleitung.tex
 
 [Frame2_View0,0]
 TopLine=0
-Cursor=116
+Cursor=53
 
 [Frame3]
 Flags=0
@@ -66,13 +66,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
-Document=Kapitel\Modell.tex
+Document=Kapitel\Grundlagen.tex
 
 [Frame3_View0,0]
 TopLine=0
-Cursor=464
+Cursor=116
 
 [Frame4]
 Flags=0
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
-Document=Kapitel\APRegelung.tex
+Document=Kapitel\Modell.tex
 
 [Frame4_View0,0]
 TopLine=0
-Cursor=292
+Cursor=205
 
 [Frame5]
 Flags=0
@@ -102,7 +102,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
 Document=common\commonmacros.tex
 
@@ -120,7 +120,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
 Document=inc\mymacros.tex
 
@@ -138,13 +138,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
 Document=Kapitel\Modell_SP.tex
 
 [Frame7_View0,0]
-TopLine=177
-Cursor=7738
+TopLine=0
+Cursor=475
 
 [Frame8]
 Flags=0
@@ -156,7 +156,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1694
-NormalPos.bottom=644
+NormalPos.bottom=614
 Class=LaTeXView
 Document=Kapitel\Modell_Mot.tex
 
@@ -166,5 +166,5 @@ Cursor=5370
 
 [SessionInfo]
 FrameCount=9
-ActiveFrame=7
+ActiveFrame=1
 
