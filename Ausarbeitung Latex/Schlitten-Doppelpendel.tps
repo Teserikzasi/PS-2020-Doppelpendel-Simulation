@@ -104,7 +104,7 @@ NormalPos.top=32
 NormalPos.right=1694
 NormalPos.bottom=614
 Class=LaTeXView
-Document=common\commonmacros.tex
+Document=Kapitel\APRegelung.tex
 
 [Frame5_View0,0]
 TopLine=140
@@ -122,7 +122,7 @@ NormalPos.top=32
 NormalPos.right=1694
 NormalPos.bottom=614
 Class=LaTeXView
-Document=inc\mymacros.tex
+Document=common\commonmacros.tex
 
 [Frame6_View0,0]
 TopLine=51
