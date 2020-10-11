@@ -1,0 +1,15 @@
+\begin{circuitikz}[european]
+	\draw (0,0) 
+		to[short, -, i=$I_a$] (1,0)
+		to[R=$R$] (3.5,0)
+		to[L=$L$] (6,0)
+		to[V=$U_i$] (6,-2)
+		-- (0,-2);
+	\draw
+		node[ocirc] (A) at (0,0) {}
+		node[ocirc] (B) at (0,-2) {};
+		%(A) to[open, v=$U_a$] (B);	
+		\begin{scope}[shorten >= 10pt,shorten <= 10pt]
+			\draw[->] (A) -- node[left] {$U_a$} (B);
+		\end{scope}  
+\end{circuitikz}
