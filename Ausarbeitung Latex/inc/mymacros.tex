@@ -9,14 +9,22 @@
 \newcommand{\zrm}{Zustandsraummodell}
 \newcommand{\nlzrm}{nichtlineare \zrm}
 \newcommand{\ap}{Arbeitspunkt}
+\newcommand{\aprg}{Arbeitspunkt-Regelung}
 \newcommand{\syp}{Systemparameter}
+\newcommand{\traj}{Trajektorie}
+\newcommand{\lin}{Linearisierung}
+\newcommand{\bss}{Beschleunigungssystem}
+\newcommand{\krs}{Kraftsystem}
+\newcommand{\ew}{Eigenwert}
+\newcommand{\ewe}{Eigenwerte}
+\newcommand{\zsr}{Zustandsregler}
+\newcommand{\beob}{Beobachter}
 
 \newcommand{\einhalb}{\frac{1}{2}}
 \newcommand{\pii}{\ensuremath{\pi}}
 
-\newcommand{\sign}[1]{\ensuremath{\mrm{sign}\left(#1\right)}}
-
 \newcommand{\xoo}{\ensuremath{x_{0,0}}}
+\newcommand{\xor}{\ensuremath{x_{0R}}}
 \newcommand{\xo}{\ensuremath{x_0}}  % Zahlen im Befehl nicht möglich
 \newcommand{\xe}{x_1}
 \newcommand{\xz}{x_2}
@@ -24,7 +32,7 @@
 \newcommand{\ye}{y_1}
 \newcommand{\yz}{y_2}
 \newcommand{\xop}{\ensuremath{\dot{x}_0}}
-\newcommand{\xopp}{\ddot{x}_0}
+\newcommand{\xopp}{\ensuremath{\ddot{x}_0}}
 \newcommand{\xep}{\dot{x}_1}
 \newcommand{\xzp}{\dot{x}_2}
 \newcommand{\yop}{\dot{y}_0}
@@ -51,8 +59,18 @@
 
 
 \newcommand{\vex}{\ve{x}}
+\newcommand{\vexr}{\ve{x}_R}
+\newcommand{\vef}{\ve{f}}
 \newcommand{\vexp}{\ve{\dot{x}}}
 \newcommand{\ddt}{\frac{\ud}{\ud t}}
+
+\newcommand{\api}[1]{\ensuremath{\AP_{#1}}}
+\newcommand{\ape}{\api{1}}
+\newcommand{\apz}{\api{2}}
+\newcommand{\apd}{\api{3}}
+\newcommand{\apv}{\api{4}}
+
+\newcommand{\sign}[1]{\ensuremath{\mrm{sign}\left(#1\right)}}
 
 \definecolor{grey}{RGB}{150,150,150}
 
@@ -70,32 +88,6 @@
 \newcommand{\urll}{\textsc{url: }}
 
 \newcommand{\exref}[1]{Beispiel \ref{#1}}
-
-%\newcommand{\vezt}{\ensuremath{\vez_{\mrm{true}}}}
-%\newcommand{\zt}{\ensuremath{z_{\mrm{true}}}}
-\newcommand{\fz}{\ve{f}(\vez)}
-\newcommand{\Fz}{\mat{F}(\vez)}
-\newcommand{\veh}{\ve{h}}
-\newcommand{\mah}{\mat{H}}
-\newcommand{\maht}{\mah^{\transp}}
-\newcommand{\mahinv}{\mah^{-1} }
-\newcommand{\mahtinv}{\mah^{-\transp}}
-\newcommand{\mak}{\mat{K}}
-\newcommand{\makinv}{\mak^{-1}}
-\newcommand{\mar}{\mat{R}}
-\newcommand{\maw}{\mat{W}}
-\newcommand{\osq}{\ensuremath{\sigma^2}}
-\newcommand{\os}[1]{\ensuremath{\sigma_{#1}^2}}
-\newcommand{\sig}[1]{\ensuremath{\sigma_{#1}}}
-\newcommand{\vesig}{\ensuremath{\ve{\sigma}}}
-\newcommand{\hx}{\ensuremath{\veh(\vex)}}
-\newcommand{\Hx}{\ensuremath{\mah(\vex)}}
-\newcommand{\fd}{\ensuremath{\hat{f}}}
-\newcommand{\ew}[1]{\ensuremath{\mrm{E}\left\{#1\right\}}}
-\newcommand{\pr}[1]{\mrm{P}\left(#1\right)}
-\newcommand{\cqq}{\ensuremath{\chi^2_{t,1-\alpha}}}
-\newcommand{\cq}{\ensuremath{\chi^2}}
-\newcommand{\ved}{\ensuremath{\ve{\dd}}}
 
 \newcommand{\valdeg}[1]{\valunit{#1}{\degree}}
 \newcommand{\diag}[1]{\ensuremath{\mrm{diag}\left(#1\right)}}

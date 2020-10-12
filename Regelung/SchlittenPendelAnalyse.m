@@ -1,6 +1,12 @@
+function SchlittenPendelAnalyse(sys)
 
-%hold on
-%title('Eigenwerte')
+global Ruhelagen
+
+figure
+hold on
+grid on
+title('Eigenwerte')
+legend
 
 for i=1:4
     disp(' ')
@@ -9,10 +15,9 @@ for i=1:4
     syslin = Linearisierung(sys,Ruhelagen(i));
     ew = eig(syslin.A)
     
-    figure
+    %figure
     plot(real(ew),imag(ew),'x','MarkerSize',15,'LineWidth',1)
-    grid on
-    title(['Eigenwerte: ' 'AP ' int2str(i)])
+    %title(['Eigenwerte: ' 'AP ' int2str(i)])
     
     stbar = rank(ctrb(syslin.A, syslin.B))==length(syslin.A);
     if stbar
@@ -29,3 +34,10 @@ for i=1:4
     end
     
 end
+
+end
+
+% SchlittenPendelAnalyse(sysF)
+% SchlittenPendelAnalyse(sysA)
+% SchlittenPendelAnalyse(sysRegF)
+% SchlittenPendelAnalyse(sysRegA)
