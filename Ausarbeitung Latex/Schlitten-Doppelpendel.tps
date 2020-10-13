@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=common\commonmacros.tex
+Document=Schlitten-Doppelpendel.tex
 
 [Frame0_View0,0]
-TopLine=37
-Cursor=1852
+TopLine=115
+Cursor=4293
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=inc\mymacros.tex
+Document=Kapitel\Trajektorien.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=0
+TopLine=58
+Cursor=4229
 
 [Frame2]
 Flags=0
@@ -47,14 +47,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=Schlitten-Doppelpendel.tex
+Document=Kapitel\Einleitung.tex
 
 [Frame2_View0,0]
-TopLine=71
-Cursor=3112
+TopLine=0
+Cursor=53
 
 [Frame3]
 Flags=0
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=Kapitel\Einleitung.tex
+Document=Kapitel\Modell.tex
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=53
+TopLine=95
+Cursor=9795
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=Kapitel\Grundlagen.tex
+Document=Kapitel\Modell_Mot.tex
 
 [Frame4_View0,0]
-TopLine=0
-Cursor=116
+TopLine=21
+Cursor=1603
 
 [Frame5]
 Flags=0
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=Kapitel\Modell.tex
+Document=Kapitel\APRegelung.tex
 
 [Frame5_View0,0]
-TopLine=0
-Cursor=205
+TopLine=27
+Cursor=248
 
 [Frame6]
 Flags=0
@@ -119,14 +119,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
 Document=Kapitel\Modell_SP.tex
 
 [Frame6_View0,0]
-TopLine=17
-Cursor=666
+TopLine=75
+Cursor=3500
 
 [Frame7]
 Flags=0
@@ -137,14 +137,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
+NormalPos.right=1742
+NormalPos.bottom=883
 Class=LaTeXView
-Document=Kapitel\Modell_Mot.tex
+Document=inc\mymacros.tex
 
 [Frame7_View0,0]
-TopLine=0
-Cursor=356
+TopLine=3
+Cursor=0
 
 [Frame8]
 Flags=0
@@ -155,16 +155,34 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1694
-NormalPos.bottom=614
-Class=LaTeXView
-Document=Kapitel\APRegelung.tex
+NormalPos.right=1742
+NormalPos.bottom=883
+Class=BibTeXView
+Document=bib\literature.bib
 
 [Frame8_View0,0]
-TopLine=24
-Cursor=789
+TopLine=0
+Cursor=27
+
+[Frame9]
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-1
+MaxPos.y=-1
+NormalPos.left=4
+NormalPos.top=32
+NormalPos.right=1742
+NormalPos.bottom=883
+Class=LaTeXView
+Document=Kapitel\backup_Trajektorien.tex
+
+[Frame9_View0,0]
+TopLine=167
+Cursor=718
 
 [SessionInfo]
-FrameCount=9
-ActiveFrame=8
+FrameCount=10
+ActiveFrame=1
 
