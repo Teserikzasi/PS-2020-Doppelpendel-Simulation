@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=common\commonmacros.tex
 
 [Frame0_View0,0]
-TopLine=37
-Cursor=1852
+TopLine=91
+Cursor=3781
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=inc\mymacros.tex
 
 [Frame1_View0,0]
 TopLine=0
-Cursor=0
+Cursor=393
 
 [Frame2]
 Flags=0
@@ -47,13 +47,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Schlitten-Doppelpendel.tex
 
 [Frame2_View0,0]
-TopLine=51
+TopLine=16
 Cursor=2293
 
 [Frame3]
@@ -65,8 +65,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\Einleitung.tex
 
@@ -83,8 +83,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\Grundlagen.tex
 
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\Modell.tex
 
 [Frame5_View0,0]
-TopLine=84
-Cursor=9544
+TopLine=16
+Cursor=2546
 
 [Frame6]
 Flags=0
@@ -119,14 +119,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\Modell_SP.tex
 
 [Frame6_View0,0]
-TopLine=17
-Cursor=666
+TopLine=153
+Cursor=6786
 
 [Frame7]
 Flags=0
@@ -137,13 +137,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\Modell_Mot.tex
 
 [Frame7_View0,0]
-TopLine=27
+TopLine=34
 Cursor=5293
 
 [Frame8]
@@ -155,16 +155,34 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
-NormalPos.right=1742
-NormalPos.bottom=883
+NormalPos.right=1694
+NormalPos.bottom=582
 Class=LaTeXView
 Document=Kapitel\APRegelung.tex
 
 [Frame8_View0,0]
+TopLine=91
+Cursor=5822
+
+[Frame9]
+Flags=0
+ShowCmd=1
+MinPos.x=-1
+MinPos.y=-1
+MaxPos.x=-1
+MaxPos.y=-1
+NormalPos.left=4
+NormalPos.top=32
+NormalPos.right=1694
+NormalPos.bottom=582
+Class=BibTeXView
+Document=bib\literature.bib
+
+[Frame9_View0,0]
 TopLine=0
-Cursor=789
+Cursor=325
 
 [SessionInfo]
-FrameCount=9
-ActiveFrame=5
+FrameCount=10
+ActiveFrame=8
 
