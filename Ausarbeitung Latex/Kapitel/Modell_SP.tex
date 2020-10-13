@@ -83,9 +83,19 @@ Damit ergeben sich die \bwgl\ als Funktion der Minimal-\koor, der Systemparamete
 
 \subsection{\zrm}
 
-Mit den \bwgl\ ergibt sich das eingangsafﬁne, \nlzrm\ mit Eingangsgröße $u=F$ wie folgt:
+Um das \spds\ als \zrm\ (mit ausschließlich ersten Ableitungen) darzustellen, wird folgender Zustandsvektor definiert:
 \begin{align}
-	\vexp &= \ve{f}(\vex,u) = \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \label{eq:zrm} \\\vspace{100cm}
+	\vex = \begin{bmatrix}
+		x_1 \\	x_2 \\	x_3 \\	x_4 \\	x_5 \\	x_6 \\	
+	\end{bmatrix} = \begin{bmatrix}
+		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
+	\end{bmatrix}
+	\label{eq:vex}
+\end{align}
+Mit den \bwgl\ ergibt sich für das \krs\ (Eingangsgröße $u=F$) das folgende nichtlineare, eingangsafﬁne \zrm:
+\begin{align}
+	\vexp &= \ve{f}(\vex,u) 
+		&= \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \label{eq:zrm} \\\vspace{100cm}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
 	\end{bmatrix} &= \begin{bmatrix}
@@ -97,7 +107,7 @@ Mit den \bwgl\ ergibt sich das eingangsafﬁne, \nlzrm\ mit Eingangsgröße $u=F
 
 Beim Beschleunigungssystem gilt für den Eingang $u=\xopp=a$, womit die Schlittenbeschleunigung direkt vorgegeben und die Dynamik des Schlittens umgangen wird. 
 Damit wird die erste der drei gekoppelten Bewegungsgleichungen ersetzt. 
-Das geänderte \gls\ muss wieder gelöst werden und es ergibt sich das folgende \zrm:
+Das geänderte \gls\ muss wieder gelöst werden und für das \zrm\ folgt:
 \begin{align}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
@@ -193,7 +203,7 @@ Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoret
 			4	&	0 &	\xor	&	0	&	0			&	0	&	0			&	0	& instabil  \\
 			\bottomrule
 		\end{tabular}
-	\caption{Arbeitspunkte}
+	\caption{Die 4 Ruhelagen}
 	\label{tab:aps}
 \end{table}
 

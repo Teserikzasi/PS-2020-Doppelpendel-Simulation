@@ -1,9 +1,10 @@
 function InitSimReg(ZustandsermittlungArg, kpv)
 % Initialisiert Simulationsparameter
 
-global simparams
 global MotorParamsReg
 global SchlittenPendelParamsReg
+global simparams
+global Zustandsermittlung
 
 simparams.regler.gesamtmodell.motor = MotorParamsReg;
 simparams.regler.gesamtmodell.schlittenpendel = SchlittenPendelParamsReg;
@@ -13,6 +14,7 @@ if ~exist('ZustandsermittlungArg', 'var')
     ZustandsermittlungArg = 1;
 end
 simparams.Zustandsermittlung = ZustandsermittlungArg;
+fprintf('Zustandsermittlung: %s\n', Zustandsermittlung(simparams.Zustandsermittlung))
 
 % Vorsteuerung MCD
 simparams.regler.vorst.C = 0.95;
@@ -23,5 +25,6 @@ if ~exist('kpv', 'var')
     kpv = 150;
 end
 simparams.regler.kpv = kpv;
+fprintf('a/v-Regler Kpv: %f\n', simparams.regler.kpv)
 
 end

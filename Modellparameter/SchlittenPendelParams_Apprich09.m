@@ -3,7 +3,7 @@ function stP = SchlittenPendelParams_Apprich09()
 
 	% Pendeldaten
 	stP.name = 'Doppelpendel rtm (Apprich, Kisner, Brehl)';
-	stP.desc = 'Doppelpendel rtm, S. Apprich 2009, Kisner 2011 und Brehl 2014)';
+	stP.desc = 'Doppelpendel rtm, S. Apprich 2009, Kisner 2011 und Brehl 2014';
 
 	stP.m1 = 0.615;
 	stP.pdesc.m1 = 'Masse Stab 1';

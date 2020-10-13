@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=Schlitten-Doppelpendel.tex
 
 [Frame0_View0,0]
-TopLine=115
-Cursor=4293
+TopLine=0
+Cursor=1904
 
 [Frame1]
 Flags=0
@@ -35,8 +35,8 @@ Class=LaTeXView
 Document=Kapitel\Trajektorien.tex
 
 [Frame1_View0,0]
-TopLine=58
-Cursor=4229
+TopLine=56
+Cursor=2586
 
 [Frame2]
 Flags=0
@@ -125,8 +125,8 @@ Class=LaTeXView
 Document=Kapitel\Modell_SP.tex
 
 [Frame6_View0,0]
-TopLine=75
-Cursor=3500
+TopLine=88
+Cursor=3587
 
 [Frame7]
 Flags=0
@@ -143,8 +143,8 @@ Class=LaTeXView
 Document=inc\mymacros.tex
 
 [Frame7_View0,0]
-TopLine=3
-Cursor=0
+TopLine=21
+Cursor=1615
 
 [Frame8]
 Flags=0
@@ -161,8 +161,8 @@ Class=BibTeXView
 Document=bib\literature.bib
 
 [Frame8_View0,0]
-TopLine=0
-Cursor=27
+TopLine=197
+Cursor=11181
 
 [Frame9]
 Flags=0
