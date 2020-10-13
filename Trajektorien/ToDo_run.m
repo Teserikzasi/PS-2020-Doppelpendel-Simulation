@@ -51,6 +51,3 @@ examParameters(poi, poi_val, N, T, simSol, params, u_max)
 % selectSuccess=false;
 % coulMc = false; coulFc = false;
 % searchTrajectories_alt(mode, N, T, simSol, params, u_max, coulMc, coulFc, selectSuccess)
-
-
-
