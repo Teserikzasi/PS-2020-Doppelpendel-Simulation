@@ -44,6 +44,10 @@ examParameters(poi, poi_val, N, T, simSol, params, u_max)
 %     examParameters(poi(k), poi_val, N, T, simSol, params, u_max)
 % end
 
-
-
-
+% %% Trajektoriensuche
+% N=350; T=0.01; simSol='Euler'; u_max = 400;
+% params= SchlittenPendelParams_Apprich09();
+% mode = 2;
+% selectSuccess=false;
+% coulMc = false; coulFc = false;
+% searchTrajectories_alt(mode, N, T, simSol, params, u_max, coulMc, coulFc, selectSuccess)
