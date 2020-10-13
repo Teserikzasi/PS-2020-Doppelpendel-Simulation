@@ -1,4 +1,4 @@
-function searchTrajectories(N, T, simSol, paramsSource, u_max, mode, coulMc, coulFc, selectSuccess, nameExtension, fullFolderPath)
+function searchTrajectories(mode, N, T, simSol, params, u_max, coulMc, coulFc, selectSuccess, nameExtension, fullFolderPath)
 % Suche nach Trajektorien 
 
 import casadi.*
@@ -12,20 +12,13 @@ R = 0.0000005;
 S = 1.5*1e-8;
 
 % --------Modellparameter--------------------------------------------------
-if isstruct(paramsSource)
-    params = paramsSource;
-elseif ischar(paramsSource)   
-    if strcmp(paramsSource, 'app09')
-    params = SchlittenPendelParams_Apprich09();
-    elseif strcmp(paramsSource, 'rib20')
-        params = SchlittenPendelParams_Ribeiro20();
-    else
-        disp('Keine zulässige Parameterquelle (paramsSource) gewählt.')
-        return
-    end
-    paramsStr = ['_' paramsSource];
+if strcmp(params.name, 'Doppelpendel rtm (Ribeiro)')
+    paramsStr = 'rib20';
+elseif strcmp(params.name, 'Doppelpendel rtm (Apprich, Kisner, Brehl)')
+    paramsStr = 'app09';
 else
-    disp('paramsSource hat kein gültiges Format (gültig sind char oder struct).')
+    disp('params.name stimmt mit keinem der bekannten Parametersätze überein.')
+    paramsStr = 'unknownParams';
 end
 
 % --------Zustandsgleichungen (Kraftmodell)--------------------------------
@@ -36,7 +29,7 @@ ode = [];
 coulStatus = '';
 if exist('ode_TesGeb', 'var')
     ode = ode_TesGeb; % ode für MPC übergeben
-    odeStr = '_odeTesGeb';
+    odeStr = '';
     if coulFc && coulMc
         coulStatus = '_Fc_Mc';
     elseif coulFc
@@ -61,9 +54,8 @@ end
 %% Speicherordner
 if ~exist('fullFolderPath', 'var')
     subfolderPath1 = 'Trajektorien\searchResults';
-    subfolderPath2 = ['Results' odeStr paramsStr coulStatus '_T' num2str(T) 'N' num2str(N)];
-    resFolderName = [simSol '_MPC'];
-    fullFolderPath = fullfile(subfolderPath1, subfolderPath2, resFolderName);
+    resFolderName = ['Results' odeStr paramsStr coulStatus '_T' num2str(T) 'N' num2str(N) '_' simSol];
+    fullFolderPath = fullfile(subfolderPath1, resFolderName);
 end
 if ~exist(fullFolderPath, 'dir')
     mkdir(fullFolderPath)
