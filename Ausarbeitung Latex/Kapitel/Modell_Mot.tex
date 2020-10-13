@@ -16,7 +16,7 @@ Gemäß Franke \cite{franke} lässt sich die Dynamik des Wandlers durch ein \mrm
 ergibt.
 
 
-\subsection{Gleichstrommotor}
+\subsection{Gleichstrommotor}\label{subsec:dcMotor}
 
 Bei dem verwendeten Motor handelt es sich um eine fremderregte Gleichstrommaschine, wobei die magnetische Erregung durch einen Permanentmagneten erzeugt wird \cite{franke}. Das elektromagnetische Drehmoment des Gleichstrommotors ist näherungsweise proportional zum Ankerstrom \cite{binder}. Hierbei wird vorausgesetzt, dass keine magnetische Sättigung vorliegt.
 \[
@@ -27,7 +27,7 @@ Neben dem elektromagnetischen Drehmoment sind außerdem parasitäre Reibmomente 
 
 Weiterhin wird das Drehmoment durch die Gegeninduktion geschwächt. Dieser Effekt ist in den Motormodellen von Franke \cite{franke} und den Nachfolgearbeiten bisher nicht berücksichtigt worden. Da die Erfahrung am realen Versuchsstand jedoch gezeigt hat, dass eine Modellierung der Gegeninduktion sinnvoll erscheint, wird diese im Rahmen dieser Arbeit in das Motormodell integriert.
 
-Zum besseren Verständnis des Effekts wird zunächst das physikalische Prinzip der Gegeninduktion betrachtet. Fließt ein Strom durch den ruhenden Anker, der sich im Magnetfeld der Permanentmagneten befindet, so wirkt senkrecht zu den Richtungen des Stroms und des Magnetfelds die Lorenzkraft auf die in der Ankerwicklung befindlichen Ladungsträger (Drei-Finger-Regel bzw. Rechte-Hand-Regel in technischer Stromrichtung). Durch das entstehende Drehmoment beginnt der Anker zu rotieren. Durch die Drehung bewegen sich die Ladungsträger nun zusätzlich zur eigentlichen Stromrichtung auch in Rotationsrichtung des Ankers. Auf diese Bewegungskomponente kann nun erneut das Prinzip der Lorentzkraft angewendet werden. Die resultierende zusätzliche Kraftkomponente, die in Abhängigkeit der Rotationsgeschwindigkeit auf die Ladungsträger wirkt, zeigt nun gegen die Stromrichtung (Lenz'sche Regel). Der resultierenden Ladungsbeschleunigung kann ein Spannungsabfall über der Ankerwicklung zugeordnet werden, die sogenannte induzierte Gegenspannung oder Gegen-EMK (Gegen-Elektromagnetische-Kraft). Der in Folge sinkende Ankerstrom reduziert das Drehmoment des Motors. \cite{binder}
+Zum besseren Verständnis des Effekts wird zunächst das physikalische Prinzip der Gegeninduktion betrachtet. Fließt ein Strom durch den ruhenden Anker, der sich im Magnetfeld der Permanentmagneten befindet, so wirkt senkrecht zu den Richtungen des Stroms und des Magnetfelds die Lorenzkraft auf die in der Ankerwicklung befindlichen Ladungsträger (Drei-Finger-Regel bzw. Rechte-Hand-Regel in technischer Stromrichtung). Durch das entstehende Drehmoment beginnt der Anker zu rotieren. Auf Grund der Rotation bewegen sich die Ladungsträger nun zusätzlich zur eigentlichen Stromrichtung auch in Rotationsrichtung des Ankers. Auf diese Bewegungskomponente kann nun erneut das Prinzip der Lorentzkraft angewendet werden. Die resultierende zusätzliche Kraftkomponente, die in Abhängigkeit der Rotationsgeschwindigkeit auf die Ladungsträger wirkt, zeigt nun gegen die Stromrichtung (Lenz'sche Regel). Der resultierenden Ladungsbeschleunigung kann ein Spannungsabfall über der Ankerwicklung zugeordnet werden, die sogenannte induzierte Gegenspannung oder Gegen-EMK (Gegen-Elektromagnetische-Kraft). Der in Folge sinkende Ankerstrom reduziert das Drehmoment des Motors. \cite{binder}
 
 Am Versuchsstand wird dieser Effekt bei geringen Winkelgeschwindigkeiten durch den Stromregler des Spannungs-Strom-Wandlers kompensiert. Ab einer bestimmten Winkelgeschwindigkeit bei konstantem Sollstrom wird die induzierte Gegenspannung größer als die maximale Zwischenkreisspannung des Spannungs-Strom-Wandlers, sodass nicht mehr ausgeregelt werden kann. Nun nimmt der Ankerstrom und damit das Drehmoment mit steigender Winkelgeschwindigkeit ab bis die Leerlaufdrehzahl erreicht ist. 
 
@@ -110,7 +110,7 @@ I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
 
 Die Rotorbewegung des Motors wird über das in Abbildung \ref{fig:Getriebe} dargestellte Getriebe und das Antriebszahnrad auf den Zahnriemen weitergegeben. Auf Grund der hohen Steifigkeit des mit eingebetteten Stahlseilen unterstützten Riemens wird dieser wie in Apprich \cite{apprich} als unendlich starr angenommen, sodass die Verbindung von Motor und Schlitten ohne Federkopplung durch eine Übersetzungskonstante modelliert werden kann.
 \[
-	\dot{x} = K_G \cdot \omega
+	\dot{x_0} = K_G \cdot \omega
 \]
  Die Übersetzungskonstante $K_G$ zwischen der Winkelgeschwindigkeit des Motors und der Schlittengeschwindigkeit wird über das Zahnverhältnis und den Antriebsradius berechnet.
 \[
