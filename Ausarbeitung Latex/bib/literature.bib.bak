@@ -149,6 +149,14 @@
   type   = {Studienarbeit},
 }
 
+@MastersThesis{noupa,
+  author = {Noupa, Karl Max Crépin},
+  school = {TU Darmstadt},
+  title  = {Reibkompensation am Doppelpendel},
+  year   = {2011},
+  type   = {Bachelorarbeit},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: selector_keywords:Mathematik;SVP;}

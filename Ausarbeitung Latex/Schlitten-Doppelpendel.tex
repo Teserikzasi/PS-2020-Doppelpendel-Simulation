@@ -47,6 +47,15 @@
 \input{common/commonmacros.tex}
 
 \usepackage[straightvoltages]{circuitikz}
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
 
 
 \newcommand*{\Miktex}{\textsc{MiKTeX}\xspace}
@@ -104,6 +113,7 @@
 \input{./Kapitel/Grundlagen.tex}
 \input{./Kapitel/Modell.tex}
 \input{./Kapitel/APRegelung.tex}
+\input{./Kapitel/Trajektorien.tex}
 
 
 
