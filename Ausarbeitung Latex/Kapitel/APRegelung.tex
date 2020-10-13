@@ -1,12 +1,15 @@
 \chapter{Arbeitspunkt-Regelung}\label{cha:apr}
 
-Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten \secref{sec:aps} sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen.
+Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun die Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten (siehe \secref{sec:aps}) sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen (siehe \charef{cha:traj}).
 
-\section{Vorgehen}%\label{sec:}
+Beim Reglerentwurf wird dem Vorgehen vergangener Arbeiten gefolgt. 
 
-Beim Reglerentwurf wird zunächst dem Vorgehen vergangener Arbeiten gefolgt. 
 
-\subsection{\lin}
+\section{System-\lin\ und Analyse}%\label{sec:}
+
+Das nicht-lineare System wird zunächst linearisiert, dessen \ewe\ analysiert, sowie auf Steuer- und Beobachtbarkeit überprüft.
+
+\subsection{\lin}\label{sec:lin}
 
 Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ linearisiert werden, bevor lineare Regelungsmethoden angewandt werden können. 
 \begin{align}
@@ -31,8 +34,9 @@ Die Ausgangsmatrix \mat{C} ist immer gleich, da die Ausgangsgleichung \eqref{eq:
 \subsection{Eigenwerte}
 
 Anhand der \ewe\ können Aussagen über die Dynamik eines Systems getroffen werden. 
-Beim \bss\ gibt es aufgrund der zweifachen Integration des Eingangs \xopp\ stets zwei \ewe\ in 0. 
+Das \bss\ hat aufgrund der zweifachen Integration des Eingangs \xopp\ stets zwei \ewe\ in 0. 
 Mit den Apprich-Parametern ergeben sich folgende \ewe:
+
 \begin{table}[htbp]
 	\centering
 		\begin{tabular}[t]{cccc}
@@ -50,7 +54,6 @@ Mit den Apprich-Parametern ergeben sich folgende \ewe:
 	\caption{\ewe\ des \bss s (Parameter: Apprich)}
 	\label{tab:ewappr}
 \end{table}
-
 Im \ap\ 1 ergeben sich zwei konjugiert-komplexe Polpaare, die sich physikalisch mit der Schwingung der beiden Pendel begründen lassen. Sie befinden sich aufgrund der Dämpfung in der linken s-Halbebene, es ist der einzige stabile \ap. \ap\ 2 und 3 besitzen jeweils ein konjugiert-komplexes Polpaar, da dort das erste \bzw zweite Pendel nach unten zeigt und damit \qq{stabil} ist. Der Realteil ist bei \ap\ 3 deutlich kleiner, was auf die geringere Dämpfung des zweiten Pendelgelenks zurückzuführen ist (siehe \tabref{tab:parappr}). Aufgrund der Instabilität des anderen Pendels ergibt sich jeweils ein positiv reeller \ew. In \ap\ 4 stehen beide Pendel oben, weswegen es dort zwei \ewe\ in der rechten s-Halbebene gibt.
 
 \begin{table}[htbp]
@@ -79,16 +82,107 @@ Wird die \crb\ zu 0 gesetzt, ergeben sich prinzipiell ähnliche Werte wie in \ta
 
 \subsection{Steuerbarkeit und Beobachtbarkeit}
 
-Voraussetzung für eine Regelung ist die Steuerbarkeit des Systems. Diese kann für lineare Systeme oder linearisierte Systeme an einem \ap\ mit dem Steuerbarkeitskriterium nach Kalman überprüft werden \cite{AdamyRT2}. Außerdem sollte ein System beobachtbar sein, falls nicht alle Zustände bekannt sind und daher über einen Beobachter ermittelt werden.
+Voraussetzung für eine Regelung ist die Steuerbarkeit des Systems. Diese kann für lineare Systeme oder linearisierte Systeme an einem \ap\ mit dem Steuerbarkeitskriterium nach \textsc{Kalman} überprüft werden \cite{AdamyRT2}. Außerdem sollte ein System beobachtbar sein, falls nicht alle Zustände bekannt sind und daher über einen Beobachter ermittelt werden.
 
 Das \spds\ (\bss) ist an allen 4 \ap en vollständig steuer- und beobachtbar.
 
 
+\section{Reglerentwurf}
+
+Die Aufgabe eines Reglers \bzw einer (Vor-)Steuerung ist es nun, anhand der Messgrößen $\vey=(\xo\ \phe\ \phz)^{\transp}$ \eqref{eq:hx} eine geeignete Steuerspannung $U_{\mrm{Steuer}}$ an den Motor vorzugeben. Dabei teilt sich die Steuerung/Regelung in mehrere Schritte auf. 
+
+
 \subsection{Zustandsregler}
 
-Die \aprg\ wird mit einem \zsr\ realisiert. Die Verstärkung $K$ wird durch Lösen des LQ-Problems ermittelt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die Matrix \mat{Q} zur Bewertung der Zustände und $R$ für die Stellgröße. 
+Die \aprg\ wird mit einem \zsr\ realisiert ($u=-K \vexd$). Die Verstärkung $K$ wird durch Lösen des LQ-Problems ermittelt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die Matrix $\mat{Q}=\diaga (q_1  q_2  q_3  q_4  q_5  q_6)$ zur Bewertung der Zustände und $R$ für die Stellgröße. 
 
-Für jeden \ap\ muss ein eigener Regler entworfen werden. 
+Für jeden \ap\ muss ein eigener Regler entworfen werden, da jedem \ap\ ein anderes lineares System zugrunde liegt (siehe \secref{sec:lin}).
+Außerdem sind für jeden \ap\ andere Güteparameter \mat{Q} und $R$ optimal. Die systematische simulative Optimierung erfolgt in \secref{sec:x0qr}.
+
+Das Lösen der \emph{Riccati}-Gleichung und die Berechnung von $K$ für alle \ap e erfolgt automatisiert in \ml.
+
+
+\subsection{Zustandsermittlung}
+
+Ein \zsr\ benötigt zur Regelung zu jedem Zeitpunkt die Information aller Zustände \vex\ \eqref{eq:vex} des Systems. Beim \spds\ werden die drei Zustände \xo, \phe\ und \phz\ gemessen. Deren Ableitungen, die Zustände \xop, \phep\ und \phzp\ müssen noch ermittelt werden. Dabei wird von drei Möglichkeiten ausgegangen, die in der Simulation miteinander verglichen werden können:
+\begin{enumerate}
+	\item Zustandsmessung
+	\item Beobachter
+	\item Differenzieren 
+\end{enumerate}
+Am Versuchsstand erfolgt die Zustandsermittlung durch einen \beob.
+
+\subsubsection{\zm}
+
+Bei der \zm\ wird von einer idealen Messung aller Zustände ausgegangen, \dah $\vexd=\vex$. 
+Diese Variante wird in der Simulation meist zuerst eingesetzt, um die Regelung des Systems besser beurteilen zu können und spezielle Probleme durch die \ze\ im Nachhinein analysieren zu können.
+Am realen Versuchsstand kann diese Methode nicht eingesetzt werden.
+
+\subsubsection{\beob}
+
+Der Schätzzustand $\vexd$ wird durch einen \emph{Luenberger-Beobachter} ermittelt. 
+Dieser \qq{simuliert} ein lineares Schätzsystem (\mat{A}, \mat{B}, \mat{C}) und regelt Unterschiede in den Ausgangsgrößen \vey\ und \veyd\ mit der \beob-Matrix \mat{L} aus \cite{AdamyRT2}. 
+Wie beim \zsr\ muss auch hier die Auslegung für jeden \ap\ separat erfolgen.
+
+\mat{L} wird in dieser Arbeit mittels Polplatzierung ausgelegt. 
+Einflussparameter sind somit die Pole des Beobachters $\vep_b$\,. 
+Diese sollten üblicherweise weiter links liegen als die Pole des geregelten Systems $\vep_r$\,. 
+Sie können aber nicht beliebig weit links liegen, da sonst Messrauschen verstärkt wird.
+
+In \cite{brehl} werden sie beispielsweise hintereinander auf der negativen reellen Achse verteilt:
+	\[
+	\vep_b=\begin{bmatrix}
+		-40 & -41 & -42 & -43 & -44 & -45
+	\end{bmatrix}
+\]
+Im Allgemeinen ist es aus oben genannten Gründen sinnvoll, die \beob-Pole in Abhängigkeit der Pole des geschlossenen Regelkreises zu definieren.
+Bei \cite{chang} werden sie nach
+	\[
+	\vep_b = \vep_r - 25
+\]
+bestimmt, wodurch allerdings komplexe \beob-Pole möglich sind. In dieser Arbeit werden sie daher meist folgendermaßen berechnet:
+	\[
+	\vep_b = \Re\left\{{\vep_r \cdot 5}\right\}
+\]
+%Im \ml-Code kann die Definition geändert werden und die verschiedenen Auslegungen miteinander verglichen werden.
+
+Neben dem Messvektor \vey\ ist auch die Stellgröße $u$ Eingang des \beob. 
+Dafür könnte man direkt die geforderte Stellgröße des \zsr\ $u_{reg}$ verwenden.
+Allerdings wird letztere bei bestimmten Regelabweichungen häufig deutlich über der maximalen Stellgröße liegen, sodass die Ausgangsstellgröße spätestens beim Motor begrenzt wird.
+Wenn der Beobachter dies nicht mitbekommt und daher sein System mit der unbegrenzten Regler-Stellgröße simuliert, gibt es zwangsläufig Abweichungen zwischen \beob-System und realem System.
+Der Zustand wird nicht mehr richtig geschätzt, folglich ergibt sich ein schlechteres Regelverhalten, bis hin zur Instabilität.
+
+Aus diesen Gründen ist es sinnvoll, eine Vorsteuerung zu implementieren \siehe{\secref{sec:motvorst}}, die die Stellgröße schon vor der Ausgabe an den Motor begrenzt und die tatsächliche Stellgröße zurück an den \beob\ gibt, sodass dieser das reale System besser nachbilden kann.
+Somit weicht die Stellgröße nur noch bei Stellgrößeneinbrüchen anderer Art \siehe{\secref{sec:gsm}} ab.
+
+
+\subsubsection{\diff}
+
+Die übrigen Zustände werden durch Differentiation der Messgrößen und \evtl Tiefpass-Filterung gebildet:
+\begin{align}
+	\vexd=\begin{bmatrix}
+		1	&	0	&	0	\\
+		\ddt	&	0	&	0	\\
+		0	&	1	&	0	\\
+		0	&	\ddt	&	0	\\
+		0	&	0	&	1	\\
+		0	&	0	&	\ddt	\\
+	\end{bmatrix} \vey  = \begin{bmatrix}
+		\xom \\ \ddt \xom \\ \phem \\ \ddt \phem \\ \phzm \\ \ddt \phzm
+	\end{bmatrix}
+\end{align}
+In der Simulation kam es hierbei zu Problemen, da für eine möglichst glatte und fehlerfreie Differentiation eine kleine Schrittweite notwendig ist, außerdem hat sich die Simulation in manchen Fällen aufgehängt. Daher wird diese Variante in dieser Arbeit nicht weiter verfolgt.
+
+Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombination mit einer sinnvollen Filterung der Messgrößen und den Ableitungen möglicherweise Vorteile gegenüber einem Beobachter darstellt. 
+
+
+\subsection{Vorsteuerung F/a und a/v-Regler}
+
+
+
+\subsection{Motor Vorsteuerung}\label{sec:motvorst}
+
+
 
 
 
@@ -101,34 +195,34 @@ Für jeden \ap\ muss ein eigener Regler entworfen werden.
 
 
 
-\section{Anfangswert-Tests}
+\section{Anfangswert-Tests}\label{sec:x0test}
 
 \begin{figure}
 	\centering
 	\begin{minipage}[t]{0.45\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf}
+		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf}
 		%\caption{\ap  2}
 		\label{fig:ap2}
 	\end{minipage}
-	\hfill
+	\quad
 	\begin{minipage}[t]{0.45\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{Bilder/Parameter neu (Ribeiro) Creg off/AP3.pdf}
+		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP3.pdf}
 		%\caption{\ap  3}
 		\label{fig:ap3}
 	 \end{minipage}
 	\\
 	\begin{minipage}[t]{0.45\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{Bilder/Parameter neu (Ribeiro) Creg off/AP41.pdf}
+		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP41.pdf}
 		%\caption{\ap  3}
 		\label{fig:ap3}
 	 \end{minipage}
-	\hfill
+	\quad
 	\begin{minipage}[t]{0.45\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{Bilder/Parameter neu (Ribeiro) Creg off/AP42.pdf}
+		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP42.pdf}
 		%\caption{\ap  3}
 		\label{fig:ap3}
 	 \end{minipage}
@@ -139,11 +233,11 @@ Für jeden \ap\ muss ein eigener Regler entworfen werden.
 
 
 
-\section{QR Parameter Tests}
+\section{QR Parameter Tests}\label{sec:x0qr}
 
 
 
-\section{System Parameter Tests}
+\section{System Parameter Tests}\label{sec:x0sys}
 
 
 

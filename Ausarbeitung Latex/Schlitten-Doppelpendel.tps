@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=common\commonmacros.tex
 
 [Frame0_View0,0]
-TopLine=91
-Cursor=3781
+TopLine=0
+Cursor=1904
 
 [Frame1]
 Flags=0
@@ -35,8 +35,8 @@ Class=LaTeXView
 Document=inc\mymacros.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=393
+TopLine=56
+Cursor=2586
 
 [Frame2]
 Flags=0
@@ -125,8 +125,8 @@ Class=LaTeXView
 Document=Kapitel\Modell_SP.tex
 
 [Frame6_View0,0]
-TopLine=153
-Cursor=6786
+TopLine=88
+Cursor=3587
 
 [Frame7]
 Flags=0
@@ -143,8 +143,8 @@ Class=LaTeXView
 Document=Kapitel\Modell_Mot.tex
 
 [Frame7_View0,0]
-TopLine=34
-Cursor=5293
+TopLine=21
+Cursor=1615
 
 [Frame8]
 Flags=0
@@ -161,8 +161,8 @@ Class=LaTeXView
 Document=Kapitel\APRegelung.tex
 
 [Frame8_View0,0]
-TopLine=91
-Cursor=5822
+TopLine=197
+Cursor=11181
 
 [Frame9]
 Flags=0
