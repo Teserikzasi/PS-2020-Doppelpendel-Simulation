@@ -84,8 +84,8 @@ Damit ergeben sich die \bwgl\ als Funktion der Minimal-\koor, der Systemparamete
 \subsection{\zrm}
 
 Mit den \bwgl\ ergibt sich das eingangsafﬁne, \nlzrm\ mit Eingangsgröße $u=F$ wie folgt:
-\begin{align*}
-	\vexp &= \ve{f}(\vex,u) = \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \\\vspace{100cm}
+\begin{align}
+	\vexp &= \ve{f}(\vex,u) = \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \label{eq:zrm} \\\vspace{100cm}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
 	\end{bmatrix} &= \begin{bmatrix}
@@ -93,12 +93,12 @@ Mit den \bwgl\ ergibt sich das eingangsafﬁne, \nlzrm\ mit Eingangsgröße $u=F
 	\end{bmatrix} + \begin{bmatrix}
 		0 \\ b_2(\vex) \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
 	\end{bmatrix} \cdot F
-\end{align*}
+\end{align}
 
 Beim Beschleunigungssystem gilt für den Eingang $u=\xopp=a$, womit die Schlittenbeschleunigung direkt vorgegeben und die Dynamik des Schlittens umgangen wird. 
 Damit wird die erste der drei gekoppelten Bewegungsgleichungen ersetzt. 
 Das geänderte \gls\ muss wieder gelöst werden und es ergibt sich das folgende \zrm:
-\begin{align*}
+\begin{align}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
 	\end{bmatrix} &= \begin{bmatrix}
@@ -106,10 +106,10 @@ Das geänderte \gls\ muss wieder gelöst werden und es ergibt sich das folgende 
 	\end{bmatrix} + \begin{bmatrix}
 		0 \\ 1 \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
 	\end{bmatrix} \cdot a
-\end{align*}
+\end{align}
 
 Folgende Tabelle \ref{tab:abh} gibt Aufschluss über die Abhängigkeiten von Zuständen und \syp n. 
-Graue Variablen sind nur im Kraftmodell vorhanden. 
+Grau hinterlegte Variablen sind nur im Kraftmodell vorhanden. 
 Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 \begin{table}[h]
 	\centering
@@ -122,21 +122,29 @@ Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 			Umgebungskonstanten & $g$	\\
 			\bottomrule
 		\end{tabular}
-	\caption{Abhängigkeiten}
+	\caption{Abhängigkeiten von Zuständen und Parametern}
 	\label{tab:abh}
 \end{table}
 
 
-Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sensoren gemessen werden. Daher ergibt sich für den Ausgang des Systems jeweils
-\begin{align*}
-	\ve{y} = \ve{h}(\vex) = \begin{bmatrix}
+Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sensoren gemessen werden. Daher ergibt sich für den Ausgang beider Systeme
+\begin{align}
+	\ve{y} = \ve{h}(\vex)
+	= \mat{C} \vex
+	= \begin{bmatrix}
+		1 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 1 & 0 
+	\end{bmatrix} \vex
+	= \begin{bmatrix}
 		\xo \\ \phe \\ \phz
 	\end{bmatrix}  \ .
-\end{align*}
+	\label{eq:hx}
+\end{align}
+Es handelt sich demnach um ein \textbf{SIMO-System} (single input multiple output). 
 
 
-
-\subsection{\crb}
+\subsection{\crb}\label{sec:crb}
 
 Da die \crb\ sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. 
 In den bisherigen Modellierungen wurde höchstens die \crb\ des Schlittens berücksichtigt. 
@@ -151,6 +159,7 @@ Die Formel der Gleitreibung lautet eigentlich
 \]
 allerdings führt diese Implementierung aufgrund der \mrm{signum}-Funktion zu Komplikationen in der Simulation. 
 Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
+%In \cite{chang} und \cite{kisner} wurde die \crb\ mit der $\arctan$ Funktion modelliert.
 %2/pi*atan(x0_p/x0_p_c2)
 
 \begin{align}
@@ -165,11 +174,11 @@ Dabei ist $\xopth$ gerade die Geschwindigkeit, bei der $\tanh(1)=0.7616$ von $\F
 
 
 
-\subsection{Ruhelagen}
+\subsection{Ruhelagen}\label{sec:aps}
 
 Die Ruhelagen \bzw \ap e eines nichtlinearen Systems ergeben sich aus
 	\[
-	\vexp = \ve{f}(\vex_0,u_0) = 0  \ .
+	\vexp_R = \ve{f}(\vex_R,u_R) = \ve{0}  \ .
 \]
 Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoretisch unendlich viele Ruhelagen. Es werden daher die folgenden 4 prinzipiell unterschiedlichen betrachtet:
 \begin{table}[h]
@@ -178,10 +187,10 @@ Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoret
 		\toprule
 			\ap  & $u$ & \xo & \xop & \phe & \phep & \phz & \phzp & Stabilität  \\
 			\midrule
-			1	&	0 &	\xoo	&	0	&	\pii	&	0	&	\pii	&	0	& stabil  \\
-			2	&	0 &	\xoo	&	0	&	\pii	&	0	&	0			&	0	& instabil  \\
-			3	&	0 &	\xoo	&	0	&	0			&	0	&	\pii	&	0	& instabil  \\
-			4	&	0 &	\xoo	&	0	&	0			&	0	&	0			&	0	& instabil  \\
+			1	&	0 &	\xor	&	0	&	\pii	&	0	&	\pii	&	0	& stabil  \\
+			2	&	0 &	\xor	&	0	&	\pii	&	0	&	0			&	0	& instabil  \\
+			3	&	0 &	\xor	&	0	&	0			&	0	&	\pii	&	0	& instabil  \\
+			4	&	0 &	\xor	&	0	&	0			&	0	&	0			&	0	& instabil  \\
 			\bottomrule
 		\end{tabular}
 	\caption{Arbeitspunkte}
