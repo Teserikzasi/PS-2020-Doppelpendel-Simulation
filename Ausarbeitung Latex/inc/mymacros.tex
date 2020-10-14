@@ -1,5 +1,5 @@
 
-\newcommand{\dpd}{Doppel-Pendel}
+\newcommand{\dpd}{Doppelpendel}
 \newcommand{\spd}{Schlitten-Pendel}
 \newcommand{\spds}{Schlitten-Pendel-System}
 \newcommand{\crb}{Coulomb-Reibung}
@@ -19,13 +19,29 @@
 \newcommand{\ewe}{Eigenwerte}
 \newcommand{\zsr}{Zustandsregler}
 \newcommand{\beob}{Beobachter}
+\newcommand{\vorst}{Vorsteuerung}
+\newcommand{\zm}{Zustandsmessung}
+\newcommand{\ze}{Zustandsermittlung}
+\newcommand{\diff}{Differenzieren}
+\newcommand{\alg}{Algorithmus}
+\newcommand{\ml}{\Matlab}
+\newcommand{\std}{Standardabweichung}
+\newcommand{\gls}{Gleichungssystem}
+
+\newcommand{\qq}[1]{\glqq#1\grqq}
+\newcommand{\exref}[1]{Beispiel \ref{#1}}
+\newcommand{\siehe}[1]{(siehe #1)}
+\newcommand{\urll}{\textsc{url: }}
+
 
 \newcommand{\einhalb}{\frac{1}{2}}
 \newcommand{\pii}{\ensuremath{\pi}}
+\newcommand{\sign}[1]{\ensuremath{\mrm{sign}\left(#1\right)}}
 
+\newcommand{\xo}{\ensuremath{x_0}}  % Zahlen im Befehl nicht möglich
 \newcommand{\xoo}{\ensuremath{x_{0,0}}}
 \newcommand{\xor}{\ensuremath{x_{0R}}}
-\newcommand{\xo}{\ensuremath{x_0}}  % Zahlen im Befehl nicht möglich
+\newcommand{\xom}{\ensuremath{x_{0m}}}
 \newcommand{\xe}{x_1}
 \newcommand{\xz}{x_2}
 \newcommand{\yo}{y_0}
@@ -39,7 +55,9 @@
 \newcommand{\yep}{\dot{y}_1}
 \newcommand{\yzp}{\dot{y}_2}
 \newcommand{\phe}{\ensuremath{\varphi_1}}
+\newcommand{\phem}{\ensuremath{\varphi_{1m}}}
 \newcommand{\phz}{\ensuremath{\varphi_2}}
+\newcommand{\phzm}{\ensuremath{\varphi_{2m}}}
 \newcommand{\phep}{\ensuremath{\dot{\varphi}_1}}
 \newcommand{\phepp}{\ddot{\varphi}_1}
 \newcommand{\phzp}{\ensuremath{\dot{\varphi}_2}}
@@ -58,9 +76,13 @@
 \newcommand{\Mdz}{M_{d2}}
 
 
-\newcommand{\vex}{\ve{x}}
-\newcommand{\vexr}{\ve{x}_R}
-\newcommand{\vef}{\ve{f}}
+\newcommand{\vey}{\ensuremath{\ve{y}}}
+\newcommand{\veyd}{\ensuremath{\hat{\ve{y}}}}
+\newcommand{\vex}{\ensuremath{\ve{x}}}
+\newcommand{\vexd}{\ensuremath{\hat{\ve{x}}}}
+\newcommand{\vexr}{\ensuremath{\ve{x}_R}}
+\newcommand{\vef}{\ensuremath{\ve{f}}}
+\newcommand{\vep}{\ensuremath{\ve{p}}}
 \newcommand{\vexp}{\ve{\dot{x}}}
 \newcommand{\ddt}{\frac{\ud}{\ud t}}
 
@@ -70,24 +92,11 @@
 \newcommand{\apd}{\api{3}}
 \newcommand{\apv}{\api{4}}
 
-\newcommand{\sign}[1]{\ensuremath{\mrm{sign}\left(#1\right)}}
 
 \definecolor{grey}{RGB}{150,150,150}
 
 
 
-
-\newcommand{\qq}[1]{\glqq#1\grqq}
-\newcommand{\nv}{Newton-Verfahren}
-\newcommand{\jm}{Jakobi-Matrix}
-\newcommand{\alg}{Algorithmus}
-\newcommand{\ml}{\Matlab}
-\newcommand{\rf}{Redundanzfaktor}
-\newcommand{\std}{Standardabweichung}
-\newcommand{\gls}{Gleichungssystem}
-\newcommand{\urll}{\textsc{url: }}
-
-\newcommand{\exref}[1]{Beispiel \ref{#1}}
 
 \newcommand{\valdeg}[1]{\valunit{#1}{\degree}}
 \newcommand{\diag}[1]{\ensuremath{\mrm{diag}\left(#1\right)}}
