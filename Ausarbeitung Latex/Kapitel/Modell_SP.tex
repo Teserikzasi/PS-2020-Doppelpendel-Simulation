@@ -94,7 +94,7 @@ Um das \spds\ als \zrm\ (mit ausschließlich ersten Ableitungen) darzustellen, w
 \end{align}
 Mit den \bwgl\ ergibt sich für das \krs\ (Eingangsgröße $u=F$) das folgende nichtlineare, eingangsafﬁne \zrm:
 \begin{align}
-	\vexp &= \ve{f}(\vex,u) 
+	\vexp &= \ve{f}(\vex,u)  \\
 		&= \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \label{eq:zrm} \\\vspace{100cm}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
@@ -123,6 +123,7 @@ Grau hinterlegte Variablen sind nur im Kraftmodell vorhanden.
 Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 \begin{table}[h]
 	\centering
+	\caption{Abhängigkeiten von Zuständen und Parametern}
 		\begin{tabular}[t]{cc}
 		\toprule
 			Zustände	&	\textcolor{grey}{\xop}, \phe, \phep, \phz, \phzp	\\
@@ -132,7 +133,6 @@ Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 			Umgebungskonstanten & $g$	\\
 			\bottomrule
 		\end{tabular}
-	\caption{Abhängigkeiten von Zuständen und Parametern}
 	\label{tab:abh}
 \end{table}
 
@@ -193,6 +193,7 @@ Die Ruhelagen \bzw \ap e eines nichtlinearen Systems ergeben sich aus
 Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoretisch unendlich viele Ruhelagen. Es werden daher die folgenden 4 prinzipiell unterschiedlichen betrachtet:
 \begin{table}[h]
 	\centering
+	\caption{Die 4 Ruhelagen}
 		\begin{tabular}{lllllllll}
 		\toprule
 			\ap  & $u$ & \xo & \xop & \phe & \phep & \phz & \phzp & Stabilität  \\
@@ -203,7 +204,6 @@ Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoret
 			4	&	0 &	\xor	&	0	&	0			&	0	&	0			&	0	& instabil  \\
 			\bottomrule
 		\end{tabular}
-	\caption{Die 4 Ruhelagen}
 	\label{tab:aps}
 \end{table}
 
