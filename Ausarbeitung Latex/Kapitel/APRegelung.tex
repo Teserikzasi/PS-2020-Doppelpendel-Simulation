@@ -9,7 +9,7 @@ Beim Reglerentwurf wird dem Vorgehen vergangener Arbeiten gefolgt.
 
 Das nicht-lineare System wird zunächst linearisiert, dessen \ewe\ analysiert, sowie auf Steuer- und Beobachtbarkeit überprüft.
 
-\subsection{\lin}\label{sec:lin}
+\subsection{\lin}\label{subsec:lin}
 
 Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ linearisiert werden, bevor lineare Regelungsmethoden angewandt werden können. 
 \begin{align}
@@ -92,7 +92,7 @@ Das \spds\ (\bss) ist an allen 4 \ap en vollständig steuer- und beobachtbar.
 Die Aufgabe eines Reglers \bzw einer (Vor-)Steuerung ist es nun, anhand der Messgrößen $\vey=(\xo\ \phe\ \phz)^{\transp}$ \eqref{eq:hx} eine geeignete Steuerspannung $U_{\mrm{Steuer}}$ an den Motor vorzugeben. Dabei teilt sich die Steuerung/Regelung in mehrere Schritte auf. 
 
 
-\subsection{Zustandsregler}
+\subsection{Zustandsregler}\label{subsec:zsr} 
 
 Die \aprg\ wird mit einem \zsr\ realisiert ($u=-K \vexd$). Die Verstärkung $K$ wird durch Lösen des LQ-Problems ermittelt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die Matrix $\mat{Q}=\diaga (q_1  q_2  q_3  q_4  q_5  q_6)$ zur Bewertung der Zustände und $R$ für die Stellgröße. 
 
