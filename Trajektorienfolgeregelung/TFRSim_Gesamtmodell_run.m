@@ -4,7 +4,7 @@
 % Trajektorie visualisieren
 %plotanimate_traj(trj, trajName, 'Trajektorien_Tests')
 
-mdl = 'TRF_Gesamtmodell_test';
+mdl = 'TFR_Gesamtmodell_test';
 clear opt_params
 i=1;
 opt_params(i,:) = [mdl, "StopTime", num2str(trj.N*trj.T)]; i=i+1;
