@@ -144,7 +144,7 @@
 @MastersThesis{kämmerer,
   author = {Kämmerer, Andreas},
   school = {TU Darmstadt},
-  title  = {Inbetriebnahme und Regelung eines inversenDoppelpendels},
+  title  = {Inbetriebnahme und Regelung eines inversen Doppelpendels},
   year   = {2009},
   type   = {Studienarbeit},
 }
@@ -155,6 +155,14 @@
   title  = {Reibkompensation am Doppelpendel},
   year   = {2011},
   type   = {Bachelorarbeit},
+}
+
+@MastersThesis{matlPrakt2,
+  author = {Konigorski, Ulrich},
+  school = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt},
+  title  = {Praktikum MATLAB/Simulink II},
+  year   = {2019},
+  type   = {Skript},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

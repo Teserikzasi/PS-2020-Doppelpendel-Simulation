@@ -1,6 +1,6 @@
 %% Demo-Aufruf von searchTrajectories
 mode = 2;           % Suchprogramm
-N = 500;            % Zeithorizont
+N = 500;            % Prädiktionshorizont
 T = 0.005;          % Schrittweite
 sol = 'RK4';        % Integrator für Kontinuitätsbedingung
 params= SchlittenPendelParams_Apprich09(); % Parametersatz

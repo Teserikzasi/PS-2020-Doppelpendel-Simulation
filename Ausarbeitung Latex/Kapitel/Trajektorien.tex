@@ -72,7 +72,7 @@ Als letzte Komponente der Variationsstrategie wird noch die Positionsbeschränku
 Insgesamt werden bei Suchprogramm 2 somit $4 \cdot 4 \cdot 5 = 80$ Trajektorienberechnungen durchlaufen. Bei Suchprogramm 3 werden die beschriebenen Variationen auf alle zwölf Trajektorien ausgeweitet, indem der Endwert durch alle vier Arbeitspunkte iteriert und die Variation der Winkelanfangsauslenkungen um die vier zusätzlich entstehenden Kombinationen durch die Arbeitspunkte 2 und 3 erweitert wird. Insgesamt werden $8 \cdot 4 \cdot 5 \cdot 4 = 640$ Trajektorienberechnungen durchgeführt.
 Im Rahmen dieser Arbeit wird eine Vergleichstrajektorie für die in Kapitel \ref{sec:trjparamtest} behandelten Parameteruntersuchungen verwendet. Diese wird mit Suchprogramm 1 berechnet.
 
-Nachdem das Suchprogramm für die Trajektorienberechnung ausgewählt ist, werden Zeithorizont, Schrittweite und Integrationsverfahren für die NMPC konfiguriert. Als Integratoren stehen das Eulerverfahren "`Euler"' und das Runge-Kutta-Verfahren "RK4"' zur Verfügung. Außerdem wird einer der in Kapitel \ref{subsec:spdparams} besprochenen Parametersätze übergeben sowie eine maximale Stellkraft definiert. Diese stellt eine weitere Variationsmöglichkeit dar, die von Fauve \cite{fauve} nicht untersucht worden ist. Daher wird sie zur manuellen Variation in den Argumenten der \textit{searchTrajectories} zur Verfügung gestellt.
+Nachdem das Suchprogramm für die Trajektorienberechnung ausgewählt ist, werden Prädiktionshorizont, Schrittweite und Integrationsverfahren für die NMPC konfiguriert. Als Integratoren stehen das Eulerverfahren "`Euler"' und das Runge-Kutta-Verfahren "RK4"' zur Verfügung. Außerdem wird einer der in Kapitel \ref{subsec:spdparams} besprochenen Parametersätze übergeben sowie eine maximale Stellkraft definiert. Diese stellt eine weitere Variationsmöglichkeit dar, die von Fauve \cite{fauve} nicht untersucht worden ist. Daher wird sie zur manuellen Variation in den Argumenten der \textit{searchTrajectories} zur Verfügung gestellt.
 Als Letztes wird noch bestimmt, ob für die Trajektorienberechnung die Coulombreibung im Schlitten bzw. in den Gelenken berücksichtigt werden soll. 
 
 Die berechneten Trajektorien werden automatisch gespeichert. Es wird eine Namenskonvention zur Identifizierbarkeit der gespeicherten Ergebnisse eingeführt, die an folgendem Trajektoriennamen beispielhaft gezeigt wird:
@@ -91,23 +91,40 @@ Als weitere Option kann noch bestimmt werden, ob alle berechneten Trajektorien o
 
 \subsection{calculateTrajectory}\label{subsec:calctrj}
 
-Die Funktion \textit{calculateTrajectory} wird innerhalb von \textit{searchTrajectories} zur eigentlichen Berechnung einer bestimmten Trajektorie aufgerufen. Sie implementiert die NMPC mit Hilfe des CasADi-Frameworks auf Grundlage der Erkenntnisse der Vorgängerarbeit. Für detaillierte Hintergrundinformationen wird daher auf die Ausarbeitung von Fauvé \cite{fauve} verwiesen. 
+Die Funktion \textit{calculateTrajectory} wird innerhalb von \textit{searchTrajectories} zur eigentlichen Berechnung einer bestimmten Trajektorie aufgerufen. Sie implementiert die NMPC mit Hilfe des CasADi-Frameworks auf Grundlage der Erkenntnisse der Vorgängerarbeit. Für detaillierte Hintergrundinformationen wird daher auf die Ausarbeitung von Fauvé \cite{fauve} verwiesen. Als Argument erwartet die Funktion eine Struktur mit verschiedenen Konfigurationsparametern, die im Quelltext ausführlich kommentiert sind.
+
 
 Zunächst muss ein Optimalsteuerungsproblem (OCP) mit Zielfunktion und Nebenbedingungen definiert werden. Als Zielfunktion wird 
 	\[
 	\mrm{min} \ J = \sum_{i=1}^N ((x_i-x_\mrm{end})^T Q (x_i-x_\mrm{end}) + (u_i-u_\mrm{end})^T R (u_i-u_\mrm{end})) + 
 	\sum_{i=2}^N (u_i-u_{i-1})^T S (u_i-u_{i-1})
 \]
-implementiert. Sie besteht aus dem bekannten Güteintegral der LQ-Regelung und einem Bestrafungsterm für Änderungen in der Stellgröße, durch den hochfrequente Stellgrößenverläufe reduziert werden. Die Nebenbedingungen setzen sich zusammen aus
+implementiert. Sie besteht aus dem bekannten \textsc{Lagrange}schen Güteintegral der LQ-Regelung und einem Bestrafungsterm für Änderungen in der Stellgröße, durch den hochfrequente Stellgrößenverläufe reduziert werden. Die Wahl der Gewichtungsmatrizen $Q$, $R$ und $S$ basiert auf den Erkenntnissen von Fauvé \cite{fauve}. Tests bestätigen diese Wahl, wobei $S$ etwas nach unten korrigiert wird. Die Matrizen werden anschließend nicht mehr variiert. Sie sind der Funktion \textit{calculateTrajectory} als Konfigurationsparameter zwar zu übergeben, werden in \textit{searchTrajectories} jedoch für die weiteren Anwendungen im Rahmen der Arbeit hartkodiert.
+\[ 
+	\mat{Q} = 
+	\begin{bmatrix}
+		500 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0,01 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 100 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0,1 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 100 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0,1 \\
+	\end{bmatrix} \ , \quad
+	R = 5 \cdot 10^{-7} \ , \quad
+	S = 1,5 \cdot 10^{-8} \\	
+\]
+
+
+Neben der Zielfunktion sind darüber hinaus folgende Nebenbedingungen zu implementieren:
 \begin{itemize}
-	\item den Systemgleichungen in Form von Kontinuitätsbedingungen 
-	\item der Anfangsbedingung
-	\item der Endwertbedingung
-	\item der Positionsbegrenzung des Schlittens
-	\item der Stellkraftbegrenzung.
+	\item Kontinuitätsbedingungen 
+	\item Anfangsbedingung
+	\item Endwertbedingung
+	\item Positionsbegrenzung des Schlittens
+	\item Stellkraftbegrenzung.
 \end{itemize}
 
-Dabei ist zu beachten, dass die Endwertbedingung anders als die restlichen Nebenbedingungen nicht als harte Grenze formuliert, sondern implizit durch die Zielfunktion angenähert wird. 
+Dabei ist zu beachten, dass die Endwertbedingung, anders als die restlichen Nebenbedingungen, nicht als harte Grenze formuliert, sondern implizit durch die Zielfunktion angenähert wird. 
 
 Um eine möglichst hohe Vergleichbarkeit mit der Vorgängerarbeit Fauvé \cite{fauve} zu erzielen, wird für die Systemgleichungen das Kraftmodell gewählt. Die nichtlinearen Gleichungen werden mit Hilfe der Funktion \textit{getODE} in CasADi-Symbolik zur Verfügung gestellt.
 
@@ -132,15 +149,65 @@ In CasADi sind zwei Arten von Beschränkungen zu unterscheiden: Einerseits Pfadb
 	 0 \leq \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - (\frac{K_I}{r_{32}\ K_G})^2 \cdot \frac{\dot{x}_0}{R_a} - F \ .
 \]
 
-Das zu lösende OCP wird durch Diskretisierung in ein endlich-dimensionales nichtlineares Programm (engl.: \textit{Nonlinear Programming})(NLP) überführt, was auch als direkter Ansatz bzw. "`first discretize, then optimize"' bezeichnet wird. Dies geschieht durch Einteilung des OCP in $N$ Intervalle der Schrittweite $T$, wobei $N$ als Zeit- oder Prädiktionshorizont bezeichnet wird. Als numerische Lösungsmethode wird das in Fauvé \cite{fauve} empfohlene \textit{Direct-Multiple-Shooting}-Verfahren implementiert. Neben dem Eingangsgrößenverlauf zählt bei diesem Verfahren auch der Zustandsgrößenverlauf zu den Optimierungsvariablen. Anders als beim \textit{Single Shooting} werden statt für den gesamten Prädiktionshorizont für jedes Intervall die Systemgleichungen gelöst. Dadurch wird das Randwertproblem zunächst in $N$ Anfangswertprobleme aufgelöst, die durch die Systemgleichungen und einen jeweils zu optimierenden Startwert definiert sind. Um sicherzustellen, dass die abschnittsweise gelösten Systemgleichungen einen stetigen Verlauf ergeben, werden $N$-Kontinuitätsbedingungen implementiert. Der Lösungsverlauf eines Intervalls soll zum nächsten Zeitschritt dem Startwert des nächsten Intervalls entsprechen. 
+Das zu lösende OCP wird durch Diskretisierung in ein endlich-dimensionales nichtlineares Programm (engl.: \textit{Nonlinear Programming})(NLP) überführt, was auch als direkter Ansatz bzw. "`first discretize, then optimize"' bezeichnet wird. Dies geschieht durch Einteilung des OCP in $N$ Intervalle der Schrittweite $T$, wobei $N$ als Zeit- oder Prädiktionshorizont bezeichnet wird. Als numerische Lösungsmethode wird das in Fauvé \cite{fauve} empfohlene \textit{Direct-Multiple-Shooting}-Verfahren implementiert. Neben dem Eingangsgrößenverlauf zählt bei diesem Verfahren auch der Zustandsgrößenverlauf zu den Optimierungsvariablen. Anders als beim \textit{Single Shooting} werden statt für den gesamten Prädiktionshorizont für jedes Intervall die Systemgleichungen gelöst. Dadurch wird das Randwertproblem zunächst in $N$ Anfangswertprobleme aufgelöst, die durch die Systemgleichungen und einen jeweils zu optimierenden Startwert definiert sind. Um sicherzustellen, dass die abschnittsweise gelösten Systemgleichungen einen stetigen Verlauf ergeben, werden $N$-Kontinuitätsbedingungen implementiert. Der Lösungsverlauf eines Intervalls soll zum nächsten Zeitschritt dem Startwert des nächsten Intervalls entsprechen.
 
-Zur Lösung der Systemgleichungen werden das Euler-Verfahren und das Runge-Kutta-Verfahren 4. Ordnung implementiert. Als Lösungsverfahren für das NLP wird nach dem Beispiel von Fauvé \cite{fauve}  das von CasADi bereitgestellte IPOPT-Verfahren (Innere-Punkte-Verfahren, engl.: \textit{Interior Point Optimization}) eingesetzt.
+Zur Lösung der Systemgleichungen werden das Euler-Verfahren und das Runge-Kutta-Verfahren 4. Ordnung implementiert. Als Lösungsverfahren für das NLP wird nach dem Beispiel von Fauvé \cite{fauve} das von CasADi bereitgestellte IPOPT-Verfahren (Innere-Punkte-Verfahren, engl.: \textit{Interior Point Optimization}) eingesetzt.
 
+Vor Beginn der Optimierung müssen alle Optimierungsvariablen mit Startwerten initialisiert werden. Auf Grund des Multiple-Shooting-Ansatzes sind Startwerte über den gesamten Prädiktionshorizont sowohl für die Eingangsgröße als auch für den Zustandsvektor zu schätzen. Für den diskretisierten Eingang $u$ werden die Startwerte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert. Für die Zustände $\ves{x}$ wird ein S-förmiger Verlauf von $x_{\mrm{init}}$ nach $x_{\mrm{end}}$ geschätzt, da hiermit bei Fauvé \cite{fauve} gute Ergebnisse erzielt wurden. Der Verlauf wird durch Interpolation mit Hilfe der Funktion \textit{chip()} über 4  Stützstellen gewonnen. Der zu Grunde liegende Erwartung ist, dass das System erst langsam anfährt, dann stark beschleunigt und sich am Ende in der Nähe des Zielwerts nur noch langsam ändert.
+
+Da die Funktion \textit{calculateTrajectory} eigens für die Trajektorienberechnung vorgesehen ist, wird, anders als bei Fauve \cite{fauve}, auf eine Iterationsschleife für die Anwendung als Regler verzichtet.
 
 \section{Implementierung der Trajektorienfolgeregelung}
 
-Zur Überprüfung, ob die berechneten Trajektorien stabilisierbar sind, wird eine Trajektorienfolgeregelung implementiert...
+Zur Überprüfung der Stabilisierbarkeit der berechneten Trajektorien wird eine Trajektorienfolgeregelung als zeitvarianter Zustandsregler nach \cite{matPrakt2} realisiert. 
 
+Dazu wird das nicht-lineare System wie in Kapitel \ref{subsec:lin} zunächst linearisiert. Die Linearisierung um die Trajektorie führt im Gegensatz zum zeitinvarianten Arbeitspunkt auf ein linear-zeitvariantes System (LZV).
+	\[
+	\Delta \ves{\dot{x}} = \mat{A}(t) \Delta \ves{x}(t) + \ves{b}(t) \Delta F(t)
+\]
+
+mit 
+\begin{align*}
+	\ves{x}(t) = \ves{x}_{\mrm{Traj}}(t) + \Delta \ves{x}(t) \\
+	 F(t) = F_{\mrm{Traj}}(t) + \Delta F(t) \ .
+\end{align*}
+
+Hierfür lässt sich der linear-zeitinvariante (LZI) LQ-Reglerentwurf aus Kapitel \ref{subsec:zsr} übertragen, indem das zeitvariante Gütemaß 
+	\[
+	J = \int_{0}^{\infty} \Delta \ves{x}^T(t) \mat{Q} \Delta \ves{x}(t) + R \cdot \Delta F^2(t) \, dt
+\]
+
+durch Lösen der zeitvarianten \textsc{Riccati}-Differentialgleichungen
+	\[
+	\mat{\dot{P}}(t) = \mat{P}(t) R^{-1} b^2(t) \mat{P}(t) - \mat{P}(t) \mat{A}(t) - \mat{A}^T(t) \mat{P}(t) - \mat{Q}
+\]
+
+minimiert wird. Die Gleichungen werden als Endwertproblem rückwärts in der Zeit gelöst, wobei das System der Endlage $t=t_{\mrm{end}} = N \cdot T$ als Randwert vorgegeben wird. 
+
+Damit lässt sich die Reglerverstärkung 
+	\[
+	\mat{K}(t) = R^{-1} b(t) \mat{P}(t)
+\]
+
+für das lineare, zeitvariante Regelgesetz
+	\[
+	\Delta F(t) = -\mat{K}(t) \ves{x}(t)
+\]
+
+berechnen.
+
+Für die Implementierung der Linearisierung und die Berechnung der Reglerverstärkung werden die vom \emph{rtm} zur Verfügung gestellten "`common"'-Funktionen \textit{linSys} und \textit{getTrajFBController\_LQR} verwendet. Um die Regelung zu initialisieren wird das \Matlab-Skript \textit{InitTrajReg} erstellt. Die Initialisierung beinhaltet das Laden eines Modellparametersatzes und der zu simulierenden Trajektorie, die Berechnung des trajektorienspezifischen Zustandsreglers sowie die Bereitstellung der Reglerdaten für die Simulation. 
+
+Das Simulationsmodell ist in Abbildung \ref{fig:TFR_Simulink} dargestellt.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.98\textwidth]{Bilder/Trajektorien/TFR_Simulink.PNG}
+	\caption{Trajektorienfolgeregelung in Simulink}
+	\label{fig:TFR_Simulink}
+\end{figure}
+
+Die Trajektorien werden der Simulation als \textit{timeseries} mit Hilfe von \textit{From Workspace} Blöcken zugeführt. Für die anschließende Auswertung in \Matlab\ hingegen können benötigte Signale über To Workspace an \Matlab\ gereicht werden. Um instabile Simulationen zu erkennen und vorzeitig abzubrechen, wird das Subsystem \textit{Außer Kontrolle} implementiert. Optional kann die Regelung zu Vergleichszwecken abgeschaltet werden. Ebenso kann kurzzeitig eine Rechteckstörung aufgeschaltet werden. Die genannten Optionen lassen sich über \textit{Manual Switches} ein- und ausschalten, wobei deren Zustand aus \Matlab\ heraus über die Funktion \textit{set\_param} angesteuert werden kann.
 
 \section{Stabilisierbarkeit in der Simulation}
 
