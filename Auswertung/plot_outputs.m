@@ -87,7 +87,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         legend('x', 'x_{est}');
     end
     if xtrajExist
-        plot(vT, x1_traj, 'Color', [0.3010, 0.7450, 0.9330], 'LineWidth', 1);
+        plot(vT, x1_traj, 'Color', [0, 0, 0], 'LineWidth', 1, 'LineStyle', '--');
         legend('x', 'x_{traj}');
     end
     grid on;
@@ -102,7 +102,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         legend('\phi_{1}', '\phi_{1-est}'); 
     end 
     if xtrajExist
-        plot(vT, rad2deg(phi1_traj), 'Color', [0.9290, 0.6940, 0.1250], 'LineWidth', 1);
+        plot(vT, rad2deg(phi1_traj), 'Color', [0, 0, 0], 'LineWidth', 1, 'LineStyle', '--');
         legend('\phi_{1}', '\phi_{1-traj}'); 
     end
     grid on;
@@ -117,7 +117,7 @@ function plot_outputs(out, save, name, path, format, resolution)
         legend('\phi_{2}', '\phi_{2-est}'); 
     end    
     if xtrajExist
-        plot(vT, rad2deg(phi2_traj), 'Color', [0.4660, 0.6740, 0.1880], 'LineWidth', 1);
+        plot(vT, rad2deg(phi2_traj), 'Color', [0, 0, 0], 'LineWidth', 1, 'LineStyle', '--');
         legend('\phi_{2}', '\phi_{2-traj}'); 
     end   
     grid on;
@@ -127,23 +127,23 @@ function plot_outputs(out, save, name, path, format, resolution)
     if vorst
         plot(vT, Freg, 'Color', [1, 0.5, 0.1], 'LineWidth', 1);
         plot(vT, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
     elseif urealExist && utrajExist     
-        plot(vT, F_traj, 'Color', [1, 0.8824, 0.1294], 'LineWidth', 1);
-        plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
-        legend('F_{traj}', 'U_{in}*MotGain', 'F_{out}')
+        plot(vT, F_traj, 'Color', [0.15, 0.15, 0.15], 'LineWidth', 1, 'LineStyle', '--');
+        plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1, 'LineStyle', '-.');
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1);        
+        legend('F_{traj}', 'F_{in}', 'F_{out}')
     elseif urealExist
-        plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
-        legend('U_{in}*MotGain', 'F_{out}')
+        plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1, 'LineStyle', '-.');
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1);        
+        legend('F_{in}', 'F_{out}')
     elseif utrajExist
-        plot(vT, F_traj, 'Color', [1, 0.8824, 0.1294], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1);        
+        plot(vT, F_traj, 'Color', [0.15, 0.15, 0.15], 'LineWidth', 1, 'LineStyle', '--');
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1);        
         legend('F_{traj}', 'F_{out}')
     else
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1); 
     end
     title('Stellgröße (Kraft F)');
 	ylabel('F [N]');
