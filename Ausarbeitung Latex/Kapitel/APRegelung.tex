@@ -1,6 +1,6 @@
 \chapter{Arbeitspunkt-Regelung}\label{cha:apr}
 
-Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun die Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten (siehe \secref{sec:aps}) sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen (siehe \charef{cha:traj}).
+Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun die Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten \siehe{\secref{sec:aps}} sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen (siehe \charef{cha:traj}).
 
 Beim Reglerentwurf wird dem Vorgehen vergangener Arbeiten gefolgt. 
 
@@ -27,7 +27,7 @@ Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ 
 		0 \\ b_2(\vexr) \\ 0 \\  b_4(\vexr) \\ 0 \\  b_6(\vexr)
 	\end{bmatrix}
 \end{align}
-Somit ergeben sich für jeden \ap\ unterschiedliche Systemmatrizen \mat{A} und Eingangsmatrizen \ve{B}. Beim \bss\ fällt zusätzlich die zweite Zeile und die zweite Spalte (bis auf die 1) weg, da dort $a_2=0$ ist und keine Abhängigkeit von \xop\ besteht (siehe \tabref{tab:abh}), außerdem ist $b_2=1$.
+Somit ergeben sich für jeden \ap\ unterschiedliche Systemmatrizen \mat{A} und Eingangsmatrizen \ve{B}. Beim \bss\ fällt zusätzlich die zweite Zeile und die zweite Spalte (bis auf die 1) weg, da dort $a_2=0$ ist und keine Abhängigkeit von \xop\ besteht \siehe{\tabref{tab:abh}}, außerdem ist $b_2=1$.
 Die Ausgangsmatrix \mat{C} ist immer gleich, da die Ausgangsgleichung \eqref{eq:hx} linear ist.
 
 
@@ -39,6 +39,7 @@ Mit den Apprich-Parametern ergeben sich folgende \ewe:
 
 \begin{table}[htbp]
 	\centering
+	\caption{\ewe\ des \bss s (Parameter: Apprich)}
 		\begin{tabular}[t]{cccc}
 			\toprule
 			\ape & \apz & \apd & \apv \\
@@ -51,13 +52,13 @@ Mit den Apprich-Parametern ergeben sich folgende \ewe:
 			$-0.0418 - 4.8515\iu$ &   $-0.1858 - 7.0392\iu$	& $ -0.0669 - 7.8676\iu	$	&  $ -4.8926$	\\
 			\bottomrule
 		\end{tabular}
-	\caption{\ewe\ des \bss s (Parameter: Apprich)}
 	\label{tab:ewappr}
 \end{table}
 Im \ap\ 1 ergeben sich zwei konjugiert-komplexe Polpaare, die sich physikalisch mit der Schwingung der beiden Pendel begründen lassen. Sie befinden sich aufgrund der Dämpfung in der linken s-Halbebene, es ist der einzige stabile \ap. \ap\ 2 und 3 besitzen jeweils ein konjugiert-komplexes Polpaar, da dort das erste \bzw zweite Pendel nach unten zeigt und damit \qq{stabil} ist. Der Realteil ist bei \ap\ 3 deutlich kleiner, was auf die geringere Dämpfung des zweiten Pendelgelenks zurückzuführen ist (siehe \tabref{tab:parappr}). Aufgrund der Instabilität des anderen Pendels ergibt sich jeweils ein positiv reeller \ew. In \ap\ 4 stehen beide Pendel oben, weswegen es dort zwei \ewe\ in der rechten s-Halbebene gibt.
 
 \begin{table}[htbp]
 	\centering
+	\caption{\ewe\ des \bss s (Parameter: Ribeiro)}
 		\begin{tabular}[t]{cccc}
 			\toprule
 			\ape & \apz & \apd & \apv \\
@@ -70,7 +71,6 @@ Im \ap\ 1 ergeben sich zwei konjugiert-komplexe Polpaare, die sich physikalisch 
 				$-0.6385 - 7.1578\iu$	&	$-7.6900$ 	&	$-0.6443 - 7.2040\iu$ &	$-7.6570$ \\
 			\bottomrule
 		\end{tabular}
-	\caption{\ewe\ des \bss s (Parameter: Ribeiro)}
 	\label{tab:ewribe}
 \end{table}
 
@@ -87,16 +87,24 @@ Voraussetzung für eine Regelung ist die Steuerbarkeit des Systems. Diese kann f
 Das \spds\ (\bss) ist an allen 4 \ap en vollständig steuer- und beobachtbar.
 
 
-\section{Reglerentwurf}
+\section{Regelungskonzept}
 
 Die Aufgabe eines Reglers \bzw einer (Vor-)Steuerung ist es nun, anhand der Messgrößen $\vey=(\xo\ \phe\ \phz)^{\transp}$ \eqref{eq:hx} eine geeignete Steuerspannung $U_{\mrm{Steuer}}$ an den Motor vorzugeben. Dabei teilt sich die Steuerung/Regelung in mehrere Schritte auf. 
 
 
 \subsection{Zustandsregler}\label{subsec:zsr} 
 
-Die \aprg\ wird mit einem \zsr\ realisiert ($u=-K \vexd$). Die Verstärkung $K$ wird durch Lösen des LQ-Problems ermittelt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die Matrix $\mat{Q}=\diaga (q_1  q_2  q_3  q_4  q_5  q_6)$ zur Bewertung der Zustände und $R$ für die Stellgröße. 
+Die \aprg\ wird mit einem \zsr\ realisiert ($u=-K \vexd$). 
+Dieser regelt ein System grundsätzlich in den Ursprung, es muss also noch eine Zustandstransformation durchgeführt werden. 
+Für jeden der \ap e \secref{sec:aps} wird der Zustand, der für den \zsr\ die Endlage darstellt, vorher von den Messgrößen abgezogen. 
+Nach Berechnung der Stellgröße und Schätzung des Zustands wird der \ap\ wieder dazu addiert.
+
+Die Verstärkung $K$ wird durch Lösen des LQ-Problems bestimmt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die positiv-definite Matrix 
+$\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$
+ zur Bewertung der Zustände und $R$ für die Stellgröße. 
 
 Für jeden \ap\ muss ein eigener Regler entworfen werden, da jedem \ap\ ein anderes lineares System zugrunde liegt (siehe \secref{sec:lin}).
+Der AP-Regler ist somit nur in der Umgebung der Ruhelage gültig und kann zu große Abweichungen aufgrund der Nichtlinearität möglicherweise nicht ausregeln.
 Außerdem sind für jeden \ap\ andere Güteparameter \mat{Q} und $R$ optimal. Die systematische simulative Optimierung erfolgt in \secref{sec:x0qr}.
 
 Das Lösen der \emph{Riccati}-Gleichung und die Berechnung von $K$ für alle \ap e erfolgt automatisiert in \ml.
@@ -113,16 +121,15 @@ Ein \zsr\ benötigt zur Regelung zu jedem Zeitpunkt die Information aller Zustä
 Am Versuchsstand erfolgt die Zustandsermittlung durch einen \beob.
 
 \subsubsection{\zm}
-
 Bei der \zm\ wird von einer idealen Messung aller Zustände ausgegangen, \dah $\vexd=\vex$. 
 Diese Variante wird in der Simulation meist zuerst eingesetzt, um die Regelung des Systems besser beurteilen zu können und spezielle Probleme durch die \ze\ im Nachhinein analysieren zu können.
 Am realen Versuchsstand kann diese Methode nicht eingesetzt werden.
 
-\subsubsection{\beob}
-
+\subsubsection{\beob}\label{subsec:beob}
 Der Schätzzustand $\vexd$ wird durch einen \emph{Luenberger-Beobachter} ermittelt. 
 Dieser \qq{simuliert} ein lineares Schätzsystem (\mat{A}, \mat{B}, \mat{C}) und regelt Unterschiede in den Ausgangsgrößen \vey\ und \veyd\ mit der \beob-Matrix \mat{L} aus \cite{AdamyRT2}. 
 Wie beim \zsr\ muss auch hier die Auslegung für jeden \ap\ separat erfolgen.
+Damit gilt allerdings auch, dass der \beob\ nur in der Nähe dieser Ruhelage gültig ist, bei zu großen Abweichungen kann er aufgrund der \lin\ die Zustände nicht mehr richtig schätzen.
 
 \mat{L} wird in dieser Arbeit mittels Polplatzierung ausgelegt. 
 Einflussparameter sind somit die Pole des Beobachters $\vep_b$\,. 
@@ -147,7 +154,7 @@ bestimmt, wodurch allerdings komplexe \beob-Pole möglich sind. In dieser Arbeit
 %Im \ml-Code kann die Definition geändert werden und die verschiedenen Auslegungen miteinander verglichen werden.
 
 Neben dem Messvektor \vey\ ist auch die Stellgröße $u$ Eingang des \beob. 
-Dafür könnte man direkt die geforderte Stellgröße des \zsr\ $u_{reg}$ verwenden.
+Dafür könnte man direkt die geforderte Stellgröße des \zsr\ $u_\mrm{reg}$ verwenden.
 Allerdings wird letztere bei bestimmten Regelabweichungen häufig deutlich über der maximalen Stellgröße liegen, sodass die Ausgangsstellgröße spätestens beim Motor begrenzt wird.
 Wenn der Beobachter dies nicht mitbekommt und daher sein System mit der unbegrenzten Regler-Stellgröße simuliert, gibt es zwangsläufig Abweichungen zwischen \beob-System und realem System.
 Der Zustand wird nicht mehr richtig geschätzt, folglich ergibt sich ein schlechteres Regelverhalten, bis hin zur Instabilität.
@@ -157,7 +164,6 @@ Somit weicht die Stellgröße nur noch bei Stellgrößeneinbrüchen anderer Art 
 
 
 \subsubsection{\diff}
-
 Die übrigen Zustände werden durch Differentiation der Messgrößen und \evtl Tiefpass-Filterung gebildet:
 \begin{align}
 	\vexd=\begin{bmatrix}
@@ -174,9 +180,71 @@ Die übrigen Zustände werden durch Differentiation der Messgrößen und \evtl T
 In der Simulation kam es hierbei zu Problemen, da für eine möglichst glatte und fehlerfreie Differentiation eine kleine Schrittweite notwendig ist, außerdem hat sich die Simulation in manchen Fällen aufgehängt. Daher wird diese Variante in dieser Arbeit nicht weiter verfolgt.
 
 Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombination mit einer sinnvollen Filterung der Messgrößen und den Ableitungen möglicherweise Vorteile gegenüber einem Beobachter darstellt. 
+Es ist kein Einschwingen der Startzustände nötig, es gibt keine Probleme bei Stellgrößenstörungen und die Differentiation muss nicht für jeden \ap\ einzeln ausgelegt werden.
 
 
 \subsection{Vorsteuerung F/a und a/v-Regler}
+
+Ist der AP-Regler nach dem \bss\ ausgelegt, gibt dieser als Stellgröße eine Sollbeschleunigung \asoll\ für den Schlitten vor. 
+Aus dieser muss die geforderte Motorkraft bestimmt werden.
+Sie kann zum Großteil mit einer Vorsteuerung bestimmt werden, die Differenz wird mit einem Geschwindigkeitsvergleich ausgeregelt.
+Diese Aufteilung in einen \ap regler am einfacheren \bss\ und eine unterlagerte Geschwindigkeitsregelung, um der störenden Reibung am Schlitten zu begegnen, hat sich in vergangenen Arbeiten als sinnvoll herausgestellt.
+
+\subsubsection{a/v-Regler}
+Die Sollgeschwindigkeit \vsoll\ wird durch Integration von \asoll\ berechnet.
+Dadurch kann ein Soll/Ist-Vergleich mit der realen \bzw geschätzten Schlittengeschwindigkeit \xop\ durchgeführt werden.
+Die Regelung wird durch einen P-Regler umgesetzt:
+	\[
+	\fav= \kpv (\vsoll-\xopd)
+\]
+Brehl \cite{brehl} ging für \kpv\ beispielsweise von 500 aus, während im \sm-Modell von \cite{chang} 150 verwendet wird.
+Der Parameter scheint am realen Modell einen starken Einfluss auf die Stabilität und ein mögliches \qq{Ratterverhalten} zu haben.
+In dieser Arbeit wird ein Wert von 150 angenommen und der Parameter nicht weiter untersucht, da es in der Simulation meist nur geringe Abweichungen von der Sollgeschwindigkeit gibt.
+
+Als problematischer stellte sich hingegen ein möglicher \emph{Windup-Effekt} heraus: 
+Ist die Sollbeschleunigung größer als wegen der \sgb\ tatsächlich erreicht werden kann, wird \vsoll\ immer weiter aufintegriert und damit auch \fav, obwohl die Motorkraft bereits maximal ist. 
+Wenn das System wieder aus der \sgb\ ist und die Vorsteuerungskraft eigentlich das Vorzeichen wechselt, ist der I-Anteil noch vorhanden und muss erst abgebaut werden.
+In dieser Zeit übersteigt \fav\ daher \fvorst\ und die Stellgröße geht somit praktisch in die falsche Richtung, was die Regelung sehr schnell instabil werden lassen kann.
+Aus diesem Grund wird \asoll\ vor der Integration mit einem Sättigungsglied auf 
+	\[
+	a_\mrm{soll,max}=\frac{\fmax}{m}
+\] 
+begrenzt.
+
+\subsubsection{\vorst\  (M,C,D)}
+Der \avr\ alleine könnte die Schlittenkraft zwar regeln, allerdings kann der Hauptteil der Kraft mit einer Vorsteuerung bestimmt werden, wodurch die Dynamik besser ist.
+Die Vorsteuerung besteht im Wesentlichen aus der Trägheitskraft, da bei reiner Betrachtung des Schlittens $\fsoll=m_0 \asoll$ gilt. 
+Wenn davon ausgegangen wird, dass die Reibungsparameter hinreichend genau bestimmt wurden, kann auch die Reibung des Schlittens kompensiert werden.
+Während \cite{brehl} nur die Trägheitskraft vorsteuerte, wird in \cite{chang} die Vorsteuerung folgendermaßen berechnet:
+	\[
+	\fvorst=m \asoll + \Fco \, \sign{\vsoll} + d_0 \xop
+\]
+
+\subsubsection{\vorst\  mit Systemgleichung}
+Auch die obige Gleichung bestimmt die benötigte Kraft nicht exakt, da es je nach Winkellage der Pendel rückwirkende Kräfte auf den Schlitten gibt.
+Man kann daher einen Schritt weiter gehen und die benötigte Kraft zur Beschleunigung des Schlittens direkt aus der entsprechenden Bewegungsgleichung herleiten. 
+Auch wenn am realen Versuchsstand die Beschleunigung aufgrund von Ungenauigkeiten nicht exakt mit \asoll\ übereinstimmt, wird dem \avr\ dadurch weitere \qq{Arbeit abgenommen}.
+
+Die Beziehung zwischen der Schlittenbeschleunigung und der Kraft am Schlitten wird durch die zweite Zustandsgleichung \eqref{eq:zrmF} beschrieben:
+\begin{align}
+	a=\xopp=f_2(\vex,F)
+	\label{eq:xpp}
+\end{align}
+Diese Gleichung kann leicht nach der Kraft umgestellt werden:
+\begin{align}
+	\fsoll=\frac{\asoll-a_2(\vex)}{b_2(\vex)}
+\end{align}
+Damit diese Berechnung für beliebige Systemparameter und somit unterschiedliche Funktionen $a_2$ und $b_2$ erfolgen kann, wird die Bestimmung der Vorsteuerkraft in dieser Arbeit symbolisch in \ml\ automatisiert.
+
+\subsubsection{Ermittlung reale Beschleunigung}
+In \secref{subsec:beob} wurde erläutert, dass es sinnvoll ist, die reale Stellgröße an den \beob\ zu geben.
+Im folgenden Vorsteuerungsblock (\secref{sec:motvorst}) wird die vor dem Motor begrenzte Kraft \freal\ zurückgegeben, da die \sgb\ \fmax\ bekannt ist.
+Ist der \beob\ allerdings am \bss\ ausgelegt, geht er bei der Stellgröße von der Beschleunigung aus.
+Somit muss aus \freal\ zunächst \areal\ bestimmt werden.
+
+Dies kann ähnlich wie bei der Kraftvorsteuerung durch die Trägheit geschehen, was allerdings ungenau ist und der \beob\ demzufolge von einer falschen Eingangsgröße ausgeht.
+Daher wird die Ermittlung der tatsächlichen Beschleunigung wie im vorigen Abschnitt über die Systemgleichung vorgenommen.
+Es gilt \eqref{eq:xpp}.
 
 
 
@@ -187,7 +255,7 @@ Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombi
 
 
 
-\section{Aufbau in \Simulink}
+\section{Simulationsmodell in \Simulink}
 
 
 
@@ -197,36 +265,19 @@ Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombi
 
 \section{Anfangswert-Tests}\label{sec:x0test}
 
+\newcommand{\scalee}{0.48}
+
 \begin{figure}
 	\centering
-	\begin{minipage}[t]{0.45\linewidth}
-		\centering
-		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf}
-		%\caption{\ap  2}
-		\label{fig:ap2}
-	\end{minipage}
-	\quad
-	\begin{minipage}[t]{0.45\linewidth}
-		\centering
-		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP3.pdf}
-		%\caption{\ap  3}
-		\label{fig:ap3}
-	 \end{minipage}
+	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP3.pdf} }
 	\\
-	\begin{minipage}[t]{0.45\linewidth}
-		\centering
-		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP41.pdf}
-		%\caption{\ap  3}
-		\label{fig:ap3}
-	 \end{minipage}
-	\quad
-	\begin{minipage}[t]{0.45\linewidth}
-		\centering
-		\includegraphics[scale=0.47]{Bilder/Parameter neu (Ribeiro) Creg off/AP42.pdf}
-		%\caption{\ap  3}
-		\label{fig:ap3}
-	 \end{minipage}
-	\caption{Vergleich QR-Parameter (System Ribeiro)}
+	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP42.pdf} }
+	\caption{Maximalabweichungen -- Vergleich QR-Parameter (System Ribeiro)}
+	\label{fig:qrvglrib}
 %\vspace{15pt}
 \end{figure}
 
@@ -239,5 +290,34 @@ Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombi
 
 \section{System Parameter Tests}\label{sec:x0sys}
 
+System Ribeiro
 
+\newcommand{\scaleq}{0.62}
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP42.pdf}	}
+	\caption{Maximale Startwerte -- Variation $m_1$}
+	\label{fig:sysvarm1}
+	%\vspace{15pt}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP42.pdf}	}
+	\caption{Maximale Startwerte -- Variation $m_2$}
+	\label{fig:sysvarm2}
+	%\vspace{15pt}
+\end{figure}
 
