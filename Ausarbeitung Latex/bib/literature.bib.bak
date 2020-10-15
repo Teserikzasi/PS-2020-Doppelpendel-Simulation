@@ -19,13 +19,12 @@
 }
 
 @Book{modsim,
-  title     = {Mehrgrößenreglerentwurf im Zustandsraum},
-  publisher = {Skript},
-  year      = {2018},
   author    = {Ulrich Konigorski},
+  publisher = {Skript},
+  title     = {Modellbildung und Simulation},
+  year      = {2019},
   address   = {Darmstadt},
-  owner     = {elenz},
-  timestamp = {2008.05.09},
+  school    = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt}
 }
 
 @BOOK{Lunze1,
@@ -144,7 +143,7 @@
 @MastersThesis{kämmerer,
   author = {Kämmerer, Andreas},
   school = {TU Darmstadt},
-  title  = {Inbetriebnahme und Regelung eines inversenDoppelpendels},
+  title  = {Inbetriebnahme und Regelung eines inversen Doppelpendels},
   year   = {2009},
   type   = {Studienarbeit},
 }
@@ -155,6 +154,14 @@
   title  = {Reibkompensation am Doppelpendel},
   year   = {2011},
   type   = {Bachelorarbeit},
+}
+
+@Book{matPrakt2,
+  author = {Konigorski, Ulrich},
+  title  = {Praktikum MATLAB/Simulink II},
+  year   = {2019},
+  school = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt},
+  type   = {Skript},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
