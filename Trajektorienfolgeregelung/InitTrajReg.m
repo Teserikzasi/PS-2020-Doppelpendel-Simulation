@@ -1,14 +1,13 @@
 % Initialisierung der Trajektorienfolgeregelung
 global TrajRegData
-global Zustandsermittlung 
 global sysF
 global simparams
 global trj
 global trajName
 
 %% Parameter
-% SchlittenPendelParams = SchlittenPendelParams_Apprich09();
-SchlittenPendelParams = SchlittenPendelParams_Ribeiro20();
+SchlittenPendelParams = SchlittenPendelParams_Apprich09();
+% SchlittenPendelParams = SchlittenPendelParams_Ribeiro20();
 SchlittenPendelParams.Fc0 = 0;
 SchlittenPendelParams.Mc10 = 0;
 SchlittenPendelParams.Mc20 = 0;
@@ -17,7 +16,7 @@ InitSystem(SchlittenPendelParams)
 MotorParams = MotorParams_Franke97();% falls K_UI in MotorParams_Franke97 geändert 
 simparams.gesamtmodell.motor = MotorParams;
 %% Trajektorie
-trajPath = 'Trajektorien\searchResults\Results_odeTesGeb_rib20_T0.005N500\Euler_MPC';
+trajPath = 'Trajektorien\searchResults\Results_app09_T0.005N500_RK4';
 %trajPath = 'Trajektorien\ParameterExams_app09';
 
 trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_Fmax410';
@@ -37,5 +36,5 @@ TrajRegData.xb0 = stTraj.X.data(1,:); % Beobachter-Startwert
 simparams.TrajRegDataF = TrajRegData;
 
 % Art der Zustandsermittlung
-Zustandsermittlung = ["Zustandsmessung","Beobachter","Differenzieren"];
-simparams.Zustandsermittlung = 1; % Zustandsmessung: 1 , Beobachter: 2 , Differenzieren: 3
+% Zustandsermittlung = ["Zustandsmessung","Beobachter","Differenzieren"];
+% simparams.Zustandsermittlung = 1; % Zustandsmessung: 1 , Beobachter: 2 , Differenzieren: 3
