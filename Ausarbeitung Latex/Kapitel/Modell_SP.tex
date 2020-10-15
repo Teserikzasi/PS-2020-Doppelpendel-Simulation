@@ -22,7 +22,7 @@ Dabei gibt es die Variante \emph{Kraftsystem}, das als Eingang die Kraft annimmt
 
 \subsection{Koordinaten}
 
-Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den \textbf{Minimal-\koor} 
+Das System aus Schlitten und Doppelpendel hat 3 Freiheitsgrade, die mit den \emph{Minimal-\koor} 
 \begin{align*}
 	q_0 = x_0  \\
 	q_1 = \varphi_1  \\
@@ -69,7 +69,7 @@ mit den viskosen Dämpfungen
 \end{align*}
 
 Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
-In dieser Arbeit werden die \bwgl\ mithilfe der \textbf{symbolischen Toolbox} von \ml\ gelöst. 
+In dieser Arbeit werden die \bwgl\ mithilfe der \emph{symbolischen Toolbox} von \ml\ gelöst. 
 Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
 
 Mit den obigen Gleichungen werden in \ml\ die für den \emph{Lagrange}-Formalismus benötigten Ableitungen symbolisch berechnet und das \gls\ mit dem symbolischen Solver gelöst und vereinfacht. 
@@ -95,14 +95,19 @@ Um das \spds\ als \zrm\ (mit ausschließlich ersten Ableitungen) darzustellen, w
 Mit den \bwgl\ ergibt sich für das \krs\ (Eingangsgröße $u=F$) das folgende nichtlineare, eingangsafﬁne \zrm:
 \begin{align}
 	\vexp &= \ve{f}(\vex,u)  \\
-		&= \ve{a}(\vex) + \ve{b}(\vex) \cdot F  \label{eq:zrm} \\\vspace{100cm}
+		&= \ve{a}(\vex) + \ve{b}(\vex) \cdot F  
+		\label{eq:zrm} 
+		\\\vspace{100cm}
 	\ddt \begin{bmatrix}
 		\xo \\ \xop \\ \phe \\ \phep \\ \phz \\ \phzp
 	\end{bmatrix} &= \begin{bmatrix}
+		f_1(\vex,u) \\ f_2(\vex,u) \\  f_3(\vex,u) \\  f_4(\vex,u) \\  f_5(\vex,u) \\  f_6(\vex,u)
+	\end{bmatrix}= \begin{bmatrix}
 		\xop \\ a_2(\vex) \\ \phep \\  a_4(\vex) \\ \phzp \\  a_6(\vex)
 	\end{bmatrix} + \begin{bmatrix}
 		0 \\ b_2(\vex) \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
 	\end{bmatrix} \cdot F
+	\label{eq:zrmF}
 \end{align}
 
 Beim Beschleunigungssystem gilt für den Eingang $u=\xopp=a$, womit die Schlittenbeschleunigung direkt vorgegeben und die Dynamik des Schlittens umgangen wird. 
@@ -116,9 +121,10 @@ Das geänderte \gls\ muss wieder gelöst werden und für das \zrm\ folgt:
 	\end{bmatrix} + \begin{bmatrix}
 		0 \\ 1 \\ 0 \\  b_4(\vex) \\ 0 \\  b_6(\vex)
 	\end{bmatrix} \cdot a
+	\label{eq:zrmA}
 \end{align}
 
-Folgende Tabelle \ref{tab:abh} gibt Aufschluss über die Abhängigkeiten von Zuständen und \syp n. 
+\tabref{tab:abh} gibt Aufschluss über die Abhängigkeiten von Zuständen und \syp n. 
 Grau hinterlegte Variablen sind nur im Kraftmodell vorhanden. 
 Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 \begin{table}[h]
@@ -151,7 +157,7 @@ Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sens
 	\end{bmatrix}  \ .
 	\label{eq:hx}
 \end{align}
-Es handelt sich demnach um ein \textbf{SIMO-System} (single input multiple output). 
+Es handelt sich demnach um ein \emph{SIMO-System} (single input multiple output). 
 
 
 \subsection{\crb}\label{sec:crb}
