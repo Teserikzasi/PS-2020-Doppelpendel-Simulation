@@ -25,8 +25,11 @@
 \newcommand{\diff}{Differenzieren}
 \newcommand{\alg}{Algorithmus}
 \newcommand{\ml}{\Matlab}
+\newcommand{\sm}{\Simulink}
 \newcommand{\std}{Standardabweichung}
 \newcommand{\gls}{Gleichungssystem}
+\newcommand{\sgb}{Stellgrößenbegrenzung}
+\newcommand{\avr}{a/v-Regler}
 
 \newcommand{\qq}[1]{\glqq#1\grqq}
 \newcommand{\exref}[1]{Beispiel \ref{#1}}
@@ -48,6 +51,7 @@
 \newcommand{\ye}{y_1}
 \newcommand{\yz}{y_2}
 \newcommand{\xop}{\ensuremath{\dot{x}_0}}
+\newcommand{\xopd}{\ensuremath{\hat{\dot{x}}_0}}
 \newcommand{\xopp}{\ensuremath{\ddot{x}_0}}
 \newcommand{\xep}{\dot{x}_1}
 \newcommand{\xzp}{\dot{x}_2}
@@ -86,11 +90,27 @@
 \newcommand{\vexp}{\ve{\dot{x}}}
 \newcommand{\ddt}{\frac{\ud}{\ud t}}
 
-\newcommand{\api}[1]{\ensuremath{\AP_{#1}}}
+\newcommand{\api}[1]{\ensuremath{\AP{#1}}}
+\newcommand{\apa}[2]{\api{#1} (Auslenkung #2)}
 \newcommand{\ape}{\api{1}}
 \newcommand{\apz}{\api{2}}
 \newcommand{\apd}{\api{3}}
 \newcommand{\apv}{\api{4}}
+\newcommand{\apaz}{\apa{2}{\phz}}
+\newcommand{\apad}{\apa{3}{\phe}}
+\newcommand{\apave}{\apa{4}{\phe}}
+\newcommand{\apavz}{\apa{4}{\phz}}
+
+\newcommand{\vsoll}{\ensuremath{v_\mrm{soll}}}
+\newcommand{\asoll}{\ensuremath{a_\mrm{soll}}}
+\newcommand{\fsoll}{\ensuremath{F_\mrm{soll}}}
+\newcommand{\usoll}{\ensuremath{U_\mrm{soll}}}
+\newcommand{\areal}{\ensuremath{a_\mrm{real}}}
+\newcommand{\freal}{\ensuremath{F_\mrm{real}}}
+\newcommand{\fvorst}{\ensuremath{F_\mrm{vorst}}}
+\newcommand{\fmax}{\ensuremath{F_\mrm{max}}}
+\newcommand{\fav}{\ensuremath{F_{av}}}
+\newcommand{\kpv}{\ensuremath{K_{pv}}}
 
 
 \definecolor{grey}{RGB}{150,150,150}
