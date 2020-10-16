@@ -17,7 +17,7 @@ MotorParams = MotorParams_Franke97();% falls K_UI in MotorParams_Franke97 geänd
 simparams.gesamtmodell.motor = MotorParams;
 %% Trajektorie
 trajPath = 'Trajektorien\searchResults\Results_app09_T0.005N500_RK4';
-% trajPath = 'Trajektorien\TrajOhneGegenindunktion\searchResults\Results_odeTesGeb_rib20_T0.005N500\RK4_MPC';
+% trajPath = 'Trajektorien\TrajOhneGegenindunktion\searchResults\Results_odeTesGeb_rib20_T0.01N350\RK4_MPC';
 %trajPath = 'Trajektorien\ParameterExams_app09';
 
 trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_Fmax410';

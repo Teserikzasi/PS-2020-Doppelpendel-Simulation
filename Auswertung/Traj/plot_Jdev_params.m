@@ -113,7 +113,10 @@ for i=1 : l
         end
     end
 end
-
+fprintf('Parameter: %s\n', poi)
+fprintf('Anzahl ungültiger Trajektorien: %i\n', cnt)
+fprintf('Anzahl gültiger Trajektorien: %i\n', length(vJ_devs))
+fprintf('Gesamt: %i\n', length(vJ_devs)+cnt)
 % Plot
 hFigure = figure();
 grid on
@@ -127,26 +130,27 @@ elseif length(vJ_devs)==1
 else 
     disp('Keine der Trajektorien ist gültig.')
 end
-% Markiert Stützwerte (Apprich09 grün, Ribeiro20 magenta, sonst blau)
+% Markiert Stützwerte
+color_app09 = [0     0     1];
+color_rib20 = [0.85,0.33,0.10];
 for k=1 : length(vPoi)
     if vPoi(k) == app09.(poi)
-        plot(vPoi(k), vJ_devs(k), 'o', 'Color', 'g', 'LineWidth', 2) 
+        plot(vPoi(k), vJ_devs(k), 'square', 'Color', color_app09, 'LineWidth', 2) 
     elseif vPoi(k) == rib20.(poi)
-        plot(vPoi(k), vJ_devs(k), 'o', 'Color', 'm', 'LineWidth', 2)
+        plot(vPoi(k), vJ_devs(k), 'square', 'Color', color_rib20, 'LineWidth', 2)
     else
         plot(vPoi(k), vJ_devs(k), 'o', 'Color', '#0072BD', 'LineWidth', 1)
     end    
 end
-% Plottet ungültige Trajektorien (Infeasability-Konvergenz) als rotes X auf
-% der Abzisse
+% Plottet ungültige Trajektorien (Infeasability-Konvergenz)
 for k=1 : l
     if ~ismember(poi_val(k), vPoi)
         if poi_val(k) == app09.(poi)
-            plot(poi_val(k), 0, 'x', 'Color', 'g', 'LineWidth', 2)
+            plot(poi_val(k), 0, 'x', 'Color', color_app09, 'LineWidth', 2)
         elseif poi_val(k) == rib20.(poi)
-            plot(poi_val(k), 0, 'x', 'Color', 'm', 'LineWidth', 2)
+            plot(poi_val(k), 0, 'x', 'Color', color_rib20, 'LineWidth', 2)
         else
-            plot(poi_val(k), 0, 'x', 'Color', 'r', 'LineWidth', 1)
+            %plot(poi_val(k), 0, 'x', 'Color', [1, 1, 0], 'LineWidth', 0.5)
         end
         
     end

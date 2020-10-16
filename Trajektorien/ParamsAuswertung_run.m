@@ -31,7 +31,8 @@ i=i+1;
 poi_val{i} = 0.06: 0.005 : 0.1;
 i=i+1;
 %% s2
-poi_val{i} = 0.1: 0.02 : 0.3;
+v1 = 0.1: 0.02 : 0.3; v2 = 0:0.001:0.338;
+poi_val{i} = v2;
 %% Plot
 xScale = 'auto';
 for k=1 : length(poi)
