@@ -120,14 +120,14 @@ function plot_velocities(out, save, name, path, format, resolution)
     if vorst
         plot(vT, Freg, 'Color', [1, 0.5, 0.1], 'LineWidth', 1);
         plot(vT, Fsoll, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1); 
         legend('F_{reg}', 'F_{soll}', 'F_{out}');
     elseif ~isempty(Ureal)        
         plot(vT, Ureal*staticGain, 'Color', [0.8, 0.078, 0.184], 'LineWidth', 1);
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1); 
         legend('U_{in}*MotGain', 'F_{out}')
     else
-        plot(vT, Freal, 'Color', [0.3, 0.5, 0.9], 'LineWidth', 1); 
+        plot(vT, Freal, 'Color', [0, 0, 1], 'LineWidth', 1); 
     end
     title('Stellgröße (Kraft F)');
 	ylabel('F [N]');
