@@ -9,5 +9,4 @@ coulMc = false;     % Gelenkreibung nicht berücksichtigen
 coulFc = true;      % Schlittenreibung berücksichtigen
 
 % Starte Suche nach Trajektorien
-searchTrajectories(mode, N, T, sol, params, u_max, ...
-                    coulMc, coulFc)
+searchTrajectories(mode, N, T, sol, params, u_max, coulMc, coulFc)

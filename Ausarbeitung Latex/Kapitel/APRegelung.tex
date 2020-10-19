@@ -1,8 +1,19 @@
 \chapter{Arbeitspunkt-Regelung}\label{cha:apr}
 
-Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun die Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten \siehe{\secref{sec:aps}} sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen (siehe \charef{cha:traj}).
+Nachdem im letzten Kapitel die Modellierung des Gesamtsystems erläutert wurde, stellt sich nun die Frage, wie sich das System regeln lässt. Dabei geht es einerseits um die Regelung an den 4 Arbeitspunkten \siehe{\secref{sec:aps}}, \dah das Stabilisieren und Halten dieser, sowie um \traj n, die das \dpd\ von einem \ap\ in einen anderen überführen (siehe folgendes \charef{cha:trj}).
 
-Beim Reglerentwurf wird dem Vorgehen vergangener Arbeiten gefolgt. 
+Alle \ap -Regelungen vergangener Arbeiten basieren auf einer \lin\ und der anschließenden Auslegung eines \ricc-Reglers.
+Die Güteparameter wurden dabei jedes Mal anders und meist heuristisch bestimmt.
+Da am Versuchsstand nicht alle Zustände gemessen werden können, wurden meistens \beob\ mit Polplatzierung ausgelegt.
+Kämmerer \cite{kämmerer} verglich diesen mit einem Zustandsvariablenfilter, mit welchem allerdings keine zufriedenstellende Ergebnisse gelangen.
+Apprich \cite{apprich} und Kämmerer \cite{kämmerer} setzten Störgrößenbeobachter ein, die in den folgenden Arbeiten nicht mehr verwendet wurden.
+Alle Arbeiten setzten Vorsteuerungsmethoden ein, da die \crb\ am Schlitten bei der Regelung stets problematisch war.
+Chang \cite{chang} erstellte ein Simulationsmodell zur \ap-Regelung, das als Orientierung dient.
+
+Beim Reglerentwurf wird zunächst dem Vorgehen vergangener Arbeiten gefolgt. 
+Einzelne Aspekte in der Steuerung/Regelung werden anschließend verbessert.
+Weiterhin werden die Güteparameter durch Automatisierung optimiert.
+Abschließend wird die Regelbarkeit systematisch untersucht.
 
 
 \section{System-\lin\ und Analyse}%\label{sec:}
@@ -12,6 +23,7 @@ Das nicht-lineare System wird zunächst linearisiert, dessen \ewe\ analysiert, s
 \subsection{\lin}\label{subsec:lin}
 
 Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ linearisiert werden, bevor lineare Regelungsmethoden angewandt werden können. 
+
 \begin{align}
 	\mat{A} &= \left. \frac{\partial \vef(\vex,u_R)}{\partial \vex} \right|_{\vex=\vexr}  
 		= \left. \begin{bmatrix}
@@ -27,6 +39,7 @@ Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ 
 		0 \\ b_2(\vexr) \\ 0 \\  b_4(\vexr) \\ 0 \\  b_6(\vexr)
 	\end{bmatrix}
 \end{align}
+
 Somit ergeben sich für jeden \ap\ unterschiedliche Systemmatrizen \mat{A} und Eingangsmatrizen \ve{B}. Beim \bss\ fällt zusätzlich die zweite Zeile und die zweite Spalte (bis auf die 1) weg, da dort $a_2=0$ ist und keine Abhängigkeit von \xop\ besteht \siehe{\tabref{tab:abh}}, außerdem ist $b_2=1$.
 Die Ausgangsmatrix \mat{C} ist immer gleich, da die Ausgangsgleichung \eqref{eq:hx} linear ist.
 
@@ -54,7 +67,7 @@ Mit den Apprich-Parametern ergeben sich folgende \ewe:
 		\end{tabular}
 	\label{tab:ewappr}
 \end{table}
-Im \ap\ 1 ergeben sich zwei konjugiert-komplexe Polpaare, die sich physikalisch mit der Schwingung der beiden Pendel begründen lassen. Sie befinden sich aufgrund der Dämpfung in der linken s-Halbebene, es ist der einzige stabile \ap. \ap\ 2 und 3 besitzen jeweils ein konjugiert-komplexes Polpaar, da dort das erste \bzw zweite Pendel nach unten zeigt und damit \qq{stabil} ist. Der Realteil ist bei \ap\ 3 deutlich kleiner, was auf die geringere Dämpfung des zweiten Pendelgelenks zurückzuführen ist (siehe \tabref{tab:parappr}). Aufgrund der Instabilität des anderen Pendels ergibt sich jeweils ein positiv reeller \ew. In \ap\ 4 stehen beide Pendel oben, weswegen es dort zwei \ewe\ in der rechten s-Halbebene gibt.
+Im \ap\ 1 ergeben sich zwei konjugiert-komplexe Polpaare, die sich physikalisch mit der Schwingung der beiden Pendel begründen lassen. Sie befinden sich aufgrund der Dämpfung in der linken s-Halbebene, es ist der einzige stabile \ap. \ap\ 2 und 3 besitzen jeweils ein konjugiert-komplexes Polpaar, da dort das erste \bzw zweite Pendel nach unten zeigt und damit \qq{stabil} ist. Der Realteil ist bei \ap\ 3 deutlich kleiner, was auf die geringere Dämpfung des zweiten Pendelgelenks zurückzuführen ist (siehe \tabref{tab:spdparams}). Aufgrund der Instabilität des anderen Pendels ergibt sich jeweils ein positiv reeller \ew. In \ap\ 4 stehen beide Pendel oben, weswegen es dort zwei \ewe\ in der rechten s-Halbebene gibt.
 
 \begin{table}[htbp]
 	\centering
@@ -87,27 +100,33 @@ Voraussetzung für eine Regelung ist die Steuerbarkeit des Systems. Diese kann f
 Das \spds\ (\bss) ist an allen 4 \ap en vollständig steuer- und beobachtbar.
 
 
-\section{Regelungskonzept}
+\section{Aufbau der Regelung}
 
 Die Aufgabe eines Reglers \bzw einer (Vor-)Steuerung ist es nun, anhand der Messgrößen $\vey=(\xo\ \phe\ \phz)^{\transp}$ \eqref{eq:hx} eine geeignete Steuerspannung $U_{\mrm{Steuer}}$ an den Motor vorzugeben. Dabei teilt sich die Steuerung/Regelung in mehrere Schritte auf. 
+
+Die eigentliche Regelung bildet ein \zsr, welcher entweder am \krs\ oder am \bss\ ausgelegt ist. 
+Dessen Stellgröße kann im ersten Fall (\fsoll) direkt an die Motorvorsteuerung gegeben werden.
+Beim Beschleunigungssystem muss die Ausgangsstellgröße \asoll\ in einem weiteren Block zu einer Sollkraft bestimmt werden.
+Diese Aufteilung in einen \ap regler am einfacheren \bss\ und eine unterlagerte Geschwindigkeitsregelung, um der störenden Reibung am Schlitten zu begegnen, hat sich in vergangenen Arbeiten als sinnvoll herausgestellt.
 
 
 \subsection{Zustandsregler}\label{subsec:zsr} 
 
-Die \aprg\ wird mit einem \zsr\ realisiert ($u=-K \vexd$). 
+Die \aprg\ wird mit einem \zsr\ realisiert ($u=-\mat{K} \vexd$). 
 Dieser regelt ein System grundsätzlich in den Ursprung, es muss also noch eine Zustandstransformation durchgeführt werden. 
-Für jeden der \ap e \secref{sec:aps} wird der Zustand, der für den \zsr\ die Endlage darstellt, vorher von den Messgrößen abgezogen. 
+Für jeden der \ap e (\ref{sec:aps}) wird der Zustand, der für den \zsr\ die Endlage darstellt, vorher von den Messgrößen abgezogen. 
 Nach Berechnung der Stellgröße und Schätzung des Zustands wird der \ap\ wieder dazu addiert.
 
-Die Verstärkung $K$ wird durch Lösen des LQ-Problems bestimmt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die positiv-definite Matrix 
+Die Verstärkung $\mat{K}$ wird durch Lösen des LQ-Problems bestimmt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die positiv-definite Matrix 
 $\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$
  zur Bewertung der Zustände und $R$ für die Stellgröße. 
+Da es sich jeweils um ein \emph{linear-zeitinvariantes System} (LZI) handelt, ist die Matrix \mat{P} aus der \ricc-Gleichung, und damit auch \mat{K}, konstant.
 
-Für jeden \ap\ muss ein eigener Regler entworfen werden, da jedem \ap\ ein anderes lineares System zugrunde liegt (siehe \secref{sec:lin}).
+Für jeden \ap\ muss ein eigener Regler entworfen werden, da jedem \ap\ ein anderes lineares System zugrunde liegt \siehe{\secref{subsec:lin}}.
 Der AP-Regler ist somit nur in der Umgebung der Ruhelage gültig und kann zu große Abweichungen aufgrund der Nichtlinearität möglicherweise nicht ausregeln.
 Außerdem sind für jeden \ap\ andere Güteparameter \mat{Q} und $R$ optimal. Die systematische simulative Optimierung erfolgt in \secref{sec:x0qr}.
 
-Das Lösen der \emph{Riccati}-Gleichung und die Berechnung von $K$ für alle \ap e erfolgt automatisiert in \ml.
+Das Lösen der \ricc-Gleichung und die Berechnung von $\mat{K}$ für alle \ap e erfolgt automatisiert in \ml.
 
 
 \subsection{Zustandsermittlung}
@@ -188,7 +207,7 @@ Es ist kein Einschwingen der Startzustände nötig, es gibt keine Probleme bei S
 Ist der AP-Regler nach dem \bss\ ausgelegt, gibt dieser als Stellgröße eine Sollbeschleunigung \asoll\ für den Schlitten vor. 
 Aus dieser muss die geforderte Motorkraft bestimmt werden.
 Sie kann zum Großteil mit einer Vorsteuerung bestimmt werden, die Differenz wird mit einem Geschwindigkeitsvergleich ausgeregelt.
-Diese Aufteilung in einen \ap regler am einfacheren \bss\ und eine unterlagerte Geschwindigkeitsregelung, um der störenden Reibung am Schlitten zu begegnen, hat sich in vergangenen Arbeiten als sinnvoll herausgestellt.
+
 
 \subsubsection{a/v-Regler}
 Die Sollgeschwindigkeit \vsoll\ wird durch Integration von \asoll\ berechnet.
@@ -250,7 +269,20 @@ Es gilt \eqref{eq:xpp}.
 
 \subsection{Motor Vorsteuerung}\label{sec:motvorst}
 
+Bisher wurde für die Regelung die Ermittlung der Kraft, die am Schlitten wirken soll, betrachtet.
+Die Schnittstelle zum Motor besteht durch Vorgabe der Steuerspannung.
+Die ausgegebene Spannung stellt daher letztendlich die eigentliche Stellgröße dar und muss in Abhängigkeit der Sollkraft bestimmt werden.
 
+Auch wenn das Motorsystem für die Simulation genauer modelliert wird \siehe{\secref{sec:mot}}, handelt es sich (abgesehen von einer sehr schnellen Tiefpass-Dynamik) im Wesentlichen um ein reines Verstärkungsglied, das mit der Konstante $K_\mrm{MotorGain}$ \eqref{eq:motgain} beschrieben wird. % \siehe{\secref{subsec:motorparams}}.
+Die \vorst\ rechnet daher mit der Konstante die Sollkraft in die Sollspannung um.
+	\[
+	\usoll=\frac{\fsoll}{K_\mrm{MotorGain}}
+\]
+
+In der Motor Vorsteuerung wird auch die Stellgrößenbegrenzung berücksichtigt. 
+Wie schon in \secref{subsec:beob} erläutert wurde, wird die Motorspannung vor der Ausgabe begrenzt.
+Die tatsächliche Stellgröße kann dadurch an den \beob\ gegeben werden.
+%maximale Kraft \siehe{\secref{subsec:paramshist}}
 
 
 

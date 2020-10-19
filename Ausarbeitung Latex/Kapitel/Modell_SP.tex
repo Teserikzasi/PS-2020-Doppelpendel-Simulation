@@ -47,26 +47,26 @@ Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen f
 Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
 Die kinetische Gesamtenergie ergibt sich zu
-	\[
+\begin{align}
 	T = \einhalb m_0 \, \xop^2 + \einhalb m_1 (\xep^2+\yep^2) + \einhalb m_2 (\xzp^2+\yzp^2) + \einhalb J_1 \, \phep^2 + \einhalb J_2 \, \phzp^2
-\]
+\end{align}
 und die potentielle Energie beträgt
-	\[
+\begin{align}
 	U = m_1\, g\, \ye + m_2\, g\, \yz  \ .
-\]
+\end{align}
 
 Die nicht-konservativen Kräfte/Momente setzen sich aus der Antriebskraft $F$ am Schlitten (in~$\xo$-Richtung) und den Reibungs-Kräften/Momenten zusammen und lauten
-\begin{align*}
+\begin{subequations} \begin{align}
 	Q_0^* &= F + \Fd + \Fc  \\
 	Q_1^* &= \Mde + \Mce - \Mdz - \Mcz  \\
 	Q_2^* &= \Mdz + \Mcz
-\end{align*}
+\end{align} \end{subequations} 
 mit den viskosen Dämpfungen
-\begin{align*}
+\begin{subequations} \label{eq:visd} \begin{align}
 	\Fd  &= -d_0 \xop  \\
 	\Mde &= -d_1 \phep  \\
 	\Mdz &= -d_2 \left(\phzp-\phep\right)  \ .
-\end{align*}
+\end{align} \end{subequations} 
 
 Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
 In dieser Arbeit werden die \bwgl\ mithilfe der \emph{symbolischen Toolbox} von \ml\ gelöst. 
@@ -130,11 +130,11 @@ Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 \begin{table}[h]
 	\centering
 	\caption{Abhängigkeiten von Zuständen und Parametern}
-		\begin{tabular}[t]{cc}
+		\begin{tabular}[t]{ll}
 		\toprule
 			Zustände	&	\textcolor{grey}{\xop}, \phe, \phep, \phz, \phzp	\\
-			Geometrieparameter	&	$l_1$, $s_1$, $s_2$	\\
 			Trägheitsparameter	&	\textcolor{grey}{$m_0$}, $m_1$, $m_2$, $J_1$, $J_2$ \\
+			Geometrieparameter	&	$l_1$, $s_1$, $s_2$	\\
 			Reibungsparameter	&	\textcolor{grey}{$d_0$}, $d_1$, $d_2$, \textcolor{grey}{\Fco}, \Mceo, \Mczo, \textcolor{grey}{\xopth}, \pheth, \phzth	\\
 			Umgebungskonstanten & $g$	\\
 			\bottomrule
@@ -162,31 +162,47 @@ Es handelt sich demnach um ein \emph{SIMO-System} (single input multiple output)
 
 \subsection{\crb}\label{sec:crb}
 
+Neben der einfach zu beschreibenden viskosen Dämpfung \eqref{eq:visd} gibt es in der Realität komplexere Arten von Reibung, die die Systembeschreibung erschweren. 
+Eine Übersicht zu verschiedenen Reibungsmodellen ist in \cite{ribeiro} gegeben.
+
 Da die \crb\ sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. 
 In den bisherigen Modellierungen wurde höchstens die \crb\ des Schlittens berücksichtigt. 
-Da jedoch durch die Neukonstruktion des \dpd s die Messsignalübertragung (zur Vermeidung einer Kabelaufwickelung) über einen Schleifring realisiert wurde, besteht die Vermutung, dass dieser für eine erhöhte \crb\ verantwortlich ist. 
-Dies würde das System bereits um einen sehr kleinen Arbeitsbereich nicht-linear machen, was die Regelung erschwert.
-
-Im vorigen Projektseminar \cite{ribeiro} wurde die Reibung der Pendelstäbe mittels Identifikation ermittelt, aufgeteilt auf den viskosen und den Coulombanteil.
+Bei der Neukonstruktion ist jedoch in den Gelenken eine höhere \crb\ vorhanden \siehe{\secref{subsec:spdparams}}, weswegen diese ebenfalls modelliert wird.
 
 Die Formel der Gleitreibung lautet eigentlich 
 	\[
-	\Fc = \Fco  \cdot  \sign{\dot{x}} \ ,
+	\Fc = \Fco  \cdot  \sign{\xop} \ ,
 \]
-allerdings führt diese Implementierung aufgrund der \mrm{signum}-Funktion zu Komplikationen in der Simulation. 
-Daher wird der Verlauf bei sehr niedrigen Geschwindigkeiten mit der $\tanh$ Funktion angenähert.
-%In \cite{chang} und \cite{kisner} wurde die \crb\ mit der $\arctan$ Funktion modelliert.
-%2/pi*atan(x0_p/x0_p_c2)
+allerdings führt diese Implementierung aufgrund der $\operatorname{signum}$-Funktion \siehe{\figref{fig:signs}} zu Komplikationen in der Simulation.
+In der Nähe des Vorzeichenwechsels ist die Funktion unendlich steil, was bei Nulldurchgängen in der Simulation problematisch ist, weil die Schrittweite dadurch sehr klein werden muss.
+Zwar kann man in \sm\ die Option \qq{Zero Crossing Detection} abschalten, es kommt dann allerdings meistens zu einem \qq{Rattern}. 
+\cite{modsim}
 
-\begin{align}
+
+\begin{figure}[b]
+	\centering
+	\subfloat[\sign{x}]{ \includegraphics[scale=1]{Bilder/sign/sign.pdf}	 \label{fig:signs}}
+	%\hfil
+	\subfloat[$\frac{2}{\pi} \arctan{(x)}$]{	\includegraphics[scale=1]{Bilder/sign/2-pi-atan.pdf}	 \label{fig:atan}}
+	%\hfil
+	\subfloat[$\tanh{(x)}$]{ \includegraphics[scale=1]{Bilder/sign/tanh.pdf} \label{fig:tanh}} 
+	\caption{Annäherung \mrm{signum}-Funktion -- Vergleich}
+	\label{fig:sign}
+\end{figure}
+
+In \cite{chang} und \cite{kisner} wurde der Verlauf der $\operatorname{signum}$-Funktion bei sehr niedrigen Geschwindigkeiten mit der $\arctan$ Funktion angenähert \siehe{\figref{fig:atan}}.
+	\[
+		\Fc=\Fco \cdot \frac{2}{\pi} \arctan \left(\frac{\xop}{150}\right)
+\]
+Die Funktion nähert sich jedoch nur sehr langsam dem Endwert an.
+In dieser Arbeit wird daher die $\tanh$ Funktion verwendet, welche deutlich früher den Endwert annimmt \siehe{\figref{fig:tanh}}.
+
+\begin{subequations} \begin{align}
 	\Fc  &= -\Fco  \cdot \tanh{\left(\frac{\xop}{\xopth}\right)}  \\
 	\Mce &= -\Mceo \cdot \tanh{\left(\frac{\phep}{\pheth}\right)}  \\
 	\Mcz &= -\Mczo \cdot \tanh{\left(\frac{\phzp-\phep}{\phzth}\right)}
-\end{align}
-
+ \end{align} \end{subequations}
 Dabei ist $\xopth$ gerade die Geschwindigkeit, bei der $\tanh(1)=0.7616$ von $\Fco$ erreicht ist.
-
-
 
 
 
@@ -196,11 +212,12 @@ Die Ruhelagen \bzw \ap e eines nichtlinearen Systems ergeben sich aus
 	\[
 	\vexp_R = \ve{f}(\vex_R,u_R) = \ve{0}  \ .
 \]
-Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoretisch unendlich viele Ruhelagen. Es werden daher die folgenden 4 prinzipiell unterschiedlichen betrachtet:
+Für das \spds\ gibt es aufgrund der Periodizität von Sinus und Kosinus theoretisch unendlich viele Ruhelagen. 
+Es werden daher die folgenden 4 prinzipiell unterschiedlichen betrachtet:
 \begin{table}[h]
 	\centering
 	\caption{Die 4 Ruhelagen}
-		\begin{tabular}{lllllllll}
+		\begin{tabular}{ccccccccc}
 		\toprule
 			\ap  & $u$ & \xo & \xop & \phe & \phep & \phz & \phzp & Stabilität  \\
 			\midrule
@@ -217,4 +234,10 @@ Die Schlittenposition \xo\ ist dabei beliebig, da der Schlitten an jeder Positio
 Die Reihenfolge der \ap e entspricht den Pendelpositionen \qq{von unten nach oben}.
 
 
-%Position des Schlittenmittelpunktes x m −0,8 ≤ x ≤ 0,8
+\subsection{Beschränkungen}
+
+Die Länge der Schlittenführung ist am realen Versuchsstand endlich, weswegen die Schlittenposition begrenzt ist.
+Es gilt für die Position des Schlittenmittelpunktes:
+	\[ 
+	 \valunit{-0,8}{m} \leq \xo \leq \valunit{0,8}{m}
+\]
