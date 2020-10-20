@@ -39,12 +39,10 @@ Die Schwerpunktskoordinaten der Pendelstäbe ergeben sich zu
 \end{align*}
 
 
-\subsection{Herleitung der Bewegungsgleichungen}
+\subsection{Herleitung der Bewegungsgleichungen}\label{subsec:bwgl}
 
 Um auf die \bwgl\ des Systems zu gelangen, wird in \cite{modpen} der \emph{Lagrange}-Formalismus verwendet. 
 Dazu werden zunächst die kinetische und potentielle Energie des Gesamtsystems bestimmt sowie die nicht-konservativen Kräfte/Momente. 
-Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die Minimal-\koor. 
-Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
 Die kinetische Gesamtenergie ergibt sich zu
 \begin{align}
@@ -68,17 +66,20 @@ mit den viskosen Dämpfungen
 	\Mdz &= -d_2 \left(\phzp-\phep\right)  \ .
 \end{align} \end{subequations} 
 
-Die Berechnung der Ableitungen und das Lösen des \gls\ geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
-In dieser Arbeit werden die \bwgl\ mithilfe der \emph{symbolischen Toolbox} von \ml\ gelöst. 
-Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
+Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die Minimal-\koor. 
+Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
-Mit den obigen Gleichungen werden in \ml\ die für den \emph{Lagrange}-Formalismus benötigten Ableitungen symbolisch berechnet und das \gls\ mit dem symbolischen Solver gelöst und vereinfacht. 
 Damit ergeben sich die \bwgl\ als Funktion der Minimal-\koor, der Systemparameter und des Eingangs.
 \begin{align*}
 	\xopp  &= f_{\xo}(\dots)  \\
 	\phepp &= f_{\phe}(\dots)  \\
 	\phzpp &= f_{\phz}(\dots)
 \end{align*}
+
+Die Berechnung der Ableitungen und das Lösen des \gls s geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
+In dieser Arbeit werden die \bwgl\ mithilfe der \emph{symbolischen Toolbox} von \ml\ gelöst. 
+Die für den \emph{Lagrange}-Formalismus benötigten Ableitungen werden symbolisch berechnet und das \gls\ mit dem symbolischen Solver gelöst und vereinfacht. 
+Diese Vorgehensweise ist nicht nur weniger fehleranfällig, dadurch lässt sich das System auch sehr flexibel modifizieren.
 
 
 \subsection{\zrm}
@@ -168,6 +169,7 @@ Eine Übersicht zu verschiedenen Reibungsmodellen ist in \cite{ribeiro} gegeben.
 Da die \crb\ sowohl des Schlittens als auch der Pendelstäbe einen wesentlichen Einfluss zu haben scheint, darf diese nicht vernachlässigt werden. 
 In den bisherigen Modellierungen wurde höchstens die \crb\ des Schlittens berücksichtigt. 
 Bei der Neukonstruktion ist jedoch in den Gelenken eine höhere \crb\ vorhanden \siehe{\secref{subsec:spdparams}}, weswegen diese ebenfalls modelliert wird.
+Die eigentlich vorhandene Haftreibung wird nicht modelliert.
 
 Die Formel der Gleitreibung lautet eigentlich 
 	\[
@@ -234,7 +236,7 @@ Die Schlittenposition \xo\ ist dabei beliebig, da der Schlitten an jeder Positio
 Die Reihenfolge der \ap e entspricht den Pendelpositionen \qq{von unten nach oben}.
 
 
-\subsection{Beschränkungen}
+\subsection{Beschränkungen}\label{sec:schlbes}
 
 Die Länge der Schlittenführung ist am realen Versuchsstand endlich, weswegen die Schlittenposition begrenzt ist.
 Es gilt für die Position des Schlittenmittelpunktes:

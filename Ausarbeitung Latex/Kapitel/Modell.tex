@@ -1,6 +1,6 @@
 \chapter{Modellierung}\label{cha:modell}
 
-In diesem Kapitel wird die Modellierung des Gesamtsystems erläutert und auf dessen Implementierung in \Simulink\ eingegangen.
+In diesem Kapitel wird die Modellierung des Gesamtsystems erläutert und auf dessen Implementierung in \ml\ und \Simulink\ eingegangen.
 
 \input{./Kapitel/Modell_SP.tex}
 \input{./Kapitel/Modell_Mot.tex}
@@ -79,12 +79,12 @@ Dies ermöglicht einen Vergleich der unterschiedlichen Systeme hinsichtlich des 
 Aufgrund der Neukonstruktion des \dpd s und dabei aufgetretener Schwierigkeiten in der Regelung ist ein Vergleich zum vorigen System von Interesse.
 Die Parameter der alten Konstruktion werden mit \qq{Apprich09} bezeichnet, obwohl hier auch neu bestimmte Werte von Kisner \cite{kisner} und Brehl \cite{brehl} (Reibung und Schlittenträgheit) enthalten sind.
 Der zweite Parametersatz \qq{Chang19} stellt die Daten der Ausarbeitung von \cite{chang} dar, in welcher die Neukonstruktion stattfand. 
-Da diese erst in der nächsten Arbeit (Ribeiro \cite{ribeiro}) in Betrieb genommen wurde und dort sowohl die CAD-Parameter erneut bestimmt als auch die Reibungsparameter identifiziert wurden, werden diese Werte als korrekte Parameter des neukonstruierten \dpd s betrachtet.
+Da diese erst in der nächsten Arbeit (Ribeiro \cite{ribeiro}) in Betrieb genommen wurde und dort sowohl die CAD-Parameter erneut bestimmt als auch die Reibungsparameter identifiziert wurden, werden deren Werte als korrekte Parameter des neukonstruierten \dpd s betrachtet.
 
 \begin{table}[htbp]
 	\centering
 	\caption{Parameter -- \spds}
-		\begin{tabular}{lcc|ccc}
+		\begin{tabular}{lcc|lll}
 			\toprule
 			Bezeichnung	&	Symbol	&	Einheit	&	Apprich09	&	Chang19	&	Ribeiro20	\\
 			\midrule
@@ -117,22 +117,149 @@ Dies macht das System bereits um einen sehr kleinen Arbeitsbereich nichtlinear, 
 Für die Skalierungsparameter \xopth, \pheth\ und \phzth\ der \crb\ \siehe{\secref{sec:crb}} wird jeweils 0,01 angenommen.
 
 
-\section{Aufbau in \Simulink}
+
+\section{Aufbau des Simulationsmodells}
+
+In dieser Arbeit wird das \dpds\ rein simulativ betrachtet.
+Das Simulationsmodell wird im Vergleich zu Vorgängerarbeiten wesentlich systematischer und detaillierter aufgebaut.
+Dadurch sind umfangreiche und automatisierte Tests möglich, mit denen das System umfassend untersucht werden kann.
+
+Besonders wird in dieser Arbeit Wert auf einen strukturierten, modularen Aufbau gelegt.
+Dies soll flexible Änderungen am System, wie \zB Systemparameter oder Reglerparameter ermöglichen.
+Von der Berechnung der \bwgl\ über die Parametrisierung des Systems bis zur Reglerberechnung kann das Modell vollständig und konsistent initialisiert werden.
+Außerdem soll dadurch die Nutzbarkeit und Wiederverwendbarkeit in zukünftigen Arbeiten gewährleistet sein.
+
+Das Simulationsmodell voriger Arbeiten wie \cite{chang} ist nur wenig strukturiert aufgebaut, enthält Redundanzen und viele fest-kodierte Parameter.
+Es wird daher lediglich zur Orientierung verwendet.
+Hart-kodierte Parameter werden in dieser Arbeit vermieden, sodass jeder Parameter bei der \init\ geändert werden kann (ohne das \sm-Modell ändern zu müssen).
+Auch Gleichungen können variabel ausgelegt werden, was durch die symbolische Schreibweise von \ml\ ermöglicht wird.
+Code-Dopplungen werden vermieden. 
+Die gesamte \init\ ist stark funktionalisiert.
+Dadurch wird sichergestellt, dass Änderungen nur an einer Stelle vorgenommen werden müssen und automatisch direkt an allen entsprechenden Stellen angepasst werden.
+
+Die \sm-Modelle und \ml-Funktionen zur Modellierung des Systems und \init\ des Simulationsmodells befinden sich im Ordner \texttt{Modell}. 
+
+
+\subsection{Aufbau in \Simulink}
+
+\subsubsection{Subsysteme}
+In \sm\ lassen sich sogenannte \emph{Subsysteme} erstellen, um ein Simulationsmodell übersichtlicher zu gestalten.
+Diese Subsysteme (im Folgenden auch Module genannt) lassen sich zudem als Datei externalisieren (\emph{Referenced Subsystem}), wodurch sie einerseits seperat bearbeitet werden können und andererseits an mehreren Stellen modular wiederverwendet werden können.
+Somit wird lediglich in der obersten Schicht (die Testebene) ein \sm-\emph{Model} verwendet.
+
+In dieser Arbeit werden immer Module erstellt, sofern es sinnvoll erscheint.
+Dadurch wird das Gesamtsystem übersichtlich gehalten und kann sehr flexibel modifiziert werden.
+Die einzelnen Module (wie \zB Motor, Gesamtmodell, \zsr) stellen zudem wiederverwendbare Teile dar und können so an verschiedenen Stellen im Projekt eingebaut werden, aber möglicherweise auch am \sm-Modell des Versuchsstandes zum Einsatz kommen.
+So könnte relativ einfach derselbe Regler an dem echten und dem simulierten System eingesetzt und verglichen werden.
+
+\subsubsection{Maske}
+Bei Subsystemen kann eine sogenannte \emph{Maske} eingerichtet werden, wodurch Parameter übergeben werden können.
+In deren Abhängigkeit können in einem Subsystem auch initialisierende Berechnungen durchgeführt werden.
+
+Grundsätzlich können in \sm\ alle Variablen aus dem globalen \ml-Workspace verwendet werden, was allerdings fehleranfällig ist.
+Geschickter ist es, dem Simulationsmodell eine einzige Variable vom Typ \texttt{struct} zu übergeben, in der alle Parameter vorhanden sind.
+So werden jedem Modul über die jeweilige Maske nur genau die Parameter übergeben, von denen es abhängt.
+Dadurch bleibt der Gesamtaufbau modularer und strukturierter.
+
+\subsubsection{Scopes und ToWorkspace}
+Um die Signalverläufe direkt zu untersuchen, werden an allen wichtigen Stellen in den Simulationsmodellen \emph{Scopes} installiert.
+So lässt sich das Systemverhalten oder Probleme in der Regelung schnell und einfach analysieren.
+Oft werden Scopes mit mehreren Eingängen verwendet, um Signale besser vergleichen zu können.
+
+Für alle Variablen, die später in \ml\ für weitere Auswertungen zur Verfügung stehen sollen, werden \emph{ToWorkspace}-Blöcke verwendet.
+Diese geben die Daten an die Ausgabevariable \texttt{out}.
+
+Für die Screenshots werden diese Blöcke meist aus Übersichtsgründen entfernt.
+
+
+\subsection{\Simulink\ Module und Modelle}
+
+\subsubsection{Motor.slx}
+Das Motormodell wird \secref{sec:mot} entsprechend als Modul implementiert \siehe{\figref{fig:simmot}}.
+Eingangsgröße ist die Steuerspannung sowie die Schlittengeschwindigkeit, da sich daraus die Induktionsspannung ergibt.
+Ausgangsgröße ist die Kraft, die am Schlitten wirkt.
+Der V/A Wandler wird als Subsystem implementiert und gibt den Motorstrom aus \siehe{\figref{fig:simva}}.
+Die Berechnung der Strombegrenzung \siehe{\secref{subsec:dcMotor}} wird als \emph{matlabFunction} realisiert.
+Dabei werden die Signale \texttt{satState\_w} (falls die Sättigungsdrehzahl erreicht ist) und \texttt{satState\_I} (falls der Sollstrom nicht erreicht werden kann) gesetzt und können später analysiert werden.
+Die Tiefpass-Charakteristik der Induktivität wird mit dem \mrm{PT_1}-Glied \eqref{eq:UI} dargestellt.
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=0.6]{Bilder/Simulink/motor.PNG}
+	\caption{Motormodell in \sm}
+	\label{fig:simmot}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=0.5]{Bilder/Simulink/va_wandler.PNG}
+	\caption{V/A Wandler in \sm}
+	\label{fig:simva}
+\end{figure}
+
+\subsubsection{SchlittenPendel.slx}
+Das \zrm\ des \spds s wird mit einer \emph{S-Function} dargestellt.
+Die zugehörige \ml-Datei \texttt{SchlittenPendelFunc.m} wird automatisch bei der \init\ erstellt \siehe{\secref{subsec:init}}.
+Lediglich die Anfangswerte werden über die Simulationsparameter übergeben.
+
+\subsubsection{Gesamtmodell.slx}\label{sec:gesamtslx}
+Dieses Modul stellt das gesamte Modell dar und fasst die beiden vorigen Module zusammen \siehe{\figref{fig:simges}}.
+Die Eingangsspannung wird an den Motor gegeben und dessen Ausgang $F$ ist die Schnittstelle zum \sdpd.
+Die Schlittengeschwindigkeit wird zum Motor zurückgeführt, da durch diese die Motordrehzahl bestimmt wird.
+\begin{figure}
+	\centering
+		\includegraphics[scale=0.4]{Bilder/Simulink/gesamtmodell.PNG}
+	\caption{Gesamtmodell in \sm}
+	\label{fig:simges}
+\end{figure}
+
+\subsubsection{Gesamtmodell\_Test.slx}
+Dies ist ein \sm-Modell und bindet das Gesamtmodell-Modul ein.
+Auf dieses können testweise verschiedene Eingangsverläufe gegeben werden, um das Systemverhalten auf Plausibilität zu überprüfen, beispielsweise:
+\begin{itemize}
+	\item Keine Spannung, aber Anregung durch Anfangsauslenkung
+	\item Konstante Spannung
+	\item Sinusförmige Spannung
+\end{itemize}
+Da die durchgeführten Tests am Modell plausible Ergebnisse zeigen, wird im Folgenden von der Korrektheit des Simulationsmodells ausgegangen.
+
+
+\subsection{Parameter}
+
+Größere zusammenhängende Parameterdaten werden als Datei \bzw Funktion ausgelagert, um eine einfache Austauschbarkeit zu erreichen.
+Die drei Parametersätze des \spd s \siehe{\tabref{tab:spdparams}} sowie die Motorparameter befinden sich im Ordner \texttt{Modellparameter}.
+
+
+\subsection{Initialisierung}\label{subsec:init}
+
+\texttt{Init.m}
+%Wie schon in \secref{subsec:bwgl} erwähnt, werden die \bwgl\ des \spds\ symbolisch errechnet.
+%Die Gleichungen werden in \texttt{SchlittenPendelSymF.m} definiert und die Lösungen der drei \bwgl\ bestimmt.
+
+
+\subsection{Auswertung}
+
+Nach einer Simulation ist es nützlich, die wesentlichen Ergebnisse direkt ablesen zu können (\zB ob der Schlitten außerhalb der Begrenzung war oder ob der Motor in Sättigung war).
+Außerdem wird eine Plot-Funktion implementiert, die die wichtigsten Verläufe darstellt.
+Um das Verhalten des \dpd s besser interpretieren zu können, wird zudem eine Animationsfunktion erstellt, die direkt das Pendelverhalten visualisiert.
+Die entsprechenden \ml-Funktionen sind im Ordner \texttt{Auswertung} vorhanden.
+
+\subsubsection{plot}
+
+\subsubsection{animate}
 
 
 
-\section{Implementierung in \Matlab}
+\subsection{Weitere \Matlab-Funktionen}
 
-%Modell
-%
-%\textsc{Init.m}
-%
-%\emph{SchlittenPendelNLZSR.m}
-%
-%\textit{SchlittenPendelSymA.m}
-%
-%\textsl{SchlittenPendelSymF.m}
-%
-%\textbf{SchlittenPendelRuhelagen.m}
-%
-%\texttt{SchlittenPendelFunc.m}
+
+
+\texttt{SchlittenPendelNLZSR.m}
+
+\texttt{SchlittenPendelSymA.m}
+
+\texttt{SchlittenPendelSymF.m}
+
+\texttt{SchlittenPendelRuhelagen.m}
+
+\texttt{SchlittenPendelFunc.m}

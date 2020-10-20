@@ -173,7 +173,7 @@ mit
 
 Hierfür lässt sich der linear-zeit\emph{in}variante LQ-Reglerentwurf aus \secref{subsec:zsr} übertragen, indem das zeitvariante Gütemaß 
 	\[
-	J(t) = \int_{0}^{\infty} \Delta \ves{x}^T(t) \mat{Q} \Delta \ves{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
+	J(t) = \int_{0}^{\infty} \Delta \ve{x}^\transp(t) \mat{Q} \Delta \ve{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
 \]
 
 durch Lösen der zeitvarianten \emph{Riccati}-Differentialgleichung
@@ -197,11 +197,11 @@ berechnen.
 
 Für die Implementierung der Linearisierung und die Berechnung der Reglerverstärkung werden die vom Fachgebiet \textsc{rtm} zur Verfügung gestellten "`common"'-Funktionen \texttt{linSys} und \texttt{getTrajFBController\_LQR} verwendet. Um die Regelung zu initialisieren wird das \Matlab-Skript \texttt{InitTrajReg} erstellt. Die Initialisierung beinhaltet das Laden eines Modellparametersatzes und der zu simulierenden Trajektorie, die Berechnung des trajektorienspezifischen Zustandsreglers sowie die Bereitstellung der Reglerdaten für die Simulation. 
 
-Das Simulationsmodell ist in Abbildung \ref{fig:TFR_Simulink} dargestellt.
+Das Simulationsmodell ist in \figref{fig:TFR_Simulink} dargestellt.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
-		\includegraphics[width=0.98\textwidth]{Bilder/Trajektorien/TFR_Simulink.PNG}
+		\includegraphics[width=0.98\textwidth]{Bilder/Simulink/TFR.PNG}
 	\caption{Trajektorienfolgeregelung in Simulink}
 	\label{fig:TFR_Simulink}
 \end{figure}
@@ -323,7 +323,7 @@ unterschieden. Zum besseren Verständnis soll die Zuordnung der dargestellten Er
 
 Zunächst wird der Eintrag links oben in \tabref{tab:T001N350Fmax400} betrachtet. Hierbei wird die Vergleichstrajektorie mit dem Apprich-Parametersatz und dem Euler-Verfahren berechnet und anschließend auch wieder mit dem Euler-Verfahren am Schlittendoppelpendel simuliert. Die in \figref{fig:F400T0.01_app_euler_ode1} dargestellten Ergebnisse zeigen die Verläufe der Ausgänge und der Stellkraft für das zunächst ungeregelte System. Es ist zu erkennen, dass der Aufschwung ohne Regelung gelingt, AP4 jedoch nicht gehalten wird. Das Ergebnis wird daher als \textit{leicht instabil} beurteilt. In der anschließenden Simulation am geregelten System kann das Pendel schließlich bis zum Ende der Simulationszeit stabilisiert werden.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_app_euler_ode1.pdf}
 	\caption{$T=0,01$, $N=350$, Apprich-Parameter, Euler-MPC, ode1-Sim, ohne Regelung}
@@ -335,7 +335,8 @@ Mit den Verfahren \texttt{ode4} und \texttt{ode45} am ungeregelten System zeigen
 Die berechnete Trajektorie lässt sich zwar stabilisieren, jedoch nur wenn die bei der Trajektorienberechnung gemachten Schrittfehler durch das gleiche Verfahren in der Simulation näherungsweise reproduziert werden. Dass die Steuerung alleine nicht ausreicht, obwohl mit gleicher numerischer Fehlerfortpflanzung simuliert wird, lässt sich einerseits damit begründen, dass die Nebenbedingungen des Optimierungsverfahrens mit bestmöglicher, jedoch endlicher Genauigkeit eingehalten werden. Die beobachteten Genauigkeiten für die Nebenbedingungen liegen zwischen $10^{-13}$ und $10^{-34}$ für (lokal) optimale Lösungen. Aufgrund numerischer Ungenauigkeiten erreicht das Pendel zudem auch bei einer mittels Optimalsteuerungsentwurf berechneten Trajektorie den Arbeitspunkt AP4 nicht exakt und schwingt zurück \cite{matPrakt2}. Andererseits ist insbesondere zu beachten, dass der zu erreichende Endwert durch die Optimierung lediglich angenähert wird. Die im Rahmen der Arbeit beobachteten absoluten Fehler einzelner Zustandsgrößen im letzten Prädiktionsschritt lagen bei optimalen Lösungen im Bereich von $10^{-5}$ und $2 \cdot 10^{1}$. 
 
 Als weiteres Beispiel wird die für den Ribeiro-Parametersatz und das RK4-Verfahren berechnete Trajektorie in der Simulation mit \texttt{ode4} betrachtet. Die Verläufe sind für das ungeregelte System in \figref{fig:F400T0.01_rib_rk4_ode4} zu sehen. 
-\begin{figure}[h]
+
+\begin{figure}
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_rib_rk4_ode4.pdf}
 	\caption{$T=0,01$, $N=350$, Ribeiro-Parameter, RK4-MPC, ode4-Sim, ohne Regelung}
@@ -344,7 +345,8 @@ Als weiteres Beispiel wird die für den Ribeiro-Parametersatz und das RK4-Verfah
 
 Es ist deutlich ersichtlich, dass der Aufschwung nicht geschafft wird. Das erste Pendel fällt bereits gleich zu Anfang des Aufschwungs zurück, sodass in der Folge beide Pendel unkontrolliert zu schwingen beginnen. Die Verläufe werden daher als \textit{instabil} bewertet.
 In \figref{fig:F400T0.01_rib_rk4_ode4_TFR_QR-alt} sind demgegenüber die Verläufe mit Trajektorienfolgeregelung zu sehen. 
-\begin{figure}[h]
+
+\begin{figure}
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_rib_rk4_ode4_TFR_QR-alt.pdf}
 	\caption{$T=0,01$, $N=350$, Ribeiro-Parameter, RK4-MPC, ode4-Sim, mit Regelung}
@@ -423,7 +425,8 @@ Durch Variation der QR-Parameter können die Simulationsergebnisse zudem noch we
 \end{table}
 
 Die Ausgangsverläufe für die Simulation mit \texttt{ode45} und den neuen QR-Parametern sind in \figref{fig:F410T0.005_app_rk4_ode45_TFR_QR-neu} dargestellt. Im Vergleich zu den Plots in \secref{subsec:ohneInd} wird im Stellgrößenverlauf zusätzlich zwischen $F_\mrm{in}$ und $F_\mrm{out}$ unterschieden. $F_\mrm{in}$ bezeichnet den durch Regler und Trajektorie festgelegten Stellwert, der auf das Gesamtsystem gegeben wird. Auf Grund der Strombegrenzungskennlinie (vgl. \figref{fig:Stromkennlinie}) kann am Ausgang des Motors jedoch ein abweichender Kraftverlauf entstehen, der mit $F_\mrm{out}$ dargestellt wird. Da die Stromkennlinie in den Nebenbedingungen der Trajektorienberechnung berücksichtigt wird, entstehen Abweichungen zwischen $F_\mrm{in}$ und $F_\mrm{out}$ in erster Linie auf Grund des Reglers. 
-\begin{figure}[h]
+
+\begin{figure}
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F410T0.005_app_rk4_ode45_TFR_QR-neu.pdf}
 	\caption{$T=0,005$, $N=500$, Apprich-Parameter, RK4-MPC, ode45-Sim, mit Regelung}
@@ -531,37 +534,37 @@ Diskussion in Bearbeitung...
 \end{table}
 
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/Trajektorien/m1.pdf}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/m1.pdf}
 	\caption{Variation $m_1$}
 	\label{fig:m1} % etwas allgemein oder?
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/Trajektorien/m2.pdf}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/m2.pdf}
 	\caption{Variation $m_2$}
 	\label{fig:m2}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/Trajektorien/J1.pdf}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/J1.pdf}
 	\caption{Variation $J_1$}
 	\label{fig:J1}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/Trajektorien/J2.pdf}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/J2.pdf}
 	\caption{Variation $J_2$}
 	\label{fig:J2}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/Trajektorien/s2.pdf}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/s2.pdf}
 	\caption{Variation $s_2$}
 	\label{fig:s2}
 \end{figure}
@@ -569,50 +572,55 @@ Diskussion in Bearbeitung...
 
 
 
-\chapter{Kommentare}
-lies besser quell tex
-
-Insgesamt gute Arbeit!
-Hast sehr viel geschrieben, ich glaube manches hätten wir nicht gebraucht.
-Sprachlich und Rechtschreibung hatte ich kaum was auszusetzen.
-Latex Formatierung hab ich angepasst
-Man merkt, dass du gegen Ende gehetzter warst ;)
-
-Generell: an manchen abschnitten wären unterabschnitte praktisch
-Kapitel 4.2: evtl noch unterabschnitte wie zb Gütefunktion, Nebenbedingungen...
-Kürzere Unterkapitelnamen:  "`Implementierung der"' weglassen
-ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig
-
-Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...}
-Betonungen (zb stabil) machen als texttt keinen sinn, sondern kursiv
-Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$)   kleiner gleich?
-rte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert     m?
-mal fehlt das é... empfehle dir daher einen command: {Fauvé \cite{fauve}}
-nicht das gerade \ves{x} verwenden, sondern \vex
-B machen wir allgemein als Matrix, K auch
-riccati DGL %b^2 vector^2 was soll das sein?
-transponiert gerades T (\transp)
-Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.    kann man sparen
-Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich
-4.5.1 Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
-4.5.3 Unterschiede ist hässlich, bitte als items
-Überprüf mal die labels T001N350Fmax400 da wird eine falsche tabelle angegeben
-bezeichnung "`leicht instabil"' ungünstig
- den Arbeitspunkt AP4 nicht exakt und schwingt zurück -  zitat von praktikum unklar
-Begriff  Stabilisierbarkeit finde ich hier fragwürdig. Das würde ich als Variation der Parameter verstehen. Aber sonst für einen Fall nennt man besser numerische stabilität
-tab:NeueQR 4.5 ist nicht an deiner gewünschten position. evtl mit [h] ausprobieren. 
-461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar
-subref gibts net
-462 und durch ein rotes.
-
-
-%%%%%%%%%%% Kommentare Motor
-
-vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout)
-"auf Grund" find ich hässlich
-Spannungs-Strom-Wandlers ??
-eq:Iconst  IaMAX(w)=Iwmax?
-datenblatt
-tau el: einheit
-Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin
-wemk =?
+%\chapter{Kommentare}
+%lies besser den quell tex
+%
+%Insgesamt gute Arbeit!
+%Hast sehr viel geschrieben, ich glaube manches hätten wir nicht gebraucht.
+%Sprachlich und Rechtschreibung hatte ich kaum was auszusetzen.
+%Latex Formatierung hab ich angepasst
+%Man merkt, dass du gegen Ende gehetzter warst ;)
+%
+%Generell: an manchen abschnitten wären unterabschnitte praktisch
+%Kapitel 4.2: evtl noch unterabschnitte wie zb Gütefunktion, Nebenbedingungen...
+%Kürzere Unterkapitelnamen:  "`Implementierung der"' weglassen
+%ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig
+% Tabelle Überschrift
+% Figures habe ich mal als gleitende abbildung gemacht
+%
+%Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...}
+%Betonungen (zb stabil) machen als texttt keinen sinn, sondern kursiv
+%Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$)   kleiner gleich?
+%rte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert     m?
+%mal fehlt das é... empfehle dir daher einen command: {Fauvé \cite{fauve}}
+%4.3 J(t) ? mathematisch fragwürdig
+%nicht das gerade \ves{x} verwenden, sondern \vex
+%B machen wir allgemein als Matrix, K auch
+%riccati DGL %b^2 vector^2 was soll das sein?
+%transponiert gerades T (\transp)
+%Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.    kann man sparen
+%Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich
+%4.5.1 Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
+%4.5.3 Unterschiede ist hässlich, bitte als items
+%Überprüf mal die labels T001N350Fmax400 da wird eine falsche tabelle angegeben
+%bezeichnung "`leicht instabil"' ungünstig
+ %den Arbeitspunkt AP4 nicht exakt und schwingt zurück -  zitat von praktikum unklar
+%Begriff  Stabilisierbarkeit finde ich hier fragwürdig. Das würde ich als Variation der Parameter verstehen. Aber sonst für einen Fall nennt man besser numerische stabilität
+%tab:NeueQR 4.5 ist nicht an deiner gewünschten position. evtl mit [h] ausprobieren. 
+%461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar
+%subref gibts net
+%462 und durch ein rotes.
+%
+%
+%%%%%%%%%%%% Kommentare Motor
+%
+%vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout)
+%"auf Grund" find ich hässlich
+%Spannungs-Strom-Wandlers ??
+%eq:Iconst  IaMAX(w)=Iwmax?
+%datenblatt
+%tau el: einheit
+%Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin
+%wemk =?
+%KG ist leider nicht konsistent zu simulink
+%F=M/Kg fehlt

@@ -5,23 +5,23 @@ Das Motormodell besteht aus den drei Baugruppen Spannungs-Strom-Wandler, Gleichs
 \subsection{Spannungs-Strom-Wandler}
 
 Bei dem am Versuchsstand eingesetzten Spannungs-Strom-Wandler handelt es sich um einen Servoverstärker, der ursprünglich zur Drehzahlregelung von Gleichstrommotoren vorgesehen war. Entsprechend folgt der Verstärker dem Prinzip einer übergeordneten Drehzahlregelung mit unterlagerter Stromregelung. Für die Anwendung am Versuchsstand ist der übergeordnete Drehzahlregelkreis jedoch aufgetrennt und in einen Spannungs-Strom-Wandler umfunktioniert worden. Dieser dient zur Vorgabe eines konstanten Ankerstroms mittels Pulsweitenmodulation (PWM) der Zwischenkreisspannung des Wandlers proportional zur eingehenden Steuerspannung. Das stationäre Verhalten kann daher durch einen Proportionalitätsfaktor $K_{UI}$ beschrieben werden.
-	\[
+\begin{align}
 	I_a = K_{UI} \cdot U_{\mrm{Steuer}}
-\]
+\end{align}
 
 Gemäß Franke \cite{franke} lässt sich die Dynamik des Wandlers durch ein \mrm{PT_1}-Glied modellieren, sodass sich für den Wandler im Laplace-Bereich die Gleichung
-	\[
+\begin{align} \label{eq:UI}
 	I_a(s) = \frac{K_{UI}}{1+T_{UI} \cdot s} \cdot U_{\mrm{Steuer}}(s)
-	\]
+\end{align}
 ergibt.
 
 
 \subsection{Gleichstrommotor}\label{subsec:dcMotor}
 
 Bei dem verwendeten Motor handelt es sich um eine fremderregte Gleichstrommaschine, wobei die magnetische Erregung durch einen Permanentmagneten erzeugt wird \cite{franke}. Das elektromagnetische Drehmoment des Gleichstrommotors ist näherungsweise proportional zum Ankerstrom \cite{binder}. Hierbei wird vorausgesetzt, dass keine magnetische Sättigung vorliegt.
-\[
+\begin{align}
 	M_e = K_I \cdot I_a
-\]
+\end{align}
 
 Neben dem elektromagnetischen Drehmoment sind außerdem parasitäre Reibmomente zu berücksichtigen. Die Modellierung der Reibung von Motor und Getriebe wird zusammen mit der Schlittenreibung in \secref{sec:spdModell} behandelt. Ein rückwirkendes Moment durch die Federkraft des Riemens wird auf Grund der Annahme unendlicher Riemensteifigkeit vernachlässigt. 
 
@@ -101,14 +101,14 @@ I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
 
 \subsection{Getriebe}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=0.5\textwidth]{Bilder/Motor/Getriebe.PNG}
 	\caption{Getriebe \cite{franke}}
 	\label{fig:Getriebe}
 \end{figure}
 
-Die Rotorbewegung des Motors wird über das in Abbildung \ref{fig:Getriebe} dargestellte Getriebe und das Antriebszahnrad auf den Zahnriemen weitergegeben. Auf Grund der hohen Steifigkeit des mit eingebetteten Stahlseilen unterstützten Riemens wird dieser wie in Apprich \cite{apprich} als unendlich starr angenommen, sodass die Verbindung von Motor und Schlitten ohne Federkopplung durch eine Übersetzungskonstante modelliert werden kann.
+Die Rotorbewegung des Motors wird über das in \figref{fig:Getriebe} dargestellte Getriebe und das Antriebszahnrad auf den Zahnriemen weitergegeben. Auf Grund der hohen Steifigkeit des mit eingebetteten Stahlseilen unterstützten Riemens wird dieser wie in Apprich \cite{apprich} als unendlich starr angenommen, sodass die Verbindung von Motor und Schlitten ohne Federkopplung durch eine Übersetzungskonstante modelliert werden kann.
 \[
 	\xop = K_G \cdot \omega
 \]

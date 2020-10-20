@@ -12,8 +12,28 @@ Chang \cite{chang} erstellte ein Simulationsmodell zur \ap-Regelung, das als Ori
 
 Beim Reglerentwurf wird zunächst dem Vorgehen vergangener Arbeiten gefolgt. 
 Einzelne Aspekte in der Steuerung/Regelung werden anschließend verbessert.
-Weiterhin werden die Güteparameter durch Automatisierung optimiert.
-Abschließend wird die Regelbarkeit systematisch untersucht.
+Die Reglerparameter der vorigen Arbeiten werden überprüft und optimiert.
+Außerdem wird der Einfluss des \beob\ anlysiert.
+
+\begin{figure}[hb]
+	\centering
+		\includegraphics[width=0.4\textwidth]{Bilder/Regelung Vorgehen.pdf}
+	\caption{Vorgehen bei der AP-Regelung }
+	\label{fig:regvorg}
+\end{figure}
+
+\figref{fig:regvorg} stellt das prinzipielle Vorgehen bei der Untersuchung und Optimierung der \ap-Regelung dar.
+Es werden zunächst Auswertungsmethoden implementiert, die einzelne Simulationstests evaluieren.
+Mit den Anfangswerttests wird das Ermitteln der maximalen Winkelabweichung, ab welcher das System nicht mehr stabilisiert werden kann, automatisiert.
+Dadurch können im nächsten Schritt die Güteparameter systematisch optimiert werden.
+Abschließend wird die Regelbarkeit in Abhängigkeit der Systemparameter untersucht.
+
+Regler können nach verschiedenen Gesichtspunkten wie Dynamik, Überschwingen, Energieverbrauch optimiert werden.
+In dieser Arbeit wird bei der Untersuchung und Optimierung des \dpd s stets die Stabilität priorisiert.
+Die Optimierung des Einschwingvorgangs steht nicht im Vordergrund.
+Daher werden vor allem die instabilen \ap e 2, 3 und 4 untersucht.
+Außerdem werden hauptsächlichen die maximalen Winkelabweichungen betrachtet, da diese wesentlich für die Stabiltät sind.
+Horizontale Fahrten in x-Richtung sind zwar möglich, eventuell müssen dafür aber andere Reglerparameter eingesetzt werden.
 
 
 \section{System-\lin\ und Analyse}%\label{sec:}
@@ -100,7 +120,7 @@ Voraussetzung für eine Regelung ist die Steuerbarkeit des Systems. Diese kann f
 Das \spds\ (\bss) ist an allen 4 \ap en vollständig steuer- und beobachtbar.
 
 
-\section{Aufbau der Regelung}
+\section{Aufbau der Regelung}\label{sec:aufbaureg}
 
 Die Aufgabe eines Reglers \bzw einer (Vor-)Steuerung ist es nun, anhand der Messgrößen $\vey=(\xo\ \phe\ \phz)^{\transp}$ \eqref{eq:hx} eine geeignete Steuerspannung $U_{\mrm{Steuer}}$ an den Motor vorzugeben. Dabei teilt sich die Steuerung/Regelung in mehrere Schritte auf. 
 
@@ -129,7 +149,7 @@ Außerdem sind für jeden \ap\ andere Güteparameter \mat{Q} und $R$ optimal. Di
 Das Lösen der \ricc-Gleichung und die Berechnung von $\mat{K}$ für alle \ap e erfolgt automatisiert in \ml.
 
 
-\subsection{Zustandsermittlung}
+\subsection{Zustandsermittlung}\label{subsec:zse} 
 
 Ein \zsr\ benötigt zur Regelung zu jedem Zeitpunkt die Information aller Zustände \vex\ \eqref{eq:vex} des Systems. Beim \spds\ werden die drei Zustände \xo, \phe\ und \phz\ gemessen. Deren Ableitungen, die Zustände \xop, \phep\ und \phzp\ müssen noch ermittelt werden. Dabei wird von drei Möglichkeiten ausgegangen, die in der Simulation miteinander verglichen werden können:
 \begin{enumerate}
@@ -230,7 +250,7 @@ Aus diesem Grund wird \asoll\ vor der Integration mit einem Sättigungsglied auf
 \] 
 begrenzt.
 
-\subsubsection{\vorst\  (M,C,D)}
+\subsubsection{\vorst\  (M,C,D)}\label{sec:vorstmcd}
 Der \avr\ alleine könnte die Schlittenkraft zwar regeln, allerdings kann der Hauptteil der Kraft mit einer Vorsteuerung bestimmt werden, wodurch die Dynamik besser ist.
 Die Vorsteuerung besteht im Wesentlichen aus der Trägheitskraft, da bei reiner Betrachtung des Schlittens $\fsoll=m_0 \asoll$ gilt. 
 Wenn davon ausgegangen wird, dass die Reibungsparameter hinreichend genau bestimmt wurden, kann auch die Reibung des Schlittens kompensiert werden.
@@ -289,13 +309,162 @@ Die tatsächliche Stellgröße kann dadurch an den \beob\ gegeben werden.
 
 \section{Simulationsmodell in \Simulink}
 
+Die \sm-Modelle und \ml-Funktionen zur \ap-Regelung befinden sich im Ordner \texttt{Regelung}.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.00\textwidth]{Bilder/Simulink/ap_regelung_test ohne outofc.PNG}
+	\caption{Aufbau der \ap-Regelung}
+	\label{fig:simapr}
+\end{figure}
+
+Die \ap-Regelung wird wie in \secref{sec:aufbaureg} beschrieben als \sm-Modell implementiert \siehe{\figref{fig:simapr}}.
+Das Gesamtmodell-Modul \siehe{\secref{sec:gesamtslx}} wird hier eingebunden und stellt die Regelstrecke dar.
+Davor befinden sich drei Blöcke der Regelung/Vorsteuerung.
+Alternativ kann auch zum \ap-Regler am Kraftsystem umgeschaltet werden.
+
+\subsubsection{APRegler.slx}
+Ist eine Art \qq{Wrapper} für den eigentlich \zsr, um die \ap-Transformation durchzuführen.
+Erwartet als Parameter die Daten zum \ap.
+
+\subsubsection{Zustandsregler.slx}
+Implementiert einen gewöhnlichen \zsr, bei dem alle Arten der \ze\ \siehe{\secref{subsec:zse}} möglich sind \siehe{\figref{fig:simzsr}}.
+Die Auswahl wird durch ein \emph{Variant Subsystem} realisiert, das durch die Variable \texttt{simparams.Zustandsermittlung} angesteuert wird \siehe{\figref{fig:simzse}}.
+Die Stellgröße für den \beob\ kann zwischen intern und extern umgeschaltet werden.
+Benötigt als Parameter die Verstärkung \texttt{K} sowie eventuelle Daten für den \beob.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{Bilder/Simulink/zsr.PNG}
+	\caption{\zsr\ in \sm}
+	\label{fig:simzsr}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.4\textwidth]{Bilder/Simulink/zustandsermittlung.PNG}
+	\caption{\ze\ in \sm}
+	\label{fig:simzse}
+\end{figure}
+
+\subsubsection{Beobachter.slx}
+Implementiert einen Standard-\beob. 
+Eingänge sind \texttt{u} und \texttt{y}, Ausgang sind die geschätzten Zustände \texttt{x\_est}.
+Die Matrizen des linearen Systems, sowie \texttt{L} und die \beob startwerte werden über die Maske übergeben.
+
+\subsubsection{MotorVorsteuerung.slx}
+Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
+
+\subsubsection{Vorsteuerung\_Fa\_avRegler.slx}
 
 
-\section{Implementierung in \Matlab}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.7\textwidth]{Bilder/Simulink/Fa_vorst.PNG}
+	\caption{Aufbau der Vorsteuerung}
+	\label{fig:simfav}
+\end{figure}
 
+\subsubsection{SchlittenVorsteuerung.slx}
+Enthält die \qq{alte} Variante der Vorsteuerung \siehe{\secref{sec:vorstmcd}}.
+Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet. 
+
+\subsubsection{SchlittenGleichungKraft.slx und SchlittenGleichungBeschleunigung.slx}
+
+
+\subsection{\init}
+
+
+
+\subsection{Weitere \Matlab-Funktionen}
+
+\subsubsection{SimAP}
 
 
 \section{Anfangswert-Tests}\label{sec:x0test}
+
+Ziel dieser Arbeit ist die "`Regelbarkeit"' des Systems zu untersuchen.
+Dafür müssen zunächst Kriterien definiert werden, inwiefern das System unter festgelegten System- und Entwurfsparametern regelbar ist.
+
+Dazu wird wieder \figref{fig:regvorg} herangezogen.
+Ist ein System fest ausgelegt, können die verschiedenen \ap e mit bestimmten Startwerten getestet werden.
+Dabei gibt es jedoch unzählige Kombinationsmöglichkeiten, die nicht alle getestet werden können.
+Es muss daher eine Auswahl an Startwerten getroffen werden (beispielsweise wird immer nur ein Zustand gesetzt, alle anderen sind am \ap).
+Selbst dann ist es mit manuellem Testen und Ausprobieren aufwändig, ein umfassendes Bild vom Regelverhalten zu erlangen.
+Die Optimierung der "`äußeren Schleifen"' wird somit langwierig und auf diese Weise nicht zielführend.
+
+Daher wird die "`untere Schleife"' automatisiert.
+Wird ein \ap-Test durchgeführt, können die Simulationsdaten ausgewertet werden und gewisse Gütemaße und Performance-Indikatoren bestimmt werden, um die Regelgüte zu beschreiben.
+Im Vordergrund steht aber meist die Stabilität und damit die Frage, bei welchen Werten diese nicht mehr vorhanden ist.
+
+
+\subsection{Auswertung eines \ap-Tests}
+
+Wenn \texttt{SimAP} aufgerufen wird, werden neben den Simulationsdaten auch die Ergebnisse von \texttt{Auswertung/AP/APAuswertung} zurückgegeben.
+Dort werden \ua folgende Gütemaße, die an das übliche quadratische \ricc-Gütemaß angelehnt sind, berechnet:
+\begin{subequations} \begin{align} 
+	J_x &= \int_{0}^{\tend} \dvex^\transp(t) \, \mat{Q} \, \dvex(t)  \, \ud t = \int_{0}^{\tend} \Delta x_\mrm{norm}(t)  \, \ud t  \\
+	J_{x,\mrm{est}} &= \int_{0}^{\tend} \dvexest^\transp(t)  \,\mat{Q}  \,\dvexest(t)  \, \ud t  \\
+	J_u &= \int_{0}^{\tend}  R \cdot \Delta u(t)^2 \, \ud t	\\
+	J_F &= \int_{0}^{\tend}  R \cdot F(t)^2 \, \ud t
+\end{align} \end{subequations}
+mit
+\begin{align*}
+	\mat{Q} &= \diag{25, 1, 50, 1, 50, 1 } \\
+	R &= 1 
+\end{align*}
+In \ml\ werden sie als Summe berechnet (der Einfachheit halber konstante Schrittweite vorausgesetzt).
+
+Für die Beurteilung der Stabilität, also ob der Zustand am Ende der Simulationszeit noch in der Nähe des \ap es ist, wird
+$\Delta x_\mrm{norm}(\tend)$
+verwendet. Ist dieser skalare Wert unter einer festgelegten Schranke, wird von einer Stabilisierung des \ap es ausgegangen.
+
+Außerdem wird für jeden Zustand die Maximalabweichung vom \ap\ bestimmt, da diese ein wichtiges Gütekriterium ist, insbesondere die Schlittenposition, da diese Beschränkungen unterliegt \siehe{\secref{sec:schlbes}}.
+
+Des Weiteren kann anhand von $\Delta x_\mrm{norm}(t)$ eine Einschwingzeit bestimmt werden.
+Diese ist dort, wo der Norm-Verlauf eine gewisse Schranke nicht mehr überschreitet.
+
+
+\subsection{x0-Test}
+
+Die Funktion \texttt{Regelung/x0\_Tests/x0\_Test.m} stellt die Basis für einen Anfangswerttest dar.
+Für den angegebenen \ap\ ermittelt sie mit einzelnen Simulationen und steigenden Anfangsauslenkungen vom \ap\ schrittweise die maximalen Startwerte.
+Dabei wird mit obigen Methoden ermittelt, ob die Stabilisierung erfolgreich war.
+Falls nicht, wird abgebrochen und der Maximalwert sowie einige der Gütemaße für allen Einzelergebnisse zurückgegeben.
+
+Die Schrittweite \texttt{y\_st} = [ \texttt{x\_st} \texttt{phi1\_st} \texttt{phi2\_st} ] gibt die Schrittweite an, mit der die Tests ausgeführt werden.
+Eine kleinere Schrittweite löst zwar die Ergebnisse besser auf, führt aber zu einer höheren Rechenzeit.
+
+Die Ergebnisse eines Anfangswerttests an \apv\ sind beispielhaft in \figref{fig:x0test} dargestellt.
+Auf der Abszisse wird der Startwert der Auslenkung (hier \phz) aufgetragen.
+In Abhängigkeit von dieser werden die maximalen Abweichungen der drei Ausgänge vom \ap\ dargestellt.
+In diesem Fall kann das System bis zu einem Startwert von $\phzo=\valdeg{19}$ stabilisiert werden.
+Die Startauslenkung wird auch als schwarze Linie eingezeichnet. 
+Die Maximalabweichung ist stets oberhalb oder auf dieser.
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=0.7\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
+	\caption{Anfangswerttest \apv, Auslenkung \phz}
+	\label{fig:x0test}
+\end{figure}
+
+
+\subsection{Kritische Anfangswert-Tests}
+
+Wenn immer nur ein Zustand ausgelenkt wird, ergeben sich pro \ap\ 3 Tests, also insgesamt 9 Tests (unter Vernachlässigung des stabilen \ape).
+Es hat sich dabei gezeigt, dass Abweichungen von \xo\ kein Problem bezüglich der Stabilität darstellen.
+Außerdem sind bei \ap\ 2 und 3 Auslenkungen des jeweils "`stabilen"' Pendels unkritisch.
+
+Aus diesem Grund sind für die Untersuchung der Stabilität nur die folgenden vier (kritischen) Anfangswert-Tests relevant:
+\begin{itemize}
+	\item \ap\ 2, Auslenkung \phz
+	\item \ap\ 3, Auslenkung \phe
+	\item \ap\ 4, Auslenkung \phe
+	\item \ap\ 4, Auslenkung \phz
+\end{itemize}
+In \texttt{x0\_Tests/x0\_Test\_APs.m} werden diese vier Tests durchgeführt.
+
 
 \newcommand{\scalee}{0.48}
 
@@ -320,6 +489,10 @@ Die tatsächliche Stellgröße kann dadurch an den \beob\ gegeben werden.
 
 
 
+
+%Bei \cite{chang} wurde eine Zufallssuche zum Finden von geeigneten Reglerparametern durchgeführt.
+%Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet und bei der Auswertung max_x, Endwert der Winkel
+
 \section{System Parameter Tests}\label{sec:x0sys}
 
 System Ribeiro
@@ -336,7 +509,6 @@ System Ribeiro
 	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP42.pdf}	}
 	\caption{Maximale Startwerte -- Variation $m_1$}
 	\label{fig:sysvarm1}
-	%\vspace{15pt}
 \end{figure}
 
 \begin{figure}
@@ -350,6 +522,33 @@ System Ribeiro
 	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP42.pdf}	}
 	\caption{Maximale Startwerte -- Variation $m_2$}
 	\label{fig:sysvarm2}
-	%\vspace{15pt}
+\end{figure}
+
+\renewcommand{\scaleq}{0.55}
+
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP42.pdf}	}
+	\caption{Maximale Startwerte -- Variation $J_1$}
+	\label{fig:sysvarJ1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J2/AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J2/AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J2/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J2/AP42.pdf}	}
+	\caption{Maximale Startwerte -- Variation $J_2$}
+	\label{fig:sysvarJ2}
 \end{figure}
 
