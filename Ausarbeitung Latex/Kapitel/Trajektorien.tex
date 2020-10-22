@@ -137,14 +137,14 @@ und
 \]
 kann Gleichung \eqref{eq:Ivar} in die Form
 	\[
-	F_{\mrm{max}} = \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - (\frac{K_I}{r_{32}\ K_G})^2 \cdot \frac{\dot{x}_0}{R_a}
+	F_{\mrm{max}} = \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R_a}
 \]
 
 gebracht werden. Gleiches gilt für \eqref{eq:Iconst}. Die Fallunterscheidung nach Vorzeichen der Bewegungsrichtung wird wie in \secref{subsec:dcMotor} berücksichtigt. 
 
 In \casadi\ sind zwei Arten von Beschränkungen zu unterscheiden: Pfadbeschränkungen in Form von Gleichungen und Ungleichungen (z.B. Systemgleichungen) sowie Ober- und Untergrenzen für die Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$). Die konstante Stellbegrenzung durch den Spannungs-Strom-Wandler wird durch eine Begrenzung des Wertebereichs der Eingangsgröße $F$ realisiert. Die variable Stellbegrenzung durch die Gegeninduktion wird hingegen als Pfadbeschränkung in Form von Ungleichungen implementiert:
 \[
-	 0 \leq \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - (\frac{K_I}{r_{32}\ K_G})^2 \cdot \frac{\dot{x}_0}{R_a} - F \quad .
+	 0 \leq \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R_a} - F \quad .
 \]
 
 Das zu lösende OCP wird durch Diskretisierung in ein endlich-dimensionales nichtlineares Programm (engl.: \textit{Nonlinear Programming}, NLP) überführt, was auch als direkter Ansatz \bzw "`first discretize, then optimize"' bezeichnet wird. Dies geschieht durch Einteilung des OCP in $N$ Intervalle der Schrittweite $T$, wobei $N$ als Zeit- oder Prädiktionshorizont bezeichnet wird. Als numerische Lösungsmethode wird das in Fauvé \cite{fauve} empfohlene \textit{Direct-Multiple-Shooting}-Verfahren implementiert. Neben dem Eingangsgrößenverlauf zählt bei diesem Verfahren auch der Zustandsgrößenverlauf zu den Optimierungsvariablen. Anders als beim \textit{Single Shooting} werden anstelle des gesamten Prädiktionshorizonts für jedes Intervall die Systemgleichungen gelöst. Dadurch wird das Randwertproblem zunächst in $N$ Anfangswertprobleme zerlegt, die durch die Systemgleichungen und einen jeweils zu optimierenden Startwert definiert werden. Um sicherzustellen, dass die abschnittsweise gelösten Systemgleichungen einen stetigen Verlauf ergeben, werden $N$ Kontinuitätsbedingungen implementiert. Der Lösungsverlauf eines Intervalls soll zum nächsten Zeitschritt dem Startwert des nächsten Intervalls entsprechen. Vorteil des Verfahrens gegen über dem \textit{Single Shooting} ist, dass die Schrittfehler des Integrationsverfahrens sich lediglich über ein Intervall fortpflanzen anstelle des gesamten Prädiktionshorizonts.
@@ -162,18 +162,18 @@ Zur Überprüfung der Stabilisierbarkeit der berechneten Trajektorien wird eine 
 
 Dazu wird das nichtlineare System zunächst wie in \secref{subsec:lin} linearisiert. Die Linearisierung um die Trajektorie führt im Gegensatz zum zeitinvarianten Arbeitspunkt auf ein \emph{linear-zeitvariantes System} (LZV):
 	\[
-	\Delta \vexp = \mat{A}(t) \Delta \vex(t) + \mat{B}(t) \Delta F(t)
+	\Delta \vexp(t) = \mat{A}(t) \Delta \vex(t) + \mat{B}(t) \Delta F(t)
 \]
 
 mit 
 \begin{align*}
-	\vex(t) = \vex_{\mrm{Traj}}(t) + \Delta \vex(t) \\
-	 F(t) = F_{\mrm{Traj}}(t) + \Delta F(t) \ .
+	\vex(t) &= \vex_{\mrm{Traj}}(t) + \dvex(t) \\
+	 F(t) &= F_{\mrm{Traj}}(t) + \Delta F(t) \ .
 \end{align*}
 
 Hierfür lässt sich der linear-zeit\emph{in}variante LQ-Reglerentwurf aus \secref{subsec:zsr} übertragen, indem das zeitvariante Gütemaß 
 	\[
-	J(t) = \int_{0}^{\infty} \Delta \ve{x}^\transp(t) \mat{Q} \Delta \ve{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
+	J(t) = \int_{0}^{\infty} \Delta \ve{x}^\transp(t) \, \mat{Q} \, \Delta \ve{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
 \]
 
 durch Lösen der zeitvarianten \emph{Riccati}-Differentialgleichung
@@ -473,14 +473,14 @@ Das Gütemaß wird daher mit
 	J_\mrm{dev} = \left\| \Delta \ve{x_{\mrm{init}}} \right\| + \left\| \Delta \ve{x_{\mrm{end}}} \right\|
 	\]
 	
-definiert. $\Delta \ve{x_\mrm{init}}$ und $\Delta \ve{x_\mrm{end}}$ sind hierbei als die euklidischen Normen der mit den Fehlerdifferenzen gefüllten Zustandsvektoren in Anfangs- und Endlage der Trajektorie zu verstehen.
+definiert. $\left\|\Delta \ve{x_\mrm{init}}\right\|$ und $\left\|\Delta \ve{x_\mrm{end}}\right\|$ sind hierbei als die euklidischen Normen der mit den Fehlerdifferenzen gefüllten Zustandsvektoren in Anfangs- und Endlage der Trajektorie zu verstehen.
 \[
-	\left\| \Delta \ve{x_{\mrm{init}}} \right\| = \sqrt{ \sum_{i=1}^6 \left( x_{\mrm{Traj,i}}(t_\mrm{init}) - x_{\mrm{init,i}} \right)^2 }
+	\left\| \Delta \ve{x_{\mrm{init}}} \right\| = \sqrt{ \sum_{i=1}^6 \left( x_{\mrm{Traj,}i}(t_\mrm{init}) - x_{\mrm{init,}i} \right)^2 }
 \]
 
 mit $t_\mrm{init} = 0$ und
 	\[
-	\left\| \Delta \ve{x_{\mrm{end}}} \right\| = \sqrt{ \sum_{i=1}^6 \left( x_{\mrm{Traj,i}}(t_{\mrm{end}}) - x_{\mrm{end,i}} \right)^2 }
+	\left\| \Delta \ve{x_{\mrm{end}}} \right\| = \sqrt{ \sum_{i=1}^6 \left( x_{\mrm{Traj,}i}(t_{\mrm{end}}) - x_{\mrm{end,}i} \right)^2 }
 \]
 
 mit $t_{\mrm{end}} = (N+1) \cdot T$
@@ -572,55 +572,55 @@ Diskussion in Bearbeitung...
 
 
 
-%\chapter{Kommentare}
-%lies besser den quell tex
-%
-%Insgesamt gute Arbeit!
-%Hast sehr viel geschrieben, ich glaube manches hätten wir nicht gebraucht.
-%Sprachlich und Rechtschreibung hatte ich kaum was auszusetzen.
-%Latex Formatierung hab ich angepasst
-%Man merkt, dass du gegen Ende gehetzter warst ;)
-%
-%Generell: an manchen abschnitten wären unterabschnitte praktisch
-%Kapitel 4.2: evtl noch unterabschnitte wie zb Gütefunktion, Nebenbedingungen...
-%Kürzere Unterkapitelnamen:  "`Implementierung der"' weglassen
-%ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig
-% Tabelle Überschrift
-% Figures habe ich mal als gleitende abbildung gemacht
-%
-%Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...}
-%Betonungen (zb stabil) machen als texttt keinen sinn, sondern kursiv
-%Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$)   kleiner gleich?
-%rte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert     m?
-%mal fehlt das é... empfehle dir daher einen command: {Fauvé \cite{fauve}}
-%4.3 J(t) ? mathematisch fragwürdig
-%nicht das gerade \ves{x} verwenden, sondern \vex
-%B machen wir allgemein als Matrix, K auch
-%riccati DGL %b^2 vector^2 was soll das sein?
-%transponiert gerades T (\transp)
-%Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.    kann man sparen
-%Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich
-%4.5.1 Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
-%4.5.3 Unterschiede ist hässlich, bitte als items
-%Überprüf mal die labels T001N350Fmax400 da wird eine falsche tabelle angegeben
-%bezeichnung "`leicht instabil"' ungünstig
- %den Arbeitspunkt AP4 nicht exakt und schwingt zurück -  zitat von praktikum unklar
-%Begriff  Stabilisierbarkeit finde ich hier fragwürdig. Das würde ich als Variation der Parameter verstehen. Aber sonst für einen Fall nennt man besser numerische stabilität
-%tab:NeueQR 4.5 ist nicht an deiner gewünschten position. evtl mit [h] ausprobieren. 
-%461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar
-%subref gibts net
-%462 und durch ein rotes.
-%
-%
-%%%%%%%%%%%% Kommentare Motor
-%
-%vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout)
-%"auf Grund" find ich hässlich
-%Spannungs-Strom-Wandlers ??
-%eq:Iconst  IaMAX(w)=Iwmax?
-%datenblatt
-%tau el: einheit
-%Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin
-%wemk =?
-%KG ist leider nicht konsistent zu simulink
-%F=M/Kg fehlt
+\chapter{Kommentare}
+lies besser den quell tex
+
+Insgesamt gute Arbeit!
+Hast sehr viel geschrieben, ich glaube manches hätten wir nicht gebraucht.
+Sprachlich und Rechtschreibung hatte ich kaum was auszusetzen.
+Latex Formatierung hab ich angepasst
+Man merkt, dass du gegen Ende gehetzter warst ;)
+
+Generell: an manchen abschnitten wären unterabschnitte praktisch
+Kapitel 4.2: evtl noch unterabschnitte wie zb Gütefunktion, Nebenbedingungen...
+Kürzere Unterkapitelnamen:  "`Implementierung der"' weglassen
+ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig
+ Tabelle Überschrift
+ Figures habe ich mal als gleitende abbildung gemacht
+
+Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...}
+Betonungen (zb stabil) machen als texttt keinen sinn, sondern kursiv
+Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$)   kleiner gleich?
+rte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert     m?
+mal fehlt das é... empfehle dir daher einen command: {Fauvé \cite{fauve}}
+4.3 J(t) ? mathematisch fragwürdig
+nicht das gerade \ves{x} verwenden, sondern \vex
+B machen wir allgemein als Matrix, K auch
+riccati DGL %b^2 vector^2 was soll das sein?
+transponiert gerades T (\transp)
+Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.    kann man sparen
+Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich
+4.5.1 Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
+4.5.3 Unterschiede ist hässlich, bitte als items
+Überprüf mal die labels T001N350Fmax400 da wird eine falsche tabelle angegeben
+bezeichnung "`leicht instabil"' ungünstig
+ den Arbeitspunkt AP4 nicht exakt und schwingt zurück -  zitat von praktikum unklar
+Begriff  Stabilisierbarkeit finde ich hier fragwürdig. Das würde ich als Variation der Parameter verstehen. Aber sonst für einen Fall nennt man besser numerische stabilität
+tab:NeueQR 4.5 ist nicht an deiner gewünschten position. evtl mit [h] ausprobieren. 
+461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar
+subref gibts net
+462 und durch ein rotes.
+
+
+%%%%%%%%%%% Kommentare Motor
+
+vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout)
+"auf Grund" find ich hässlich
+Spannungs-Strom-Wandlers ??
+eq:Iconst  IaMAX(w)=Iwmax?
+datenblatt
+tau el: einheit
+Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin
+wemk =?
+KG ist leider nicht konsistent zu simulink
+F=M/Kg fehlt

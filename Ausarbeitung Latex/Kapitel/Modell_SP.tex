@@ -63,18 +63,20 @@ mit den viskosen Dämpfungen
 \begin{subequations} \label{eq:visd} \begin{align}
 	\Fd  &= -d_0 \xop  \\
 	\Mde &= -d_1 \phep  \\
-	\Mdz &= -d_2 \left(\phzp-\phep\right)  \ .
+	\Mdz &= -d_2 \left(\phzp-\phep\right)  
 \end{align} \end{subequations} 
+sowie den \crb en $\Fc$, $\Mce$ und $\Mcz$, welche in \secref{sec:crb} genauer betrachtet werden.
 
 Mit dem Formalismus ergeben sich die 3 \emph{gekoppelten} Bewegungsgleichungen für die Minimal-\koor. 
 Um nach den zweiten Ableitungen aufzulösen, muss allerdings noch das \gls\ gelöst werden.
 
-Damit ergeben sich die \bwgl\ als Funktion der Minimal-\koor, der Systemparameter und des Eingangs.
+Damit ergeben sich die \bwgl\
 \begin{align*}
 	\xopp  &= f_{\xo}(\dots)  \\
 	\phepp &= f_{\phe}(\dots)  \\
 	\phzpp &= f_{\phz}(\dots)
 \end{align*}
+als Funktion der Minimal-\koor, der Systemparameter und des Eingangs.
 
 Die Berechnung der Ableitungen und das Lösen des \gls s geschah bisher händisch, was im Allgemeinen fehleranfällig ist. 
 In dieser Arbeit werden die \bwgl\ mithilfe der \emph{symbolischen Toolbox} von \ml\ gelöst. 
@@ -144,7 +146,7 @@ Der Zustand \xo\ hat keinen Einfluss auf die Systemdynamik.
 \end{table}
 
 
-Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sensoren gemessen werden. Daher ergibt sich für den Ausgang beider Systeme
+Am Versuchsstand können die Schlittenposition und beide Pendelwinkel über Sensoren gemessen werden. Daher ergibt sich für den Ausgang beider Systeme:
 \begin{align}
 	\ve{y} = \ve{h}(\vex)
 	= \mat{C} \vex
@@ -198,7 +200,7 @@ In \cite{chang} und \cite{kisner} wurde der Verlauf der $\operatorname{signum}$-
 \]
 Die Funktion nähert sich jedoch nur sehr langsam dem Endwert an.
 In dieser Arbeit wird daher die $\tanh$ Funktion verwendet, welche deutlich früher den Endwert annimmt \siehe{\figref{fig:tanh}}.
-
+%
 \begin{subequations} \begin{align}
 	\Fc  &= -\Fco  \cdot \tanh{\left(\frac{\xop}{\xopth}\right)}  \\
 	\Mce &= -\Mceo \cdot \tanh{\left(\frac{\phep}{\pheth}\right)}  \\

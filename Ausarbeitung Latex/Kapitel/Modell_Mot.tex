@@ -42,12 +42,10 @@ Auf Grund der integrierten Strombegrenzung zum Schutz von Motor und Verstärker 
 
 Es werden zunächst nur positive Winkelgeschwindigkeiten betrachtet. 
 Der Abschnitt des Verlaufs in Abbildung \ref{fig:Stromkennlinie} mit konstantem maximalen Strom wird durch
-
 \begin{equation}
 	I_a  = I_{w\mrm{, max}} = \mrm{const.} \ , \qquad 0 \leq \omega \leq \omega_{\mrm{EMK}}
 	\label{eq:Iconst}
 \end{equation}
-
 beschrieben, wobei $I_{w\mrm{, max}}$ der Begrenzungsstrom des Wandlers ist.
 
 \begin{figure}[h]
@@ -58,7 +56,6 @@ beschrieben, wobei $I_{w\mrm{, max}}$ der Begrenzungsstrom des Wandlers ist.
 \end{figure}
 
 Der Verlauf des Bereichs mit zeitlich abnehmender maximaler Stromstärke wird aus dem Ersatzschaltbild des Gleichstrommotors in Abbildung \ref{fig:dcESB} hergeleitet. Aus dem zweiten Kirchhoff'schen Gesetz (Maschenregel) ergibt sich
-
 \begin{equation}
 	U_a =  RI_a + L \normd{I_a(t)}{t} + U_i \ . 
 	\label{eq:dcMasche}
@@ -82,12 +79,10 @@ gilt. Die induzierte Gegenspannung wird gemäß \cite{binder} durch Proportional
 \]
 modelliert.
 Damit kann Gleichung \eqref{eq:dcMasche} zur Geraden
-
 \begin{equation}
 	I_{a \mrm{, max}}(\omega) = \frac{U_a}{R} - \frac{K_I}{R} \omega \ , \qquad \omega > \omega_{\mrm{EMK}} 
 	\label{eq:Ivar}
 \end{equation}
-
 umgeformt werden.
 Die Beschreibung des Bereichs negativer Winkelgeschwindigkeiten kann aus den Gleichungen \eqref{eq:Iconst} und \eqref{eq:Ivar} durch eine Punktspiegelung des in \figref{fig:Stromkennlinie} dargestellten Verlaufs in den dritten Quadranten gewonnen werden.
 
@@ -98,6 +93,8 @@ I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
 														I_{w\mrm{, max}} \cdot \sign{\omega} 	& -\omega_{\mrm{EMK}} \leq \omega \leq \omega_{\mrm{EMK}} \\ \\				
 														\frac{U_a}{R} - \frac{K_I}{R} \omega, & \omega > \omega_{\mrm{EMK}} \end{array}\right. . \
 \] 
+
+
 
 \subsection{Getriebe}
 
@@ -114,7 +111,7 @@ Die Rotorbewegung des Motors wird über das in \figref{fig:Getriebe} dargestellt
 \]
  Die Übersetzungskonstante $K_G$ zwischen der Winkelgeschwindigkeit des Motors und der Schlittengeschwindigkeit wird über das Zahnverhältnis und den Antriebsradius berechnet.
 \[
-	K_G =  \frac{Z_{16}}{Z_{60}} \cdot r_{32} \ .
+	K_G =  \frac{Z_{16}}{Z_{60}} \cdot r_{32} 
 \]
 Der Antriebsradius $r_{32}$ ist dabei der Abstand zwischen der neutralen Phase des Riemens und der Drehachse.
 

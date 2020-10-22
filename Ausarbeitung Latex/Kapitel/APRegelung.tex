@@ -17,7 +17,7 @@ Außerdem wird der Einfluss des \beob\ anlysiert.
 
 \begin{figure}[hb]
 	\centering
-		\includegraphics[width=0.4\textwidth]{Bilder/Regelung Vorgehen.pdf}
+		\includegraphics[width=0.45\textwidth]{Bilder/Regelung Vorgehen.pdf}
 	\caption{Vorgehen bei der AP-Regelung }
 	\label{fig:regvorg}
 \end{figure}
@@ -25,15 +25,16 @@ Außerdem wird der Einfluss des \beob\ anlysiert.
 \figref{fig:regvorg} stellt das prinzipielle Vorgehen bei der Untersuchung und Optimierung der \ap-Regelung dar.
 Es werden zunächst Auswertungsmethoden implementiert, die einzelne Simulationstests evaluieren.
 Mit den Anfangswerttests wird das Ermitteln der maximalen Winkelabweichung, ab welcher das System nicht mehr stabilisiert werden kann, automatisiert.
-Dadurch können im nächsten Schritt die Güteparameter systematisch optimiert werden.
+Dadurch können im nächsten Schritt die Reglerparameter systematisch optimiert werden.
+Kann dadurch keine gute Regelung erzielt werden, müssen beim Reglerentwurf möglicherweise andere Verfahren eingesetzt werden.
 Abschließend wird die Regelbarkeit in Abhängigkeit der Systemparameter untersucht.
 
 Regler können nach verschiedenen Gesichtspunkten wie Dynamik, Überschwingen, Energieverbrauch optimiert werden.
 In dieser Arbeit wird bei der Untersuchung und Optimierung des \dpd s stets die Stabilität priorisiert.
 Die Optimierung des Einschwingvorgangs steht nicht im Vordergrund.
 Daher werden vor allem die instabilen \ap e 2, 3 und 4 untersucht.
-Außerdem werden hauptsächlichen die maximalen Winkelabweichungen betrachtet, da diese wesentlich für die Stabiltät sind.
-Horizontale Fahrten in x-Richtung sind zwar möglich, eventuell müssen dafür aber andere Reglerparameter eingesetzt werden.
+Außerdem werden hauptsächlich die maximalen \emph{Winkel}abweichungen betrachtet, da diese wesentlich für die Stabiltät sind.
+Die Regelung von Positionsabweichungen wird nachrangig behandelt.
 
 
 \section{System-\lin\ und Analyse}%\label{sec:}
@@ -62,6 +63,12 @@ Da das \zrm\ des \spds s \eqref{eq:zrm} nicht-linear ist, muss es um jeden \ap\ 
 
 Somit ergeben sich für jeden \ap\ unterschiedliche Systemmatrizen \mat{A} und Eingangsmatrizen \ve{B}. Beim \bss\ fällt zusätzlich die zweite Zeile und die zweite Spalte (bis auf die 1) weg, da dort $a_2=0$ ist und keine Abhängigkeit von \xop\ besteht \siehe{\tabref{tab:abh}}, außerdem ist $b_2=1$.
 Die Ausgangsmatrix \mat{C} ist immer gleich, da die Ausgangsgleichung \eqref{eq:hx} linear ist.
+
+Für den tatsächlichen Zustand wird der \ap-Zustand des linearisierten Systems \dvex\ zum \ap\ addiert:
+\begin{subequations} \label{eq:aptransf} \begin{align} 
+	\vex(t)&= \vexr + \dvex(t)	\\
+	u(t)&= u_R + \Delta u(t)	
+\end{align} \end{subequations} 
 
 
 \subsection{Eigenwerte}
@@ -135,7 +142,7 @@ Diese Aufteilung in einen \ap regler am einfacheren \bss\ und eine unterlagerte 
 Die \aprg\ wird mit einem \zsr\ realisiert ($u=-\mat{K} \vexd$). 
 Dieser regelt ein System grundsätzlich in den Ursprung, es muss also noch eine Zustandstransformation durchgeführt werden. 
 Für jeden der \ap e (\ref{sec:aps}) wird der Zustand, der für den \zsr\ die Endlage darstellt, vorher von den Messgrößen abgezogen. 
-Nach Berechnung der Stellgröße und Schätzung des Zustands wird der \ap\ wieder dazu addiert.
+Nach Berechnung der Stellgröße und Schätzung des Zustands wird der \ap\ entsprechend \eqref{eq:aptransf} wieder dazu addiert.
 
 Die Verstärkung $\mat{K}$ wird durch Lösen des LQ-Problems bestimmt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die positiv-definite Matrix 
 $\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$
@@ -162,6 +169,7 @@ Am Versuchsstand erfolgt die Zustandsermittlung durch einen \beob.
 \subsubsection{\zm}
 Bei der \zm\ wird von einer idealen Messung aller Zustände ausgegangen, \dah $\vexd=\vex$. 
 Diese Variante wird in der Simulation meist zuerst eingesetzt, um die Regelung des Systems besser beurteilen zu können und spezielle Probleme durch die \ze\ im Nachhinein analysieren zu können.
+Wenn nicht anders angegeben, wird von dieser Variante ausgegangen.
 Am realen Versuchsstand kann diese Methode nicht eingesetzt werden.
 
 \subsubsection{\beob}\label{subsec:beob}
@@ -250,7 +258,7 @@ Aus diesem Grund wird \asoll\ vor der Integration mit einem Sättigungsglied auf
 \] 
 begrenzt.
 
-\subsubsection{\vorst\  (M,C,D)}\label{sec:vorstmcd}
+\subsubsection{\vorst\  \qq{MCD}}\label{sec:vorstmcd}
 Der \avr\ alleine könnte die Schlittenkraft zwar regeln, allerdings kann der Hauptteil der Kraft mit einer Vorsteuerung bestimmt werden, wodurch die Dynamik besser ist.
 Die Vorsteuerung besteht im Wesentlichen aus der Trägheitskraft, da bei reiner Betrachtung des Schlittens $\fsoll=m_0 \asoll$ gilt. 
 Wenn davon ausgegangen wird, dass die Reibungsparameter hinreichend genau bestimmt wurden, kann auch die Reibung des Schlittens kompensiert werden.
@@ -287,7 +295,7 @@ Es gilt \eqref{eq:xpp}.
 
 
 
-\subsection{Motor Vorsteuerung}\label{sec:motvorst}
+\subsection{Motor-Vorsteuerung}\label{sec:motvorst}
 
 Bisher wurde für die Regelung die Ermittlung der Kraft, die am Schlitten wirken soll, betrachtet.
 Die Schnittstelle zum Motor besteht durch Vorgabe der Steuerspannung.
@@ -375,10 +383,27 @@ Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet.
 \subsection{\init}
 
 
+\subsection{Güteparameter (Q,R)}\label{subsec:simqr}
+
+Ähnlich wie bei den Parametern des \spd s werden auch die Parametersätze für die \ricc-Güteparameter ausgelagert.
+Diese sind für jeden \ap\ seperat definiert, da jeweils andere Werte optimal sein können.
+So können verschiedene Parameter einfach verglichen werden.
+Vollständige Güteparameterwerte für alle \ap e fanden sich bei den Arbeiten, die sich mit der \ap-Regelung beschäftigt haben, nur in den letzten zwei.
+Im Ordner \path{Regelung/Reglerparameter} befinden sich in folgenden Datensätze:
+\begin{itemize}
+	\item \texttt{AP\_QR\_Chang19}: Werte der Ausarbeitung von \cite{chang}
+	\item \texttt{AP\_QR\_Ribeiro20}: Werte der Ausarbeitung von \cite{ribeiro}
+	\item \texttt{AP\_QR\_20\_neu}: Neu bestimmte Werte, die in dieser Arbeit optimiert wurden
+	\item \texttt{AP\_QR\_20\_neu\_Beob}: Neu bestimmte Werte, die in dieser Arbeit für den Einsatz mit \beob\ optimiert wurden
+\end{itemize}
+
 
 \subsection{Weitere \Matlab-Funktionen}
 
 \subsubsection{SimAP}
+
+\subsubsection{x0\_Tests}
+Die Funktionen zu den \xots s (siehe folgender Abschnitt) befinden sich im Ordner \path{Regelung/x0\_Tests}.
 
 
 \section{Anfangswert-Tests}\label{sec:x0test}
@@ -391,7 +416,7 @@ Ist ein System fest ausgelegt, können die verschiedenen \ap e mit bestimmten St
 Dabei gibt es jedoch unzählige Kombinationsmöglichkeiten, die nicht alle getestet werden können.
 Es muss daher eine Auswahl an Startwerten getroffen werden (beispielsweise wird immer nur ein Zustand gesetzt, alle anderen sind am \ap).
 Selbst dann ist es mit manuellem Testen und Ausprobieren aufwändig, ein umfassendes Bild vom Regelverhalten zu erlangen.
-Die Optimierung der "`äußeren Schleifen"' wird somit langwierig und auf diese Weise nicht zielführend.
+Die Optimierung der "`äußeren Schleifen"' wird somit langwierig und ist auf diese Weise nicht zielführend.
 
 Daher wird die "`untere Schleife"' automatisiert.
 Wird ein \ap-Test durchgeführt, können die Simulationsdaten ausgewertet werden und gewisse Gütemaße und Performance-Indikatoren bestimmt werden, um die Regelgüte zu beschreiben.
@@ -400,7 +425,7 @@ Im Vordergrund steht aber meist die Stabilität und damit die Frage, bei welchen
 
 \subsection{Auswertung eines \ap-Tests}
 
-Wenn \texttt{SimAP} aufgerufen wird, werden neben den Simulationsdaten auch die Ergebnisse von \texttt{Auswertung/AP/APAuswertung} zurückgegeben.
+Wenn \texttt{SimAP} aufgerufen wird, werden neben den Simulationsdaten auch die Ergebnisse von \path{Auswertung/AP/APAuswertung} zurückgegeben.
 Dort werden \ua folgende Gütemaße, die an das übliche quadratische \ricc-Gütemaß angelehnt sind, berechnet:
 \begin{subequations} \begin{align} 
 	J_x &= \int_{0}^{\tend} \dvex^\transp(t) \, \mat{Q} \, \dvex(t)  \, \ud t = \int_{0}^{\tend} \Delta x_\mrm{norm}(t)  \, \ud t  \\
@@ -414,6 +439,7 @@ mit
 	R &= 1 
 \end{align*}
 In \ml\ werden sie als Summe berechnet (der Einfachheit halber konstante Schrittweite vorausgesetzt).
+Für die Berechnung werden die transformierten \ap-Zustände \dvex(t) \eqref{eq:aptransf} verwendet, da diese die Abweichung von der Ruhelage darstellen.
 
 Für die Beurteilung der Stabilität, also ob der Zustand am Ende der Simulationszeit noch in der Nähe des \ap es ist, wird
 $\Delta x_\mrm{norm}(\tend)$
@@ -425,9 +451,9 @@ Des Weiteren kann anhand von $\Delta x_\mrm{norm}(t)$ eine Einschwingzeit bestim
 Diese ist dort, wo der Norm-Verlauf eine gewisse Schranke nicht mehr überschreitet.
 
 
-\subsection{x0-Test}
+\subsection{\xots}\label{subsec:awts}
 
-Die Funktion \texttt{Regelung/x0\_Tests/x0\_Test.m} stellt die Basis für einen Anfangswerttest dar.
+Die Funktion \texttt{x0\_Test.m} stellt die Basis für einen Anfangswerttest dar.
 Für den angegebenen \ap\ ermittelt sie mit einzelnen Simulationen und steigenden Anfangsauslenkungen vom \ap\ schrittweise die maximalen Startwerte.
 Dabei wird mit obigen Methoden ermittelt, ob die Stabilisierung erfolgreich war.
 Falls nicht, wird abgebrochen und der Maximalwert sowie einige der Gütemaße für allen Einzelergebnisse zurückgegeben.
@@ -435,9 +461,9 @@ Falls nicht, wird abgebrochen und der Maximalwert sowie einige der Gütemaße f�
 Die Schrittweite \texttt{y\_st} = [ \texttt{x\_st} \texttt{phi1\_st} \texttt{phi2\_st} ] gibt die Schrittweite an, mit der die Tests ausgeführt werden.
 Eine kleinere Schrittweite löst zwar die Ergebnisse besser auf, führt aber zu einer höheren Rechenzeit.
 
-Die Ergebnisse eines Anfangswerttests an \apv\ sind beispielhaft in \figref{fig:x0test} dargestellt.
+Die Ergebnisse eines \xots s an \apv\ sind beispielhaft in \figref{fig:x0test} dargestellt.
 Auf der Abszisse wird der Startwert der Auslenkung (hier \phz) aufgetragen.
-In Abhängigkeit von dieser werden die maximalen Abweichungen der drei Ausgänge vom \ap\ dargestellt.
+In Abhängigkeit von dieser werden die sich in der Folge ergebenden maximalen Abweichungen der drei Ausgänge vom \ap\ dargestellt.
 In diesem Fall kann das System bis zu einem Startwert von $\phzo=\valdeg{19}$ stabilisiert werden.
 Die Startauslenkung wird auch als schwarze Linie eingezeichnet. 
 Die Maximalabweichung ist stets oberhalb oder auf dieser.
@@ -458,16 +484,27 @@ Außerdem sind bei \ap\ 2 und 3 Auslenkungen des jeweils "`stabilen"' Pendels un
 
 Aus diesem Grund sind für die Untersuchung der Stabilität nur die folgenden vier (kritischen) Anfangswert-Tests relevant:
 \begin{itemize}
-	\item \ap\ 2, Auslenkung \phz
-	\item \ap\ 3, Auslenkung \phe
-	\item \ap\ 4, Auslenkung \phe
-	\item \ap\ 4, Auslenkung \phz
+	\item \apz: \ap\ 2, Auslenkung \phz
+	\item \apd: \ap\ 3, Auslenkung \phe
+	\item \apv 1: \ap\ 4, Auslenkung \phe
+	\item \apv 2: \ap\ 4, Auslenkung \phz
 \end{itemize}
-In \texttt{x0\_Tests/x0\_Test\_APs.m} werden diese vier Tests durchgeführt.
+In \texttt{x0\_Test\_APs.m} werden diese vier Tests durchgeführt und die Ergebnisse zur weiteren Darstellung gespeichert.
+Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe \bzw \phz, bis zur welcher das System noch stabilisiert werden kann.
 
+Diese Tests können nun mit verschiedenen Systemen durchgeführt werden und miteinander verglichen werden.
+Dabei können Regelparameter variiert werden oder auch Systemparameter.
+Der Vorteil dieser Darstellung ist, dass die Gütekriterien wie Maximalabweichungen, die obigen Gütemaße und die Einschwingzeit direkt im selben Diagramm für alle Startwerte verglichen werden können.
+Dadurch lässt sich die Güte der Regelung \bzw die Regelbarkeit einer Konfiguration auf einen Blick beurteilen.
+
+Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
+In \figref{fig:qrvglrib} sind die Maximalabweichungen mit verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
+Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen noch ausregeln kann.
+Die in dieser Arbeit optimierten Parameter können das \dpd\ in einem etwas größeren Bereich stabilisieren.
+Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abweichungen bei den niedrigeren Startwerten geschieht.
+Bei den Güteparametern ist somit immer ein gewisser Kompromiss notwendig.
 
 \newcommand{\scalee}{0.48}
-
 \begin{figure}
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
@@ -483,15 +520,29 @@ In \texttt{x0\_Tests/x0\_Test\_APs.m} werden diese vier Tests durchgeführt.
 \end{figure}
 
 
+Auch der Einfluss des \beob\ lässt sich so darstellen.
+
+
 
 
 \section{QR Parameter Tests}\label{sec:x0qr}
 
+Wie schon festgestellt wurde, haben Reglerparameter nicht nur einen wesentlichen Einfluss auf die Dynamik, sondern auch auf die Stabilität und damit Regelbarkeit des Systems.
+Daher ist es sinnvoll, deren Einfluss in einem nächsten Schritt zu untersuchen und diese zu optimieren \siehe{\figref{fig:regvorg}}.
+Dabei werden in dieser Arbeit hauptsächlich die \ricc-Güteparameter $\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$ und $R$ betrachtet, da diese einen deutlichen Einfluss auf die \aprg\ haben.
+Andere Reglerparameter wie \kpv\ oder die \beob pole könnten ebenfalls optimiert werden, jedoch haben diese auf den ersten Blick keinen entscheidenden Einfluss.
 
+Die Gütematrizen wurden in den meisten vergangenen Arbeiten und anfangs auch in dieser heuristisch bestimmt und iterativ manuell angepasst.
+Dieses Vorgehen ist auf Dauer sehr aufwändig und garantiert aufgrund der vielen Variationsmöglichkeiten keinesfalls optimale Werte.
+Auch muss beachtet werden, dass jede Änderung an Systemparametern oder das Umschalten zum \beob\ sehr wahrscheinlich zu anderen optimalen Werten führt.
+Bei \cite{chang} wurde eine Zufallssuche zum Finden von geeigneten Reglerparametern durchgeführt.
+Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet, bei der Auswertung wurde eine feste obere Schranke für die maximale Schlittenposition und Endwert der Winkel betrachtet.
 
+Durch die \xots s \siehe{\secref{subsec:awts}} kann schnell ein Bild des Regelverhaltens erlangt werden.
+Da die Güteparameter für jeden \ap\ festgelegt werden, findet die Variation der Parameter für einen festen \ap\ statt.
+Welche der Zustände für den Test ausgelenkt werden sollen, kann angegeben werden, meistens werden nur die jeweils "`kritischen"' ausgeführt.
 
-%Bei \cite{chang} wurde eine Zufallssuche zum Finden von geeigneten Reglerparametern durchgeführt.
-%Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet und bei der Auswertung max_x, Endwert der Winkel
+\texttt{QR\_Variation}
 
 \section{System Parameter Tests}\label{sec:x0sys}
 
@@ -552,3 +603,7 @@ System Ribeiro
 	\label{fig:sysvarJ2}
 \end{figure}
 
+
+
+
+%Horizontale Fahrten in x-Richtung sind zwar möglich, eventuell müssen dafür aber andere Reglerparameter eingesetzt werden.
