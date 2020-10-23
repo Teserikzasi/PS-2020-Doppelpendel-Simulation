@@ -15,9 +15,9 @@ Einzelne Aspekte in der Steuerung/Regelung werden anschließend verbessert.
 Die Reglerparameter der vorigen Arbeiten werden überprüft und optimiert.
 Außerdem wird der Einfluss des \beob\ anlysiert.
 
-\begin{figure}[hb]
+\begin{figure}[h]
 	\centering
-		\includegraphics[width=0.45\textwidth]{Bilder/Regelung Vorgehen.pdf}
+		\includegraphics[width=0.43\textwidth]{Bilder/Regelung Vorgehen.pdf}
 	\caption{Vorgehen bei der AP-Regelung }
 	\label{fig:regvorg}
 \end{figure}
@@ -476,7 +476,7 @@ Die Maximalabweichung ist stets oberhalb oder auf dieser.
 \end{figure}
 
 
-\subsection{Kritische Anfangswert-Tests}
+\subsection{Kritische \xots s}
 
 Wenn immer nur ein Zustand ausgelenkt wird, ergeben sich pro \ap\ 3 Tests, also insgesamt 9 Tests (unter Vernachlässigung des stabilen \ape).
 Es hat sich dabei gezeigt, dass Abweichungen von \xo\ kein Problem bezüglich der Stabilität darstellen.
@@ -484,18 +484,21 @@ Außerdem sind bei \ap\ 2 und 3 Auslenkungen des jeweils "`stabilen"' Pendels un
 
 Aus diesem Grund sind für die Untersuchung der Stabilität nur die folgenden vier (kritischen) Anfangswert-Tests relevant:
 \begin{itemize}
-	\item \apz: \ap\ 2, Auslenkung \phz
-	\item \apd: \ap\ 3, Auslenkung \phe
-	\item \apv 1: \ap\ 4, Auslenkung \phe
-	\item \apv 2: \ap\ 4, Auslenkung \phz
+	\item \texttt{\apz}: \ap\ 2, Auslenkung \phz
+	\item \texttt{\apd}: \ap\ 3, Auslenkung \phe
+	\item \texttt{\apv 1}: \ap\ 4, Auslenkung \phe
+	\item \texttt{\apv 2}: \ap\ 4, Auslenkung \phz
 \end{itemize}
 In \texttt{x0\_Test\_APs.m} werden diese vier Tests durchgeführt und die Ergebnisse zur weiteren Darstellung gespeichert.
-Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe \bzw \phz, bis zur welcher das System noch stabilisiert werden kann.
+Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe\ \bzw \phz, bis zur welcher das System noch stabilisiert werden kann.
 
 Diese Tests können nun mit verschiedenen Systemen durchgeführt werden und miteinander verglichen werden.
 Dabei können Regelparameter variiert werden oder auch Systemparameter.
 Der Vorteil dieser Darstellung ist, dass die Gütekriterien wie Maximalabweichungen, die obigen Gütemaße und die Einschwingzeit direkt im selben Diagramm für alle Startwerte verglichen werden können.
 Dadurch lässt sich die Güte der Regelung \bzw die Regelbarkeit einer Konfiguration auf einen Blick beurteilen.
+
+
+\subsection{Vergleiche von \xots s}
 
 Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
 In \figref{fig:qrvglrib} sind die Maximalabweichungen mit verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
@@ -507,20 +510,42 @@ Bei den Güteparametern ist somit immer ein gewisser Kompromiss notwendig.
 \newcommand{\scalee}{0.48}
 \begin{figure}
 	\centering
-	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
+	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
 	\hfil
-	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP3.pdf} }
+	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP3.pdf} }
 	\\
-	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP41.pdf} }
+	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP41.pdf} }
 	\hfil
-	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/Parameter neu (Ribeiro) Creg off/AP42.pdf} }
+	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP42.pdf} }
 	\caption{Maximalabweichungen -- Vergleich QR-Parameter (System Ribeiro)}
 	\label{fig:qrvglrib}
 %\vspace{15pt}
 \end{figure}
 
 
-Auch der Einfluss des \beob\ lässt sich so darstellen.
+Auch der Einfluss des \beob\ lässt sich mit den kritischen \xots s gut darstellen.
+Beim Test des \beob s an der Neukonstruktion ist zunächst aufgefallen, dass die QR-Parameter, die vorher für die Zustandsmessung optimiert wurden, nur bei \apz\ brauchbare Ergebnisse zeigten.
+Bei \apv\ versagten zudem die beiden Vergleichsparameter der letzten Arbeiten.
+Aus diesem Grund wurde ein neuer QR-Datensatz erstellt \siehe{\secref{subsec:simqr}}, der speziell für die Regelung mit \beob\ optimiert ist.
+
+\figref{fig:qrvglribze} vergleicht daher die \ap-Regelung mit \zm\ (ZM) und \beob\ (Beob), einerseits mit den QR-Parametern \texttt{AP\_QR\_20\_neu}, sowie mit den angepassten QR-Parametern \texttt{AP\_QR\_20\_neu\_Beob} ("`Beob (neu)"').
+Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance vergleichbar ist, zeigt sich bei \apv, dass der \beob\ das System nicht so weit stabilisieren kann wie mit der \zm. 
+Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
+
+\renewcommand{\scalee}{0.62}
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP2.pdf} }
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP3.pdf} }
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP42.pdf} }
+	\caption{Maximalabweichungen -- Vergleich \zm/\beob\ (System Ribeiro)}
+	\label{fig:qrvglribze}
+%\vspace{15pt}
+\end{figure}
 
 
 
