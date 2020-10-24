@@ -1,11 +1,14 @@
 
 \newcommand{\dpd}{Doppelpendel}
+\newcommand{\dpds}{Doppelpendel-System}
 \newcommand{\spd}{Schlitten-Pendel}
+\newcommand{\sdpd}{Schlitten-Doppelpendel}
 \newcommand{\spds}{Schlitten-Pendel-System}
 \newcommand{\crb}{Coulomb-Reibung}
 \newcommand{\drb}{viskose Reibung}
 \newcommand{\koor}{Koordinaten}
 \newcommand{\bwgl}{Bewegungsgleichungen}
+\newcommand{\init}{Initialisierung}
 \newcommand{\zrm}{Zustandsraummodell}
 \newcommand{\nlzrm}{nichtlineare \zrm}
 \newcommand{\ap}{Arbeitspunkt}
@@ -26,10 +29,13 @@
 \newcommand{\alg}{Algorithmus}
 \newcommand{\ml}{\Matlab}
 \newcommand{\sm}{\Simulink}
+\newcommand{\casadi}{\emph{CasADi}}
 \newcommand{\std}{Standardabweichung}
 \newcommand{\gls}{Gleichungssystem}
 \newcommand{\sgb}{Stellgrößenbegrenzung}
+\newcommand{\xots}{Anfangswerttest}
 \newcommand{\avr}{a/v-Regler}
+\newcommand{\ricc}{\emph{Riccati}}
 
 \newcommand{\qq}[1]{\glqq#1\grqq}
 \newcommand{\exref}[1]{Beispiel \ref{#1}}
@@ -60,8 +66,10 @@
 \newcommand{\yzp}{\dot{y}_2}
 \newcommand{\phe}{\ensuremath{\varphi_1}}
 \newcommand{\phem}{\ensuremath{\varphi_{1m}}}
+\newcommand{\pheo}{\ensuremath{\varphi_{1,0}}}
 \newcommand{\phz}{\ensuremath{\varphi_2}}
 \newcommand{\phzm}{\ensuremath{\varphi_{2m}}}
+\newcommand{\phzo}{\ensuremath{\varphi_{2,0}}}
 \newcommand{\phep}{\ensuremath{\dot{\varphi}_1}}
 \newcommand{\phepp}{\ddot{\varphi}_1}
 \newcommand{\phzp}{\ensuremath{\dot{\varphi}_2}}
@@ -96,6 +104,8 @@
 \newcommand{\apz}{\api{2}}
 \newcommand{\apd}{\api{3}}
 \newcommand{\apv}{\api{4}}
+\newcommand{\apve}{\api{41}}
+\newcommand{\apvz}{\api{42}}
 \newcommand{\apaz}{\apa{2}{\phz}}
 \newcommand{\apad}{\apa{3}{\phe}}
 \newcommand{\apave}{\apa{4}{\phe}}
@@ -112,6 +122,14 @@
 \newcommand{\fav}{\ensuremath{F_{av}}}
 \newcommand{\kpv}{\ensuremath{K_{pv}}}
 
+\newcommand{\tend}{\ensuremath{t_\mrm{end}}}
+\newcommand{\vexend}{\ensuremath{\vex_\mrm{end}}}
+\newcommand{\dvex}{\ensuremath{\Delta \vex}}
+\newcommand{\dvexest}{\ensuremath{\Delta \vex_\mrm{est}}}
+\newcommand{\dvexe}{\ensuremath{\Delta \vexend}}
+
+
+
 
 \definecolor{grey}{RGB}{150,150,150}
 
@@ -126,18 +144,3 @@
 \newcommand{\rgk}[1]{\ensuremath{\rang \left(#1\right)}}
 \newcommand{\spu}[1]{\ensuremath{\spur #1}}
 \newcommand{\spuk}[1]{\ensuremath{\spur \left(#1\right)}}
-
-\newcommand{\dx}[1]{\delta_{#1}}
-\newcommand{\dd}{\delta}
-\newcommand{\di}{\delta_i}
-\newcommand{\dij}{\delta_i-\delta_j}
-\newcommand{\dik}{\delta_i-\delta_k}
-\newcommand{\dil}{\delta_i-\delta_l}
-\newcommand{\doj}{\delta_1-\delta_j}
-\newcommand{\dnj}{\delta_\n-\delta_j}
-\newcommand{\cosdi}{\cos(\di)}
-
-\newcommand{\yij}{\clx{Y}_{ij}}
-\newcommand{\rij}{r_{ij}}
-\newcommand{\pbi}{p_i}
-\newcommand{\pij}{\ensuremath{p_{ij}}}
