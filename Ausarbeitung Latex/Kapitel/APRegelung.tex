@@ -145,7 +145,7 @@ Für jeden der \ap e (\ref{sec:aps}) wird der Zustand, der für den \zsr\ die En
 Nach Berechnung der Stellgröße und Schätzung des Zustands wird der \ap\ entsprechend \eqref{eq:aptransf} wieder dazu addiert.
 
 Die Verstärkung $\mat{K}$ wird durch Lösen des LQ-Problems bestimmt \cite{AdamyRT2}. Parameter für den Entwurf sind somit die positiv-definite Matrix 
-$\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$
+$\mat{Q}=\diaga \left(\begin{matrix} Q_1 & Q_2 & Q_3 & Q_4 & Q_5 & Q_6 \end{matrix}\right)$
  zur Bewertung der Zustände und $R$ für die Stellgröße. 
 Da es sich jeweils um ein \emph{linear-zeitinvariantes System} (LZI) handelt, ist die Matrix \mat{P} aus der \ricc-Gleichung, und damit auch \mat{K}, konstant.
 
@@ -414,7 +414,8 @@ Dafür müssen zunächst Kriterien definiert werden, inwiefern das System unter 
 Dazu wird wieder \figref{fig:regvorg} herangezogen.
 Ist ein System fest ausgelegt, können die verschiedenen \ap e mit bestimmten Startwerten getestet werden.
 Dabei gibt es jedoch unzählige Kombinationsmöglichkeiten, die nicht alle getestet werden können.
-Es muss daher eine Auswahl an Startwerten getroffen werden (beispielsweise wird immer nur ein Zustand gesetzt, alle anderen sind am \ap).
+Es muss daher eine Auswahl an Startwerten getroffen werden.
+Oft wird immer nur für einen Zustand eine Abweichung gesetzt, alle anderen sind am \ap.
 Selbst dann ist es mit manuellem Testen und Ausprobieren aufwändig, ein umfassendes Bild vom Regelverhalten zu erlangen.
 Die Optimierung der "`äußeren Schleifen"' wird somit langwierig und ist auf diese Weise nicht zielführend.
 
@@ -470,13 +471,13 @@ Die Maximalabweichung ist stets oberhalb oder auf dieser.
 
 \begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.7\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
+		\includegraphics[width=0.65\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
 	\caption{Anfangswerttest \apv, Auslenkung \phz}
 	\label{fig:x0test}
 \end{figure}
 
 
-\subsection{Kritische \xots s}
+\subsection{Kritische \xots s}\label{subsec:xotskrit}
 
 Wenn immer nur ein Zustand ausgelenkt wird, ergeben sich pro \ap\ 3 Tests, also insgesamt 9 Tests (unter Vernachlässigung des stabilen \ape).
 Es hat sich dabei gezeigt, dass Abweichungen von \xo\ kein Problem bezüglich der Stabilität darstellen.
@@ -493,19 +494,19 @@ In \texttt{x0\_Test\_APs.m} werden diese vier Tests durchgeführt und die Ergebn
 Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe\ \bzw \phz, bis zur welcher das System noch stabilisiert werden kann.
 
 Diese Tests können nun mit verschiedenen Systemen durchgeführt werden und miteinander verglichen werden.
-Dabei können Regelparameter variiert werden oder auch Systemparameter.
+Dabei können Regelparameter oder auch Systemparameter variiert werden.
 Der Vorteil dieser Darstellung ist, dass die Gütekriterien wie Maximalabweichungen, die obigen Gütemaße und die Einschwingzeit direkt im selben Diagramm für alle Startwerte verglichen werden können.
 Dadurch lässt sich die Güte der Regelung \bzw die Regelbarkeit einer Konfiguration auf einen Blick beurteilen.
 
 
-\subsection{Vergleiche von \xots s}
+\subsection{Vergleiche von \xots s}\label{subsec:xotsvgl}
 
 Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
-In \figref{fig:qrvglrib} sind die Maximalabweichungen mit verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
-Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen noch ausregeln kann.
-Die in dieser Arbeit optimierten Parameter können das \dpd\ in einem etwas größeren Bereich stabilisieren.
+In \figref{fig:qrvglrib} sind die Maximalabweichungen mit den verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
+Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen ausregeln kann.
+Die in dieser Arbeit optimierten Parameter können das \dpd\ bei allen \ap en in einem etwas größeren Bereich stabilisieren.
 Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abweichungen bei den niedrigeren Startwerten geschieht.
-Bei den Güteparametern ist somit immer ein gewisser Kompromiss notwendig.
+Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
 
 \newcommand{\scalee}{0.48}
 \begin{figure}
@@ -519,16 +520,38 @@ Bei den Güteparametern ist somit immer ein gewisser Kompromiss notwendig.
 	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP42.pdf} }
 	\caption{Maximalabweichungen -- Vergleich QR-Parameter (System Ribeiro)}
 	\label{fig:qrvglrib}
-%\vspace{15pt}
 \end{figure}
 
+Bei der Regelung mit den neuen Pendelparametern \texttt{Ribeiro20} ist im Vergleich zu den alten Parametern \texttt{Apprich09} aufgefallen, dass der Endwert nicht mehr asymptotisch erreicht wird, sondern sich ein Grenzzyklus einstellt.
+Die Ursache dafür liegt sehr wahrscheinlich \crb\ der Pendelgelenke \siehe{\tabref{tab:spdparams}}, die beim alten System nicht vorhanden ist.
+\figref{fig:vglpendelpar} vergleicht die beiden Systeme, sowie eine Variante, bei der die \crb smomente zu 0 gesetzt werden (\texttt{MCoff}).
+Bei allen \ap en fällt auf, dass das System mit \crb smomenten bei sehr niedrigen Startwerten höhere Maximalabweichungen zeigt, die durch die Dauerschwingung verursacht werden.
+\ZB ergibt sich bei \apz\ ab einem Startwert von $\pheo=\valdeg{2}$ ein Positionssausschlag von \valunit{0,3}{m}.
+Bei \apd\ und \apv\ ergibt sich sogar bei einem Startwert von 0 eine Dauerschwingung (was bei \apd\ auf die numerische Ungenauigkeit von $\pi$ zurückzuführen ist, bei \apv\ erst mit einer minimalen Anregung).
+Da die Maximalabweichungen insbesondere bei \apv\ über einen weiten Bereich konstant sind ($\phem=\valdeg{10}$, $\phzm=\valdeg{8}$), besteht die Vermutung, dass der Grenzzyklus fast unabhängig von den Startwerten ist.
+Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den Gelenken zeigen dieses Verhalten nicht und beginnen in 0 mit einem etwa linearen Verlauf.
+Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
+
+\renewcommand{\scalee}{0.62}
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP2.pdf} }
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP3.pdf} }
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP42.pdf} }
+	\caption{Maximalabweichungen -- Vergleich alter und neuer Pendelparameter}
+	\label{fig:vglpendelpar}
+\end{figure}
 
 Auch der Einfluss des \beob\ lässt sich mit den kritischen \xots s gut darstellen.
 Beim Test des \beob s an der Neukonstruktion ist zunächst aufgefallen, dass die QR-Parameter, die vorher für die Zustandsmessung optimiert wurden, nur bei \apz\ brauchbare Ergebnisse zeigten.
 Bei \apv\ versagten zudem die beiden Vergleichsparameter der letzten Arbeiten.
 Aus diesem Grund wurde ein neuer QR-Datensatz erstellt \siehe{\secref{subsec:simqr}}, der speziell für die Regelung mit \beob\ optimiert ist.
 
-\figref{fig:qrvglribze} vergleicht daher die \ap-Regelung mit \zm\ (ZM) und \beob\ (Beob), einerseits mit den QR-Parametern \texttt{AP\_QR\_20\_neu}, sowie mit den angepassten QR-Parametern \texttt{AP\_QR\_20\_neu\_Beob} ("`Beob (neu)"').
+\figref{fig:vglribze} vergleicht daher die \ap-Regelung mit \zm\ (ZM) und \beob\ (Beob), einerseits mit den QR-Parametern \texttt{AP\_QR\_20\_neu}, sowie mit den angepassten QR-Parametern \texttt{AP\_QR\_20\_neu\_Beob} (Beob (neu)).
 Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance vergleichbar ist, zeigt sich bei \apv, dass der \beob\ das System nicht so weit stabilisieren kann wie mit der \zm. 
 Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
 
@@ -543,8 +566,7 @@ Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\var
 	\hfil
 	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP42.pdf} }
 	\caption{Maximalabweichungen -- Vergleich \zm/\beob\ (System Ribeiro)}
-	\label{fig:qrvglribze}
-%\vspace{15pt}
+	\label{fig:vglribze}
 \end{figure}
 
 
@@ -554,20 +576,97 @@ Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\var
 
 Wie schon festgestellt wurde, haben Reglerparameter nicht nur einen wesentlichen Einfluss auf die Dynamik, sondern auch auf die Stabilität und damit Regelbarkeit des Systems.
 Daher ist es sinnvoll, deren Einfluss in einem nächsten Schritt zu untersuchen und diese zu optimieren \siehe{\figref{fig:regvorg}}.
-Dabei werden in dieser Arbeit hauptsächlich die \ricc-Güteparameter $\mat{Q}=\diaga \left(\begin{matrix} q_1 & q_2 & q_3 & q_4 & q_5 & q_6 \end{matrix}\right)$ und $R$ betrachtet, da diese einen deutlichen Einfluss auf die \aprg\ haben.
+Dabei werden in dieser Arbeit hauptsächlich die \ricc-Güteparameter $\mat{Q}=\diaga \left(\begin{matrix} Q_1 & Q_2 & Q_3 & Q_4 & Q_5 & Q_6 \end{matrix}\right)$ und $R$ betrachtet, da diese einen deutlichen Einfluss auf die \aprg\ haben.
 Andere Reglerparameter wie \kpv\ oder die \beob pole könnten ebenfalls optimiert werden, jedoch haben diese auf den ersten Blick keinen entscheidenden Einfluss.
 
+
+\subsection{Vorgehen bei der Optimierung}
+
 Die Gütematrizen wurden in den meisten vergangenen Arbeiten und anfangs auch in dieser heuristisch bestimmt und iterativ manuell angepasst.
-Dieses Vorgehen ist auf Dauer sehr aufwändig und garantiert aufgrund der vielen Variationsmöglichkeiten keinesfalls optimale Werte.
+Dieses Vorgehen ist auf Dauer sehr aufwändig und garantiert aufgrund der vielen Variationsmöglichkeiten mit 6 Freiheitsgraden keinesfalls optimale Werte.
 Auch muss beachtet werden, dass jede Änderung an Systemparametern oder das Umschalten zum \beob\ sehr wahrscheinlich zu anderen optimalen Werten führt.
 Bei \cite{chang} wurde eine Zufallssuche zum Finden von geeigneten Reglerparametern durchgeführt.
 Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet, bei der Auswertung wurde eine feste obere Schranke für die maximale Schlittenposition und Endwert der Winkel betrachtet.
 
 Durch die \xots s \siehe{\secref{subsec:awts}} kann schnell ein Bild des Regelverhaltens erlangt werden.
-Da die Güteparameter für jeden \ap\ festgelegt werden, findet die Variation der Parameter für einen festen \ap\ statt.
-Welche der Zustände für den Test ausgelenkt werden sollen, kann angegeben werden, meistens werden nur die jeweils "`kritischen"' ausgeführt.
+Bei den Vergleichen in \secref{subsec:xotsvgl} wurden lediglich feste QR-Parametersätze verglichen.
+Zur gezielten Optimierung liegt es nahe, einzelne Parameter zu variieren und deren Auswirkungen in den Diagrammen der \xots\ zu untersuchen.
+So können die einzelnen Parameter schrittweise optimiert werden, wobei selbstverständlich zu beachten ist, dass es sich eigentlich um eine multi-variable Optimierung handelt und sich daher die Ergebnisse eines Parameters nach Änderung der anderen Parameter wieder ändern können.
+Durch iteratives Vorgehen können die Werte trotzdem sehr gut optimiert werden und das Regelverhalten deutlich verbessert werden.
 
-\texttt{QR\_Variation}
+
+\subsection{Anwendung in \ml}
+
+Da die Güteparameter für jeden \ap\ festgelegt werden, findet die Variation der Parameter für einen festen \ap\ statt.
+Des Weiteren wird der Funktion \texttt{QR\_Variation} ein QR-Datensatz und der Parameter gegeben, der zu variieren ist (\texttt{'R'} oder \texttt{'Qi'}).
+Außerdem müssen die Werte angegeben werden, welche der Parameter annehmen soll.
+Um die Parameter gleichmäßig über einen großen Bereich zu testen, eignet sich ein logarithmischer Bereich, wofür die \ml-Funktion \texttt{logspace} genutzt wird.
+Welche der Zustände für den Test mithilfe der \xots s ausgelenkt werden sollen, kann angegeben werden.
+So kann man nur die jeweils "`kritischen"' Tests ausführen \siehe{\secref{subsec:xotskrit}}, aber auch die Auswirkungen bei Startwerten der anderen Zustände untersuchen und optimieren.
+Auch hier ist meistens ein Kompromiss notwendig, der für einen \ap\ verschiedene Anfangswertkombinationen gut ausregelt.
+In \texttt{QR\_Variation\_run} sind einige Anwendungsbeispiele zum Verwenden der Parametervariation vorhanden.
+
+
+\subsection{Diagramme}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
+	\caption{Maximale Startwerte -- Variation von R bei \apz}
+	\label{fig:qrap2R}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
+	\caption{Maximalabweichungen -- Variation von R bei \apz}
+	\label{fig:qrap2Rm}
+\end{figure}
+
+In \figref{fig:qrap2R} werden die maximalen Startwerte von \phe\ und \phz\ bei \apz\ in Abhängigkeit von R dargestellt.
+Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung über den größtem Bereich (ab \valdeg{45} wird der Test abgebrochen).
+Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab R=20 ebenfalls ein.
+Als Schlussfolgerung für den Parameter R gilt hier daher: je kleiner desto besser.
+
+Allerdings muss auch die Dynamik, insbesondere die resultierenden Maximalausschläge der Zustände, beachtet werden.
+\figref{fig:qrap2Rm} stellt daher für dieselbe Konfiguration die Maximalabweichungen dar, bei Auslenkung von \phe.
+Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von R.
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics[width=1.00\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
+		\caption{Maximale Startwerte -- Variation von $Q_1$ bei \apv}
+	\label{fig:qrap4q1}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+		\includegraphics{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
+	\caption{Maximalabweichungen -- Variation von $Q_1$ bei \apv}
+	\label{fig:qrap4q1m}
+\end{figure}
+
+Bei einer Variation von $Q_1$ an \apv\ ergibt sich für die maximalen Startwinkel der in \figref{fig:qrap4q1} dargestellte Verlauf.
+Kleinere Werte von $Q_1$ führen tendenziell zu höheren möglichen Startwerten.
+Allerdings sieht man an \figref{fig:qrap4q1m}, dass niedrigere Werte auch zu höheren Maximalabweichungen führen.
+Daher wurde hier beispielsweise ein Kompromiss von $Q_1=1$ getroffen.
+
+
+\subsection{Weitere Ergebnisse}
+
+Insgesamt zeigten sich für R eine bessere Dynamik bei kleinen Werten, da dadurch die Stellgröße weniger stark gewichtet wird und somit höher sein darf.
+Da geeignete Begrenzungs- und Anti-Windup-Maßnahmen vorhanden sind, stellt eine höhere Stellgröße grundsätzlich kein Problem dar.
+R wurde für alle \ap e auf 0,01 gesetzt.
+
+Die Werte $Q_1$ bis $Q_6$ wurden durch Auswerten aller Tests für alle \ap e angepasst und für das System \texttt{Ribeiro20} optimiert (\texttt{AP\_QR\_20\_neu}).
+Die größten Auswirkungen zeigten sich bei $Q_1$. 
+Meistens war der Einfluss der anderen Werte gering und brauchte bei starker Erhöhung eine schlechtere Dynamik mit sich.
+Bei \apv\ zeigte $Q_2$ und $Q_4$ einen deutlichen Einfluss.
+
+Die Werte \texttt{AP\_QR\_20\_neu\_Beob} wurden für den Einsatz mit \beob\ optimiert.
+Hierbei stellte sich heraus, dass für $Q_1$ generell größere Werte besser waren.
+Besonders bei \apv\ mussten die Werte angepasst werden.
+
 
 \section{System Parameter Tests}\label{sec:x0sys}
 
