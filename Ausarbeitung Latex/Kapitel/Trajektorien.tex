@@ -2,9 +2,9 @@
 
 \section{Einleitung}
 
-\section{Implementierung der Trajektorienberechnung}
+\section{Trajektorienberechnung}
 
-Die Implementierung der Trajektorienberechnung basiert auf den Erkenntnissen der Vorgängerarbeit Fauvé \cite{fauve} und erfolgt in \Matlab\ mit Hilfe des \casadi-Frameworks. Es wird einerseits auf eine Erhöhung der Modularisierung im Vergleich zur Vorgängerarbeit geachtet, andererseits werden weitere Funktionalitäten ergänzt, um die Trajektorienberechnung für die Anwendungen im Rahmen dieser Arbeit zu optimieren.
+Die Implementierung der Trajektorienberechnung basiert auf den Erkenntnissen der Vorgängerarbeit Fauvé \cite{fauve} und erfolgt in \Matlab\ mit Hilfe des \casadi-Frameworks \cite{Andersson2019}. Es wird einerseits auf eine Erhöhung der Modularisierung im Vergleich zur Vorgängerarbeit geachtet, andererseits werden weitere Funktionalitäten ergänzt, um die Trajektorienberechnung für die Anwendungen im Rahmen dieser Arbeit zu optimieren.
 
 Die Berechnung der Trajektorien wird durch fünf Matlab-Funktionen modularisiert:
 \begin{itemize}
@@ -28,13 +28,15 @@ Durch die Funktion \texttt{searchTrajectories} wird vom Anwender eine Trajektori
 
 \lstinputlisting[style=Matlab_colored]{Bilder/Trajektorien/Demo_searchTrajectories.m}
 
-Zunächst wird ein Suchprogramm ausgewählt. Es kann zwischen drei Programmen ausgewählt werden:
+Zunächst wird ein Suchprogramm ausgewählt. Es kann zwischen den drei Programmen
 
 \begin{enumerate}
 	\item Suche nach der im Rahmen dieser Arbeit definierten Vergleichstrajektorie
 	\item Suche nach der Aufschwungtrajektorie mit der Variationsstrategie
 	\item Suche nach allen 12 Trajektorien mit der Variationsstrategie
 \end{enumerate}
+
+ausgewählt werden.
 
 Dem Ansatz der Programmauswahl liegen die Erkenntnisse von Fauvé \cite{fauve} bezüglich einer Variationsstrategie zu Grunde. Da auf Grund der nichtlinearen MPC nur lokal optimiert wird, kann je nach Anfangswert ein anderes Optimum erreicht werden. Eine Variation des Anfangswertes ermöglicht somit eine effektive Suche nach Trajektorien für einen bestimmten Arbeitspunktwechsel. Im Code-Beispiel ist Suchprogramm 2 ausgewählt, der gesuchte Arbeitspunktwechsel ist allgemein der Aufschwung von AP1 nach AP4. Hierbei können innerhalb einer Periode vier mögliche Winkelanfangsauslenkungen gegenüber AP4 variiert werden, die als Startwert AP1 definieren:
 \[
@@ -68,14 +70,14 @@ Neben den Anfangsauslenkungen der Pendel hat auch die Schlittenposition Einfluss
 	\label{tab:varpos}
 \end{table}
 
-Als letzte Komponente der Variationsstrategie wird noch die Positionsbeschränkung variiert. Obwohl der Versuchsstand eine Positionsbeschränkung von $\pm\valunit{0,8}{m}$ vorgibt, ist es sinnvoll, auch diese zu variieren, da der Algorithmus sich sensitiv gegenüber den Nebenbedingungen verhält. Durch Verschärfung oder Lockerung der Positionsbeschränkung verändert sich die Optimierungslandschaft und damit die Chance, eine Trajektorie zu finden. Bei Lockerungen der Beschränkung muss später immer geprüft werden, ob bei den gefundenen Trajektorien die Positionsbeschränkungen eingehalten werden. Es werden folgende von Fauve \cite{fauve} entnommene Variationen implementiert.
+Als letzte Komponente der Variationsstrategie wird noch die Positionsbeschränkung variiert. Obwohl der Versuchsstand eine Positionsbeschränkung von $\pm\valunit{0,8}{m}$ vorgibt, ist es sinnvoll, auch diese zu variieren, da der Algorithmus sich sensitiv gegenüber den Nebenbedingungen verhält. Durch Verschärfung oder Lockerung der Positionsbeschränkung verändert sich die Optimierungslandschaft und damit die Chance, eine Trajektorie zu finden. Bei Lockerungen der Beschränkung muss später immer geprüft werden, ob bei den gefundenen Trajektorien die Positionsbeschränkungen eingehalten werden. Es werden folgende von Fauvé \cite{fauve} entnommene Variationen implementiert.
 	\[
 	-\underline{g}_{x_0} = \overline{g}_{x_0} \in \{ 0,6; \ 0,8; \ 1; \ 1,2; \ 1,4 \}  
 \]
 Insgesamt werden bei Suchprogramm 2 somit $4 \cdot 4 \cdot 5 = 80$ Trajektorienberechnungen durchlaufen. Bei Suchprogramm 3 werden die beschriebenen Variationen auf alle zwölf Trajektorien ausgeweitet, indem der Endwert durch alle vier Arbeitspunkte iteriert und die Variation der Winkelanfangsauslenkungen um die vier zusätzlich entstehenden Kombinationen durch die Arbeitspunkte 2 und 3 erweitert wird. Insgesamt werden $8 \cdot 4 \cdot 5 \cdot 4 = 640$ Trajektorienberechnungen durchgeführt.
 Im Rahmen dieser Arbeit wird eine Vergleichstrajektorie für die in Kapitel \ref{sec:trjparamtest} behandelten Parameteruntersuchungen verwendet. Diese wird mit Suchprogramm 1 berechnet.
 
-Nachdem das Suchprogramm für die Trajektorienberechnung ausgewählt ist, werden Prädiktionshorizont, Schrittweite und Integrationsverfahren für die NMPC konfiguriert. Als Integratoren stehen das Eulerverfahren "`Euler"' und das Runge-Kutta-Verfahren "`RK4"' zur Verfügung. Außerdem wird einer der in Kapitel \ref{subsec:spdparams} besprochenen Parametersätze übergeben sowie eine maximale Stellkraft definiert. Diese stellt eine weitere Variationsmöglichkeit dar, die von Fauve \cite{fauve} nicht untersucht worden ist. Daher wird sie zur manuellen Variation in den Argumenten der \texttt{searchTrajectories} zur Verfügung gestellt.
+Nachdem das Suchprogramm für die Trajektorienberechnung ausgewählt ist, werden Prädiktionshorizont, Schrittweite und Integrationsverfahren für die NMPC konfiguriert. Als Integratoren stehen das Eulerverfahren "`Euler"' und das Runge-Kutta-Verfahren "`RK4"' zur Verfügung. Außerdem wird einer der in Kapitel \ref{subsec:spdparams} besprochenen Parametersätze übergeben sowie eine maximale Stellkraft definiert. Diese stellt eine weitere Variationsmöglichkeit dar, die von Fauvé \cite{fauve} nicht untersucht worden ist. Daher wird sie zur manuellen Variation in den Argumenten der \texttt{searchTrajectories} zur Verfügung gestellt.
 Als Letztes wird noch bestimmt, ob für die Trajektorienberechnung die Coulombreibung im Schlitten bzw. in den Gelenken berücksichtigt werden soll. 
 
 Die berechneten Trajektorien werden automatisch gespeichert. Es wird eine Namenskonvention zur Identifizierbarkeit der gespeicherten Ergebnisse eingeführt, die an folgendem Trajektoriennamen beispielhaft gezeigt wird: \texttt{Traj14\_dev0\_-3.14\_-3.14\_x0max0.8\_Fmax410} \ .
@@ -87,15 +89,21 @@ Optional kann der Funktion \texttt{searchTrajectories} auch ein Pfad für den Sp
 Als weitere Option kann noch bestimmt werden, ob alle berechneten Trajektorien oder nur die mit gültiger Lösung gespeichert werden sollen. 
 
 
+
+
+
+
+
 \subsection{calculateTrajectory}\label{subsec:calctrj}
 
-Die Funktion \texttt{calculateTrajectory} wird innerhalb von \texttt{searchTrajectories} zur eigentlichen Berechnung einer bestimmten Trajektorie aufgerufen. Sie implementiert die NMPC mit Hilfe des \casadi-Frameworks auf Grundlage der Erkenntnisse der Vorgängerarbeit. Für detaillierte Hintergrundinformationen wird daher auf die Ausarbeitung von Fauvé \cite{fauve} verwiesen. Als Argument erwartet die Funktion eine Struktur mit verschiedenen Konfigurationsparametern, die im Quelltext ausführlich kommentiert sind.
+Die Funktion \texttt{calculateTrajectory} wird innerhalb von \texttt{searchTrajectories} zur eigentlichen Berechnung einer bestimmten Trajektorie aufgerufen. Sie implementiert die NMPC mit Hilfe des \casadi-Frameworks auf Grundlage der Erkenntnisse der Vorgängerarbeit. Für detaillierte Hintergrundinformationen wird daher auf die Ausarbeitung von Fauvé \cite{fauve} verwiesen. Als Argument erwartet die Funktion eine Struktur mit verschiedenen Konfigurationsparametern, die im Quelltext ausführlich kommentiert sind. Da die Funktion \texttt{calculateTrajectory} eigens für die Trajektorienberechnung vorgesehen ist, wird, anders als bei Fauvé \cite{fauve}, auf die Implementierung einer Iterationsschleife für die Anwendung als Regler verzichtet.
 
+\subsubsection{Zielfunktion}
 
 Zunächst muss ein Optimalsteuerungsproblem (OCP) mit Zielfunktion und Nebenbedingungen definiert werden. Als Zielfunktion wird 
 	\[
-	J = \sum_{i=1}^N \left((x_i-x_\mrm{end})^T \mat{Q} (x_i-x_\mrm{end}) + (u_i-u_\mrm{end})^T R (u_i-u_\mrm{end})\right) + 
-	\sum_{i=2}^N (u_i-u_{i-1})^T S (u_i-u_{i-1})
+	J = \sum_{i=1}^N \left((x_i-x_\mrm{end})^\transp \mat{Q} (x_i-x_\mrm{end}) + (u_i-u_\mrm{end})^\transp R (u_i-u_\mrm{end})\right) + 
+	\sum_{i=2}^N (u_i-u_{i-1})^\transp S (u_i-u_{i-1})
 \]
 implementiert. Sie besteht aus dem bekannten \emph{Lagrange'schen} Güteintegral der LQ-Regelung und einem Bestrafungsterm für Änderungen in der Stellgröße, durch den hochfrequente Stellgrößenverläufe reduziert werden. Die Wahl der Gewichtungsmatrizen $\mat{Q}$, $R$ und $S$ basiert auf den Erkenntnissen von Fauvé \cite{fauve}. Tests bestätigen diese Wahl, wobei $S$ etwas nach unten korrigiert wird. Die Matrizen werden anschließend nicht mehr variiert. Sie sind der Funktion \texttt{calculateTrajectory} als Konfigurationsparameter zwar zu übergeben, werden in \texttt{searchTrajectories} jedoch für die weiteren Anwendungen im Rahmen der Arbeit hartkodiert.
 \[ 
@@ -112,6 +120,7 @@ implementiert. Sie besteht aus dem bekannten \emph{Lagrange'schen} Güteintegral
 	S = 1,5 \cdot 10^{-8} \\	
 \]
 
+\subsubsection{Nebenbedingungen}
 
 Neben der Zielfunktion sind darüber hinaus folgende Nebenbedingungen zu implementieren:
 \begin{itemize}
@@ -137,28 +146,37 @@ und
 \]
 kann Gleichung \eqref{eq:Ivar} in die Form
 	\[
-	F_{\mrm{max}} = \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R_a}
+	F_{\mrm{max}} = \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R}
 \]
 
 gebracht werden. Gleiches gilt für \eqref{eq:Iconst}. Die Fallunterscheidung nach Vorzeichen der Bewegungsrichtung wird wie in \secref{subsec:dcMotor} berücksichtigt. 
 
-In \casadi\ sind zwei Arten von Beschränkungen zu unterscheiden: Pfadbeschränkungen in Form von Gleichungen und Ungleichungen (z.B. Systemgleichungen) sowie Ober- und Untergrenzen für die Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$). Die konstante Stellbegrenzung durch den Spannungs-Strom-Wandler wird durch eine Begrenzung des Wertebereichs der Eingangsgröße $F$ realisiert. Die variable Stellbegrenzung durch die Gegeninduktion wird hingegen als Pfadbeschränkung in Form von Ungleichungen implementiert:
+In \casadi\ sind zwei Arten von Beschränkungen zu unterscheiden: Pfadbeschränkungen in Form von Gleichungen und Ungleichungen (z.B. Systemgleichungen) sowie Ober- und Untergrenzen für die Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}} \leq u \leq u_{\mrm{max}}$). Die konstante Stellbegrenzung durch den Spannungs-Strom-Wandler wird durch eine Begrenzung des Wertebereichs der Eingangsgröße $F$ realisiert. Die variable Stellbegrenzung durch die Gegeninduktion wird hingegen als Pfadbeschränkung durch die Ungleichungen
 \[
-	 0 \leq \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R_a} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R_a} - F \quad .
+	 0 \leq \frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R} - F \quad 
 \]
 
-Das zu lösende OCP wird durch Diskretisierung in ein endlich-dimensionales nichtlineares Programm (engl.: \textit{Nonlinear Programming}, NLP) überführt, was auch als direkter Ansatz \bzw "`first discretize, then optimize"' bezeichnet wird. Dies geschieht durch Einteilung des OCP in $N$ Intervalle der Schrittweite $T$, wobei $N$ als Zeit- oder Prädiktionshorizont bezeichnet wird. Als numerische Lösungsmethode wird das in Fauvé \cite{fauve} empfohlene \textit{Direct-Multiple-Shooting}-Verfahren implementiert. Neben dem Eingangsgrößenverlauf zählt bei diesem Verfahren auch der Zustandsgrößenverlauf zu den Optimierungsvariablen. Anders als beim \textit{Single Shooting} werden anstelle des gesamten Prädiktionshorizonts für jedes Intervall die Systemgleichungen gelöst. Dadurch wird das Randwertproblem zunächst in $N$ Anfangswertprobleme zerlegt, die durch die Systemgleichungen und einen jeweils zu optimierenden Startwert definiert werden. Um sicherzustellen, dass die abschnittsweise gelösten Systemgleichungen einen stetigen Verlauf ergeben, werden $N$ Kontinuitätsbedingungen implementiert. Der Lösungsverlauf eines Intervalls soll zum nächsten Zeitschritt dem Startwert des nächsten Intervalls entsprechen. Vorteil des Verfahrens gegen über dem \textit{Single Shooting} ist, dass die Schrittfehler des Integrationsverfahrens sich lediglich über ein Intervall fortpflanzen anstelle des gesamten Prädiktionshorizonts.
+und
+\[
+	 0 \geq -\frac{K_I}{r_{32}\ K_G} \cdot \frac{U_{a\mrm{,max}}}{R} - \left(\frac{K_I}{r_{32}\ K_G}\right)^2 \cdot \frac{\dot{x}_0}{R} - F \quad 
+\]
 
-Zur Lösung der Systemgleichungen werden das Euler-Verfahren und das Runge-Kutta-Verfahren 4.~Ordnung implementiert. Als Lösungsverfahren für das NLP wird nach dem Beispiel von Fauvé \cite{fauve} das von \casadi\ bereitgestellte IPOPT-Verfahren (Innere-Punkte-Verfahren, engl.: \textit{Interior Point Optimization}) eingesetzt. Die maximale Anzahl an Optimierungsiterationen wird großzügig mit $20000$ Iterationen begrenzt, da bei zugeschalteter Reibung in den Systemgleichungen die durchschnittliche Iterationszahl deutlich ansteigen kann.
+implementiert.
 
-Vor Beginn der Optimierung müssen alle Optimierungsvariablen mit Startwerten initialisiert werden. Auf Grund des Multiple-Shooting-Ansatzes sind Startwerte über den gesamten Prädiktionshorizont sowohl für die Eingangsgröße als auch für den Zustandsvektor zu schätzen. Für den diskretisierten Eingang $u$ werden die Startwerte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert. Für die Zustände $\vex$ wird ein S-förmiger Verlauf von $x_{\mrm{init}}$ nach $x_{\mrm{end}}$ geschätzt, da hiermit bei Fauvé \cite{fauve} gute Ergebnisse erzielt wurden. Der Verlauf wird durch Interpolation mit Hilfe der von \Matlab\ bereitgestellten Funktion \texttt{chip} über 4  Stützstellen gewonnen. Die zugrunde liegende Erwartung ist, dass das System erst langsam anfährt, dann stark beschleunigt und sich am Ende in der Nähe des Zielwerts nur noch langsam ändert.
+\subsubsection{Multiple Shooting}
+Das zu lösende OCP wird durch Diskretisierung in ein endlich-dimensionales nichtlineares Programm (engl.: \textit{Nonlinear Programming}, NLP) überführt, was auch als direkter Ansatz \bzw "`first discretize, then optimize"' bezeichnet wird. Dies geschieht durch Einteilung des OCP in $N$ Intervalle der Schrittweite $T$, wobei $N$ als Zeit- oder Prädiktionshorizont bezeichnet wird. Als numerische Lösungsmethode wird das in Fauvé \cite{fauve} empfohlene \textit{Direct-Multiple-Shooting}-Verfahren implementiert. Neben dem Eingangsgrößenverlauf zählt bei diesem Verfahren auch der Zustandsgrößenverlauf zu den Optimierungsvariablen. Anders als beim \textit{Single Shooting} werden anstelle des gesamten Prädiktionshorizonts für jedes Intervall die Systemgleichungen gelöst. Dadurch wird das Randwertproblem zunächst in $N$ Anfangswertprobleme zerlegt, die durch die Systemgleichungen und einen jeweils zu optimierenden Startwert definiert werden. Um sicherzustellen, dass die abschnittsweise gelösten Systemgleichungen einen stetigen Verlauf ergeben, werden $N$ Kontinuitätsbedingungen implementiert. Der Lösungsverlauf eines Intervalls soll zum nächsten Zeitschritt dem Startwert des nächsten Intervalls entsprechen. Vorteil des Verfahrens gegen über dem \textit{Single Shooting} ist, dass die Schrittfehler des Integrationsverfahrens sich lediglich über ein Intervall fortpflanzen anstelle des gesamten Prädiktionshorizonts. \cite{Diehl2006}
 
-Da die Funktion \texttt{calculateTrajectory} eigens für die Trajektorienberechnung vorgesehen ist, wird, anders als bei Fauve \cite{fauve}, auf eine Iterationsschleife für die Anwendung als Regler verzichtet.
+\subsubsection{Integrations- und Optimierungsverfahren}
+Zur Lösung der Systemgleichungen werden das Euler-Verfahren und das Runge-Kutta-Verfahren 4.~Ordnung implementiert. Als Lösungsverfahren für das NLP wird nach dem Beispiel von Fauvé \cite{fauve} das von \casadi\ bereitgestellte IPOPT-Verfahren (Innere-Punkte-Verfahren, engl.: \textit{Interior Point Optimization}) eingesetzt \cite{ipopt}. Die maximale Anzahl an Optimierungsiterationen wird großzügig mit $20000$ Iterationen begrenzt, da bei zugeschalteter Reibung in den Systemgleichungen die durchschnittliche Iterationszahl deutlich ansteigen kann.
+
+\subsubsection{Initialisierung}
+Vor Beginn der Optimierung müssen alle Optimierungsvariablen mit Startwerten initialisiert werden. Auf Grund des Multiple-Shooting-Ansatzes sind Startwerte über den gesamten Prädiktionshorizont sowohl für die Eingangsgröße als auch für den Zustandsvektor zu schätzen. Für den diskretisierten Eingang $u$ werden die Startwerte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^\transp \in \mathbb{R}^{1 \times N}$ initialisiert. Für die Zustände $\vex$ wird ein S-förmiger Verlauf von $x_{\mrm{init}}$ nach $x_{\mrm{end}}$ geschätzt, da hiermit bei Fauvé \cite{fauve} gute Ergebnisse erzielt wurden. Der Verlauf wird durch Interpolation mit Hilfe der von \Matlab\ bereitgestellten Funktion \texttt{chip} über 4  Stützstellen gewonnen. Die zugrunde liegende Erwartung ist, dass das System erst langsam anfährt, dann stark beschleunigt und sich am Ende in der Nähe des Zielwerts nur noch langsam ändert.
 
 
-\section{Implementierung der Trajektorienfolgeregelung}\label{sec:tfr}
 
-Zur Überprüfung der Stabilisierbarkeit der berechneten Trajektorien wird eine Trajektorienfolgeregelung als zeitvarianter Zustandsregler nach \cite{matPrakt2} realisiert. 
+\section{Trajektorienfolgeregelung}\label{sec:tfr}
+
+Zur Überprüfung der Stabilisierbarkeit der berechneten Trajektorien wird eine Trajektorienfolgeregelung (TFR) als zeitvarianter Zustandsregler nach \cite{matPrakt2} realisiert. 
 
 Dazu wird das nichtlineare System zunächst wie in \secref{subsec:lin} linearisiert. Die Linearisierung um die Trajektorie führt im Gegensatz zum zeitinvarianten Arbeitspunkt auf ein \emph{linear-zeitvariantes System} (LZV):
 	\[
@@ -173,7 +191,7 @@ mit
 
 Hierfür lässt sich der linear-zeit\emph{in}variante LQ-Reglerentwurf aus \secref{subsec:zsr} übertragen, indem das zeitvariante Gütemaß 
 	\[
-	J(t) = \int_{0}^{\infty} \Delta \ve{x}^\transp(t) \, \mat{Q} \, \Delta \ve{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
+	J = \int_{0}^{\infty} \Delta \ve{x}^\transp(t) \, \mat{Q} \, \Delta \ve{x}(t) + R \cdot \left(\Delta F(t)\right)^2 \, \ud t
 \]
 
 durch Lösen der zeitvarianten \emph{Riccati}-Differentialgleichung
@@ -199,7 +217,7 @@ Für die Implementierung der Linearisierung und die Berechnung der Reglerverstä
 
 Das Simulationsmodell ist in \figref{fig:TFR_Simulink} dargestellt.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[width=0.98\textwidth]{Bilder/Simulink/TFR.PNG}
 	\caption{Trajektorienfolgeregelung in Simulink}
@@ -210,37 +228,48 @@ Die Trajektorien werden der Simulation als \texttt{timeseries} mithilfe von \tex
 
 
 
-\section{Weitere Implementierungen in \Matlab}
+\section{Weitere Funktionen in \Matlab}
 ...
 
 
 
-\section{Stabilisierbarkeit in der Simulation}\label{stabiltrj}
+
+
+
+
+
+
+\section{Stabilisierung der berechneten Trajektorien}\label{stabiltrj}
 
 \newcommand{\scaleyplots}{0.6}
 
 Für die mittels NMPC berechneten Trajektorien soll gezeigt werden, dass eine Stabilisierung in der Simulation mit Hilfe eines Trajektorienfolgereglers möglich ist. Im Rahmen der Vorgängerarbeit Fauvé \cite{fauve} war es nicht gelungen, die berechneten Trajektorien am störungsfreien System durch einen zeitvarianten Regler zu stabilisieren. Um das System zu stabilisieren, waren die Gewichtungsmatrizen \mat{Q} und $R$ für die Berechnung des Reglers variiert worden.
 
-Aus diesem Grund wird ein anderer Ansatz gewählt, um eine Stabilisierung der mittels NMPC berechneten Trajektorien zu erreichen. Aus dem Skript \cite{modsim} zur Vorlesung \emph{Modellbildung und Simulation} ist bekannt, dass die Stabilität der Simulation maßgeblich von der Schrittweite und dem Integrationsverfahren abhängt. Bezüglich der Trajektorien können diese an zwei Stellen variiert werden: Einerseits innerhalb der NMPC zur Berechnung der Trajektorie und andererseits in der Simulation in \Simulink. Lässt sich eine Trajektorie mit verschiedenen Integrationsverfahren stabil simulieren, kann von numerischer Stabilität ausgegangen werden. Es werden daher verschiedene Schrittweiten und Integrationsverfahren für die Berechnung einer Vergleichstrajektorie angewendet und anschließend in der Simulation auf numerische Stabilität und Stabilisierbarkeit in der Regelschleife überprüft. Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.
+Aus diesem Grund wird ein anderer Ansatz gewählt, um eine Stabilisierung der mittels NMPC berechneten Trajektorien zu erreichen. Aus dem Skript \cite{modsim} zur Vorlesung \emph{Modellbildung und Simulation} ist bekannt, dass die Stabilität der Simulation maßgeblich von der Schrittweite und dem Integrationsverfahren abhängt. Bezüglich der Trajektorien können diese an zwei Stellen variiert werden: Einerseits innerhalb der NMPC zur Berechnung der Trajektorie und andererseits in der Simulation in \Simulink. Lässt sich eine Trajektorie mit verschiedenen Integrationsverfahren stabil simulieren, wird davon ausgegangen, dass das (ideale) System stabil ist. Über die Integration innerhalb der NMPC soll hingegen die Güte der berechneten Trajektorie variiert werden.
 
 
 \subsection{Vorgehen}
 
-Im Gegensatz zu den linearen Systemen können für nichtlineare Systeme nicht ohne Weiteres Stabilitätsgebiete für die verschiedenen Simulationsverfahren angegeben werden. Daher sind prinzipiell nur heuristische Ansätze anwendbar, um eine geeignete Schrittweite zu finden. Allgemein ist bei einer kleineren Schrittweite ein geringerer Schrittfehler und somit eine höhere Güte der Trajektorie zu erwarten. Andererseits steigen Rundungsfehler und Rechenzeit an. Bezüglich der Trajektorienberechnung wirkt sich besonders die Berechnungsdauer dominant aus. Bei einer kleineren Schrittweite muss darauf geachtet werden, dass der Prädiktionshorizont groß genug gewählt wird. Anderenfalls wird keine gültige Lösung mehr gefunden. Bei Fauvé \cite{fauve} wurde für die Trajektorienberechnung eine Schrittweite von $T=0,01$ (in Sekunden) bei einem Prädiktionshorizont von $N=350$ verwendet. Versuche zur Findung einer geeigneten Variation zu den von Fauvé \cite{fauve} verwendeten Parametern ergeben, dass $T=0.005$ und $N=500$ einen geeigneten Kompromiss aus möglichst kleiner Schrittweite und akzeptabler Rechenzeit liefern. 
+Im Gegensatz zu den linearen Systemen können für nichtlineare Systeme nicht ohne Weiteres Stabilitätsgebiete für die verschiedenen Simulationsverfahren angegeben werden. Daher sind prinzipiell nur heuristische Ansätze anwendbar, um eine geeignete Schrittweite zu finden. Allgemein ist bei einer kleineren Schrittweite ein geringerer Schrittfehler und somit eine höhere Güte der Trajektorie zu erwarten. Andererseits steigen Rundungsfehler und Rechenzeit an. Bezüglich der Trajektorienberechnung wirkt sich besonders die Berechnungsdauer dominant aus. Bei einer kleineren Schrittweite muss darauf geachtet werden, dass der Prädiktionshorizont, der in Abtastpunkten angegeben wird, groß genug gewählt wird. Anderenfalls wird keine gültige Lösung mehr gefunden. Bei Fauvé \cite{fauve} wurde für die Trajektorienberechnung eine Schrittweite von $T=0,01$ (in Sekunden) bei einem Prädiktionshorizont von $N=350$ verwendet. Versuche zur Findung einer geeigneten Variation zu den von Fauvé \cite{fauve} verwendeten Parametern ergeben, dass $T=0.005$ und $N=500$ einen geeigneten Kompromiss aus möglichst kleiner Schrittweite und akzeptabler Rechenzeit liefern. 
 
 Als Integrationsverfahren zur Trajektorienberechnung wurde von Fauvé \cite{fauve} das Euler-Verfahren eingesetzt. Als Alternative wird dem Euler-Verfahren nun das Runge-Kutta-Verfahren 4. Ordnung (RK4) gegenübergestellt.
 
-Als weiterer Einflussfaktor auf die Güte der Trajektorien und somit auch auf ihre Stabilisierbarkeit werden die Systemparameter vermutet. Ihr Einfluss auf die Trajektorienberechnung wird in \secref{sec:trjparamtest} näher untersucht. Hierzu soll die Variation einzelner Systemparameter von einem Anfangs-Parametersatz ausgehen, für den sich die definierte Vergleichstrajektorie finden und stabilisieren lässt. Daher wird neben Schrittweite und Integrationsverfahren auch zwischen den in \secref{subsec:spdparams} definierten Parametersätzen \textit{Apprich} und \textit{Ribeiro} unterschieden.
+Als weiterer Einflussfaktor auf die Güte der Trajektorien und somit auch auf ihre Stabilisierbarkeit werden die Systemparameter vermutet. Ihr Einfluss auf die Trajektorienberechnung wird in \secref{sec:trjparamtest} näher untersucht. Hierbei soll die Variation einzelner Systemparameter von einem Anfangs-Parametersatz ausgehen, für den sich die definierte Vergleichstrajektorie finden und stabilisieren lässt. Daher wird neben Schrittweite und Integrationsverfahren auch zwischen den in \secref{subsec:spdparams} definierten Parametersätzen \textit{Apprich} und \textit{Ribeiro} unterschieden.
 
 Die Versuche zur Stabilisierbarkeit werden störungsfrei und unter Vernachlässigung der Reibung durchgeführt. Auf das Verhalten unter Berücksichtigung der Reibwerte wird in \secref{sec:trjparamtest} eingegangen. 
 
 Um eine Vergleichbarkeit zur Vorgängerarbeit herzustellen, werden die Versuche sowohl mit als auch ohne Berücksichtigung der Gegeninduktion des Motormodells durchgeführt. 
 
-Die Skripte \texttt{TFRSim\_SchlittenPendel\_run} und \texttt{TFRSim\_Gesamtmodell\_run} werden zur Durchführung der Simulationen implementiert. Beide Funktionen führen automatisiert drei Simulationen mit den Solvern \texttt{ode1} (Euler), \texttt{ode4} (Runge-Kutta-4) und \texttt{ode45} (Dormand-Prince) für eine mit \texttt{InitTrajReg} geladene Trajektorie durch und erstellen Plots und Animationen der Simulationsergebnisse. Die Trajektorien werden für die Dauer des Prädiktionshorizonts und mit der gleichen Schrittweite, wie bei ihrer Berechnung verwendet wurde, simuliert. Ausnahme stellt \texttt{ode45} aufgrund der variablen Schrittweite da.
+Die Skripte \texttt{TFRSim\_SchlittenPendel\_run} und \texttt{TFRSim\_Gesamtmodell\_run} werden zur Durchführung der Simulationen implementiert. Beide Funktionen führen automatisiert drei Simulationen mit den Solvern \texttt{ode1} (Euler), \texttt{ode4} (RK4) und \texttt{ode45} (RK5(4) von Dormand-Prince) für eine mit \texttt{InitTrajReg} geladene Trajektorie durch. Darüber hinaus werden Plots und Animationen der Simulationsergebnisse erstellt. 
+Bei den verwendeten Simulationsverfahren handelt es sich um explizite Einschrittverfahren. Der \texttt{ode4}-Solver (4. Ordnung) unterscheidet sich von \texttt{ode1} (1. Ordnung) im Wesentlichen durch die höhere Verfahrensordnung, wobei beide Verfahren mit konstanter Schrittweite operieren. Mit \texttt{ode45} wird zusätzlich ein Verfahren mit Schrittweitensteuerung eingesetzt. Hierbei handelt es sich wieder um ein Runge-Kutta-Verfahren, das jedoch gegenüber dem reinen RK4-Verfahren den Schrittfehler durch die Auswertung einer zusätzlichen Stützstelle schätzt und daraus für jeden Schritt eine eigene Schrittweite bestimmt.
+
+ wobei der \texttt{ode45}-Solver im Gegensatz zu den anderen beiden Verfahren eine Schrittweitensteuerung besitzt und daher mit variabler Schrittweite operiert. Für die Solver \texttt{ode1}, \texttt{ode4}
+
+Die Trajektorien werden für die Dauer des Prädiktionshorizonts und mit der gleichen Schrittweite, wie bei ihrer Berechnung verwendet wurde, simuliert. Ausnahme stellt \texttt{ode45} aufgrund der variablen Schrittweite da.
 
 Die Funktion \texttt{TFRSim\_SchlittenPendel\_run} ruft das Simulinkmodell \texttt{TFR\_SchlittenPendel\_test} auf, das die Trajektorie direkt am Schlittenpendel-System simuliert, während \texttt{TFRSim\_Gesamtmodell\_run} das Simulinkmodell \texttt{TFR\_Gesamtmodell\_test} aufruft, das die Trajektorie am Gesamtsystem einschließlich des modellierten Gegeninduktionseffekts simuliert. Zum Vergleich werden die Trajektorien jeweils auch ohne Regler simuliert. Da die Simulationen störungsfrei sind, wird zunächst erwartet, dass auch eine Steuerung bereits gute Ergebnisse liefert.
 
-Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
+Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet und sich schließlich für 
 \[ 
 	\mat{Q} = 
 	\begin{bmatrix}
@@ -254,7 +283,10 @@ Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Au
 	R = 0,1 \\
 \]
 
-entschieden, die der Arbeit von Chang \cite{chang} entnommen werden. In Abhängigkeit der Simulationsergebnisse werden diese durch sinnvolle Schätzung noch variiert, um ein möglichst gutes Ergebnis für jede Trajektorie zu erhalten.    
+entschieden, die der Arbeit von Chang \cite{chang} entnommen werden.
+
+
+   
 
 \subsection{Vergleichstrajektorie}\label{subsec:vglTrj}
 
@@ -281,15 +313,16 @@ wobei die Positionsbeschränkung $-0,8 \leq x_0 \leq 0,8$ \ als Nebenbedingung f
 Eine maximale Stellkraft wird in Abhängigkeit der Versuche zur Vergleichstrajektorie ergänzt.
 
 
+
+
 \subsection{Ohne Gegeninduktion}\label{subsec:ohneInd}
 
 Das System wird zunächst ohne die Gegeninduktion des Motormodells betrachtet, um im ersten Schritt an den Stand von Fauvé \cite{fauve} anzuknüpfen. Entsprechend wird auch die Stellkraftbegrenzung auf die in Fauvé \cite{fauve} verwendete Maximalkraft $F_{\mrm{max}}=\valunit{400}{N}$ eingestellt. 
 
 Die Ergebnisse für $T=0.01$ und $N=350$ sind in \tabref{tab:T001N350Fmax400} zusammengefasst.
-
-\begin{table}[htbp]
+\begin{table}[h]
 	\centering
-	\caption{$T=0.01, \ N=350, \ F_{\mrm{max}}=400$}
+	\caption{$T=0.01, \ N=350$}
 		\begin{tabular}{c|c|c|c|c|c}
 			\rowcolor[gray]{0.9}
 			\multicolumn{2}{c|}{\textbf{Simulation}} & \multicolumn{2}{c|}{\textbf{Apprich}} & \multicolumn{2}{c}{\textbf{Ribeiro}} \\
@@ -297,71 +330,69 @@ Die Ergebnisse für $T=0.01$ und $N=350$ sind in \tabref{tab:T001N350Fmax400} zu
 			\rowcolor[gray]{0.9}
 			\textbf{Solver} & \textbf{TFR} & \textbf{Euler} & \textbf{RK4} & \textbf{Euler} & \textbf{RK4} \\
 			\midrule
-			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & leicht instabil & instabil       & instabil & instabil\\
-			\multirow{-2}{*}{\cellcolor[gray]{.9}ode1}	& \cellcolor[gray]{.9}mit  & \textbf{stabil} & \textbf{stabil} & instabil & leicht instabil\\
+			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & "`leicht instabil"' & instabil       & instabil & instabil\\
+			\multirow{-2}{*}{\cellcolor[gray]{.9}ode1}	& \cellcolor[gray]{.9}mit  & \textbf{stabil} & \textbf{stabil} & instabil & "`leicht instabil"'\\
 			\midrule
 			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne    & instabil	&  instabil & instabil & instabil\\
 			\multirow{-2}{*}{\cellcolor[gray]{.9}ode4}	& \cellcolor[gray]{.9}mit     & instabil  & instabil  & instabil & \textbf{stabil}\\
 			\midrule	
 			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne    & instabil &  instabil    & instabil 	& instabil\\
-			\multirow{-2}{*}{\cellcolor[gray]{.9}ode45}	& \cellcolor[gray]{.9}mit     & instabil &  instabil    & instabil 	& leicht instabil\																											
+			\multirow{-2}{*}{\cellcolor[gray]{.9}ode45}	& \cellcolor[gray]{.9}mit     & instabil &  instabil    & instabil 	& "`leicht instabil"'\																							
 		\end{tabular}
 	\label{tab:T001N350Fmax400}
 \end{table}
 
 Es wird zwischen 
 
-\begin{center}
-	\begin{tabular}{cl}
-		stabil & Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden \\
-		leicht instabil & Aufschwung gelingt weitgehend, AP4 wird nicht gehalten oder Position ist instabil  \\
-		instabil & Aufschwung gelingt nicht \\
-	\end{tabular}
-\end{center}
-
-unterschieden. Zum besseren Verständnis soll die Zuordnung der dargestellten Ergebnisse an Hand einiger repräsentativer Beispiele erläutert werden.
+%\begin{center}
+	%\begin{tabular}{cl}
+		%stabil & Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden \\
+		%"`leicht instabil"' & Aufschwung gelingt weitgehend, AP4 wird nicht gehalten  \\
+		%instabil & Aufschwung gelingt nicht \\
+	%\end{tabular}
+%\end{center}
+\begin{itemize}
+	\item \textit{stabil} - Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden \\
+	\item \textit{"`leicht instabil"'} - Aufschwung gelingt weitgehend, AP4 wird nicht gehalten  \\
+	\item \textit{instabil} - Aufschwung gelingt nicht
+\end{itemize}
+unterschieden. Zum besseren Verständnis soll die Zuordnung der dargestellten Ergebnisse an Hand repräsentativer Beispiele erläutert werden.
 
 Zunächst wird der Eintrag links oben in \tabref{tab:T001N350Fmax400} betrachtet. Hierbei wird die Vergleichstrajektorie mit dem Apprich-Parametersatz und dem Euler-Verfahren berechnet und anschließend auch wieder mit dem Euler-Verfahren am Schlittendoppelpendel simuliert. Die in \figref{fig:F400T0.01_app_euler_ode1} dargestellten Ergebnisse zeigen die Verläufe der Ausgänge und der Stellkraft für das zunächst ungeregelte System. Es ist zu erkennen, dass der Aufschwung ohne Regelung gelingt, AP4 jedoch nicht gehalten wird. Das Ergebnis wird daher als \textit{leicht instabil} beurteilt. In der anschließenden Simulation am geregelten System kann das Pendel schließlich bis zum Ende der Simulationszeit stabilisiert werden.
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_app_euler_ode1.pdf}
 	\caption{$T=0,01$, $N=350$, Apprich-Parameter, Euler-MPC, ode1-Sim, ohne Regelung}
 	\label{fig:F400T0.01_app_euler_ode1}
 \end{figure}
 
-Mit den Verfahren \texttt{ode4} und \texttt{ode45} am ungeregelten System zeigen die Verläufe demgegenüber hohe Abweichungen von der Trajektorie. Erwartungsgemäß lassen sie sich anschließend am geregelten System nicht stabilisieren. Auch eine Variation der Simulationsschrittweite führt nicht zur Stabilisierung. Die Verläufe werden daher als \textit{instabil} beurteilt. 
+Mit den Verfahren \texttt{ode4} und \texttt{ode45} am ungeregelten System zeigen die Verläufe demgegenüber hohe Abweichungen von der Trajektorie. Erwartungsgemäß lassen sie sich anschließend am geregelten System nicht stabilisieren. Die Verläufe werden daher als \textit{instabil} bewertet. 
 
-Die berechnete Trajektorie lässt sich zwar stabilisieren, jedoch nur wenn die bei der Trajektorienberechnung gemachten Schrittfehler durch das gleiche Verfahren in der Simulation näherungsweise reproduziert werden. Dass die Steuerung alleine nicht ausreicht, obwohl mit gleicher numerischer Fehlerfortpflanzung simuliert wird, lässt sich einerseits damit begründen, dass die Nebenbedingungen des Optimierungsverfahrens mit bestmöglicher, jedoch endlicher Genauigkeit eingehalten werden. Die beobachteten Genauigkeiten für die Nebenbedingungen liegen zwischen $10^{-13}$ und $10^{-34}$ für (lokal) optimale Lösungen. Aufgrund numerischer Ungenauigkeiten erreicht das Pendel zudem auch bei einer mittels Optimalsteuerungsentwurf berechneten Trajektorie den Arbeitspunkt AP4 nicht exakt und schwingt zurück \cite{matPrakt2}. Andererseits ist insbesondere zu beachten, dass der zu erreichende Endwert durch die Optimierung lediglich angenähert wird. Die im Rahmen der Arbeit beobachteten absoluten Fehler einzelner Zustandsgrößen im letzten Prädiktionsschritt lagen bei optimalen Lösungen im Bereich von $10^{-5}$ und $2 \cdot 10^{1}$. 
+Die mit dem Eulerverfahren berechnete Trajektorie lässt sich zwar stabilisieren, jedoch nur, wenn die bei der Trajektorienberechnung gemachten Schrittfehler durch das gleiche Verfahren in der Simulation näherungsweise reproduziert werden. Dass die Steuerung alleine nicht ausreicht, obwohl mit gleicher numerischer Fehlerfortpflanzung simuliert wird, lässt sich einerseits damit begründen, dass die Nebenbedingungen des Optimierungsverfahrens mit bestmöglicher, jedoch endlicher Genauigkeit eingehalten werden. Die beobachteten Genauigkeiten für die Nebenbedingungen liegen zwischen $10^{-13}$ und $10^{-34}$ für (lokal) optimale Lösungen. Andererseits ist insbesondere zu beachten, dass der zu erreichende Endwert durch die Optimierung lediglich angenähert wird. Die im Rahmen der Arbeit beobachteten absoluten Fehler einzelner Zustandsgrößen im letzten Prädiktionsschritt lagen bei den vom Optimierer ausgegebenen "`optimalen"' Lösungen im Bereich von $10^{-5}$ und $2 \cdot 10^{1}$.
 
 Als weiteres Beispiel wird die für den Ribeiro-Parametersatz und das RK4-Verfahren berechnete Trajektorie in der Simulation mit \texttt{ode4} betrachtet. Die Verläufe sind für das ungeregelte System in \figref{fig:F400T0.01_rib_rk4_ode4} zu sehen. 
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_rib_rk4_ode4.pdf}
 	\caption{$T=0,01$, $N=350$, Ribeiro-Parameter, RK4-MPC, ode4-Sim, ohne Regelung}
 	\label{fig:F400T0.01_rib_rk4_ode4}
 \end{figure}
 
-Es ist deutlich ersichtlich, dass der Aufschwung nicht geschafft wird. Das erste Pendel fällt bereits gleich zu Anfang des Aufschwungs zurück, sodass in der Folge beide Pendel unkontrolliert zu schwingen beginnen. Die Verläufe werden daher als \textit{instabil} bewertet.
+Es ist deutlich ersichtlich, dass der Aufschwung nicht gelingt. Das erste Pendel fällt bereits gleich zu Anfang des Aufschwungs zurück, sodass in der Folge beide Pendel unkontrolliert zu schwingen beginnen. Die Verläufe werden daher als \textit{instabil} bewertet.
 In \figref{fig:F400T0.01_rib_rk4_ode4_TFR_QR-alt} sind demgegenüber die Verläufe mit Trajektorienfolgeregelung zu sehen. 
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F400T0.01_rib_rk4_ode4_TFR_QR-alt.pdf}
 	\caption{$T=0,01$, $N=350$, Ribeiro-Parameter, RK4-MPC, ode4-Sim, mit Regelung}
 	\label{fig:F400T0.01_rib_rk4_ode4_TFR_QR-alt}
 \end{figure}
 
-Das Doppelpendel kann demnach stabilisiert werden, jedoch ist in der Schlittenposition ein "`Weglaufen"' zu beobachten. Dieses sorgt dafür, dass die vorgegebene Positionsbegrenzung weit überschritten wird. Dies legt nahe, dass durch eine höhere Bestrafung der Position mit Hilfe der QR-Parameter des Reglers eine Verringerung der maximalen Auslenkung zu erwarten ist. Mit einer Erhöhung von $Q_{11}=1$ auf wahlweise $Q_{11}=1,05$ oder $Q_{11}=4,5$ lässt sich die maximale Positionsauslenkung von etwa \valunit{-3,2}{m} auf \valunit{-2,5}{m} senken. Damit liegt die erreichte Auslenkung weiterhin weit außerhalb der zulässigen Begrenzung von \valunit{\pm 0,8}{m}. Die durchgeführten Variationsversuche zeigen außerdem, dass die Stabilisierung der betrachteten Trajektorie empfindlich auf Veränderung der QR-Parameter reagiert. Bereits bei $Q_{11}=1,07$ bzw. $Q_{11}=4,6$ wird das System instabil. Da allgemein jedoch eine Stabilisierung erreicht wird, kann die Trajektorie für die Simulation \texttt{ode4} am geregelten System als \textit{stabil} bewertet werden. 
+Das Doppelpendel kann demnach stabilisiert werden, jedoch ist in der Schlittenposition ein "`Weglaufen"' zu beobachten. Dieses sorgt dafür, dass die vorgegebene Positionsbegrenzung weit überschritten wird. Es liegt daher nahe, dass durch eine höhere Bestrafung der Position mit Hilfe der QR-Parameter des Reglers eine Verringerung der maximalen Auslenkung zu erwarten ist. Eine Variation von $Q_{11}$ ergibt, dass mit einer Erhöhung von $Q_{11}=1$ auf wahlweise $Q_{11}=1,05$ oder $Q_{11}=4,5$ sich die maximale Positionsauslenkung von etwa \valunit{-3,2}{m} auf \valunit{-2,5}{m} senken lässt. Damit liegt die erreichte Auslenkung weiterhin weit außerhalb der zulässigen Begrenzung von \valunit{\pm 0,8}{m}. Es zeigt sich außerdem, dass die Stabilisierung der betrachteten Trajektorie empfindlich auf Veränderung von $Q_{11}$ reagiert. Bereits bei $Q_{11}=1,07$ bzw. $Q_{11}=4,6$ wird das System instabil. Da allgemein jedoch eine Stabilisierung erreicht wird, ist die Trajektorie für die Simulation \texttt{ode4} am geregelten System als \textit{stabil} bewerten. 
 
-Nach dem beschriebenen Vorgehen werden auch die weiteren Simulationsversuche ausgewertet. Die Ergebnisse in \tabref{tab:T001N350Fmax400} zeigen, dass sich keine der betrachteten Trajektorien unter den beschriebenen Voraussetzungen numerisch stabil betreiben lässt.
-
-Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T001N350Fmax400} dargestellt.
-
-\begin{table}[htbp]
+Nach dem beschriebenen Vorgehen werden auch die weiteren Simulationsversuche ausgewertet. Die Ergebnisse in \tabref{tab:T001N350Fmax400} zeigen, dass sich drei der vier berechneten Trajektorien in zumindest einer der drei betrachteten Simulationen stabilisieren lässt. Die mit dem Euler-Verfahren und den Ribeiro-Parametern berechnete Trajektorie fällt dabei auf, da eine Stabilisierung generell in keiner der betrachteten Simulationen erreicht wird. Als Nächstes wird daher eine höhere Güte der Trajektorien gefordert, indem die Schrittweite für die Trajektorienberechnung halbiert wird bei entsprechender Erhöhung des Prädiktionshorizonts. Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T0005N500Fmax400} dargestellt.
+\begin{table}[H]
 	\centering
-	\caption{$T=0.005, \ N=500, \ F_{\mrm{max}}=400$}
+	\caption{$T=0.005, \ N=500$}
 		\begin{tabular}{c|c|c|c|c|c}
 			\rowcolor[gray]{0.9}
 			\multicolumn{2}{c|}{\textbf{Simulation}} & \multicolumn{2}{c|}{\textbf{Apprich}} & \multicolumn{2}{c}{\textbf{Ribeiro}} \\
@@ -369,29 +400,31 @@ Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T001N350Fmax400} d
 			\rowcolor[gray]{0.9}
 			\textbf{Solver} & \textbf{TFR} & \textbf{Euler} & \textbf{RK4} & \textbf{Euler} & \textbf{RK4} \\
 			\midrule
-			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & leicht instabil  & leicht instabil & instabil & Trajektorie\\
+			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & "`leicht instabil"'  & "`leicht instabil"' & instabil & Trajektorie\\
 			\multirow{-2}{*}{\cellcolor[gray]{.9}ode1}	& \cellcolor[gray]{.9}mit  & \textbf{stabil} & \textbf{stabil} 			& instabil 				 & 	\\
 			\midrule
-			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & instabil	& leicht instabil & instabil & nicht\\
+			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & instabil	& "`leicht instabil"' & instabil & nicht\\
 			\multirow{-2}{*}{\cellcolor[gray]{.9}ode4}	& \cellcolor[gray]{.9}mit  & instabil & \textbf{stabil} & instabil & \\
 			\midrule	
-			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & instabil	&  leicht instabil & instabil 	& gefunden\\
+			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & instabil	&  "`leicht instabil"' & instabil 	& gefunden\\
 			\multirow{-2}{*}{\cellcolor[gray]{.9}ode45}	& \cellcolor[gray]{.9}mit  & instabil	&  \textbf{stabil}  & instabil 	& \																											
 		\end{tabular}
 	\label{tab:T0005N500Fmax400}
 \end{table}
 
-Hierbei fällt auf, dass die Trajektorie, die mit Hilfe des Apprich-Parametersatzes und dem RK4-Verfahren berechnet wird, mit Hilfe des Reglers in allen drei Simulationen stabilisiert werden kann. Auch die Verläufe am ungeregelten System liefern bereits gute Ergebnisse. Die Stabilisierung durch den Regler erfolgt zudem innerhalb der vorgegebenen Positionsbegrenzung bei gleichzeitig geringer Abweichung von der Trajektorie. Auch bei Veränderung der QR-Parameter erweist sich die Stabilisierbarkeit der Trajektorie als unempfindlich, indem keine Destabilisierung im Rahmen der durchgeführten Variationen auftritt.
+Hierbei fällt auf, dass die Trajektorie, die mit Hilfe des Apprich-Parametersatzes und des RK4-Verfahrens berechnet wird, mit Hilfe des Reglers in allen drei Simulationen stabilisiert werden kann. Auch die Verläufe am ungeregelten System liefern bereits gute Ergebnisse. Die Stabilisierung durch den Regler erfolgt zudem innerhalb der vorgegebenen Positionsbegrenzung bei gleichzeitig geringer Abweichung von der Trajektorie. Werden darüber hinaus die zuvor betrachteten QR-Parameter ausgelenkt, zeigt sich zudem, dass ohne Weiteres keine Destabilisierung erreicht wird. 
+
+
+
 
 \subsection{Mit Gegeninduktion}
 
-Wird die Gegeninduktion des Motors berücksichtigt und am Gesamtmodell simuliert, fällt zunächst auf, dass mit $F_{\mrm{max}}= \valunit{400}{N}$ für den konstanten Bereich der Strombegrenzung keine der vier untersuchten Trajektorien gefunden wird. Durch eine Variation der Maximalkraftbegrenzung ergibt sich $F_{\mrm{max}}= \valunit{410}{N}$ neue Grenze. Damit ist weiterhin eine Stellgrößenreserve von \valunit{11}{N} gegenüber der zuletzt am Versuchsstand eingestellten Maximalkraft von $F_{\mrm{max}}= \valunit{421}{N}$ gewährleistet. 
+Wird die Gegeninduktion des Motors berücksichtigt und am Gesamtmodell simuliert, fällt zunächst auf, dass mit $F_{\mrm{max}}= \valunit{400}{N}$ für den konstanten Bereich der Strombegrenzung keine der vier untersuchten Trajektorien gefunden wird. Durch eine Variation der Maximalkraftbegrenzung ergibt sich $F_{\mrm{max}}= \valunit{410}{N}$ als neue Grenze. Damit ist weiterhin eine Stellgrößenreserve von \valunit{11}{N} gegenüber der zuletzt am Versuchsstand eingestellten Maximalkraft von $F_{\mrm{max}}= \valunit{421}{N}$ gewährleistet. 
 
-Für $T=0.01$ und $N=350$ kann dennoch keine der Trajektorien gefunden werden. Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T001N350Fmax400} zusammengetragen. Die Trajektorie auf Basis der Apprich-Parameter und des RK4-Verfahrens bestätigt die Ergebnisse aus \secref{subsec:ohneInd}. Sie ist ebenfalls numerisch stabil.
-
-\begin{table}[htbp]
+Für $T=0.01$ und $N=350$ kann dennoch keine der Trajektorien gefunden werden. Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T001N350Fmax410} zusammengetragen. Die Trajektorie auf Basis der Apprich-Parameter und des RK4-Verfahrens bestätigt die Ergebnisse aus \secref{subsec:ohneInd}. Sie lässt sich unabhängig vom betrachteten Simulationsverfahren stabilisieren.
+\begin{table}[H]
 	\centering
-	\caption{$T=0.005, \ N=500, \ F_{\mrm{max}}=410$}
+	\caption{$T=0.005, \ N=500$}
 		\begin{tabular}{c|c|c|c|c|c}
 			\rowcolor[gray]{0.9}
 			\multicolumn{2}{c|}{\textbf{Simulation}} & \multicolumn{2}{c|}{\textbf{Apprich}} & \multicolumn{2}{c}{\textbf{Ribeiro}} \\
@@ -408,11 +441,11 @@ Für $T=0.01$ und $N=350$ kann dennoch keine der Trajektorien gefunden werden. D
 			\cellcolor[gray]{0.9}  											& \cellcolor[gray]{.9}ohne & gefunden 	&  instabil    			& instabil 	& gefunden\\
 			\multirow{-2}{*}{\cellcolor[gray]{.9}ode45}	& \cellcolor[gray]{.9}mit  &  					&  \textbf{stabil}  & instabil 	& \\																											
 		\end{tabular}
-	\label{tab:T001N350Fmax400}
+	\label{tab:T001N350Fmax410}
 \end{table}
 
-Durch Variation der QR-Parameter können die Simulationsergebnisse zudem noch weiter verbessert werden. Optimale Ergebnisse werden für folgende QR-Matrizen erzielt:
-\begin{table}
+Durch Variation der QR-Parameter können die Simulationsergebnisse zudem noch optimiert werden. Sehr gute Ergebnisse werden für die QR-Matrizen in \tabref{tab:NeueQR} erzielt.
+\begin{table}[h]
 	\centering
 	\caption{Neue QR-Matrizen für Apprich-RK4-Trajektorie}
 		\begin{tabular}{cll}
@@ -425,17 +458,20 @@ Durch Variation der QR-Parameter können die Simulationsergebnisse zudem noch we
 \end{table}
 
 Die Ausgangsverläufe für die Simulation mit \texttt{ode45} und den neuen QR-Parametern sind in \figref{fig:F410T0.005_app_rk4_ode45_TFR_QR-neu} dargestellt. Im Vergleich zu den Plots in \secref{subsec:ohneInd} wird im Stellgrößenverlauf zusätzlich zwischen $F_\mrm{in}$ und $F_\mrm{out}$ unterschieden. $F_\mrm{in}$ bezeichnet den durch Regler und Trajektorie festgelegten Stellwert, der auf das Gesamtsystem gegeben wird. Auf Grund der Strombegrenzungskennlinie (vgl. \figref{fig:Stromkennlinie}) kann am Ausgang des Motors jedoch ein abweichender Kraftverlauf entstehen, der mit $F_\mrm{out}$ dargestellt wird. Da die Stromkennlinie in den Nebenbedingungen der Trajektorienberechnung berücksichtigt wird, entstehen Abweichungen zwischen $F_\mrm{in}$ und $F_\mrm{out}$ in erster Linie auf Grund des Reglers. 
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 		\includegraphics[scale=\scaleyplots]{Bilder/Trajektorien/F410T0.005_app_rk4_ode45_TFR_QR-neu.pdf}
 	\caption{$T=0,005$, $N=500$, Apprich-Parameter, RK4-MPC, ode45-Sim, mit Regelung}
 	\label{fig:F410T0.005_app_rk4_ode45_TFR_QR-neu}
 \end{figure}
 
-
 \textbf{Fazit:}
 Es lässt sich zeigen, dass die mit dem Verfahren der NMPC berechneten Trajektorien in der Simulation stabilisierbar sind. Zudem bestätigt sich die Vermutung, dass die Schrittweite und die Wahl des Integrationsverfahrens zur Berechnung der Trajektorien einen Einfluss auf die numerische Stabilität haben. Eine geringere Schrittweite und ein Integrationsverfahren mit geringerem Schrittfehler haben in den betrachteten Versuchsdurchführungen zu einer höheren Stabilität geführt. Darüber hinaus fällt auf, dass die Apprich-Parameter gegenüber den Ribeiro-Parametern ein günstigeres Verhalten aufweisen. Der Einfluss der Modellparameter wird im folgenden Kapitel daher näher untersucht. 
+
+
+
+
+
 
 \section{Untersuchung des Einflusses der Modellparameter}\label{sec:trjparamtest}
 
@@ -466,7 +502,7 @@ Die Schrittweite wird möglichst gering gewählt, um die Aussagekraft der Ergebn
 
 Zur Untersuchung des Einflusses einzelner Modellparameter werden diese gegenüber einem definierten Ausgangsparametersatz variiert, wobei alle weiteren Parameter konstant gehalten werden. Zur Durchführung der Versuche wird die Funktion \texttt{examParameters} implementiert. Ihr kann eine Versuchsreihe bestehend aus der Bezeichnung des zu untersuchenden Parameters und einem Vektor mit den Variationswerten des Parameters übergeben werden. Über den Aufruf der in \secref{subsec:searchtrj} beschriebenen Funktion \texttt{searchTrajectories} werden damit die benötigten Trajektorienberechnungen ausgeführt. Die berechneten Trajektorien werden anschließend im Ordner \texttt{ParameterExams} gespeichert. Um die Ergebnisse später sinnvoll identifizieren zu können, wird der in \secref{subsec:searchtrj} definierten Namenskonvention eine Endung bestehend aus der Bezeichnung des untersuchten Parameters und dessen Wert angefügt. 
 
-Zur Bewertung der betrachteten Parametervariationen wird zunächst unterschieden, ob für die jeweilige Variation eine Trajektorie gefunden werden kann oder nicht. Darüber hinaus wird das Gütemaß $J_\mrm{dev}$ eingeführt, um die Güte der gefundenen Lösungen zu quantifizieren. Der Ansatz für das Gütemaß basiert auf der Definition von Trajektorien durch ihre Randwerte. Da diese durch die Optimierung lediglich angenähert werden (\vgl \secref{stabiltrj}), ist der Fehler durch die Näherung der Anfangs- und der Endwertbedingung ein Kriterium für die Güte der Trajektorien.
+Zur Bewertung der betrachteten Parametervariationen wird zunächst unterschieden, ob für die jeweilige Variation eine Trajektorie gefunden werden kann oder nicht. Darüber hinaus wird das Gütemaß $J_\mrm{dev}$ eingeführt, um die Güte der gefundenen Lösungen zu quantifizieren. Der Ansatz für das Gütemaß basiert auf der Definition von Trajektorien durch ihre Randwerte. Da diese bei der Optimierung mit endlicher Genauigkeit eingehalten werden (\vgl \secref{subsec:ohneInd}), ist der resultierende Fehler in den Randwerten ein Kriterium für die Güte der Trajektorien.
 
 Das Gütemaß wird daher mit
 	\[
@@ -485,11 +521,10 @@ mit $t_\mrm{init} = 0$ und
 
 mit $t_{\mrm{end}} = (N+1) \cdot T$
 
-Wie in \secref{stabiltrj} erläutert, verhält sich der Endwertfehler dominant, sodass im Allgemeinen
+Wie in \secref{stabiltrj} erläutert, verhält sich der Endwertfehler dominant, da dieser nur indirekt durch die Zielfunktion statt durch die Nebenbedingungen für die Optimierung vorgegeben wird. Im Allgemeinen gilt daher
 \[
-	J_\mrm{dev} \approx \left\| \Delta \ve{x_{\mrm{end}}} \right\|
+	J_\mrm{dev} \approx \left\| \Delta \ve{x_{\mrm{end}}} \right\| \ .
 	\]	 
-angenommen werden kann.
 
 
 
@@ -506,7 +541,7 @@ Als Trajektorie wird die in \secref{subsec:vglTrj} definierte Vergleichstrajekto
 
 \subsection{Ergebnisse}\label{subsec:trjParTestRes}
 
-Die Auswertung erfolgt mit Hilfe der Funktion \texttt{plot\_Jdev\_params}. Mit dieser werden die Gütemaße berechnet und über dem untersuchten Parameter in einem Koordinatensystem aufgetragen. Hierbei werden auch die Werte des Apprich- und des Ribeiro-Parametersatzes nach \secref{subsec:spdparams} als Vergleichswerte durch die Funktion hinzugefügt. Berechnete Trajektorien ohne lokale Konvergenz zu einem Optimum werden als ungültig gewertet und durch ein rotes.
+Die Auswertung erfolgt mit Hilfe der Funktion \texttt{plot\_Jdev\_params}. Mit dieser werden die Gütemaße berechnet und über dem untersuchten Parameter in einem Koordinatensystem aufgetragen. Hierbei werden auch die Werte des Apprich- und des Ribeiro-Parametersatzes nach \secref{subsec:spdparams} als Vergleichswerte durch die Funktion hinzugefügt. Berechnete Trajektorien ohne lokale Konvergenz zu einem Optimum werden als ungültig gewertet und nicht dargestellt.
 
 
 Die Ergebnisse für die Parametervariationen + jeweils Ribeiro und Apprich Variation, falls nicht inklusive
@@ -573,54 +608,41 @@ Diskussion in Bearbeitung...
 
 
 \chapter{Kommentare}
-lies besser den quell tex
 
-Insgesamt gute Arbeit!
-Hast sehr viel geschrieben, ich glaube manches hätten wir nicht gebraucht.
-Sprachlich und Rechtschreibung hatte ich kaum was auszusetzen.
-Latex Formatierung hab ich angepasst
-Man merkt, dass du gegen Ende gehetzter warst ;)
+ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig \\
+--> Wo?
 
-Generell: an manchen abschnitten wären unterabschnitte praktisch
-Kapitel 4.2: evtl noch unterabschnitte wie zb Gütefunktion, Nebenbedingungen...
-Kürzere Unterkapitelnamen:  "`Implementierung der"' weglassen
-ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig
- Tabelle Überschrift
- Figures habe ich mal als gleitende abbildung gemacht
+Figures habe ich mal als gleitende abbildung gemacht \\
+--> Sah hässlich aus, habs wieder rückgängig gemacht
 
-Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...}
-Betonungen (zb stabil) machen als texttt keinen sinn, sondern kursiv
-Wertebereiche der Optimierungsvariablen (\zB $u_{\mrm{min}}<u<u_{\mrm{max}}$)   kleiner gleich?
-rte mit dem Nullvektor $u_0 = [0 \ 0 \ \ldots \ 0 ]^Tm\in \mathbb{R}^{1 \times N}$ initialisiert     m?
-mal fehlt das é... empfehle dir daher einen command: {Fauvé \cite{fauve}}
-4.3 J(t) ? mathematisch fragwürdig
-nicht das gerade \ves{x} verwenden, sondern \vex
-B machen wir allgemein als Matrix, K auch
-riccati DGL %b^2 vector^2 was soll das sein?
-transponiert gerades T (\transp)
-Die Vergleichstrajektorie wird in \secref{subsec:vglTrj} definiert.    kann man sparen
-Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich
-4.5.1 Für die Berechnung des Reglers wurden im Voraus verschiedene QR-Matrizen als Ausgangskonfiguration getestet einschließlich und sich schließlich für 
-4.5.3 Unterschiede ist hässlich, bitte als items
-Überprüf mal die labels T001N350Fmax400 da wird eine falsche tabelle angegeben
-bezeichnung "`leicht instabil"' ungünstig
- den Arbeitspunkt AP4 nicht exakt und schwingt zurück -  zitat von praktikum unklar
-Begriff  Stabilisierbarkeit finde ich hier fragwürdig. Das würde ich als Variation der Parameter verstehen. Aber sonst für einen Fall nennt man besser numerische stabilität
-tab:NeueQR 4.5 ist nicht an deiner gewünschten position. evtl mit [h] ausprobieren. 
-461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar
-subref gibts net
-462 und durch ein rotes.
+Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...} \\
+--> Das System dahinter: Abschnitte sind Teile des aktuellen Kapitels. "`Kapitel"'-Referenzen mach ich für alle Teile, die nicht zum aktuellen Kapitel gehören.
+
+B machen wir allgemein als Matrix, K auch \\
+--> Wozu? In  3.1.1 haben wir den Vektor b bereits eingeführt. Da ich auch nicht u-Matrix, sondern F-Skalar verwende, ist b-Vektor nur konsistent
+
+Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich \\
+--> ich nicht. Was ist dir zu ausführlich?
+
+461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar \\
+--> Ich finds verständlich (Eric scheinbar auch). Gehts dir um die Formulierung oder verstehst du tatsächlich die Aussage nicht?
 
 
 %%%%%%%%%%% Kommentare Motor
 
-vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout)
-"auf Grund" find ich hässlich
-Spannungs-Strom-Wandlers ??
+vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout) \\
+--> stimmt aber nicht. Insbesondere Franke und Apprich modellieren den Motor. Nur ohne Gegeninduktion.
+
+Spannungs-Strom-Wandlers ?? \\
+--> Konsistenz zu Franke und co.. Hab den Begriff nur Übernommen.
+
 eq:Iconst  IaMAX(w)=Iwmax?
-datenblatt
-tau el: einheit
-Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin
-wemk =?
-KG ist leider nicht konsistent zu simulink
-F=M/Kg fehlt
+Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin \\
+--> jaa... mh.. jaa.. Ich hatte es vorher anders, aber es sah viel hässlicher aus als mit sign. Eric hat die verkürzte mathematische Schreibweise ja nicht gestört
+
+wemk =? \\
+--> wemk ist variabel, da KUI variabel ist. Man könnte es bei den Modellparametern hinzunehmen, nachdem KUI für die Arbeit festgelegt wird (hinter Fmax). Aber brauchen wir das?
+
+
+F=M/Kg fehlt \\
+--> ist durch die Kinematik doch schon mitdefiniert

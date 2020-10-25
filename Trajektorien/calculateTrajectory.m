@@ -58,7 +58,7 @@ g(1:xLength) = X(:,1) - P(1:xLength);
 % Zielfunktion und Nebenbedingungen
 J = 0; 
 mp = MotorParams_Franke97();
-K_G=mp.K_G; K_I=mp.K_I; r32=mp.r32; Umax_out=mp.Umax_out; Ra=mp.R;
+K_G=mp.K_G; K_I=mp.K_I; r32=mp.r32; Ua_max=mp.Ua_max; Ra=mp.R;
 for k=1:N 
     x_k = X(:,k); 
     u_k = U(:,k);
@@ -90,8 +90,8 @@ for k=1:N
     g(k*xLength+1 : (k+1)*xLength) = x_next - x_next_sim;  
     
     % Motorsättigungsbedingung   
-    g(xLength*(N+1)+k) = (-K_I*x_k(2) + K_G*Umax_out*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k; 
-    g(xLength*(N+1)+N+k) = (-K_I*x_k(2) - K_G*Umax_out*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k;
+    g(xLength*(N+1)+k) = (-K_I*x_k(2) + K_G*Ua_max*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k; 
+    g(xLength*(N+1)+N+k) = (-K_I*x_k(2) - K_G*Ua_max*r32) * (K_I/(K_G^2*Ra*r32^2)) - u_k;
 end 
 args = struct;
 args.lbg(1:xLength*(N+1)) = 0;  % lbg<=g(w)<=ubg für Anfangs- und Konti-Bedingung
