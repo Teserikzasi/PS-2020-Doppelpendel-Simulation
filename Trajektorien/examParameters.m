@@ -1,7 +1,15 @@
 function examParameters(poi, poi_val, N, T, simSol, params, u_max)
 
 %% Speicherordner
-fullFolderPath = fullfile('Trajektorien', ['ParameterExams_' paramsSource]);
+if strcmp(params.name, 'Doppelpendel rtm (Ribeiro)')
+    paramsStr = 'rib20';
+elseif strcmp(params.name, 'Doppelpendel rtm (Apprich, Kisner, Brehl)')
+    paramsStr = 'app09';
+else
+    disp('params.name stimmt mit keinem der bekannten Parametersätze überein.')
+    paramsStr = 'unknownParams';
+end
+fullFolderPath = fullfile('Trajektorien', ['ParameterExams_' paramsStr]);
 
 %% Durchführung der Versuchsreihe
 for i=1 : length(poi_val)

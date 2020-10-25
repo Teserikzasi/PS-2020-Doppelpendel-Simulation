@@ -47,11 +47,22 @@ Die Zeitkonstante $T_{UI}$ wird als ausreichend klein angesehen, sodass die Dyna
 
 Alle weiteren verwendeten Parameter des Motormodells sind in \tabref{tab:motorparams} aufgeführt.
 
-\begin{table}[h]
+\begin{table}[htbp]
 	\centering
 	\caption{Parameter -- Motorsystem}
-		\begin{tabular}[t]{cc} \
-					Tabelle & Dummy \\
+		\begin{tabular}{lcc|l}
+			\toprule
+			Bezeichnung	&	Symbol	&	Einheit	&	Franke97	\\
+			\midrule
+			Maximale Steuerspannung & $U_{\mrm{Steuer, max}}$ & \unit{V} & 10 \\ 
+			Wandlerverstärkung & $K_{UI}$ & \unit{\frac{V}{A}} & 1,87 \\
+			Wandlerzeitkonstante & $T_{UI}$ & \unit{s} & 0,00075 \\
+			Maximale Ankerspannung & $U_{a \mrm{, max}}$ & \unit{V} & 65 \\
+			Ankerwiderstand & $R$ & \unit{\Omega} & 0,9 \\
+			Drehmomentkonstante & $K_I$ & \unit{\frac{N m}{A}} & 0,153 \\
+			Getriebeübersetzung & $K_G$ & - & $\frac{16}{60}$ \\
+			Antriebsradius & $r_{32}$ & \unit{m} & 0,0255 \\			
+			\bottomrule
 		\end{tabular}
 	\label{tab:motorparams}
 \end{table}
@@ -185,7 +196,7 @@ Die Tiefpass-Charakteristik der Induktivität wird mit dem \mrm{PT_1}-Glied \eqr
 
 \begin{figure}
 	\centering
-		\includegraphics[scale=0.6]{Bilder/Simulink/motor.PNG}
+		\includegraphics[scale=0.4]{Bilder/Simulink/motor.PNG}
 	\caption{Motormodell in \sm}
 	\label{fig:simmot}
 \end{figure}

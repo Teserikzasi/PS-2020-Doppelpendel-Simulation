@@ -43,7 +43,7 @@ Auf Grund der integrierten Strombegrenzung zum Schutz von Motor und Verstärker 
 Es werden zunächst nur positive Winkelgeschwindigkeiten betrachtet. 
 Der Abschnitt des Verlaufs in Abbildung \ref{fig:Stromkennlinie} mit konstantem maximalen Strom wird durch
 \begin{equation}
-	I_a  = I_{w\mrm{, max}} = \mrm{const.}, 0 \leq \omega \leq \omega_{\mrm{EMK}}
+	I_{a \mrm{, max}}  = I_{w\mrm{, max}} = \mrm{const.}, \qquad 0 \leq \omega \leq \omega_{\mrm{EMK}}
 	\label{eq:Iconst}
 \end{equation}
 beschrieben, wobei $I_{w\mrm{, max}}$ der Begrenzungsstrom des Wandlers ist.
@@ -67,7 +67,7 @@ Für die Kennlinie des maximalen Stroms liegt der Tastgrad (engl.: \textit{duty 
 \]
 gilt. Die elektrische Zeitkonstante des Motors, die mit den Angaben des Datenblatts aus Franke \cite{franke} zu 
 \[
-	\tau_{\mrm{el}} = \frac{L}{R} \approx 0,0023 \mrm{s} \ll 1 \mrm{s} \ ,
+	\tau_{\mrm{el}} = \frac{L}{R} \approx 0,0023 \unit{s} \ll 1 \unit{s} \ ,
 \]
 berechnet werden kann, ist ausreichend klein, dass näherungsweise von stationärem Betrieb ausgegangen werden kann und für die selbstinduzierte Spannung 
 \[
@@ -80,7 +80,7 @@ gilt. Die induzierte Gegenspannung wird gemäß \cite{binder} durch Proportional
 modelliert.
 Damit kann Gleichung \eqref{eq:dcMasche} zur Geraden
 \begin{equation}
-	I_{a \mrm{, max}}(\omega) = \frac{U_a}{R} - \frac{K_I}{R} \omega \ , \qquad \omega > \omega_{\mrm{EMK}} 
+	I_{a \mrm{, max}}(\omega) = \frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega \ , \qquad \omega > \omega_{\mrm{EMK}} 
 	\label{eq:Ivar}
 \end{equation}
 umgeformt werden.
@@ -89,9 +89,9 @@ Die Beschreibung des Bereichs negativer Winkelgeschwindigkeiten kann aus den Gle
 Zusammenfassend ergibt sich für den Verlauf des maximal verfügbaren Stroms  
 \[
 I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
-														-\frac{U_a}{R} - \frac{K_I}{R} \omega, & \omega < -\omega_{\mrm{EMK}}   \\ \\
+														-\frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega, & \omega < -\omega_{\mrm{EMK}}   \\ \\
 														I_{w\mrm{, max}} \cdot \sign{\omega} 	& -\omega_{\mrm{EMK}} \leq \omega \leq \omega_{\mrm{EMK}} \\ \\				
-														\frac{U_a}{R} - \frac{K_I}{R} \omega, & \omega > \omega_{\mrm{EMK}} \end{array}\right. . \
+														\frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega, & \omega > \omega_{\mrm{EMK}} \end{array}\right. . \
 \] 
 
 
