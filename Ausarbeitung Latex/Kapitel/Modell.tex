@@ -134,8 +134,8 @@ Es wird daher lediglich zur Orientierung verwendet.
 Hart-kodierte Parameter werden in dieser Arbeit vermieden, sodass jeder Parameter bei der \init\ geändert werden kann (ohne das \sm-Modell ändern zu müssen).
 Auch Gleichungen können variabel ausgelegt werden, was durch die symbolische Schreibweise von \ml\ ermöglicht wird.
 Code-Dopplungen werden vermieden. 
-Die gesamte \init\ ist stark funktionalisiert.
-Dadurch wird sichergestellt, dass Änderungen nur an einer Stelle vorgenommen werden müssen und automatisch direkt an allen entsprechenden Stellen angepasst werden.
+Die gesamte \init\ ist stark funktionalisiert, da dies für die Variationstests notwendig ist.
+Dadurch wird auch sichergestellt, dass Änderungen nur an einer Stelle vorgenommen werden müssen und automatisch direkt an allen entsprechenden Stellen angepasst werden.
 
 Die \sm-Modelle und \ml-Funktionen zur Modellierung des Systems und \init\ des Simulationsmodells befinden sich im Ordner \texttt{Modell}. 
 
@@ -144,7 +144,7 @@ Die \sm-Modelle und \ml-Funktionen zur Modellierung des Systems und \init\ des S
 
 \subsubsection{Subsysteme}
 In \sm\ lassen sich sogenannte \emph{Subsysteme} erstellen, um ein Simulationsmodell übersichtlicher zu gestalten.
-Diese Subsysteme (im Folgenden auch Module genannt) lassen sich zudem als Datei externalisieren (\emph{Referenced Subsystem}), wodurch sie einerseits seperat bearbeitet werden können und andererseits an mehreren Stellen modular wiederverwendet werden können.
+Diese Subsysteme (im Folgenden auch Module genannt) lassen sich zudem als Datei externalisieren (\emph{Referenced Subsystem}), wodurch sie einerseits separat bearbeitet werden können und andererseits an mehreren Stellen modular wiederverwendet werden können.
 Somit wird lediglich in der obersten Schicht (die Testebene) ein \sm-\emph{Model} verwendet.
 
 In dieser Arbeit werden immer Module erstellt, sofern es sinnvoll erscheint.
@@ -227,40 +227,50 @@ Da die durchgeführten Tests am Modell plausible Ergebnisse zeigen, wird im Folg
 \subsection{Parameter}
 
 Größere zusammenhängende Parameterdaten werden als Datei \bzw Funktion ausgelagert, um eine einfache Austauschbarkeit zu erreichen.
-Die drei Parametersätze des \spd s \siehe{\tabref{tab:spdparams}} sowie die Motorparameter befinden sich im Ordner \texttt{Modellparameter}.
+Die drei Parametersätze des \spd s \siehe{\tabref{tab:spdparams}} sowie die Motorparameter befinden sich im Ordner \path{Modellparameter}.
 
 
 \subsection{Initialisierung}\label{subsec:init}
 
-\texttt{Init.m}
-%Wie schon in \secref{subsec:bwgl} erwähnt, werden die \bwgl\ des \spds\ symbolisch errechnet.
-%Die Gleichungen werden in \texttt{SchlittenPendelSymF.m} definiert und die Lösungen der drei \bwgl\ bestimmt.
+Zum Initialisieren des Modells und der Simulation führt man das Skript \texttt{Init.m} aus.
+Dadurch werden folgende 4 Schritte durchgeführt:
+\begin{enumerate}
+	\item \textbf{InitSymEq}: Berechnet symbolisch die \bwgl\ nach \secref{subsec:bwgl} für das \krs\ (\path{SchlittenPendelSymF}) und das \bss\ (\path{SchlittenPendelSymA}) und speichert sie als globale Variablen. Auch die Ruhelagen werden initialisiert (definiert in \path{SchlittenPendelRuhelagen}).
+	\item \textbf{InitParams}: Initialisiert die Parameter des Motors und des Schlittens (standardmäßig \texttt{Ribeiro20}) als globale Variablen. Hier können die Parameter ausgetauscht oder verändert werden (\zB \crb\ abschalten).
+	\item \textbf{InitSystem(SchlittenPendelParams)}: Diese Funktion erstellt die \zrm e des \spds s nach \secref{subsec:zrm}. Dafür wird die Funktion \path{SchlittenPendelNLZSR.m} genutzt, welche das \zrm\ in Abhängigkeit der \bwgl\ und der Parameter erstellt. Aus dem \krs\ wird mittels \path{sys2sfct} eine \emph{S-Function} generiert und in \path{SchlittenPendelFunc.m} gespeichert.
+	\item \textbf{InitSim}: Bereitet die globale Variable \path{simparams} vor, in welcher alle Parameter für das \sm-Modell übergeben werden. Dazu gehören beim Modell die Motorparameter und die Startwerte des \spds s.
+\end{enumerate}
+Nach der \init\ kann \path{Gesamtmodell_Test.slx} ausgeführt werden.
 
 
-\subsection{Auswertung}
+\subsection{Auswertung}\label{subsec:ausw}
 
 Nach einer Simulation ist es nützlich, die wesentlichen Ergebnisse direkt ablesen zu können (\zB ob der Schlitten außerhalb der Begrenzung war oder ob der Motor in Sättigung war).
 Außerdem wird eine Plot-Funktion implementiert, die die wichtigsten Verläufe darstellt.
 Um das Verhalten des \dpd s besser interpretieren zu können, wird zudem eine Animationsfunktion erstellt, die direkt das Pendelverhalten visualisiert.
-Die entsprechenden \ml-Funktionen sind im Ordner \texttt{Auswertung} vorhanden.
 
-\subsubsection{plot}
-
-\subsubsection{animate}
-
-
-
-\subsection{Weitere \Matlab-Funktionen}
-
+Die entsprechenden \ml-Funktionen sind im Ordner \path{Auswertung} vorhanden.
 Weitere Informationen und Kommentare finden sich auch meist in den \ml-Funktionen selbst.
 
+\subsubsection{plot\_outputs}
+Erstellt ein Diagramm, dass die drei Verläufe der Ausgangsgrößen (inklusive deren Schätzwerte) und die Stellgröße (Soll- und Ist-Wert) darstellt.
+Der Funktion können einige Parameter übergeben werden, sodass das Diagramm auch abgespeichert werden kann.
+Für weitere Informationen sei auf die Dokumentation in der Datei \path{plot_outputs.m} verwiesen.
 
-\texttt{SchlittenPendelNLZSR.m}
+\subsubsection{animate\_outputs}
+Stellt die Bewegungen des Schlittens und des \dpd s zeitlich dar.
+Parameter für die Bildwiederholrate (FPS) und ein Zeitfaktor können angegeben werden.
+Außerdem kann das Video gespeichert werden.
+Für mehr Informationen siehe \path{animate_outputs.m}.
 
-\texttt{SchlittenPendelSymA.m}
+\subsubsection{plotanimate}
+Führt die beiden obigen Funktionen aus, sodass Ergebnisse mit einem Funktionsaufruf gemeinsam gespeichert werden können.
+Beispiel:
+	\[
+	\texttt{plotanimate(out, 'u=0,AP4,phi2=0.01', 'Modell Tests', 60, 1/4 )}
+\]
 
-\texttt{SchlittenPendelSymF.m}
 
-\texttt{SchlittenPendelRuhelagen.m}
+%\subsection{Weitere \Matlab-Funktionen}
 
-\texttt{SchlittenPendelFunc.m}
+

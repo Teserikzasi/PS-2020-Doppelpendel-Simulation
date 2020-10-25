@@ -71,7 +71,7 @@ Für den tatsächlichen Zustand wird der \ap-Zustand des linearisierten Systems 
 \end{align} \end{subequations} 
 
 
-\subsection{Eigenwerte}
+\subsection{Eigenwerte}\label{sec:ew}
 
 Anhand der \ewe\ können Aussagen über die Dynamik eines Systems getroffen werden. 
 Das \bss\ hat aufgrund der zweifachen Integration des Eingangs \xopp\ stets zwei \ewe\ in 0. 
@@ -230,14 +230,14 @@ Trotzdem sei angemerkt, dass diese Möglichkeit am realen Versuchsstand in Kombi
 Es ist kein Einschwingen der Startzustände nötig, es gibt keine Probleme bei Stellgrößenstörungen und die Differentiation muss nicht für jeden \ap\ einzeln ausgelegt werden.
 
 
-\subsection{Vorsteuerung F/a und a/v-Regler}
+\subsection{Vorsteuerung F/a und a/v-Regler}\label{subsec:vorstfa}
 
 Ist der AP-Regler nach dem \bss\ ausgelegt, gibt dieser als Stellgröße eine Sollbeschleunigung \asoll\ für den Schlitten vor. 
 Aus dieser muss die geforderte Motorkraft bestimmt werden.
 Sie kann zum Großteil mit einer Vorsteuerung bestimmt werden, die Differenz wird mit einem Geschwindigkeitsvergleich ausgeregelt.
 
 
-\subsubsection{a/v-Regler}
+\subsubsection{a/v-Regler}\label{sec:avr}
 Die Sollgeschwindigkeit \vsoll\ wird durch Integration von \asoll\ berechnet.
 Dadurch kann ein Soll/Ist-Vergleich mit der realen \bzw geschätzten Schlittengeschwindigkeit \xop\ durchgeführt werden.
 Die Regelung wird durch einen P-Regler umgesetzt:
@@ -267,7 +267,7 @@ Während \cite{brehl} nur die Trägheitskraft vorsteuerte, wird in \cite{chang} 
 	\fvorst=m \asoll + \Fco \, \sign{\vsoll} + d_0 \xop
 \]
 
-\subsubsection{\vorst\  mit Systemgleichung}
+\subsubsection{\vorst\  mit Systemgleichung}\label{sec:vorstsys}
 Auch die obige Gleichung bestimmt die benötigte Kraft nicht exakt, da es je nach Winkellage der Pendel rückwirkende Kräfte auf den Schlitten gibt.
 Man kann daher einen Schritt weiter gehen und die benötigte Kraft zur Beschleunigung des Schlittens direkt aus der entsprechenden Bewegungsgleichung herleiten. 
 Auch wenn am realen Versuchsstand die Beschleunigung aufgrund von Ungenauigkeiten nicht exakt mit \asoll\ übereinstimmt, wird dem \avr\ dadurch weitere \qq{Arbeit abgenommen}.
@@ -319,20 +319,22 @@ Die tatsächliche Stellgröße kann dadurch an den \beob\ gegeben werden.
 
 Die \sm-Modelle und \ml-Funktionen zur \ap-Regelung befinden sich im Ordner \texttt{Regelung}.
 
-\begin{figure}
+\subsection{\Simulink\ Module und Modelle}
+
+Die \ap-Regelung wird wie in \secref{sec:aufbaureg} beschrieben in \path{AP_Regelung_Test.slx} als \sm-Modell implementiert \siehe{\figref{fig:simapr}}.
+Das Gesamtmodell-Modul \siehe{\secref{sec:gesamtslx}} wird hier eingebunden und stellt die Regelstrecke dar.
+Davor befinden sich drei Blöcke der Regelung/Vorsteuerung.
+Alternativ kann auch zum \ap-Regler am Kraftsystem umgeschaltet werden.
+
+\begin{figure}[htb]
 	\centering
 		\includegraphics[width=1.00\textwidth]{Bilder/Simulink/ap_regelung_test ohne outofc.PNG}
 	\caption{Aufbau der \ap-Regelung}
 	\label{fig:simapr}
 \end{figure}
 
-Die \ap-Regelung wird wie in \secref{sec:aufbaureg} beschrieben als \sm-Modell implementiert \siehe{\figref{fig:simapr}}.
-Das Gesamtmodell-Modul \siehe{\secref{sec:gesamtslx}} wird hier eingebunden und stellt die Regelstrecke dar.
-Davor befinden sich drei Blöcke der Regelung/Vorsteuerung.
-Alternativ kann auch zum \ap-Regler am Kraftsystem umgeschaltet werden.
-
 \subsubsection{APRegler.slx}
-Ist eine Art \qq{Wrapper} für den eigentlich \zsr, um die \ap-Transformation durchzuführen.
+Dieses Modul ist eine Art \qq{Wrapper} für den eigentlich \zsr, um die \ap-Transformation durchzuführen.
 Erwartet als Parameter die Daten zum \ap.
 
 \subsubsection{Zustandsregler.slx}
@@ -341,16 +343,16 @@ Die Auswahl wird durch ein \emph{Variant Subsystem} realisiert, das durch die Va
 Die Stellgröße für den \beob\ kann zwischen intern und extern umgeschaltet werden.
 Benötigt als Parameter die Verstärkung \texttt{K} sowie eventuelle Daten für den \beob.
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.8\textwidth]{Bilder/Simulink/zsr.PNG}
+		\includegraphics[width=0.75\textwidth]{Bilder/Simulink/zsr.PNG}
 	\caption{\zsr\ in \sm}
 	\label{fig:simzsr}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.4\textwidth]{Bilder/Simulink/zustandsermittlung.PNG}
+		\includegraphics[width=0.35\textwidth]{Bilder/Simulink/zustandsermittlung.PNG}
 	\caption{\ze\ in \sm}
 	\label{fig:simzse}
 \end{figure}
@@ -360,13 +362,14 @@ Implementiert einen Standard-\beob.
 Eingänge sind \texttt{u} und \texttt{y}, Ausgang sind die geschätzten Zustände \texttt{x\_est}.
 Die Matrizen des linearen Systems, sowie \texttt{L} und die \beob startwerte werden über die Maske übergeben.
 
-\subsubsection{MotorVorsteuerung.slx}
-Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
-
 \subsubsection{Vorsteuerung\_Fa\_avRegler.slx}
+\figref{fig:simfav} zeigt den vereinfachten Aufbau des Blocks, der die Verbindung zwischen Beschleunigung und Kraft herstellt \siehe{\secref{subsec:vorstfa}}.
+Aus der Sollbeschleunigung wird mithilfe von \texttt{SchlittenGleichungKraft} die Vorsteuerkraft bestimmt.
+Im Modell kann zudem zwischen dieser und der Vorsteuerungsvariante "`MCD"' (nicht dargestellt) umgeschaltet werden.
+Der \avr\ wird entsprechend \secref{sec:avr} implementiert und dessen Ausgangsgröße zur Vorsteuerungskraft addiert.
+Oben wird aus der nachträglich bestimmten realen Stellkraft mithilfe von \texttt{SchlittenGleichungBeschleunigung} die reale Beschleunigung berechnet.
 
-
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 		\includegraphics[width=0.7\textwidth]{Bilder/Simulink/Fa_vorst.PNG}
 	\caption{Aufbau der Vorsteuerung}
@@ -377,16 +380,32 @@ Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
 Enthält die \qq{alte} Variante der Vorsteuerung \siehe{\secref{sec:vorstmcd}}.
 Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet. 
 
-\subsubsection{SchlittenGleichungKraft.slx und SchlittenGleichungBeschleunigung.slx}
+\subsubsection{SchlittenGleichungKraft.slx/SchlittenGleichungBeschleunigung.slx}
+Setzt die Variante der Vorsteuerung mit den Systemgleichungen \siehe{\secref{sec:vorstsys}} \bzw die inverse Gleichung zur Ermittlung der Beschleunigung um.
+Da diese Gleichungen symbolisch vorliegen, müssen sie mithilfe von \texttt{matlabFunctionBlock} bei der \init\ in den Block geschrieben werden.
+Dadurch werden diese Dateien bei jeder \init\ oder Änderung der Systemparameter überschrieben.
+
+\subsubsection{MotorVorsteuerung.slx}
+Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
 
 
 \subsection{\init}
+
+Zur \init\ der \ap-Regelung wird (nach der \init\ des Modells) das Skript \texttt{InitReg.m} ausgeführt.
+Dabei werden folgende 4 Schritte durchgeführt:
+\begin{enumerate}
+	\item \textbf{InitSystemReg()}: Erstellt das \zrm, an dem der Regler ausgelegt wird. Dabei wird standardmäßig die beim realen System vorhandene \crb\ in den Pendelgelenken für das System des Reglers zu 0 gesetzt, um deren unverhältnismäßigen Einfluss bei der \lin\ zu vermeiden \siehe{\secref{sec:ew}}. Prinzipiell wäre es hier auch möglich, die Parameter des Reglers zu verändern, um Parameterunsicherheiten zu modellieren.
+	\item \textbf{InitVorstBeob\_Fa(sysF)}: Berechnet die Vorsteuerkraft über die Systemgleichung wie in \secref{sec:vorstsys} beschrieben. Diese symbolischen Gleichungen wird mittels \texttt{matlabFunctionBlock} in die beiden entsprechenden Module geschrieben und diese werden gespeichert. 
+	\item \textbf{InitAPRegData(riccdata)}: Diese Funktion berechnet die Daten für den AP-Regler anhand der gegebenen Güteparameter. Dabei werden alle \ap e linearisiert, die Reglerverstärkung mit der \ml-Funktion \texttt{lqr} und die \beob matrix berechnet.
+	\item \textbf{InitSimReg(Zustandsermittlung, kpv)}: Initialisiert das Simulationsmodell für die AP-Regelung. Werte für \kpv\ und die Art der \ze\ (Standard: Messung) kann angegeben werden. Die Parameter für die Module zur Regelung werden in die \emph{struct}-Variable \path{simparams.regler} geschrieben. Die Systemparameter von Motor und \spd\ (von denen der Regler ausgeht) werden hier übergeben, da manche von ihnen für die Regelung/Vorsteuerung benötigt werden. Durch die Trennung zu den "`realen"' Werten \path{simparams.gesamtmodell} können die Parameter des Reglers grundsätzlich auch anders sein als die, mit denen das Modell simuliert wird.
+\end{enumerate}
+
 
 
 \subsection{Güteparameter (Q,R)}\label{subsec:simqr}
 
 Ähnlich wie bei den Parametern des \spd s werden auch die Parametersätze für die \ricc-Güteparameter ausgelagert.
-Diese sind für jeden \ap\ seperat definiert, da jeweils andere Werte optimal sein können.
+Diese sind für jeden \ap\ separat definiert, da jeweils andere Werte optimal sein können.
 So können verschiedene Parameter einfach verglichen werden.
 Vollständige Güteparameterwerte für alle \ap e fanden sich bei den Arbeiten, die sich mit der \ap-Regelung beschäftigt haben, nur in den letzten zwei.
 Im Ordner \path{Regelung/Reglerparameter} befinden sich in folgenden Datensätze:
@@ -401,9 +420,24 @@ Im Ordner \path{Regelung/Reglerparameter} befinden sich in folgenden Datensätze
 \subsection{Weitere \Matlab-Funktionen}
 
 \subsubsection{SimAP}
+Mit dieser Funktion wird eine Simulation mit gegebenem \ap\ und Startwerten (\ap abweichung) durchgeführt. Die Simulationszeit \texttt{Tsim} ist optional (Standard: \valunit{10}{s}).
+\[
+	\texttt{SimAP(testAP, delta\_x0, Tsim)}
+\]
+Dabei werden die Initialisierungen des \ap es, der Startwerte und der \beob startwerte vorgenommen.
+Außerdem werden Auswertungen der Simulation vorgenommen \siehe{\secref{subsec:x0ausw}} und die Ergebnisse zurückgegeben.
+Die Funktion kann auch mit \texttt{SimAP\_run.m} aufgerufen werden. 
+Dabei werden weitere Auswertungen angezeigt, \zB die Maximalabweichungen vom \ap, ob die Stellgrößenbegrenzung aktiv war oder ob der Schlitten außerhalb der Begrenzung war.
+Zusätzlich wird direkt ein Plot und eine Animation \siehe{\secref{subsec:ausw}} angezeigt.
+
+\subsubsection{SchlittenPendelAnalyse}
+
+Mit der Funktion \texttt{SchlittenPendelAnalyse(sys)} werden für ein gegebenes \zrm\ Eigenwerte für alle Ruhelagen berechnet und dargestellt, sowie Steuer- und Beobachtbarkeit geprüft.
 
 \subsubsection{x0\_Tests}
-Die Funktionen zu den \xots s (siehe folgender Abschnitt) befinden sich im Ordner \path{Regelung/x0\_Tests}.
+Die Funktionen zu den \xots s (siehe folgender Abschnitt) und darauf aufbauenden Tests befinden sich im Ordner \path{Regelung/x0_Tests}.
+
+
 
 
 \section{Anfangswert-Tests}\label{sec:x0test}
@@ -424,7 +458,7 @@ Wird ein \ap-Test durchgeführt, können die Simulationsdaten ausgewertet werden
 Im Vordergrund steht aber meist die Stabilität und damit die Frage, bei welchen Werten diese nicht mehr vorhanden ist.
 
 
-\subsection{Auswertung eines \ap-Tests}
+\subsection{Auswertung eines \ap-Tests}\label{subsec:x0ausw}
 
 Wenn \texttt{SimAP} aufgerufen wird, werden neben den Simulationsdaten auch die Ergebnisse von \path{Auswertung/AP/APAuswertung} zurückgegeben.
 Dort werden \ua folgende Gütemaße, die an das übliche quadratische \ricc-Gütemaß angelehnt sind, berechnet:
@@ -532,15 +566,15 @@ Da die Maximalabweichungen insbesondere bei \apv\ über einen weiten Bereich kon
 Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den Gelenken zeigen dieses Verhalten nicht und beginnen in 0 mit einem etwa linearen Verlauf.
 Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
 
-\renewcommand{\scalee}{0.62}
+\renewcommand{\scalee}{0.53}
 \begin{figure}
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP2.pdf} }
-	\hfil
+	%\hfil
 	\subfloat[\apad]{	\includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP3.pdf} }
 	\\
 	\subfloat[\apave]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP41.pdf} }
-	\hfil
+	%\hfil
 	\subfloat[\apavz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP42.pdf} }
 	\caption{Maximalabweichungen -- Vergleich alter und neuer Pendelparameter}
 	\label{fig:vglpendelpar}
@@ -583,35 +617,39 @@ Andere Reglerparameter wie \kpv\ oder die \beob pole könnten ebenfalls optimier
 \subsection{Vorgehen bei der Optimierung}
 
 Die Gütematrizen wurden in den meisten vergangenen Arbeiten und anfangs auch in dieser heuristisch bestimmt und iterativ manuell angepasst.
-Dieses Vorgehen ist auf Dauer sehr aufwändig und garantiert aufgrund der vielen Variationsmöglichkeiten mit 6 Freiheitsgraden keinesfalls optimale Werte.
+Dieses Vorgehen ist auf Dauer sehr aufwändig und garantiert aufgrund der vielen Variationsmöglichkeiten keinesfalls optimale Werte.
 Auch muss beachtet werden, dass jede Änderung an Systemparametern oder das Umschalten zum \beob\ sehr wahrscheinlich zu anderen optimalen Werten führt.
 Bei \cite{chang} wurde eine Zufallssuche zum Finden von geeigneten Reglerparametern durchgeführt.
-Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet, bei der Auswertung wurde eine feste obere Schranke für die maximale Schlittenposition und Endwert der Winkel betrachtet.
+Dort wurde aber lediglich eine feste Anfangsauslenkung von \phz\ getestet, bei der Auswertung wurde eine feste obere Schranke für die maximale Schlittenposition und Endwert der Winkel verwendet.
 
 Durch die \xots s \siehe{\secref{subsec:awts}} kann schnell ein Bild des Regelverhaltens erlangt werden.
 Bei den Vergleichen in \secref{subsec:xotsvgl} wurden lediglich feste QR-Parametersätze verglichen.
 Zur gezielten Optimierung liegt es nahe, einzelne Parameter zu variieren und deren Auswirkungen in den Diagrammen der \xots\ zu untersuchen.
-So können die einzelnen Parameter schrittweise optimiert werden, wobei selbstverständlich zu beachten ist, dass es sich eigentlich um eine multi-variable Optimierung handelt und sich daher die Ergebnisse eines Parameters nach Änderung der anderen Parameter wieder ändern können.
-Durch iteratives Vorgehen können die Werte trotzdem sehr gut optimiert werden und das Regelverhalten deutlich verbessert werden.
+So können die einzelnen Parameter schrittweise optimiert werden, wobei selbstverständlich zu beachten ist, dass es sich eigentlich um eine multi-variable Optimierung handelt (mit 6 Freiheitsgraden) und sich daher die Ergebnisse eines Parameters nach Änderung der anderen Parameter wieder ändern können.
+Durch iteratives Vorgehen können die Werte trotzdem sehr gut optimiert und das Regelverhalten deutlich verbessert werden.
 
 
 \subsection{Anwendung in \ml}
 
 Da die Güteparameter für jeden \ap\ festgelegt werden, findet die Variation der Parameter für einen festen \ap\ statt.
-Des Weiteren wird der Funktion \texttt{QR\_Variation} ein QR-Datensatz und der Parameter gegeben, der zu variieren ist (\texttt{'R'} oder \texttt{'Qi'}).
+Des Weiteren wird der Funktion \texttt{QR\_Variation} ein QR-Datensatz und der Parameter gegeben, der zu variieren ist (\texttt{R} oder \texttt{Qi}).
 Außerdem müssen die Werte angegeben werden, welche der Parameter annehmen soll.
 Um die Parameter gleichmäßig über einen großen Bereich zu testen, eignet sich ein logarithmischer Bereich, wofür die \ml-Funktion \texttt{logspace} genutzt wird.
+	\[
+	\texttt{QR\_Variation(2, AP\_QR\_20\_neu(), 'Q1', logspace(-2,2,7), 2:3 )}
+\]
+In der Funktion sind mehr Informationen angegeben und in \texttt{QR\_Variation\_run} weitere Anwendungsbeispiele zum Verwenden der Parametervariation vorhanden.
+
 Welche der Zustände für den Test mithilfe der \xots s ausgelenkt werden sollen, kann angegeben werden.
 So kann man nur die jeweils "`kritischen"' Tests ausführen \siehe{\secref{subsec:xotskrit}}, aber auch die Auswirkungen bei Startwerten der anderen Zustände untersuchen und optimieren.
 Auch hier ist meistens ein Kompromiss notwendig, der für einen \ap\ verschiedene Anfangswertkombinationen gut ausregelt.
-In \texttt{QR\_Variation\_run} sind einige Anwendungsbeispiele zum Verwenden der Parametervariation vorhanden.
 
 
 \subsection{Diagramme}
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=1\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
+		\includegraphics[width=0.7\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
 	\caption{Maximale Startwerte -- Variation von R bei \apz}
 	\label{fig:qrap2R}
 \end{figure}
@@ -623,25 +661,25 @@ In \texttt{QR\_Variation\_run} sind einige Anwendungsbeispiele zum Verwenden der
 	\label{fig:qrap2Rm}
 \end{figure}
 
-In \figref{fig:qrap2R} werden die maximalen Startwerte von \phe\ und \phz\ bei \apz\ in Abhängigkeit von R dargestellt.
+In \figref{fig:qrap2R} werden die maximalen Startwerte von \phe\ und \phz\ bei \apz\ in Abhängigkeit von $R$ dargestellt.
 Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung über den größtem Bereich (ab \valdeg{45} wird der Test abgebrochen).
-Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab R=20 ebenfalls ein.
+Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab $R=20$ ebenfalls ein.
 Als Schlussfolgerung für den Parameter R gilt hier daher: je kleiner desto besser.
 
 Allerdings muss auch die Dynamik, insbesondere die resultierenden Maximalausschläge der Zustände, beachtet werden.
 \figref{fig:qrap2Rm} stellt daher für dieselbe Konfiguration die Maximalabweichungen dar, bei Auslenkung von \phe.
-Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von R.
+Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von $R$.
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=1.00\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
+		\includegraphics[width=0.7\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
 		\caption{Maximale Startwerte -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
+		\includegraphics[width=1.1\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1m}
 \end{figure}
@@ -654,7 +692,7 @@ Daher wurde hier beispielsweise ein Kompromiss von $Q_1=1$ getroffen.
 
 \subsection{Weitere Ergebnisse}
 
-Insgesamt zeigten sich für R eine bessere Dynamik bei kleinen Werten, da dadurch die Stellgröße weniger stark gewichtet wird und somit höher sein darf.
+Insgesamt zeigte sich für R eine bessere Dynamik bei kleinen Werten, da dadurch die Stellgröße weniger stark gewichtet wird und somit höher sein darf.
 Da geeignete Begrenzungs- und Anti-Windup-Maßnahmen vorhanden sind, stellt eine höhere Stellgröße grundsätzlich kein Problem dar.
 R wurde für alle \ap e auf 0,01 gesetzt.
 
@@ -665,7 +703,7 @@ Bei \apv\ zeigte $Q_2$ und $Q_4$ einen deutlichen Einfluss.
 
 Die Werte \texttt{AP\_QR\_20\_neu\_Beob} wurden für den Einsatz mit \beob\ optimiert.
 Hierbei stellte sich heraus, dass für $Q_1$ generell größere Werte besser waren.
-Besonders bei \apv\ mussten die Werte angepasst werden.
+Besonders bei \apv\ mussten die Werte angepasst werden, damit das System einigermaßen stabilisiert werden kann.
 
 
 \section{System Parameter Tests}\label{sec:x0sys}
