@@ -367,7 +367,7 @@ Die Matrizen des linearen Systems, sowie \texttt{L} und die \beob startwerte wer
 Aus der Sollbeschleunigung wird mithilfe von \texttt{SchlittenGleichungKraft} die Vorsteuerkraft bestimmt.
 Im Modell kann zudem zwischen dieser und der Vorsteuerungsvariante "`MCD"' (nicht dargestellt) umgeschaltet werden.
 Der \avr\ wird entsprechend \secref{sec:avr} implementiert und dessen Ausgangsgröße zur Vorsteuerungskraft addiert.
-Oben wird aus der nachträglich bestimmten realen Stellkraft mithilfe von \texttt{SchlittenGleichungBeschleunigung} die reale Beschleunigung berechnet.
+Oben wird mithilfe von \texttt{SchlittenGleichungBeschleunigung} aus der nachträglich bestimmten realen Stellkraft die reale Beschleunigung berechnet.
 
 \begin{figure}[htb]
 	\centering
@@ -376,14 +376,14 @@ Oben wird aus der nachträglich bestimmten realen Stellkraft mithilfe von \textt
 	\label{fig:simfav}
 \end{figure}
 
-\subsubsection{SchlittenVorsteuerung.slx}
-Enthält die \qq{alte} Variante der Vorsteuerung \siehe{\secref{sec:vorstmcd}}.
-Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet. 
-
-\subsubsection{SchlittenGleichungKraft.slx/SchlittenGleichungBeschleunigung.slx}
+\subsubsection{SchlittenGleichungKraft.slx / SchlittenGleichungBeschleunigung.slx}
 Setzt die Variante der Vorsteuerung mit den Systemgleichungen \siehe{\secref{sec:vorstsys}} \bzw die inverse Gleichung zur Ermittlung der Beschleunigung um.
 Da diese Gleichungen symbolisch vorliegen, müssen sie mithilfe von \texttt{matlabFunctionBlock} bei der \init\ in den Block geschrieben werden.
 Dadurch werden diese Dateien bei jeder \init\ oder Änderung der Systemparameter überschrieben.
+
+\subsubsection{SchlittenVorsteuerung.slx}
+Enthält die \qq{alte} Variante der Vorsteuerung \siehe{\secref{sec:vorstmcd}}.
+Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet. 
 
 \subsubsection{MotorVorsteuerung.slx}
 Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
@@ -443,7 +443,7 @@ Die Funktionen zu den \xots s (siehe folgender Abschnitt) und darauf aufbauenden
 \section{Anfangswert-Tests}\label{sec:x0test}
 
 Ziel dieser Arbeit ist die "`Regelbarkeit"' des Systems zu untersuchen.
-Dafür müssen zunächst Kriterien definiert werden, inwiefern das System unter festgelegten System- und Entwurfsparametern regelbar ist.
+Dafür müssen zunächst Kriterien definiert werden, inwiefern das System unter festgelegten System- und Entwurfsparametern regelbar \bzw stabilisierbar ist.
 
 Dazu wird wieder \figref{fig:regvorg} herangezogen.
 Ist ein System fest ausgelegt, können die verschiedenen \ap e mit bestimmten Startwerten getestet werden.
@@ -464,7 +464,7 @@ Wenn \texttt{SimAP} aufgerufen wird, werden neben den Simulationsdaten auch die 
 Dort werden \ua folgende Gütemaße, die an das übliche quadratische \ricc-Gütemaß angelehnt sind, berechnet:
 \begin{subequations} \begin{align} 
 	J_x &= \int_{0}^{\tend} \dvex^\transp(t) \, \mat{Q} \, \dvex(t)  \, \ud t = \int_{0}^{\tend} \Delta x_\mrm{norm}(t)  \, \ud t  \\
-	J_{x,\mrm{est}} &= \int_{0}^{\tend} \dvexest^\transp(t)  \,\mat{Q}  \,\dvexest(t)  \, \ud t  \\
+	J_{x,\mrm{est}} &= \int_{0}^{\tend} \left(\dvex(t)-\dvexest(t)\right)^\transp  \,\mat{Q}  \, \left(\dvex(t)-\dvexest(t)\right)  \, \ud t  \\
 	J_u &= \int_{0}^{\tend}  R \cdot \Delta u(t)^2 \, \ud t	\\
 	J_F &= \int_{0}^{\tend}  R \cdot F(t)^2 \, \ud t
 \end{align} \end{subequations}
@@ -473,8 +473,11 @@ mit
 	\mat{Q} &= \diag{25, 1, 50, 1, 50, 1 } \\
 	R &= 1 
 \end{align*}
-In \ml\ werden sie als Summe berechnet (der Einfachheit halber konstante Schrittweite vorausgesetzt).
+Dabei beschreibt $J_x$ den kumulierten Verlauf aller Zustände als skalare Größe.
+$J_{x,\mrm{est}}$ berechnet ein Maß zur Bewertung des \beob fehlers.
+Die anderen beiden Maße beschreiben die kumulierte Stellgröße/-energie, hier ist $J_F$ aussagekräftiger, da es die reale Motorkraft verwendet.
 Für die Berechnung werden die transformierten \ap-Zustände \dvex(t) \eqref{eq:aptransf} verwendet, da diese die Abweichung von der Ruhelage darstellen.
+In \ml\ werden die Maße als Summe berechnet (der Einfachheit halber konstante Schrittweite vorausgesetzt).
 
 Für die Beurteilung der Stabilität, also ob der Zustand am Ende der Simulationszeit noch in der Nähe des \ap es ist, wird
 $\Delta x_\mrm{norm}(\tend)$
@@ -496,19 +499,19 @@ Falls nicht, wird abgebrochen und der Maximalwert sowie einige der Gütemaße f�
 Die Schrittweite \texttt{y\_st} = [ \texttt{x\_st} \texttt{phi1\_st} \texttt{phi2\_st} ] gibt die Schrittweite an, mit der die Tests ausgeführt werden.
 Eine kleinere Schrittweite löst zwar die Ergebnisse besser auf, führt aber zu einer höheren Rechenzeit.
 
+\begin{figure}[hb]
+	\centering
+		\includegraphics[width=0.65\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
+	\caption{Anfangswerttest \apv, Auslenkung \phz}
+	\label{fig:x0test}
+\end{figure}
+
 Die Ergebnisse eines \xots s an \apv\ sind beispielhaft in \figref{fig:x0test} dargestellt.
 Auf der Abszisse wird der Startwert der Auslenkung (hier \phz) aufgetragen.
 In Abhängigkeit von dieser werden die sich in der Folge ergebenden maximalen Abweichungen der drei Ausgänge vom \ap\ dargestellt.
 In diesem Fall kann das System bis zu einem Startwert von $\phzo=\valdeg{19}$ stabilisiert werden.
 Die Startauslenkung wird auch als schwarze Linie eingezeichnet. 
 Die Maximalabweichung ist stets oberhalb oder auf dieser.
-
-\begin{figure}[htbp]
-	\centering
-		\includegraphics[width=0.65\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
-	\caption{Anfangswerttest \apv, Auslenkung \phz}
-	\label{fig:x0test}
-\end{figure}
 
 
 \subsection{Kritische \xots s}\label{subsec:xotskrit}
@@ -525,7 +528,7 @@ Aus diesem Grund sind für die Untersuchung der Stabilität nur die folgenden vi
 	\item \texttt{\apv 2}: \ap\ 4, Auslenkung \phz
 \end{itemize}
 In \texttt{x0\_Test\_APs.m} werden diese vier Tests durchgeführt und die Ergebnisse zur weiteren Darstellung gespeichert.
-Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe\ \bzw \phz, bis zur welcher das System noch stabilisiert werden kann.
+Maßgeblicher Indikator für die Stabilität ist die jeweilige maximale Auslenkung \phe\ oder \phz, bis zur welcher das System noch stabilisiert werden kann.
 
 Diese Tests können nun mit verschiedenen Systemen durchgeführt werden und miteinander verglichen werden.
 Dabei können Regelparameter oder auch Systemparameter variiert werden.
@@ -543,7 +546,7 @@ Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abwei
 Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
 
 \newcommand{\scalee}{0.48}
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
 	\hfil
@@ -567,7 +570,7 @@ Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den G
 Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
 
 \renewcommand{\scalee}{0.53}
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP2.pdf} }
 	%\hfil
@@ -590,7 +593,7 @@ Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance ver
 Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
 
 \renewcommand{\scalee}{0.62}
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP2.pdf} }
 	\hfil
@@ -634,11 +637,11 @@ Durch iteratives Vorgehen können die Werte trotzdem sehr gut optimiert und das 
 Da die Güteparameter für jeden \ap\ festgelegt werden, findet die Variation der Parameter für einen festen \ap\ statt.
 Des Weiteren wird der Funktion \texttt{QR\_Variation} ein QR-Datensatz und der Parameter gegeben, der zu variieren ist (\texttt{R} oder \texttt{Qi}).
 Außerdem müssen die Werte angegeben werden, welche der Parameter annehmen soll.
-Um die Parameter gleichmäßig über einen großen Bereich zu testen, eignet sich ein logarithmischer Bereich, wofür die \ml-Funktion \texttt{logspace} genutzt wird.
+Um die Parameter gleichmäßig über einen großen Bereich zu testen, eignet sich ein logarithmischer Bereich, wofür die \ml-Funktion \texttt{logspace} genutzt wird. Ein beispielhafter Aufruf lautet:
 	\[
 	\texttt{QR\_Variation(2, AP\_QR\_20\_neu(), 'Q1', logspace(-2,2,7), 2:3 )}
 \]
-In der Funktion sind mehr Informationen angegeben und in \texttt{QR\_Variation\_run} weitere Anwendungsbeispiele zum Verwenden der Parametervariation vorhanden.
+In der Funktion sind mehr Informationen angegeben und in \texttt{QR\_Variation\_run.m} weitere Anwendungsbeispiele zum Verwenden der Parametervariation vorhanden.
 
 Welche der Zustände für den Test mithilfe der \xots s ausgelenkt werden sollen, kann angegeben werden.
 So kann man nur die jeweils "`kritischen"' Tests ausführen \siehe{\secref{subsec:xotskrit}}, aber auch die Auswirkungen bei Startwerten der anderen Zustände untersuchen und optimieren.
@@ -649,20 +652,20 @@ Auch hier ist meistens ein Kompromiss notwendig, der für einen \ap\ verschieden
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.7\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
+		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
 	\caption{Maximale Startwerte -- Variation von R bei \apz}
 	\label{fig:qrap2R}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=1\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
+		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von R bei \apz}
 	\label{fig:qrap2Rm}
 \end{figure}
 
 In \figref{fig:qrap2R} werden die maximalen Startwerte von \phe\ und \phz\ bei \apz\ in Abhängigkeit von $R$ dargestellt.
-Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung über den größtem Bereich (ab \valdeg{45} wird der Test abgebrochen).
+Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung über dem größten Bereich (ab \valdeg{45} wird der Test abgebrochen).
 Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab $R=20$ ebenfalls ein.
 Als Schlussfolgerung für den Parameter R gilt hier daher: je kleiner desto besser.
 
@@ -672,14 +675,14 @@ Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von $R$.
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.7\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
+		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
 		\caption{Maximale Startwerte -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=1.1\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
+		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1m}
 \end{figure}
@@ -696,9 +699,9 @@ Insgesamt zeigte sich für R eine bessere Dynamik bei kleinen Werten, da dadurch
 Da geeignete Begrenzungs- und Anti-Windup-Maßnahmen vorhanden sind, stellt eine höhere Stellgröße grundsätzlich kein Problem dar.
 R wurde für alle \ap e auf 0,01 gesetzt.
 
-Die Werte $Q_1$ bis $Q_6$ wurden durch Auswerten aller Tests für alle \ap e angepasst und für das System \texttt{Ribeiro20} optimiert (\texttt{AP\_QR\_20\_neu}).
+Die Werte $Q_1$ bis $Q_6$ wurden durch Auswerten aller Tests für alle \ap e in \texttt{AP\_QR\_20\_neu} angepasst und für das System \texttt{Ribeiro20} optimiert \siehe{\figref{fig:qrvglrib}}.
 Die größten Auswirkungen zeigten sich bei $Q_1$. 
-Meistens war der Einfluss der anderen Werte gering und brauchte bei starker Erhöhung eine schlechtere Dynamik mit sich.
+Meistens war der Einfluss der anderen Werte gering und brachte bei starker Erhöhung eine schlechtere Dynamik mit sich.
 Bei \apv\ zeigte $Q_2$ und $Q_4$ einen deutlichen Einfluss.
 
 Die Werte \texttt{AP\_QR\_20\_neu\_Beob} wurden für den Einsatz mit \beob\ optimiert.
@@ -706,9 +709,55 @@ Hierbei stellte sich heraus, dass für $Q_1$ generell größere Werte besser war
 Besonders bei \apv\ mussten die Werte angepasst werden, damit das System einigermaßen stabilisiert werden kann.
 
 
+
+
 \section{System Parameter Tests}\label{sec:x0sys}
 
-System Ribeiro
+Durch Verbesserung der Regelung und die systematische Optimierung der Reglerparameter konnte die Regelbarkeit des \dpd s deutlich verbessert werden und über einen größeren Bereich stabilisiert werden.
+Trotzdem gibt es hierbei gewisse Grenzen, da die Eigenschaft der "`Regelbarkeit"' nicht nur vom Reglerentwurf, sondern auch vom System selbst abhängt.
+Auch ist unklar, ob die durch die Simulation errungenen Ergebnisse direkt auf den realen Versuchsstand übertragbar sind.
+Versuche mit dem \beob\ haben gezeigt, dass die \ze\ einen erheblichen Einfluss auf das Regelverhalten und die Stabilisierung hat.
+Da am realen System weitere, nicht modellierte Effekte auftreten können, ist es von Vorteil, eine gewisse "`Reserve"' bezüglich der Regelbarkeit zu haben.
+
+
+\subsection{Vorgehen}
+
+Aus diesen Gründen wird in diesem Abschnitt die Regelbarkeit des Systems in Abhängigkeit der Systemparameter untersucht.
+Somit wird die äußerste Schleife aus \figref{fig:regvorg} betrachtet.
+Dabei ist zu beachten, dass jede Änderung am Streckenmodell \bzw deren Parametern Auswirkungen auf alle darunterliegenden Schleifen haben.
+Der Regler muss am geänderten System erneut ausgelegt und berechnet werden.
+
+Zudem muss theoretisch vor der Bewertung der Stabilisierbarkeit zunächst eine erneute Optimierung der Güteparameter stattfinden.
+Da dieser Schritt jedoch schwer zu automatisieren ist und den Aufwand nochmals deutlich steigern würde, wird darauf verzichtet und es werden immer die im letzten Abschnitt optimierten QR-Parameter verwendet.
+Somit muss im Hintergrund behalten werden, dass die Ergebnisse mit geänderten Systemparametern möglicherweise durch eine QR-Optimierung besser ausfallen können.
+
+In diesem Abschnitt wird bei der Einflussanalyse der Systemparameter ausschließlich das neukonstruierte \dpd\ mit den Parametern \texttt{Ribeiro20} betrachtet \siehe{\tabref{tab:spdparams}}.
+Erste Tests mit dem System am Versuchsstand haben eine deutlich schlechtere Regelbarkeit im Vergleich zum vorigen Aufbau gezeigt.
+Wie bereits in \secref{subsec:spdparams} erwähnt, wird die erhöhte \crb\ dafür verantwortlich gemacht, weswegen diese besonders in den Fokus genommen wird.
+
+Es werden die Parameter des \spds\ \siehe{\tabref{tab:abh}} variiert, um deren Einfluss auf die Stabilisierbarkeit zu analysieren und die Regelbarkeit zu erhöhen.
+Dabei wird ein Parameter schrittweise geändert, alle anderen behalten ihren eigentlich Wert.
+Demzufolge ist bei der Interpretation auch darauf zu achten, dass manche Parameter wie Masse, Trägheitsmoment und Schwerpunkt eigentlich voneinander abhängen.
+Da außer den reinen Zahlenwerten der ermittelten Parameter keine weiteren Informationen über deren Zusammensetzung oder Modellierung vorliegen, werden die Parameter nur einzeln variiert.
+
+
+\subsection{Anwendung in \ml}
+
+Ähnlich wie bei der QR-Variation wird eine Funktion \texttt{SysParameter\_Variation} angelegt, die für einen gegeben Parametersatz den spezifizierten Parameter in dem angegebenen Bereich (hier meist linear) variiert.
+Der Parameter wird so angegeben wie in \texttt{SchlittenPendelParams} definiert.
+Für jeden Wert des Parameters wird das System und der Regler entsprechend initialisiert, anschließend werden die kritischen \xots s durchgeführt.
+Ein Aufruf erfolgt beispielsweise mit:
+	\[
+	\texttt{SysParameter\_Variation(SchlittenPendelParams\_Ribeiro20(), 'm1', 0:0.2:2)}
+\]
+Weitere Information sind in der Funktion dokumentiert.
+Zusätzlich befinden sich einige Aufrufbeispiele in \texttt{SysParameter\_Variation\_run.m}.
+
+
+
+\subsection{Diagramme}
+
+\subsubsection{Trägheits- und Geometrieparameter}
 
 \newcommand{\scaleq}{0.62}
 \begin{figure}
@@ -724,6 +773,15 @@ System Ribeiro
 	\label{fig:sysvarm1}
 \end{figure}
 
+\figref{fig:sysvarm1} stellt die maximalen Startwerte der kritischen \xots s für die Variation der Pendelmasse $m_1$ im Bereich $0$ bis \valunit{2}{kg} dar.
+Die gestrichelte Linie markiert den tatsächlichen Wert des Parameters (\texttt{Ribeiro20}).
+Wie man sehen kann, hat der Parameter einen starken Einfluss auf das Stabilitätsgebiet, wobei die Tendenz \ap-abhängig ist.
+Bei \apz\ führt eine \emph{geringere} Masse zu einem besseren Verhalten.
+Vermutlich kann dadurch das erste Pendel schneller beschleunigt werden, wodurch auch größere Winkelabweichungen ausgeregelt werden können.
+Im Gegensatz dazu führt bei \apd\ und \apv\ eine \emph{höhere} Masse zu einer besseren Regelbarkeit.
+Bei diesen steht das erste Pendel, dessen Gelenk den nicht unerheblichen \crb skoeffizienten aufweist, oben.
+Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird sie relativ gesehen kleiner und damit das System "`linearer"', was die bessere Regelbarkeit erklären könnte.
+
 \begin{figure}
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP2.pdf}	}
@@ -737,8 +795,13 @@ System Ribeiro
 	\label{fig:sysvarm2}
 \end{figure}
 
-\renewcommand{\scaleq}{0.55}
+Die Variation von $m_2$ im Bereich $0$ bis \valunit{1}{kg} ist in \figref{fig:sysvarm2} dargestellt.
+Hier zeigt sich für alle \ap e dieselbe eindeutige Tendenz: Je niedriger die Masse, desto besser ist die Stabilisierbarkeit.
 
+Für die Schlittenmasse $m_0$ zeigt sich der erwartete Trend: Je größer die Masse, desto weniger lassen sich die \ap e stabilisieren \siehe{\figref{fig:sysvarm0}}.
+Dies lässt sich hauptsächlich auf die \sgb\ zurückführen.
+
+\renewcommand{\scaleq}{0.45}
 \begin{figure}
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP2.pdf}	}
@@ -765,7 +828,62 @@ System Ribeiro
 	\label{fig:sysvarJ2}
 \end{figure}
 
+Das Trägheitsmoment $J_1$ wird im Bereich von 0 bis zum doppelten Originalwert variiert \siehe{\figref{fig:sysvarJ1}}.
+Es zeigt sich exakt der gegenteilige Trend im Vergleich zu $m_1$: Bei \apz\ verbessert ein \emph{höheres} Trägheitsmoment das Regelverhalten, bei den anderen ein \emph{niedrigeres}.
+Die "`schnellere Drehbarkeit"' sorgt bei den \ap en mit dem ersten Pendel oben offenbar für bessere Stabilisierbarkeit.
+Auch bei $J_2$ stellt sich der gegenteilige Trend zu $m_2$ ein: Ein höheres Trägheitsmoment \emph{erhöht} die maximale Startabweichung.
 
+Bei $s_1$ zeigt sich eine ähnliche Tendenz wie bei $m_1$, wobei die Änderungen ab Werten größer des originalen gering sind \siehe{\figref{fig:sysvars1}}.
+
+Der Einfluss von $s_2$ ist nur bei \apd\ deutlich und verbessert das Regelverhalten bei geringeren Werten.
+Auch bei den anderen \ap en wird das Verhalten für geringere Werte etwas besser \siehe{\figref{fig:sysvars2}}.
+
+Für $l_1$ zeigt sich bei \apz\ und \apd\ derselbe Trend: Je größer, desto schlechter die Stabilisierung \siehe{\figref{fig:sysvarl1}}.
+Bei \apz\ kann die Stabilität mit geringeren Werten deutlich verbessert werden.
+Bei \apv\ hingegen verschlechtern kleine Werte das Verhalten deutlich, während größer Werte als die originalen nicht zu einer Verbesserung führen.
+
+Aus den Verläufen kann noch keine direkte Schlussfolgerung zu Änderungen am System gezogen werden, da alle angesprochenen Parameter voneinander abhängen.
+Wird beispielsweise eine zusätzliche Masse angebracht, ändert sich auch das Trägheitsmoment sowie der Schwerpunkt.
+Daher müssen erst alle Parameter entsprechend angepasst und weitere Tests durchgeführt werden.
+
+
+\subsubsection{Reibungsparameter}
+
+Die Parameter der viskosen Dämpfung zeigten im Bereich 0 bis doppelter Originalwert keinen oder nur einen geringen Einfluss.
+Auch der \crb skoeffizient des Schlittens $\Fc0$ zeigte keinen Einfluss, vermutlich weil die Schlittenreibung durch die Vorsteuerung sehr gut umgangen wird.
+
+
+
+\renewcommand{\scaleq}{0.8}
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP42.pdf}	}
+	\caption{Maximale Startwerte -- Variation \Mceo}
+	\label{fig:sysvarMc10}
+\end{figure}
+
+\renewcommand{\scaleq}{0.55}
+\begin{figure}
+	\centering
+	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP2.pdf}	}
+	\hfil
+	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP3.pdf}	}
+	\\
+	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP41.pdf} }
+	\hfil
+	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP42.pdf}	}
+	\caption{Maximalabweichungen -- Variation \Mceo\ in Abh. des Originalwerts (0.0538)}
+	\label{fig:sysvarMc10m}
+\end{figure}
+
+
+Bei \Mczo\ zeigte sich bei einer Änderung bis zum 4-fachen Orignalwert kein Einfluss.
 
 
 %Horizontale Fahrten in x-Richtung sind zwar möglich, eventuell müssen dafür aber andere Reglerparameter eingesetzt werden.

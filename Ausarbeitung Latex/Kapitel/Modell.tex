@@ -246,9 +246,9 @@ Die drei Parametersätze des \spd s \siehe{\tabref{tab:spdparams}} sowie die Mot
 Zum Initialisieren des Modells und der Simulation führt man das Skript \texttt{Init.m} aus.
 Dadurch werden folgende 4 Schritte durchgeführt:
 \begin{enumerate}
-	\item \textbf{InitSymEq}: Berechnet symbolisch die \bwgl\ nach \secref{subsec:bwgl} für das \krs\ (\path{SchlittenPendelSymF}) und das \bss\ (\path{SchlittenPendelSymA}) und speichert sie als globale Variablen. Auch die Ruhelagen werden initialisiert (definiert in \path{SchlittenPendelRuhelagen}).
+	\item \textbf{InitSymEq}: Berechnet symbolisch die \bwgl\ nach \secref{subsec:bwgl} für das \krs\ (\path{SchlittenPendelSymF}) und das \bss\ (\path{SchlittenPendelSymA}) und speichert sie als globale Variablen. Auch die Ruhelagen werden initialisiert (definiert in\break \path{SchlittenPendelRuhelagen}).
 	\item \textbf{InitParams}: Initialisiert die Parameter des Motors und des Schlittens (standardmäßig \texttt{Ribeiro20}) als globale Variablen. Hier können die Parameter ausgetauscht oder verändert werden (\zB \crb\ abschalten).
-	\item \textbf{InitSystem(SchlittenPendelParams)}: Diese Funktion erstellt die \zrm e des \spds s nach \secref{subsec:zrm}. Dafür wird die Funktion \path{SchlittenPendelNLZSR.m} genutzt, welche das \zrm\ in Abhängigkeit der \bwgl\ und der Parameter erstellt. Aus dem \krs\ wird mittels \path{sys2sfct} eine \emph{S-Function} generiert und in \path{SchlittenPendelFunc.m} gespeichert.
+	\item \textbf{InitSystem(SchlittenPendelParams)}: Diese Funktion erstellt die \zrm e des\break \spds s nach \secref{subsec:zrm}. Dafür wird die Funktion \mbox{\path{SchlittenPendelNLZSR.m}} genutzt, welche das \zrm\ in Abhängigkeit der \bwgl\ und der Parameter erstellt. Aus dem \krs\ wird mittels \path{sys2sfct} eine \emph{S-Function} generiert und in \path{SchlittenPendelFunc.m} gespeichert.
 	\item \textbf{InitSim}: Bereitet die globale Variable \path{simparams} vor, in welcher alle Parameter für das \sm-Modell übergeben werden. Dazu gehören beim Modell die Motorparameter und die Startwerte des \spds s.
 \end{enumerate}
 Nach der \init\ kann \path{Gesamtmodell_Test.slx} ausgeführt werden.
