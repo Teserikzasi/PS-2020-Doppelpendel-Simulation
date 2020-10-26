@@ -14,24 +14,14 @@ T = 0.005;
 u_max = 410;
 simSol='RK4';
 
-
-poi = 's2';
-val = 0:0.001:0.338; del = 0.1: 0.02 : 0.3;
-poi_val = []; cnt = 1;
-for i=1 : length(val)
-    if ~ismember(val(i),del)
-        poi_val(cnt)=val(i); cnt=cnt+1;
-    end
-end
-params= SchlittenPendelParams_Apprich09();
-examParameters(poi, poi_val, N, T, simSol, params, u_max)
 poi = 's1';
-val = 0:0.001:0.29; del = 0.06: 0.005 : 0.1;
+val = 0.067:0.001:0.29; del = 0.06: 0.005 : 0.1;
 poi_val = []; cnt = 1;
 for i=1 : length(val)
-    if ~ismember(val(i),del)
+    fprintf('%f\n', val(i))
+    if ~ismembertol(val(i),del)
         poi_val(cnt)=val(i); cnt=cnt+1;
-    end
+    end    
 end
 params= SchlittenPendelParams_Apprich09();
 examParameters(poi, poi_val, N, T, simSol, params, u_max)

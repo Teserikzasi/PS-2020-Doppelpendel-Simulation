@@ -3,7 +3,7 @@
 @BOOK{AdamyRT2,
   title = {Systemdynamik und Regelungstechnik II},
   publisher = {Shaker},
-  year = {2007},
+  year = {2019},
   author = {Adamy, Jürgen},
   owner = {elenz},
   timestamp = {2008.03.18}
@@ -12,7 +12,7 @@
 @BOOK{AdamyRT3,
   title = {Systemdynamik und Regelungstechnik III},
   publisher = {Shaker},
-  year = {2007},
+  year = {2019},
   author = {Adamy, Jürgen},
   owner = {elenz},
   timestamp = {2008.03.18}
@@ -20,11 +20,12 @@
 
 @Book{modsim,
   author    = {Ulrich Konigorski},
-  publisher = {Skript},
-  title     = {Modellbildung und Simulation},
+  title     = {Modellbildung und Simulation, Skript},
   year      = {2019},
   address   = {Darmstadt},
-  school    = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt}
+  owner     = {elenz},
+  school    = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt},
+  timestamp = {2008.05.09},
 }
 
 @BOOK{Lunze1,
@@ -124,10 +125,10 @@
 }
 
 
-@MastersThesis{franke,
+@Misc{franke,
   author = {Franke, Andreas},
-  school = {TU Clausthal},
-  title  = {Modellierung und Regelung einesmechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor},
+  address = {Technische Universität Clausthal},
+  title  = {Modellierung und Regelung eines mechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor},
   year   = {1997},
   type   = {Diplomarbeit},
 }
@@ -140,28 +141,80 @@
   address   = {Darmstadt},
 }
 
-@MastersThesis{kämmerer,
+@Misc{kämmerer,
   author = {Kämmerer, Andreas},
-  school = {TU Darmstadt},
+  school = {Technische Universität Darmstadt},
+  address = {Technische Universität Darmstadt},
   title  = {Inbetriebnahme und Regelung eines inversen Doppelpendels},
   year   = {2009},
-  type   = {Studienarbeit},
+  note   = {Studienarbeit},
 }
 
-@MastersThesis{noupa,
+@Misc{noupa,
   author = {Noupa, Karl Max Crépin},
-  school = {TU Darmstadt},
+  school = {Technische Universität Darmstadt},
+  address = {Technische Universität Darmstadt},
   title  = {Reibkompensation am Doppelpendel},
   year   = {2011},
-  type   = {Bachelorarbeit},
+  note   = {Bachelorarbeit},
 }
 
 @Book{matPrakt2,
-  author = {Konigorski, Ulrich},
-  title  = {Praktikum MATLAB/Simulink II},
-  year   = {2019},
-  school = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt},
-  type   = {Skript},
+  author  = {Konigorski, Ulrich},
+  title   = {Praktikum MATLAB/Simulink II},
+  year    = {2019},
+  address = {Darmstadt},
+  school  = {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt},
+  type    = {Skript},
+}
+
+@Article{Andersson2019,
+  author = {Joel A E Andersson and Joris Gillis and Greg Horn
+            and James B Rawlings and Moritz Diehl},
+  title = {{CasADi} -- {A} software framework for nonlinear optimization
+           and optimal control},
+  journal = {Mathematical Programming Computation},
+  volume = {11},
+  number = {1},
+  pages = {1--36},
+  year = {2019},
+  publisher = {Springer},
+  doi = {10.1007/s12532-018-0139-4}
+}
+
+@article{multShoot,
+title = "A Multiple Shooting Algorithm for Direct Solution of Optimal Control Problems*",
+journal = "IFAC Proceedings Volumes",
+volume = "17",
+number = "2",
+pages = "1603 - 1608",
+year = "1984",
+note = "9th IFAC World Congress: A Bridge Between Control Science and Technology, Budapest, Hungary, 2-6 July 1984",
+issn = "1474-6670",
+doi = "https://doi.org/10.1016/S1474-6670(17)61205-9",
+url = "http://www.sciencedirect.com/science/article/pii/S1474667017612059",
+author = "H.G. Bock and K.J. Plitt",
+keywords = "Optimal control, numerical methods, nonlinear programming, quadratiC programming, aerospace trajectories, multiple shooting",
+abstract = "An algorithm for the numerical solution of parameterized optimal control problems is presented, which is based on multiple shooting in connection with a recursive quadratic progrmrming technique. A condensing algorithm for the solution of the approximating linearly constrained quadratic subproblems, and high rank update procedures are introduced, which are especially suited for optimal control problems and lead to significant improvements of the convergence behaviour and reductions of computing time and storage requirements. The algorithm is completely derivative-free due to internal numerical differentiation schemes, it can be conveniently combined with indirect multiple shooting. Numerical results are given in the field of aerospace engineering."
+}
+
+@Inbook{Diehl2006,
+author="Diehl, M.
+and Bock, H.G.
+and Diedam, H.
+and Wieber, P.-B.",
+editor="Diehl, Moritz
+and Mombaur, Katja",
+title="Fast Direct Multiple Shooting Algorithms for Optimal Robot Control",
+bookTitle="Fast Motions in Biomechanics and Robotics: Optimization and Feedback Control",
+year="2006",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="65--93",
+abstract="In this overview paper, we first survey numerical approaches to solve nonlinear optimal control problems, and second, we present our most recent algorithmic developments for real-time optimization in nonlinear model predictive control.",
+isbn="978-3-540-36119-0",
+doi="10.1007/978-3-540-36119-0_4",
+url="https://doi.org/10.1007/978-3-540-36119-0_4"
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
