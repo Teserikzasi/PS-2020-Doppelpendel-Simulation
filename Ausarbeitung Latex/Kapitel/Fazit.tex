@@ -2,7 +2,36 @@
 
 \section{Zusammenfassung und Fazit}
 
+Diese Arbeit beschäftigt sich mit der Steuerung und Regelung eines Doppelpendels, das an einem Schlitten angebracht ist.
+Das System wurde in dieser Arbeit rein simulativ betrachtet, wobei die Anwendung am realen Versuchsstand stets im Hintergrund behalten wurde.
+Es wurde ein umfassendes Simulationsmodell in \ml/\sm\ aufgebaut, welches in zukünftigen Arbeiten weiterverwendet werden kann.
 
+Das \spds\ und der Motor wurden sehr detailliert modelliert.
+Im Vergleich zu bisherigen Arbeiten wurde beispielsweise die Induktionsspannung des Motors und die \crb\ berücksichtigt.
+Die Herleitung der \bwgl\ des \spds s wurde symbolisch umgesetzt, wodurch das System sehr einfach erweitert werden kann.
+Außerdem konnten dadurch Fehler in den zuvor verwendeten Gleichungen aufgedeckt werden.
+Das gesamte Simulationsmodell wurde sehr modular und funktional aufgebaut.
+Somit können sehr einfach unterschiedliche Parameter getestet und verglichen werden.
+
+Anschließend wurde die Regelung an den vier \ap en betrachtet und insbesondere die Regelbarkeit untersucht.
+Dazu wurde zunächst ein Regelungsmodell aufgebaut, das einen \ap-abhängigen \zsr\ und eine \vorst seinheit enthält.
+Auch hier wurde auf eine saubere Implementierung geachtet, sodass einfach Änderungen und Vergleiche sowie eine ausführliche Auswertung der Simulationsdaten möglich sind.
+Um Tests/Testreihen effektiv auswerten zu können, wurden die \xots-Funktionen programmiert, welche das Simulationsmodell automatisch ausführen und auf denen weitere Tests aufbauen können.
+
+Nach Verbesserungen in der \vorst\ und dem \beob\ wurde eine weitere Verbesserung der Regelung über eine Optimierung der Reglerparameter betrachtet.
+Dazu werden die Güteparameter des \ricc-Reglers schrittweise variiert und deren Einfluss mithilfe von verschiedenen Diagrammen analysiert.
+Durch die Optimierung wurden Parametersätze für alle \ap e bestimmt, die das System besser stabilisieren können als vorige Werte.
+
+In einem weiteren Schritt wurde der Einfluss der Parameter des \dpd s untersucht.
+Dabei wurde wieder von den Test- und Auswertungsfunktionen Gebrauch gemacht, um direkt ein umfassendes Bild des Regelverhaltens zu erlangen.
+Es konnte herausgefunden werden, dass Trägheits- und Geometrieparameter einen erheblichen Einfluss auf die Stabilisierbarkeit des Systems haben.
+
+Außerdem zeigte sich, dass die \crb\ des ersten Pendelgelenks einen negativen Einfluss auf die Regelbarkeit und das stationäre Verhalten hat, insbesondere in Kombination mit der Verwendung eines \beob s.
+
+
+\traj
+
+  
 
 \section{Ausblick}
 

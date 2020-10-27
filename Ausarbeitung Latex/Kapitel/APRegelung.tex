@@ -17,7 +17,7 @@ Außerdem wird der Einfluss des \beob\ anlysiert.
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[width=0.43\textwidth]{Bilder/Regelung Vorgehen.pdf}
+		\includegraphics[width=0.43\textwidth]{Bilder/Regelung Vorgehen weiß.pdf}
 	\caption{Vorgehen bei der AP-Regelung }
 	\label{fig:regvorg}
 \end{figure}
@@ -339,23 +339,23 @@ Erwartet als Parameter die Daten zum \ap.
 
 \subsubsection{Zustandsregler.slx}
 Implementiert einen gewöhnlichen \zsr, bei dem alle Arten der \ze\ \siehe{\secref{subsec:zse}} möglich sind \siehe{\figref{fig:simzsr}}.
-Die Auswahl wird durch ein \emph{Variant Subsystem} realisiert, das durch die Variable \texttt{simparams.Zustandsermittlung} angesteuert wird \siehe{\figref{fig:simzse}}.
+Die Auswahl wird durch ein \emph{Variant Subsystem} realisiert, das durch die Variable \texttt{simparams.Zustandsermittlung} angesteuert wird.%\siehe{\figref{fig:simzse}}.
 Die Stellgröße für den \beob\ kann zwischen intern und extern umgeschaltet werden.
 Benötigt als Parameter die Verstärkung \texttt{K} sowie eventuelle Daten für den \beob.
 
 \begin{figure}[htb]
 	\centering
-		\includegraphics[width=0.75\textwidth]{Bilder/Simulink/zsr.PNG}
+		\includegraphics[width=0.8\textwidth]{Bilder/Simulink/zsr.PNG}
 	\caption{\zsr\ in \sm}
 	\label{fig:simzsr}
 \end{figure}
 
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.35\textwidth]{Bilder/Simulink/zustandsermittlung.PNG}
-	\caption{\ze\ in \sm}
-	\label{fig:simzse}
-\end{figure}
+%\begin{figure}[htb]
+	%\centering
+		%\includegraphics[width=0.35\textwidth]{Bilder/Simulink/zustandsermittlung.PNG}
+	%\caption{\ze\ in \sm}
+	%\label{fig:simzse}
+%\end{figure}
 
 \subsubsection{Beobachter.slx}
 Implementiert einen Standard-\beob. 
@@ -387,7 +387,7 @@ Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet.
 
 \subsubsection{MotorVorsteuerung.slx}
 Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
-
+Berechnet aus der Sollkraft die Sollspannung für den Motor und gibt die möglicherweise begrenzte Kraft zurück an den vorigen Block.
 
 \subsection{\init}
 
@@ -501,7 +501,7 @@ Eine kleinere Schrittweite löst zwar die Ergebnisse besser auf, führt aber zu 
 
 \begin{figure}[hb]
 	\centering
-		\includegraphics[width=0.65\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
+		\includegraphics[width=0.75\textwidth]{Bilder/x0test/appr-x0-ap42.pdf}
 	\caption{Anfangswerttest \apv, Auslenkung \phz}
 	\label{fig:x0test}
 \end{figure}
@@ -536,17 +536,9 @@ Der Vorteil dieser Darstellung ist, dass die Gütekriterien wie Maximalabweichun
 Dadurch lässt sich die Güte der Regelung \bzw die Regelbarkeit einer Konfiguration auf einen Blick beurteilen.
 
 
-\subsection{Vergleiche von \xots s}\label{subsec:xotsvgl}
-
-Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
-In \figref{fig:qrvglrib} sind die Maximalabweichungen mit den verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
-Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen ausregeln kann.
-Die in dieser Arbeit optimierten Parameter können das \dpd\ bei allen \ap en in einem etwas größeren Bereich stabilisieren.
-Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abweichungen bei den niedrigeren Startwerten geschieht.
-Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
 
 \newcommand{\scalee}{0.48}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) Creg off/AP2.pdf} }
 	\hfil
@@ -559,18 +551,22 @@ Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
 	\label{fig:qrvglrib}
 \end{figure}
 
+\subsection{Vergleiche von \xots s}\label{subsec:xotsvgl}
+
+Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
+In \figref{fig:qrvglrib} sind die Maximalabweichungen mit den verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
+Die Wahl der QR-Parameter haben offenbar einen wichtigen Einfluss auf Stabilisierbarkeit und Regelgüte.
+Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen ausregeln kann.
+Die in dieser Arbeit optimierten Parameter können das \dpd\ bei allen \ap en in einem etwas größeren Bereich stabilisieren.
+Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abweichungen bei den niedrigeren Startwerten geschieht.
+Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
+
+
 Bei der Regelung mit den neuen Pendelparametern \texttt{Ribeiro20} ist im Vergleich zu den alten Parametern \texttt{Apprich09} aufgefallen, dass der Endwert nicht mehr asymptotisch erreicht wird, sondern sich ein Grenzzyklus einstellt.
 Die Ursache dafür liegt sehr wahrscheinlich \crb\ der Pendelgelenke \siehe{\tabref{tab:spdparams}}, die beim alten System nicht vorhanden ist.
-\figref{fig:vglpendelpar} vergleicht die beiden Systeme, sowie eine Variante, bei der die \crb smomente zu 0 gesetzt werden (\texttt{MCoff}).
-Bei allen \ap en fällt auf, dass das System mit \crb smomenten bei sehr niedrigen Startwerten höhere Maximalabweichungen zeigt, die durch die Dauerschwingung verursacht werden.
-\ZB ergibt sich bei \apz\ ab einem Startwert von $\pheo=\valdeg{2}$ ein Positionssausschlag von \valunit{0,3}{m}.
-Bei \apd\ und \apv\ ergibt sich sogar bei einem Startwert von 0 eine Dauerschwingung (was bei \apd\ auf die numerische Ungenauigkeit von $\pi$ zurückzuführen ist, bei \apv\ erst mit einer minimalen Anregung).
-Da die Maximalabweichungen insbesondere bei \apv\ über einen weiten Bereich konstant sind ($\phem=\valdeg{10}$, $\phzm=\valdeg{8}$), besteht die Vermutung, dass der Grenzzyklus fast unabhängig von den Startwerten ist.
-Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den Gelenken zeigen dieses Verhalten nicht und beginnen in 0 mit einem etwa linearen Verlauf.
-Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
 
 \renewcommand{\scalee}{0.53}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter alt+neu/AP2.pdf} }
 	%\hfil
@@ -583,6 +579,15 @@ Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
 	\label{fig:vglpendelpar}
 \end{figure}
 
+\figref{fig:vglpendelpar} vergleicht die beiden Systeme, sowie eine Variante, bei der die \crb smomente zu 0 gesetzt werden (\texttt{MCoff}).
+Bei allen \ap en fällt auf, dass das System mit den \crb smomenten bei sehr niedrigen Startwerten höhere Maximalabweichungen zeigt, die durch die Dauerschwingung verursacht werden.
+\ZB ergibt sich bei \apz\ ab einem Startwert von $\pheo=\valdeg{2}$ ein Positionssausschlag von \valunit{0,3}{m}.
+Bei \apd\ und \apv\ ergibt sich sogar bei einem Startwert von 0 eine Dauerschwingung (was bei \apd\ auf die numerische Ungenauigkeit von $\pi$ zurückzuführen ist, bei \apv\ erst mit einer minimalen Anregung).
+Da die Maximalabweichungen insbesondere bei \apv\ über einen weiten Bereich konstant sind ($\phem=\valdeg{10}$, $\phzm=\valdeg{8}$), besteht die Vermutung, dass der Grenzzyklus fast unabhängig von den Startwerten ist.
+Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den Gelenken zeigen dieses Verhalten nicht und beginnen in 0 mit einem etwa linearen Verlauf.
+Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
+
+
 Auch der Einfluss des \beob\ lässt sich mit den kritischen \xots s gut darstellen.
 Beim Test des \beob s an der Neukonstruktion ist zunächst aufgefallen, dass die QR-Parameter, die vorher für die Zustandsmessung optimiert wurden, nur bei \apz\ brauchbare Ergebnisse zeigten.
 Bei \apv\ versagten zudem die beiden Vergleichsparameter der letzten Arbeiten.
@@ -593,7 +598,7 @@ Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance ver
 Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
 
 \renewcommand{\scalee}{0.62}
-\begin{figure}[htb]
+\begin{figure}[htbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scalee]{Bilder/x0QRparamVergleich/Parameter neu (Ribeiro) ZM+Beob/AP2.pdf} }
 	\hfil
@@ -650,18 +655,11 @@ Auch hier ist meistens ein Kompromiss notwendig, der für einen \ap\ verschieden
 
 \subsection{Diagramme}
 
-\begin{figure}[htb]
+\begin{figure}[tbp]
 	\centering
 		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
 	\caption{Maximale Startwerte -- Variation von R bei \apz}
 	\label{fig:qrap2R}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
-	\caption{Maximalabweichungen -- Variation von R bei \apz}
-	\label{fig:qrap2Rm}
 \end{figure}
 
 In \figref{fig:qrap2R} werden die maximalen Startwerte von \phe\ und \phz\ bei \apz\ in Abhängigkeit von $R$ dargestellt.
@@ -669,18 +667,25 @@ Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung üb
 Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab $R=20$ ebenfalls ein.
 Als Schlussfolgerung für den Parameter R gilt hier daher: je kleiner desto besser.
 
+\begin{figure}[tbp]
+	\centering
+		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
+	\caption{Maximalabweichungen -- Variation von R bei \apz}
+	\label{fig:qrap2Rm}
+\end{figure}
+
 Allerdings muss auch die Dynamik, insbesondere die resultierenden Maximalausschläge der Zustände, beachtet werden.
 \figref{fig:qrap2Rm} stellt daher für dieselbe Konfiguration die Maximalabweichungen dar, bei Auslenkung von \phe.
 Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von $R$.
 
-\begin{figure}[htb]
+\begin{figure}[tbp]
 	\centering
 		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
 		\caption{Maximale Startwerte -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[tbp]
 	\centering
 		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von $Q_1$ bei \apv}
@@ -760,7 +765,7 @@ Zusätzlich befinden sich einige Aufrufbeispiele in \texttt{SysParameter\_Variat
 \subsubsection{Trägheits- und Geometrieparameter}
 
 \newcommand{\scaleq}{0.62}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP2.pdf}	}
 	\hfil
@@ -782,7 +787,7 @@ Im Gegensatz dazu führt bei \apd\ und \apv\ eine \emph{höhere} Masse zu einer 
 Bei diesen steht das erste Pendel, dessen Gelenk den nicht unerheblichen \crb skoeffizienten aufweist, oben.
 Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird sie relativ gesehen kleiner und damit das System "`linearer"', was die bessere Regelbarkeit erklären könnte.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP2.pdf}	}
 	\hfil
@@ -801,8 +806,8 @@ Hier zeigt sich für alle \ap e dieselbe eindeutige Tendenz: Je niedriger die Ma
 Für die Schlittenmasse $m_0$ zeigt sich der erwartete Trend: Je größer die Masse, desto weniger lassen sich die \ap e stabilisieren \siehe{\figref{fig:sysvarm0}}.
 Dies lässt sich hauptsächlich auf die \sgb\ zurückführen.
 
-\renewcommand{\scaleq}{0.45}
-\begin{figure}
+\renewcommand{\scaleq}{0.38}
+\begin{figure}[p]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J1/AP2.pdf}	}
 	\hfil
@@ -815,7 +820,7 @@ Dies lässt sich hauptsächlich auf die \sgb\ zurückführen.
 	\label{fig:sysvarJ1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/J2/AP2.pdf}	}
 	\hfil
@@ -842,20 +847,29 @@ Für $l_1$ zeigt sich bei \apz\ und \apd\ derselbe Trend: Je größer, desto sch
 Bei \apz\ kann die Stabilität mit geringeren Werten deutlich verbessert werden.
 Bei \apv\ hingegen verschlechtern kleine Werte das Verhalten deutlich, während größer Werte als die originalen nicht zu einer Verbesserung führen.
 
-Aus den Verläufen kann noch keine direkte Schlussfolgerung zu Änderungen am System gezogen werden, da alle angesprochenen Parameter voneinander abhängen.
-Wird beispielsweise eine zusätzliche Masse angebracht, ändert sich auch das Trägheitsmoment sowie der Schwerpunkt.
-Daher müssen erst alle Parameter entsprechend angepasst und weitere Tests durchgeführt werden.
 
 
 \subsubsection{Reibungsparameter}
 
 Die Parameter der viskosen Dämpfung zeigten im Bereich 0 bis doppelter Originalwert keinen oder nur einen geringen Einfluss.
-Auch der \crb skoeffizient des Schlittens $\Fc0$ zeigte keinen Einfluss, vermutlich weil die Schlittenreibung durch die Vorsteuerung sehr gut umgangen wird.
+Auch der \crb skoeffizient des Schlittens $\Fco$ zeigte keinen Einfluss, vermutlich weil die Schlittenreibung durch die Vorsteuerung sehr gut umgangen wird.
 
+Anhand von \figref{fig:sysvarMc10} sieht man, dass \Mceo\ einen leicht negativen Einfluss hat, außer bei \apz, dort ist der Einfluss sogar positiv.
+Wie schon in \figref{fig:vglpendelpar} festgestellt wurde, scheint es bei \apz\ weniger Probleme bezüglich der Gelenk-\crb\ zu geben und auch weniger Probleme mit \beob\ \siehe{\figref{fig:vglribze}}.
+Da außerdem ein deutlicher Einfluss des \beob\ gerade am neuen System vorhanden ist \siehe{\figref{fig:vglribze}}, wird für \Mceo\ der Test ebenfalls mit \beob\ (und den dafür optimierten QR-Parametern) durchgeführt.
+Bei \apv\ stellt sich heraus, dass schon geringfügig höherer Werte der Reibung das System überhaupt nicht mehr stabilisieren lassen.
+Offensichtlich ist gerade die Kombination von erhöhter \crb, die das System auch in der Nähe des \ap es nichtlinear macht, und dem Einsatz des \beob s, welcher am linearen System ausgelegt ist und durch die \crb\ Schätzfehler entstehen, äußerst kritisch.
 
+\figref{fig:sysvarMc10m} zeigt zudem die \ap abweichungen bei der Variation von \Mceo\ (\zm).
+Hier lässt sich sehr gut der Einfluss auf den sich einstellenden Grenzzyklus insbesondere bei niedrigen Startwerten feststellen, wie er auch schon in \figref{fig:vglpendelpar} beobachtet wurde.
+Bei $\Mceo=0$ beginnen die Kurven in 0 und verhalten sich anfangs linear.
+Mit steigender Reibung wird jedoch die Dauerschwingung größer.
+Besonders bei \apv\ sieht man, dass das System schon bei sehr kleinen Anfangswerten aus der Ruhe in den Grenzzyklus gebracht wird.
+Bei \apz\ startet die Dauerschwingung zwar nicht bei 0, ist aber im Bereich von 2-3 bis etwa \valdeg{10} konstant.
+Bei \apd\ ist der Einfluss geringer.
 
 \renewcommand{\scaleq}{0.8}
-\begin{figure}
+\begin{figure}[tbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP2.pdf}	}
 	\hfil
@@ -868,22 +882,43 @@ Auch der \crb skoeffizient des Schlittens $\Fc0$ zeigte keinen Einfluss, vermutl
 	\label{fig:sysvarMc10}
 \end{figure}
 
-\renewcommand{\scaleq}{0.55}
-\begin{figure}
+\renewcommand{\scaleq}{0.6}
+\begin{figure}[tbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP2.pdf}	}
-	\hfil
+%	\hfil
 	\subfloat[\apad]{	\includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP3.pdf}	}
 	\\
 	\subfloat[\apave]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP41.pdf} }
-	\hfil
+%	\hfil
 	\subfloat[\apavz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP42.pdf}	}
-	\caption{Maximalabweichungen -- Variation \Mceo\ in Abh. des Originalwerts (0.0538)}
+	\caption{Maximalabweichungen -- Variation \Mceo\ in Abh. des Originalwerts ($0.0538$)}
 	\label{fig:sysvarMc10m}
 \end{figure}
 
 
-Bei \Mczo\ zeigte sich bei einer Änderung bis zum 4-fachen Orignalwert kein Einfluss.
+Bei \Mczo\ zeigte sich bei einer Änderung bis zum 4-fachen Originalwert keinen Einfluss.
 
 
-%Horizontale Fahrten in x-Richtung sind zwar möglich, eventuell müssen dafür aber andere Reglerparameter eingesetzt werden.
+\subsection{Schlussfolgerungen zu Parameteränderungen}
+
+Es stellt sich nun die Frage inwieweit die Pendelparameter verändert werden können, um das Regelverhalten zu verbessern.
+Insbesondere sind die Parameter von Interesse, die ohne großen konstruktiven Aufwand angepasst werden können.
+
+Aus den Verläufen der Trägheits- und Geometrieparameter kann noch keine direkte Schlussfolgerung zu Änderungen am System gezogen werden, da diese alle voneinander abhängen.
+Wird beispielsweise eine zusätzliche Masse angebracht, ändert sich auch das Trägheitsmoment sowie der Schwerpunkt.
+Daher müssen zuvor alle Parameter entsprechend angepasst und weitere Tests durchgeführt werden, bevor eine eindeutige Aussage getroffen werden kann.
+
+Bei der Neukonstruktion \cite{chang} wurden an den Pendelstäben Gewindebohrungen realisiert, sodass zusätzliche Gewichte angebracht werden können, die für ein anderes Systemverhalten sorgen.
+Erste Überlegungen sind daher, am ersten Pendel eine Masse anzubringen, dies laut Diagramm für \apd\ und \apv\ zunächst vorteilhaft ist.
+Andererseits hat das dadurch höhere Trägheitsmoment einen negativen Einfluss, was für eine Anbringung nahe der Drehachse spricht.
+Die Ergebnisse der Schwerpunktseinflusses sprechen bei \apd\ und \apv\ hingegen für eine Erhöhung des Schwerpunkts, also eine Anbringung näher am zweiten Gelenk. 
+Aufgrund der gegensinnigen Tendenzen sind weitere Tests für bestimmte Ausführungen nötig.
+
+Auch am zweiten Pendel könnten Massen angebracht werden.
+Während das Diagramm der reinen Masse zunächst dagegen spricht, verbessert ein höheres Drehmoment die Stabilisierbarkeit.
+Demzufolge könnte der Einfluss einer Masse an der Pendelspitze getestet werden.
+Außerdem könnte die Masse durch Verkürzen des Pendels verringert werden.
+
+Außerdem hat sich bei Variation der Fallbeschleunigung $g$ gezeigt, dass niedrigere Werte die Stabilisierbarkeit verbessern.
+Daher könnte man überprüfen, ob sich der Versuchsstand zu einem Standort auf dem Mond verlegen lässt.
