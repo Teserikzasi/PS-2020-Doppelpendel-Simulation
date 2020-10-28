@@ -348,9 +348,9 @@ Es wird zwischen
 	%\end{tabular}
 %\end{center}
 \begin{itemize}
-	\item \textit{stabil} - Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden
-	\item \textit{"`leicht instabil"'} - Aufschwung gelingt weitgehend, AP4 wird nicht gehalten
-	\item \textit{instabil} - Aufschwung gelingt nicht
+	\item \emph{stabil} - Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden
+	\item \emph{"`leicht instabil"'} - Aufschwung gelingt weitgehend, AP4 wird nicht gehalten
+	\item \emph{instabil} - Aufschwung gelingt nicht
 \end{itemize}
 unterschieden. Zum besseren Verständnis soll die Zuordnung der dargestellten Ergebnisse an Hand repräsentativer Beispiele erläutert werden.
 
@@ -383,7 +383,7 @@ In \figref{fig:F400T0.01_rib_rk4_ode4_TFR_QR-alt} sind demgegenüber die Verläu
 	\label{fig:F400T0.01_rib_rk4_ode4_TFR_QR-alt}
 \end{figure}
 
-Das Doppelpendel kann demnach stabilisiert werden, jedoch ist in der Schlittenposition ein "`Weglaufen"' zu beobachten. Dieses sorgt dafür, dass die vorgegebene Positionsbegrenzung weit überschritten wird. Es liegt daher nahe, dass durch eine höhere Bestrafung der Position mit Hilfe der QR-Parameter des Reglers eine Verringerung der maximalen Auslenkung zu erwarten ist. Eine Variation von $Q_{11}$ ergibt, dass mit einer Erhöhung von $Q_{11}=1$ auf wahlweise $Q_{11}=1,05$ oder $Q_{11}=4,5$ sich die maximale Positionsauslenkung von etwa \valunit{-3,2}{m} auf \valunit{-2,5}{m} senken lässt. Damit liegt die erreichte Auslenkung weiterhin weit außerhalb der zulässigen Begrenzung von \valunit{\pm 0,8}{m}. Es zeigt sich außerdem, dass die Stabilisierung der betrachteten Trajektorie empfindlich auf Veränderung von $Q_{11}$ reagiert. Bereits bei $Q_{11}=1,07$ bzw. $Q_{11}=4,6$ wird das System instabil. Da allgemein jedoch eine Stabilisierung erreicht wird, ist die Trajektorie für die Simulation \texttt{ode4} am geregelten System als \textit{stabil} bewerten. 
+Das Doppelpendel kann demnach stabilisiert werden, jedoch ist in der Schlittenposition ein "`Weglaufen"' zu beobachten. Dieses sorgt dafür, dass die vorgegebene Positionsbegrenzung weit überschritten wird. Es liegt daher nahe, dass durch eine höhere Bestrafung der Position mit Hilfe der QR-Parameter des Reglers eine Verringerung der maximalen Auslenkung zu erwarten ist. Eine Variation von $Q_1$ ergibt, dass mit einer Erhöhung von $Q_1=1$ auf wahlweise $Q_1=1,05$ oder $Q_1=4,5$ sich die maximale Positionsauslenkung von etwa \valunit{-3,2}{m} auf \valunit{-2,5}{m} senken lässt. Damit liegt die erreichte Auslenkung weiterhin weit außerhalb der zulässigen Begrenzung von \valunit{\pm 0,8}{m}. Es zeigt sich außerdem, dass die Stabilisierung der betrachteten Trajektorie empfindlich auf Veränderung von $Q_1$ reagiert. Bereits bei $Q_1=1,07$ bzw. $Q_1=4,6$ wird das System instabil. Da allgemein jedoch eine Stabilisierung erreicht wird, ist die Trajektorie für die Simulation \texttt{ode4} am geregelten System als \textit{stabil} bewerten. 
 
 Nach dem beschriebenen Vorgehen werden auch die weiteren Simulationsversuche ausgewertet. Die Ergebnisse in \tabref{tab:T001N350Fmax400} zeigen, dass sich drei der vier berechneten Trajektorien in zumindest einer der drei betrachteten Simulationen stabilisieren lässt. Die mit dem Euler-Verfahren und den Ribeiro-Parametern berechnete Trajektorie fällt dabei auf, da eine Stabilisierung generell in keiner der betrachteten Simulationen erreicht wird. Als Nächstes wird daher eine höhere Güte der Trajektorien gefordert, indem die Schrittweite für die Trajektorienberechnung halbiert wird bei entsprechender Erhöhung des Prädiktionshorizonts. Die Ergebnisse für $T=0.005$ und $N=500$ sind in \tabref{tab:T0005N500Fmax400} dargestellt.
 \begin{table}[H]
@@ -482,6 +482,7 @@ Die Parameterwerte für die Parameteruntersuchung orientieren sich an den Werten
 	\centering
 	\caption{Parametervariationen}
 		\begin{tabular}{lllll}
+	    \toprule
 			Parameter & Startwert & Endwert & Schrittweite & Anzahl Trajektorien \\
 			\midrule
 			$m_1 \ [\unit{kg}]$     & $0$ & $2$    & $0,01$   & $201$ \\

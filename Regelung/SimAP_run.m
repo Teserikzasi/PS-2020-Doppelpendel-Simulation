@@ -1,3 +1,4 @@
+% Simulation Arbeitspunkt
 
 %testAP = 3;
 %delta_x0 = [0 0 deg2rad(5) 0 deg2rad(10) 0];

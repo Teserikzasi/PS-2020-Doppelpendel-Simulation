@@ -387,7 +387,7 @@ Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet.
 
 \subsubsection{MotorVorsteuerung.slx}
 Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
-Berechnet aus der Sollkraft die Sollspannung für den Motor und gibt die möglicherweise begrenzte Kraft zurück an den vorherigen Block.
+Berechnet aus der Sollkraft die Sollspannung für den Motor und gibt die möglicherweise begrenzte Kraft zurück an den vorigen Block.
 
 \subsection{\init}
 
@@ -399,7 +399,7 @@ Dabei werden folgende 4 Schritte durchgeführt:
 	\item \textbf{InitAPRegData(riccdata)}: Diese Funktion berechnet die Daten für den AP-Regler anhand der gegebenen Güteparameter. Dabei werden alle \ap e linearisiert, die Reglerverstärkung mit der \ml-Funktion \texttt{lqr} und die \beob matrix berechnet.
 	\item \textbf{InitSimReg(Zustandsermittlung, kpv)}: Initialisiert das Simulationsmodell für die AP-Regelung. Werte für \kpv\ und die Art der \ze\ (Standard: Messung) kann angegeben werden. Die Parameter für die Module zur Regelung werden in die \emph{struct}-Variable \path{simparams.regler} geschrieben. Die Systemparameter von Motor und \spd\ (von denen der Regler ausgeht) werden hier übergeben, da manche von ihnen für die Regelung/Vorsteuerung benötigt werden. Durch die Trennung zu den "`realen"' Werten \path{simparams.gesamtmodell} können die Parameter des Reglers grundsätzlich auch anders sein als die, mit denen das Modell simuliert wird.
 \end{enumerate}
-
+Anschließend können mit \texttt{SimAP} \ap tests durchgeführt werden.
 
 
 \subsection{Güteparameter (Q,R)}\label{subsec:simqr}
@@ -408,7 +408,7 @@ Dabei werden folgende 4 Schritte durchgeführt:
 Diese sind für jeden \ap\ separat definiert, da jeweils andere Werte optimal sein können.
 So können verschiedene Parameter einfach verglichen werden.
 Vollständige Güteparameterwerte für alle \ap e fanden sich bei den Arbeiten, die sich mit der \ap-Regelung beschäftigt haben, nur in den letzten zwei.
-Im Ordner \path{Regelung/Reglerparameter} befinden sich in folgenden Datensätze:
+Im Ordner \path{Regelung/Reglerparameter} befinden sich folgenden Datensätze:
 \begin{itemize}
 	\item \texttt{AP\_QR\_Chang19}: Werte der Ausarbeitung von \cite{chang}
 	\item \texttt{AP\_QR\_Ribeiro20}: Werte der Ausarbeitung von \cite{ribeiro}
@@ -435,7 +435,7 @@ Zusätzlich wird direkt ein Plot und eine Animation \siehe{\secref{subsec:ausw}}
 Mit der Funktion \texttt{SchlittenPendelAnalyse(sys)} werden für ein gegebenes \zrm\ Eigenwerte für alle Ruhelagen berechnet und dargestellt, sowie Steuer- und Beobachtbarkeit geprüft.
 
 \subsubsection{x0\_Tests}
-Die Funktionen zu den \xots s (siehe folgender Abschnitt) und darauf aufbauenden Tests befinden sich im Ordner \path{Regelung/x0_Tests}.
+Die Funktionen zu den \xots s (siehe folgender Abschnitt) und den darauf aufbauenden Tests befinden sich im Ordner \path{Regelung/x0_Tests}.
 
 
 
@@ -774,8 +774,8 @@ Im Gegensatz dazu führt bei \apd\ und \apv\ eine \emph{höhere} Masse zu einer 
 Bei diesen steht das erste Pendel, dessen Gelenk den nicht unerheblichen \crb skoeffizienten aufweist, oben.
 Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird sie relativ gesehen kleiner und damit das System "`linearer"', was die bessere Regelbarkeit erklären könnte.
 
-\newcommand{\scaleq}{0.62}
-\begin{figure}[H]
+\newcommand{\scaleq}{0.60}
+\begin{figure}[h]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m1/AP2.pdf}	}
 	\hfil
@@ -788,7 +788,7 @@ Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird 
 	\label{fig:sysvarm1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/m2/AP2.pdf}	}
 	\hfil
@@ -849,28 +849,8 @@ Bei \apz\ kann die Stabilität mit geringeren Werten deutlich verbessert werden.
 Bei \apv\ hingegen verschlechtern kleine Werte das Verhalten deutlich, während größer Werte als die originalen nicht zu einer Verbesserung führen.
 
 
-
-\subsubsection{Reibungsparameter}
-
-Die Parameter der viskosen Dämpfung zeigten im Bereich 0 bis doppelter Originalwert keinen oder nur einen geringen Einfluss.
-Auch der \crb skoeffizient des Schlittens $\Fco$ zeigte keinen Einfluss, vermutlich weil die Schlittenreibung durch die Vorsteuerung sehr gut umgangen wird.
-
-Anhand von \figref{fig:sysvarMc10} sieht man, dass \Mceo\ einen leicht negativen Einfluss hat, außer bei \apz, dort ist der Einfluss sogar positiv.
-Wie schon in \figref{fig:vglpendelpar} festgestellt wurde, scheint es bei \apz\ weniger Probleme bezüglich der Gelenk-\crb\ zu geben und auch weniger Probleme mit \beob\ \siehe{\figref{fig:vglribze}}.
-Da außerdem ein deutlicher Einfluss des \beob\ gerade am neuen System vorhanden ist \siehe{\figref{fig:vglribze}}, wird für \Mceo\ der Test ebenfalls mit \beob\ (und den dafür optimierten QR-Parametern) durchgeführt.
-Bei \apv\ stellt sich heraus, dass schon geringfügig höherer Werte der Reibung das System überhaupt nicht mehr stabilisieren lassen.
-Offensichtlich ist gerade die Kombination von erhöhter \crb, die das System auch in der Nähe des \ap es nichtlinear macht, und dem Einsatz des \beob s, welcher am linearen System ausgelegt ist und durch die \crb\ Schätzfehler entstehen, äußerst kritisch.
-
-\figref{fig:sysvarMc10m} zeigt zudem die \ap abweichungen bei der Variation von \Mceo\ (\zm).
-Hier lässt sich sehr gut der Einfluss auf den sich einstellenden Grenzzyklus insbesondere bei niedrigen Startwerten feststellen, wie er auch schon in \figref{fig:vglpendelpar} beobachtet wurde.
-Bei $\Mceo=0$ beginnen die Kurven in 0 und verhalten sich anfangs linear.
-Mit steigender Reibung wird jedoch die Dauerschwingung größer.
-Besonders bei \apv\ sieht man, dass das System schon bei sehr kleinen Anfangswerten aus der Ruhe in den Grenzzyklus gebracht wird.
-Bei \apz\ startet die Dauerschwingung zwar nicht bei 0, ist aber im Bereich von 2-3 bis etwa \valdeg{10} konstant.
-Bei \apd\ ist der Einfluss geringer.
-
 \renewcommand{\scaleq}{0.8}
-\begin{figure}[htbp]
+\begin{figure}[h]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP2.pdf}	}
 	\hfil
@@ -882,6 +862,20 @@ Bei \apd\ ist der Einfluss geringer.
 	\caption{Maximale Startwerte -- Variation \Mceo}
 	\label{fig:sysvarMc10}
 \end{figure}
+
+\subsubsection{Reibungsparameter}
+
+Die Parameter der viskosen Dämpfung zeigten im Bereich 0 bis doppelter Originalwert keinen oder nur einen geringen Einfluss.
+Auch der \crb skoeffizient des Schlittens $\Fco$ zeigte keinen Einfluss, vermutlich weil die Schlittenreibung durch die Vorsteuerung sehr gut umgangen wird.
+
+
+
+Anhand von \figref{fig:sysvarMc10} sieht man, dass \Mceo\ einen leicht negativen Einfluss hat, außer bei \apz, dort ist der Einfluss sogar positiv.
+Wie schon in \figref{fig:vglpendelpar} festgestellt wurde, scheint es bei \apz\ weniger Probleme bezüglich der Gelenk-\crb\ zu geben und auch weniger Probleme mit \beob\ \siehe{\figref{fig:vglribze}}.
+Da außerdem ein deutlicher Einfluss des \beob\ gerade am neuen System vorhanden ist \siehe{\figref{fig:vglribze}}, wird für \Mceo\ der Test ebenfalls mit \beob\ (und den dafür optimierten QR-Parametern) durchgeführt.
+Bei \apv\ stellt sich heraus, dass schon geringfügig höherer Werte der Reibung das System überhaupt nicht mehr stabilisieren lassen.
+Offensichtlich ist gerade die Kombination von erhöhter \crb, die das System auch in der Nähe des \ap es nichtlinear macht, und dem Einsatz des \beob s, welcher am linearen System ausgelegt ist und durch die \crb\ Schätzfehler entstehen, äußerst kritisch.
+
 
 \renewcommand{\scaleq}{0.6}
 \begin{figure}[htbp]
@@ -896,6 +890,16 @@ Bei \apd\ ist der Einfluss geringer.
 	\caption{Maximalabweichungen -- Variation \Mceo\ in Abh. des Originalwerts ($0.0538$)}
 	\label{fig:sysvarMc10m}
 \end{figure}
+
+\figref{fig:sysvarMc10m} zeigt zudem die \ap abweichungen bei der Variation von \Mceo\ (\zm).
+Hier lässt sich sehr gut der Einfluss auf den sich einstellenden Grenzzyklus insbesondere bei niedrigen Startwerten feststellen, wie er auch schon in \figref{fig:vglpendelpar} beobachtet wurde.
+Bei $\Mceo=0$ beginnen die Kurven in 0 und verhalten sich anfangs linear.
+Mit steigender Reibung wird jedoch die Dauerschwingung größer.
+Besonders bei \apv\ sieht man, dass das System schon bei sehr kleinen Anfangswerten aus der Ruhe in den Grenzzyklus gebracht wird.
+Bei \apz\ startet die Dauerschwingung zwar nicht bei 0, ist aber im Bereich von 2-3 bis etwa \valdeg{10} konstant.
+Bei \apd\ ist der Einfluss geringer.
+
+
 
 
 Bei \Mczo\ zeigte sich bei einer Änderung bis zum 4-fachen Originalwert keinen Einfluss.
