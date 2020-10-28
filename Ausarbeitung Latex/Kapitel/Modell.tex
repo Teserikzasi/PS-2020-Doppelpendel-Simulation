@@ -196,7 +196,14 @@ Für die Screenshots werden diese Blöcke meist aus Übersichtsgründen entfernt
 
 \subsection{\Simulink\ Module und Modelle}
 
+
 \subsubsection{Motor.slx}
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=0.4]{Bilder/Simulink/motor.PNG}
+	\caption{Motormodell in \sm}
+	\label{fig:simmot}
+\end{figure}
 Das Motormodell wird \secref{sec:mot} entsprechend als Modul implementiert \siehe{\figref{fig:simmot}}.
 Eingangsgröße ist die Steuerspannung sowie die Schlittengeschwindigkeit, da sich daraus die Induktionsspannung ergibt.
 Ausgangsgröße ist die Kraft, die am Schlitten wirkt.
@@ -205,16 +212,10 @@ Die Berechnung der Strombegrenzung \siehe{\secref{subsec:dcMotor}} wird als \emp
 Dabei werden die Signale \texttt{satState\_w} (falls die Sättigungsdrehzahl erreicht ist) und \texttt{satState\_I} (falls der Sollstrom nicht erreicht werden kann) gesetzt und können später analysiert werden.
 Die Tiefpass-Charakteristik der Induktivität wird mit dem \mrm{PT_1}-Glied \eqref{eq:UI} dargestellt.
 
-\begin{figure}
-	\centering
-		\includegraphics[scale=0.4]{Bilder/Simulink/motor.PNG}
-	\caption{Motormodell in \sm}
-	\label{fig:simmot}
-\end{figure}
 
 \begin{figure}
 	\centering
-		\includegraphics[scale=0.5]{Bilder/Simulink/va_wandler.PNG}
+		\includegraphics[scale=0.4]{Bilder/Simulink/va_wandler.PNG}
 	\caption{V/A Wandler in \sm}
 	\label{fig:simva}
 \end{figure}
@@ -228,7 +229,8 @@ Lediglich die Anfangswerte werden über die Simulationsparameter übergeben.
 Dieses Modul stellt das gesamte Modell dar und fasst die beiden vorigen Module zusammen \siehe{\figref{fig:simges}}.
 Die Eingangsspannung wird an den Motor gegeben und dessen Ausgang $F$ ist die Schnittstelle zum \sdpd.
 Die Schlittengeschwindigkeit wird zum Motor zurückgeführt, da durch diese die Motordrehzahl bestimmt wird.
-\begin{figure}
+
+\begin{figure}[h]
 	\centering
 		\includegraphics[scale=0.4]{Bilder/Simulink/gesamtmodell.PNG}
 	\caption{Gesamtmodell in \sm}
