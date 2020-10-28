@@ -2,7 +2,7 @@
 % Vorraussetzung: InitTrajreg
 
 % Trajektorie visualisieren
-%plotanimate_traj(trj, trajName, 'Trajektorien_Tests')
+plotanimate_traj(trj, trajName, 'Trajektorien_Tests')
 
 mdl = 'TFR_Gesamtmodell_test';
 clear opt_params
@@ -26,15 +26,16 @@ opt_params(i,:) = [mdl, "Solver", sol]; i=i+1;
 opt_params(i,:) = [mdl, "FixedStep", num2str(trj.T)]; i=i+1;
 out2 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, opt_params);
 Auswertung(out2);
-plotanimate(out2, [trajName '_' convertStringsToChars(sol) '_TFR_GM'], 'Trajektorien_Tests')
+% plotanimate(out2, [trajName '_' convertStringsToChars(sol) '_TFR_GM'], 'Trajektorien_Tests')
 %plot_velocities(out2, true, [trajName '_' convertStringsToChars(sol) '_TFR_GM_vel'], 'Trajektorien_Tests')
-
+plotanimate(out2)
+% plot_velocities(out2)
 %% Simulation 3 
 sol = "ode45";
 opt_params(i,:) = [mdl, "Solver", sol];
 out3 = simTraj(trj.results_traj.u_traj, trj.results_traj.x_traj, trj.N, trj.T, trj.x_init, mdl, opt_params);
 Auswertung(out3);
-plotanimate(out3, [trajName '_' convertStringsToChars(sol) '_TFR_GM'], 'Trajektorien_Tests')
-plot_velocities(out3, true, [trajName '_' convertStringsToChars(sol) '_TFR_GM_vel'], 'Trajektorien_Tests')
-% plotanimate(out3)
+% plotanimate(out3, [trajName '_' convertStringsToChars(sol) '_TFR_GM'], 'Trajektorien_Tests')
+% plot_velocities(out3, true, [trajName '_' convertStringsToChars(sol) '_TFR_GM_vel'], 'Trajektorien_Tests')
+plotanimate(out3)
 % plot_velocities(out3)

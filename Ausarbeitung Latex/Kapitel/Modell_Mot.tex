@@ -84,15 +84,24 @@ Damit kann Gleichung \eqref{eq:dcMasche} zur Geraden
 	\label{eq:Ivar}
 \end{equation}
 umgeformt werden.
-Die Beschreibung des Bereichs negativer Winkelgeschwindigkeiten kann aus den Gleichungen \eqref{eq:Iconst} und \eqref{eq:Ivar} durch eine Punktspiegelung des in \figref{fig:Stromkennlinie} dargestellten Verlaufs in den dritten Quadranten gewonnen werden.
 
-Zusammenfassend ergibt sich für den Verlauf des maximal verfügbaren Stroms  
+Zusammenfassend ergibt sich aus den Gleichungen \eqref{eq:Iconst} und \eqref{eq:Ivar} der Verlauf des maximal verfügbaren Stroms für $\omega > 0$
 \[
-I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
-														-\frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega, & \omega < -\omega_{\mrm{EMK}}   \\ \\
-														I_{w\mrm{, max}} \cdot \sign{\omega} 	& -\omega_{\mrm{EMK}} \leq \omega \leq \omega_{\mrm{EMK}} \\ \\				
-														\frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega, & \omega > \omega_{\mrm{EMK}} \end{array}\right. . \
+I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{ll}
+														I_{w\mrm{, max}} 	& 0 \leq \omega \leq \omega_{\mrm{EMK}} \\ \\				
+														\frac{U_{a \mrm{, max}}}{R} - \frac{K_I}{R} \omega, & \omega > \omega_{\mrm{EMK}} \end{array}\right. ,\
 \] 
+
+wobei $\omega_{\mrm{EMK}}$ durch
+\begin{equation}\label{eq:wemk}
+	\omega_{\mrm{EMK}} = \frac{U_{a \mrm{, max}} - I_{w\mrm{, max}} R }{K_I}
+\end{equation}
+
+berechnet wird.
+
+Die Beschreibung des Bereichs negativer Winkelgeschwindigkeiten kann aus den Gleichungen \eqref{eq:Iconst} und \eqref{eq:Ivar} durch eine Punktspiegelung des in \figref{fig:Stromkennlinie} dargestellten Verlaufs in den dritten Quadranten gewonnen werden. Im zweiten und vierten Quadranten (Bremsbetrieb) wird der Strom durch den Spannungs-Strom-Wandler begrenzt.
+
+
 
 
 
@@ -105,15 +114,18 @@ I_{a \mrm{, max}}(\omega) = \left\{\begin{array}{lll}
 	%\label{fig:Getriebe}
 %\end{figure}
 
-Die Rotorbewegung des Motors wird über das Getriebe und das Antriebszahnrad auf den Zahnriemen weitergegeben. Auf Grund der hohen Steifigkeit des mit eingebetteten Stahlseilen unterstützten Riemens wird dieser wie in Apprich \cite{apprich} als unendlich starr angenommen, sodass die Kinematik zwischen der Winkelgeschwindigkeit des Motors und der Schlittengeschwindigkeit ohne Federkopplung durch 
-\[
+Die Rotorbewegung des Motors wird über das Getriebe und das Antriebszahnrad auf den Zahnriemen weitergegeben. Auf Grund der hohen Steifigkeit des mit eingebetteten Stahlseilen unterstützten Riemens wird dieser wie in Apprich \cite{apprich} als unendlich starr angenommen, sodass die Kinematik zwischen der Winkelgeschwindigkeit des Motors und der Schlittengeschwindigkeit ohne Federkopplung durch
+\begin{align}\label{eq:kinematik}
 	\xop = K_G \cdot r_{32} \cdot \omega
-\]
+\end{align}
+
 modelliert werden kann.
  Hierbei wird die Getriebeübersetzung $K_G$ über das Zahnverhältnis 
 \[
 	K_G =  \frac{Z_{16}}{Z_{60}}
 \]
-berechnet, während der Antriebsradius $r_{32}$ als Abstand zwischen der neutralen Faser des Riemens und der Drehachse definiert ist.
-Die Kraft 
+berechnet, während der Antriebsradius $r_{32}$ als Abstand zwischen der neutralen Faser des Riemens und der Drehachse definiert ist. Für die Beziehung zwischen Antriebsmoment und Schlittenkraft ergibt sich der Zusammenhang
+\[
+	F = M \cdot \frac{1}{K_G} \cdot \frac{1}{r_{32}} \ .
+\]
 
