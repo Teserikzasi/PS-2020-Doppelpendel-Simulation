@@ -17,7 +17,5 @@ global Zustandsermittlung % Art der Zustandsermittlung
 Zustandsermittlung = ["Zustandsmessung","Beobachter","Differenzieren"];
 InitSimReg()  % Initialisiert Simulation
 
-% Simulation Arbeitspunkt
-testAP = 3;
-delta_x0 = [0 0 deg2rad(5) 0 deg2rad(10) 0];
+
 %SimAP_run
