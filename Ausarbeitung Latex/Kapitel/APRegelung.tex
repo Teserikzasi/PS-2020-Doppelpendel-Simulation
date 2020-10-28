@@ -13,11 +13,11 @@ Chang \cite{chang} erstellte ein Simulationsmodell zur \ap-Regelung, das als Ori
 Beim Reglerentwurf wird zunächst dem Vorgehen vergangener Arbeiten gefolgt. 
 Einzelne Aspekte in der Steuerung/Regelung werden anschließend verbessert.
 Die Reglerparameter der vorigen Arbeiten werden überprüft und optimiert.
-Außerdem wird der Einfluss des \beob\ anlysiert.
+Außerdem wird der Einfluss des \beob\ analysiert.
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[width=0.43\textwidth]{Bilder/Regelung Vorgehen weiß.pdf}
+		\includegraphics[width=0.42\textwidth]{Bilder/Regelung Vorgehen weiß.pdf}
 	\caption{Vorgehen bei der AP-Regelung }
 	\label{fig:regvorg}
 \end{figure}
@@ -387,7 +387,7 @@ Dabei werden die Schlittenparameter ($m_0$, \Fco\ und $d_0$) verwendet.
 
 \subsubsection{MotorVorsteuerung.slx}
 Enthält die in \secref{sec:motvorst} beschriebene Vorsteuerung zum Motor.
-Berechnet aus der Sollkraft die Sollspannung für den Motor und gibt die möglicherweise begrenzte Kraft zurück an den vorigen Block.
+Berechnet aus der Sollkraft die Sollspannung für den Motor und gibt die möglicherweise begrenzte Kraft zurück an den vorherigen Block.
 
 \subsection{\init}
 
@@ -555,7 +555,7 @@ Dadurch lässt sich die Güte der Regelung \bzw die Regelbarkeit einer Konfigura
 
 Beispielsweise kann man die Ergebnisse mit verschiedenen \ricc-Parametern \mat{Q} und $R$ vergleichen.
 In \figref{fig:qrvglrib} sind die Maximalabweichungen mit den verschiedenen QR-Parametern \siehe{\secref{subsec:simqr}} am neuen System dargestellt.
-Die Wahl der QR-Parameter haben offenbar einen wichtigen Einfluss auf Stabilisierbarkeit und Regelgüte.
+Die Wahl der QR-Parameter hat offenbar einen wichtigen Einfluss auf Stabilisierbarkeit und Regelgüte.
 Insgesamt lässt sich feststellen, dass \apd\ die größten Startabweichungen ausregeln kann.
 Die in dieser Arbeit optimierten Parameter können das \dpd\ bei allen \ap en in einem etwas größeren Bereich stabilisieren.
 Allerdings sieht man auch \zB an \apve, dass das meist auf Kosten höherer Abweichungen bei den niedrigeren Startwerten geschieht.
@@ -563,7 +563,7 @@ Bei den Reglerparametern ist somit immer ein gewisser Kompromiss notwendig.
 
 
 Bei der Regelung mit den neuen Pendelparametern \texttt{Ribeiro20} ist im Vergleich zu den alten Parametern \texttt{Apprich09} aufgefallen, dass der Endwert nicht mehr asymptotisch erreicht wird, sondern sich ein Grenzzyklus einstellt.
-Die Ursache dafür liegt sehr wahrscheinlich \crb\ der Pendelgelenke \siehe{\tabref{tab:spdparams}}, die beim alten System nicht vorhanden ist.
+Die Ursache dafür liegt sehr wahrscheinlich in der \crb\ der Pendelgelenke \siehe{\tabref{tab:spdparams}}, die beim alten System nicht vorhanden ist.
 
 \renewcommand{\scalee}{0.53}
 \begin{figure}[htbp]
@@ -588,15 +588,6 @@ Die alten Parameter sowie die neuen Parameter mit ausgeschalteter \crb\ in den G
 Aus diesem Grund wird die nichtlineare \crb\ als Ursache dafür gesehen.
 
 
-Auch der Einfluss des \beob\ lässt sich mit den kritischen \xots s gut darstellen.
-Beim Test des \beob s an der Neukonstruktion ist zunächst aufgefallen, dass die QR-Parameter, die vorher für die Zustandsmessung optimiert wurden, nur bei \apz\ brauchbare Ergebnisse zeigten.
-Bei \apv\ versagten zudem die beiden Vergleichsparameter der letzten Arbeiten.
-Aus diesem Grund wurde ein neuer QR-Datensatz erstellt \siehe{\secref{subsec:simqr}}, der speziell für die Regelung mit \beob\ optimiert ist.
-
-\figref{fig:vglribze} vergleicht daher die \ap-Regelung mit \zm\ (ZM) und \beob\ (Beob), einerseits mit den QR-Parametern \texttt{AP\_QR\_20\_neu}, sowie mit den angepassten QR-Parametern \texttt{AP\_QR\_20\_neu\_Beob} (Beob (neu)).
-Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance vergleichbar ist, zeigt sich bei \apv, dass der \beob\ das System nicht so weit stabilisieren kann wie mit der \zm. 
-Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
-
 \renewcommand{\scalee}{0.62}
 \begin{figure}[htbp]
 	\centering
@@ -610,6 +601,15 @@ Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\var
 	\caption{Maximalabweichungen -- Vergleich \zm/\beob\ (System Ribeiro)}
 	\label{fig:vglribze}
 \end{figure}
+
+Auch der Einfluss des \beob\ lässt sich mit den kritischen \xots s gut darstellen.
+Beim Test des \beob s an der Neukonstruktion ist zunächst aufgefallen, dass die QR-Parameter, die vorher für die Zustandsmessung optimiert wurden, nur bei \apz\ brauchbare Ergebnisse zeigten.
+Bei \apv\ versagten zudem die beiden Vergleichsparameter der letzten Arbeiten.
+Aus diesem Grund wurde ein neuer QR-Datensatz erstellt \siehe{\secref{subsec:simqr}}, der speziell für die Regelung mit \beob\ optimiert ist.
+
+\figref{fig:vglribze} vergleicht daher die \ap-Regelung mit \zm\ (ZM) und \beob\ (Beob), einerseits mit den QR-Parametern \texttt{AP\_QR\_20\_neu}, sowie mit den angepassten QR-Parametern \texttt{AP\_QR\_20\_neu\_Beob} (Beob (neu)).
+Während bei \apz\ und \apd\ (nur die \beob-QR-Werte) die Regler-Performance vergleichbar ist, zeigt sich bei \apv, dass der \beob\ das System nicht so weit stabilisieren kann wie mit der \zm. 
+Die maximalen Startwerte sind mit $\varphi_{1,0\mrm{max}}=\valdeg{14}$ und $\varphi_{2,0\mrm{max}}=\valdeg{10}$ niedriger, außerdem sind die Winkelausschläge höher.
 
 
 
@@ -655,7 +655,7 @@ Auch hier ist meistens ein Kompromiss notwendig, der für einen \ap\ verschieden
 
 \subsection{Diagramme}
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
 		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap2/R phi12.pdf}
 	\caption{Maximale Startwerte -- Variation von R bei \apz}
@@ -667,9 +667,9 @@ Beim ersten Pendel, welches bei \apz\ stabil ist, gelingt die Stabilisierung üb
 Die maximale Startauslenkung von \phz\ beträgt meistens \valdeg{18} und bricht ab $R=20$ ebenfalls ein.
 Als Schlussfolgerung für den Parameter R gilt hier daher: je kleiner desto besser.
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
+		\includegraphics[width=0.9\textwidth]{Bilder/QRVariation/ap2/R phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von R bei \apz}
 	\label{fig:qrap2Rm}
 \end{figure}
@@ -678,16 +678,16 @@ Allerdings muss auch die Dynamik, insbesondere die resultierenden Maximalausschl
 \figref{fig:qrap2Rm} stellt daher für dieselbe Konfiguration die Maximalabweichungen dar, bei Auslenkung von \phe.
 Hier zeigt sich ebenfalls ein besseres Verhalten bei kleineren Werten von $R$.
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
 		\includegraphics[width=0.55\textwidth]{Bilder/QRVariation/ap4/q1 phi12.pdf}
 		\caption{Maximale Startwerte -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1}
 \end{figure}
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
-		\includegraphics[width=0.75\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
+		\includegraphics[width=0.85\textwidth]{Bilder/QRVariation/ap4/q1 phi1 m.pdf}
 	\caption{Maximalabweichungen -- Variation von $Q_1$ bei \apv}
 	\label{fig:qrap4q1m}
 \end{figure}
@@ -764,6 +764,16 @@ Zusätzlich befinden sich einige Aufrufbeispiele in \texttt{SysParameter\_Variat
 
 \subsubsection{Trägheits- und Geometrieparameter}
 
+
+\figref{fig:sysvarm1} stellt die maximalen Startwerte der kritischen \xots s für die Variation der Pendelmasse $m_1$ im Bereich $0$ bis \valunit{2}{kg} dar.
+Die gestrichelte Linie markiert den tatsächlichen Wert des Parameters (\texttt{Ribeiro20}).
+Wie man sehen kann, hat der Parameter einen starken Einfluss auf das Stabilitätsgebiet, wobei die Tendenz \ap-abhängig ist.
+Bei \apz\ führt eine \emph{geringere} Masse zu einem besseren Verhalten.
+Vermutlich kann dadurch das erste Pendel schneller beschleunigt werden, wodurch auch größere Winkelabweichungen ausgeregelt werden können.
+Im Gegensatz dazu führt bei \apd\ und \apv\ eine \emph{höhere} Masse zu einer besseren Regelbarkeit.
+Bei diesen steht das erste Pendel, dessen Gelenk den nicht unerheblichen \crb skoeffizienten aufweist, oben.
+Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird sie relativ gesehen kleiner und damit das System "`linearer"', was die bessere Regelbarkeit erklären könnte.
+
 \newcommand{\scaleq}{0.62}
 \begin{figure}[H]
 	\centering
@@ -777,15 +787,6 @@ Zusätzlich befinden sich einige Aufrufbeispiele in \texttt{SysParameter\_Variat
 	\caption{Maximale Startwerte -- Variation $m_1$}
 	\label{fig:sysvarm1}
 \end{figure}
-
-\figref{fig:sysvarm1} stellt die maximalen Startwerte der kritischen \xots s für die Variation der Pendelmasse $m_1$ im Bereich $0$ bis \valunit{2}{kg} dar.
-Die gestrichelte Linie markiert den tatsächlichen Wert des Parameters (\texttt{Ribeiro20}).
-Wie man sehen kann, hat der Parameter einen starken Einfluss auf das Stabilitätsgebiet, wobei die Tendenz \ap-abhängig ist.
-Bei \apz\ führt eine \emph{geringere} Masse zu einem besseren Verhalten.
-Vermutlich kann dadurch das erste Pendel schneller beschleunigt werden, wodurch auch größere Winkelabweichungen ausgeregelt werden können.
-Im Gegensatz dazu führt bei \apd\ und \apv\ eine \emph{höhere} Masse zu einer besseren Regelbarkeit.
-Bei diesen steht das erste Pendel, dessen Gelenk den nicht unerheblichen \crb skoeffizienten aufweist, oben.
-Ein Erklärungsversuch besteht daher in der \crb: Durch die erhöhte Masse wird sie relativ gesehen kleiner und damit das System "`linearer"', was die bessere Regelbarkeit erklären könnte.
 
 \begin{figure}[H]
 	\centering
@@ -869,7 +870,7 @@ Bei \apz\ startet die Dauerschwingung zwar nicht bei 0, ist aber im Bereich von 
 Bei \apd\ ist der Einfluss geringer.
 
 \renewcommand{\scaleq}{0.8}
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/AP2.pdf}	}
 	\hfil
@@ -883,7 +884,7 @@ Bei \apd\ ist der Einfluss geringer.
 \end{figure}
 
 \renewcommand{\scaleq}{0.6}
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 	\centering
 	\subfloat[\apaz]{ \includegraphics[scale=\scaleq]{Bilder/SysParam Variation/Mc10/m AP2.pdf}	}
 %	\hfil
