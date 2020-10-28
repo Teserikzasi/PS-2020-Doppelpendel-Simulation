@@ -15,6 +15,8 @@ Die Berechnung der Trajektorien wird durch fünf Matlab-Funktionen modularisiert
 
 Vom Anwender aufgerufen wird lediglich \texttt{searchTrajectories}. Die weiteren vier Funktionen werden auch für andere Anwendungen dieser Arbeit eingesetzt, wodurch das Kopieren von Code vermieden wird. Änderungen, die mehrere Funktionen und Skripte betreffen, können daher effizient an einer Stelle im Programmcode durchgeführt werden. Die Argumente der Funktionen werden so gewählt, dass die in dieser Arbeit zu untersuchenden Parameter leicht durch den Funktionsaufruf in einer Schleife variiert werden können. Weitere Parameter die im Rahmen dieser Arbeit innerhalb der Funktionen konstant festgelegt sind, können zu einem späteren Zeitpunkt jedoch leicht zu den Funktionsargumenten ergänzt werden.
 
+Die implementierten Werkzeuge zur Trajektoriensuche eignen sich für eine weitere Verwendung in zukünftigen Arbeiten. Obwohl im Rahmen dieser Arbeit in erster Linie eine definierte Vergleichstrajektorie verwendet wird, ist eine systematische Suche für alle zwölf Trajektorien im Sinne zukünftiger Anwendungen vorgesehen. Diese wurde im Rahmen dieser Arbeit erfolgreich durch eine Reproduktion der Ergebnisse von Fauvé \cite{fauve} getestet.
+
 Im Folgenden werden die beiden wichtigsten Funktionen \texttt{searchTrajectories} und \texttt{calculateTrajectory} genauer beschrieben, wobei auch auf die Verwendung der anderen Funktionen eingegangen wird.
 
 
@@ -76,7 +78,7 @@ Insgesamt werden bei Suchprogramm 2 somit $4 \cdot 4 \cdot 5 = 80$ Trajektorienb
 Im Rahmen dieser Arbeit wird eine Vergleichstrajektorie für die in Kapitel \ref{sec:trjparamtest} behandelten Parameteruntersuchungen verwendet. Diese wird mit Suchprogramm 1 berechnet.
 
 Nachdem das Suchprogramm für die Trajektorienberechnung ausgewählt ist, werden Prädiktionshorizont, Schrittweite und Integrationsverfahren für die NMPC konfiguriert. Als Integratoren stehen das Eulerverfahren "`Euler"' und das Runge-Kutta-Verfahren "`RK4"' zur Verfügung. Außerdem wird einer der in Kapitel \ref{subsec:spdparams} besprochenen Parametersätze übergeben sowie eine maximale Stellkraft definiert. Diese stellt eine weitere Variationsmöglichkeit dar, die von Fauvé \cite{fauve} nicht untersucht worden ist. Daher wird sie zur manuellen Variation in den Argumenten der \texttt{searchTrajectories} zur Verfügung gestellt.
-Als Letztes wird noch bestimmt, ob für die Trajektorienberechnung die Coulombreibung im Schlitten bzw. in den Gelenken berücksichtigt werden soll. 
+Als Letztes wird noch bestimmt, ob für die Trajektorienberechnung die Coulomb-Reibung im Schlitten bzw. in den Gelenken berücksichtigt werden soll. 
 
 Die berechneten Trajektorien werden automatisch gespeichert. Es wird eine Namenskonvention zur Identifizierbarkeit der gespeicherten Ergebnisse eingeführt, die an folgendem Trajektoriennamen beispielhaft gezeigt wird: \texttt{Traj14\_dev0\_-3.14\_-3.14\_x0max0.8\_Fmax410} \ .
 
@@ -413,7 +415,7 @@ Hierbei fällt auf, dass die Trajektorie, die mit Hilfe des Apprich-Parametersat
 
 
 
-\subsection{Mit Gegeninduktion}
+\subsection{Mit Gegeninduktion}\label{subsec:mitInd}
 
 Wird die Gegeninduktion des Motors berücksichtigt und am Gesamtmodell simuliert, fällt zunächst auf, dass mit $F_{\mrm{max}}= \valunit{400}{N}$ für den konstanten Bereich der Strombegrenzung keine der vier untersuchten Trajektorien gefunden wird. Durch eine Variation der Maximalkraftbegrenzung ergibt sich $F_{\mrm{max}}= \valunit{410}{N}$ als neue Grenze. Damit ist weiterhin eine Stellgrößenreserve von \valunit{11}{N} gegenüber der zuletzt am Versuchsstand eingestellten Maximalkraft von $F_{\mrm{max}}= \valunit{421}{N}$ gewährleistet. 
 
@@ -615,7 +617,6 @@ Mit der definierten Untergrenze wird ein Wertebereich für gültige Trajektorien
 Aus der Variation der Schwerpunkte $s_1$ und $s_2$ wird kein auffälliges Verhalten identifiziert. Für beide Schwerpunkte können näherungsweise über die gesamte jeweilige Stablänge gültige Lösungen gefunden werden, sodass eine Eingrenzung des Wertebereichs nicht notwendig erscheint. Der Anteil gültiger Trajektorien ist für $s_1$ jedoch deutlich geringer als für $s_2$. Die Trajektorienberechnung reagiert damit prinzipiell empfindlicher auf eine Veränderung von $s_1$. Eine Häufung gültiger Trajektorien tritt wieder im Bereich des Apprich-Wertes auf. Obwohl der Ribeiro-Wert beider Schwerpunkte jeweils in einem solchen Häufungsbereich liegt, wird jeweils keine Trajektorie gefunden. Für die scheinbar ungünstigen Ribeiro-Schwerpunkte ist daher in diesem Fall keine explizite Ursache erkennbar.
 
 Die formulierten Wertebereiche gültiger Trajektorien sind in \tabref{tab:Bereichsempfehlungen} noch einmal abschließend übersichtlich dargestellt. 
-
 \begin{table}[h]
 	\centering
 	\caption{Wertebereiche gültiger Trajektorien}
@@ -639,4 +640,11 @@ Die formulierten Wertebereiche gültiger Trajektorien sind in \tabref{tab:Bereic
 	\label{tab:Bereichsempfehlungen}
 \end{table}
 
+Es ist in Bezug auf die Ergebnisse zu berücksichtigen, dass die betrachteten Systemparameter jeweils für sich alleine variiert wurden. Eine Untersuchung bei Variation der Parameter in Abhängigkeit zu einander kann daher von den vorliegenden Ergebnissen abweichen. Ebenfalls sind die vielfältigen Konfigurationsmöglichkeiten der NMPC in Bezug auf die Ergebnisse zu problematisieren. Es ist entsprechend anzunehmen, dass formulierten Wertebereiche bei einer anderen Konfiguration der NMPC mit beispielsweise Variation von Schrittweite, Prädiktionshorizont, Integrator, Gewichtungsmatrizen der Gütefunktion oder anderem Optimierer variieren. Die formulierten Bereichsempfehlungen sind daher nur für die im Rahmen dieser Arbeit definierten Voraussetzungen gültig und in Bezug auf Allgemeingültigkeit in erster Linie als Orientierungshilfen, jedoch nicht als harte Grenzen zu verstehen. 
 
+Die Gültigkeit der ermittelten Bereichsgrenzen muss außerdem für weitere Vergleichstrajektorien überprüft werden und gegebenenfalls trajektorienspezifische Grenzen formuliert werden. 
+
+Die starke Begrenzung der Stabmassen lässt als Ursache eine verstärkte Abhängigkeit von der Stellgrößenbegrenzung vermuten.
+Die Stellgrößenreserve bzw. die der NMPC als Nebenbedingung übergebene Kraftbegrenzung birgt somit ein weiteres Variationspotential, wodurch besonders eine Verschiebung der Bereichsobergrenzen zu erwarten ist. 
+
+Die Coulomb-Reibung wurde im Rahmen der Untersuchung vernachlässigt. Erste Tests weisen auf einen erkennbar negativen Einfluss auf die Trajektorienbrechnung hin, was auf die hohe Nichtlinearität zurückgeführt wird. Wie in \secref{subsec:mitInd} werden hierzu verschiedene NMPC-Konfigurationen getestet, wobei lediglich für die Apprich-Parameter inklusive Coulomb-Reibung am Schlitten, exklusive Gelenkreibung, eine akzeptable Trajekorie gefunden wird, ebenfalls wieder für die bekannte NMPC-Konfiguration, die auch für die anderen Parametertests verwendet wurde. Es wird daher für zukünftige Arbeiten empfohlen, die für diese Arbeit gewählte Konfiguration weiterzuverwenden, wenn eine Variation der Reibwerte angestrebt wird.  
