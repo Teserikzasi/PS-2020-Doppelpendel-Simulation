@@ -1,6 +1,7 @@
 \chapter{Trajektorien}\label{cha:trj}
 
 \section{Einleitung}
+NMPC
 
 \section{Trajektorienberechnung}
 
@@ -142,7 +143,7 @@ Mit
 \]
 und 
 	\[
-	I = \frac{r_{32}\ K_G}{K_I} \ \cdot F
+	I_a = \frac{r_{32}\ K_G}{K_I} \ \cdot F
 \]
 kann Gleichung \eqref{eq:Ivar} in die Form
 	\[
@@ -256,14 +257,12 @@ Als Integrationsverfahren zur Trajektorienberechnung wurde von Fauvé \cite{fauv
 
 Als weiterer Einflussfaktor auf die Güte der Trajektorien und somit auch auf ihre Stabilisierbarkeit werden die Systemparameter vermutet. Ihr Einfluss auf die Trajektorienberechnung wird in \secref{sec:trjparamtest} näher untersucht. Hierbei soll die Variation einzelner Systemparameter von einem Anfangs-Parametersatz ausgehen, für den sich die definierte Vergleichstrajektorie finden und stabilisieren lässt. Daher wird neben Schrittweite und Integrationsverfahren auch zwischen den in \secref{subsec:spdparams} definierten Parametersätzen \textit{Apprich} und \textit{Ribeiro} unterschieden.
 
-Die Versuche zur Stabilisierbarkeit werden störungsfrei und unter Vernachlässigung der Reibung durchgeführt. Auf das Verhalten unter Berücksichtigung der Reibwerte wird in \secref{sec:trjparamtest} eingegangen. 
+Die Versuche zur Stabilisierbarkeit werden störungsfrei und unter Vernachlässigung der Coulomb-Reibung durchgeführt. Auf das Verhalten unter Berücksichtigung der Reibwerte wird in \secref{sec:trjparamtest} eingegangen. 
 
 Um eine Vergleichbarkeit zur Vorgängerarbeit herzustellen, werden die Versuche sowohl mit als auch ohne Berücksichtigung der Gegeninduktion des Motormodells durchgeführt. 
 
 Die Skripte \texttt{TFRSim\_SchlittenPendel\_run} und \texttt{TFRSim\_Gesamtmodell\_run} werden zur Durchführung der Simulationen implementiert. Beide Funktionen führen automatisiert drei Simulationen mit den Solvern \texttt{ode1} (Euler), \texttt{ode4} (RK4) und \texttt{ode45} (RK5(4) von Dormand-Prince) für eine mit \texttt{InitTrajReg} geladene Trajektorie durch. Darüber hinaus werden Plots und Animationen der Simulationsergebnisse erstellt. 
 Bei den verwendeten Simulationsverfahren handelt es sich um explizite Einschrittverfahren. Der \texttt{ode4}-Solver (4. Ordnung) unterscheidet sich von \texttt{ode1} (1. Ordnung) im Wesentlichen durch die höhere Verfahrensordnung, wobei beide Verfahren mit konstanter Schrittweite operieren. Mit \texttt{ode45} wird zusätzlich ein Verfahren mit Schrittweitensteuerung eingesetzt. Hierbei handelt es sich wieder um ein Runge-Kutta-Verfahren, das jedoch gegenüber dem reinen RK4-Verfahren den Schrittfehler durch die Auswertung einer zusätzlichen Stützstelle schätzt und daraus für jeden Schritt eine eigene Schrittweite bestimmt.
-
- wobei der \texttt{ode45}-Solver im Gegensatz zu den anderen beiden Verfahren eine Schrittweitensteuerung besitzt und daher mit variabler Schrittweite operiert. Für die Solver \texttt{ode1}, \texttt{ode4}
 
 Die Trajektorien werden für die Dauer des Prädiktionshorizonts und mit der gleichen Schrittweite, wie bei ihrer Berechnung verwendet wurde, simuliert. Ausnahme stellt \texttt{ode45} aufgrund der variablen Schrittweite da.
 
@@ -352,8 +351,8 @@ Es wird zwischen
 	%\end{tabular}
 %\end{center}
 \begin{itemize}
-	\item \textit{stabil} - Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden \\
-	\item \textit{"`leicht instabil"'} - Aufschwung gelingt weitgehend, AP4 wird nicht gehalten  \\
+	\item \textit{stabil} - Aufschwung gelingt, AP4 kann bis zum Ende der Simulation gehalten werden
+	\item \textit{"`leicht instabil"'} - Aufschwung gelingt weitgehend, AP4 wird nicht gehalten
 	\item \textit{instabil} - Aufschwung gelingt nicht
 \end{itemize}
 unterschieden. Zum besseren Verständnis soll die Zuordnung der dargestellten Ergebnisse an Hand repräsentativer Beispiele erläutert werden.
@@ -412,7 +411,7 @@ Nach dem beschriebenen Vorgehen werden auch die weiteren Simulationsversuche aus
 	\label{tab:T0005N500Fmax400}
 \end{table}
 
-Hierbei fällt auf, dass die Trajektorie, die mit Hilfe des Apprich-Parametersatzes und des RK4-Verfahrens berechnet wird, mit Hilfe des Reglers in allen drei Simulationen stabilisiert werden kann. Auch die Verläufe am ungeregelten System liefern bereits gute Ergebnisse. Die Stabilisierung durch den Regler erfolgt zudem innerhalb der vorgegebenen Positionsbegrenzung bei gleichzeitig geringer Abweichung von der Trajektorie. Werden darüber hinaus die zuvor betrachteten QR-Parameter ausgelenkt, zeigt sich zudem, dass ohne Weiteres keine Destabilisierung erreicht wird. 
+Hierbei fällt auf, dass die Trajektorie, die mit Hilfe des Apprich-Parametersatzes und des RK4-Verfahrens berechnet wird, mit Hilfe des Reglers in allen drei Simulationen stabilisiert werden kann. Auch die Verläufe am ungeregelten System liefern bereits gute Ergebnisse. Die Stabilisierung durch den Regler erfolgt zudem innerhalb der vorgegebenen Positionsbegrenzung bei gleichzeitig geringer Abweichung von der Trajektorie.
 
 
 
@@ -475,13 +474,13 @@ Es lässt sich zeigen, dass die mit dem Verfahren der NMPC berechneten Trajektor
 
 \section{Untersuchung des Einflusses der Modellparameter}\label{sec:trjparamtest}
 
-Im Folgenden soll der Einfluss der Modellparameter auf die Berechnung der Trajektorien untersucht werden.
+Im Folgenden soll der Einfluss der Modellparameter auf die Trajektorienberechnung untersucht werden.
 
 \subsection{Vorgehen}
 
-Gegenstand der Untersuchung sind die Masse, das Massenträgheitsmoment und der Schwerpunkt jedes Pendelstabs. Die gewählten Wertebereiche für die Parametervariationen orientieren sich an den Werten der zum Versuchsstand aufgestellten Parametersätze aus \secref{subsec:spdparams}. Hierbei wird die konstruktive Realisierbarkeit von Parameterwerten für den Versuchstand bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll.
+Gegenstand der Untersuchung sind die Parameter Masse, Massenträgheitsmoment und Schwerpunkt jedes Pendelstabs. Durch Variation der Parameter sollen günstige Wertebereiche identifiziert und formuliert werden, in denen gültige Trajektorien gefunden werden können. Darüber hinaus werden die Variationsergebnisse in Bezug auf Häufung und Güte der gültigen Trajektorien analysiert.
 
-Die Schrittweite wird möglichst gering gewählt, um die Aussagekraft der Ergebnisse durch eine hohe Auflösung sicherzustellen. Auf Grund der hohen Berechnungszeiten für die Trajektorien, sind beliebig kleine Schrittweiten jedoch nicht möglich, sodass ein sinnvoller Kompromiss zwischen Auflösung und Berechnungszeit gefunden werden muss. Das geplante Variationsvorhaben ist in \tabref{tab:Parametervariationen} aufgeführt.
+Die Parameterwerte für die Parameteruntersuchung orientieren sich an den Werten der zum Versuchsstand aufgestellten Parametersätze aus \secref{subsec:spdparams}. Die Schrittweiten der Parametervariationen werden möglichst gering gewählt, um die Aussagekraft der Ergebnisse durch eine hohe Auflösung sicherzustellen. Auf Grund der hohen Berechnungszeiten für die Trajektorien, sind beliebig kleine Schrittweiten jedoch nicht möglich, sodass ein sinnvoller Kompromiss zwischen Auflösung und Berechnungszeit gefunden werden muss. Das geplante Variationsvorhaben ist in \tabref{tab:Parametervariationen} aufgeführt. Hierbei wird die konstruktive Realisierbarkeit der Parameterwerte nicht berücksichtigt, da vorwiegend der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht wird.
 \begin{table}[h]
 	\centering
 	\caption{Parametervariationen}
@@ -494,17 +493,16 @@ Die Schrittweite wird möglichst gering gewählt, um die Aussagekraft der Ergebn
 			$J_2 \ [\unit{kgm^2}]$  & $0$ & $0,02$ & $0,0001$ & $201$ \\
 		  $s_1 \ [\unit{m}]$      & $0$ & $0,29$ & $0,001$  & $291$ \\
 			$s_2 \ [\unit{m}]$      & $0$ & $0,338$& $0,001$  & $339$ \\
-			\midrule
-			                        &     &        &          & $1434$ \
+			\bottomrule
 		\end{tabular}
 	\label{tab:Parametervariationen}
 \end{table}
 
-Zur Untersuchung des Einflusses einzelner Modellparameter werden diese gegenüber einem definierten Ausgangsparametersatz variiert, wobei alle weiteren Parameter konstant gehalten werden. Zur Durchführung der Versuche wird die Funktion \texttt{examParameters} implementiert. Ihr kann eine Versuchsreihe bestehend aus der Bezeichnung des zu untersuchenden Parameters und einem Vektor mit den Variationswerten des Parameters übergeben werden. Über den Aufruf der in \secref{subsec:searchtrj} beschriebenen Funktion \texttt{searchTrajectories} werden damit die benötigten Trajektorienberechnungen ausgeführt. Die berechneten Trajektorien werden anschließend im Ordner \texttt{ParameterExams} gespeichert. Um die Ergebnisse später sinnvoll identifizieren zu können, wird der in \secref{subsec:searchtrj} definierten Namenskonvention eine Endung bestehend aus der Bezeichnung des untersuchten Parameters und dessen Wert angefügt. 
+Die zu untersuchenden Modellparameter werden einzeln gegenüber einem definierten Ausgangsparametersatz variiert, wobei alle weiteren Parameter konstant gehalten werden. Zur Durchführung der Versuche wird die Funktion \texttt{examParameters} implementiert. Ihr kann eine Versuchsreihe bestehend aus der Bezeichnung des zu untersuchenden Parameters und einem Vektor mit den Variationswerten übergeben werden. Über den Aufruf der in \secref{subsec:searchtrj} beschriebenen Funktion \texttt{searchTrajectories} werden damit die benötigten Trajektorienberechnungen ausgeführt. Die Trajektorien werden anschließend im Ordner \texttt{ParameterExams} gespeichert. Um die Ergebnisse später sinnvoll identifizieren zu können, wird der in \secref{subsec:searchtrj} definierten Namenskonvention eine Endung bestehend aus der Bezeichnung des untersuchten Parameters und dessen Wert angefügt. 
 
-Zur Bewertung der betrachteten Parametervariationen wird zunächst unterschieden, ob für die jeweilige Variation eine Trajektorie gefunden werden kann oder nicht. Darüber hinaus wird das Gütemaß $J_\mrm{dev}$ eingeführt, um die Güte der gefundenen Lösungen zu quantifizieren. Der Ansatz für das Gütemaß basiert auf der Definition von Trajektorien durch ihre Randwerte. Da diese bei der Optimierung mit endlicher Genauigkeit eingehalten werden (\vgl \secref{subsec:ohneInd}), ist der resultierende Fehler in den Randwerten ein Kriterium für die Güte der Trajektorien.
+Zur Bewertung der betrachteten Parametervariationen wird zunächst unterschieden, ob für die jeweilige Variation eine Trajektorie gefunden werden kann oder nicht. Darüber hinaus wird das Gütemaß $J_\mrm{dev}$ eingeführt, um die Güte der gefundenen Lösungen zu quantifizieren. Der Ansatz für das Gütemaß basiert auf der Definition von Trajektorien durch ihre Randbedingungen. Da diese bei der Optimierung mit endlicher Genauigkeit erfüllt werden (\vgl \secref{subsec:ohneInd}), ist der resultierende Fehler ein Kriterium für die Güte der Trajektorien.
 
-Das Gütemaß wird daher mit
+Das Gütemaß wird mit
 	\[
 	J_\mrm{dev} = \left\| \Delta \ve{x_{\mrm{init}}} \right\| + \left\| \Delta \ve{x_{\mrm{end}}} \right\|
 	\]
@@ -521,14 +519,12 @@ mit $t_\mrm{init} = 0$ und
 
 mit $t_{\mrm{end}} = (N+1) \cdot T$
 
-Wie in \secref{stabiltrj} erläutert, verhält sich der Endwertfehler dominant, da dieser nur indirekt durch die Zielfunktion statt durch die Nebenbedingungen für die Optimierung vorgegeben wird. Im Allgemeinen gilt daher
+Wie in \secref{stabiltrj} erläutert, ist im Falle eine konvergierten Lösung nur der Endwertfehler relevant, da dieser indirekt durch die Zielfunktion und nicht durch die Nebenbedingungen für die Optimierung vorgegeben wird. Unter der Voraussetzung einer konvergierten Lösung gilt daher
 \[
-	J_\mrm{dev} \approx \left\| \Delta \ve{x_{\mrm{end}}} \right\| \ .
+	J_\mrm{dev} = \left\| \Delta \ve{x_{\mrm{end}}} \right\| \ .
 	\]	 
 
-
-
-Basierend auf den Erkenntnissen des vorherigen Abschnitts wird folgende Ausgangskonfiguration für die Berechnung der Trajektorien gewählt:
+Basierend auf den Erkenntnissen des vorherigen Abschnitts wird weiterhin folgende Ausgangskonfiguration für die Berechnung der Trajektorien gewählt, wobei die Gegeninduktion des Motors berücksichtigt und die Coulomb-Reibung vernachlässigt wird:
 \begin{itemize}
 	\item $T = 0,005$
 	\item $N = 500$
@@ -539,110 +535,110 @@ Basierend auf den Erkenntnissen des vorherigen Abschnitts wird folgende Ausgangs
 Als Trajektorie wird die in \secref{subsec:vglTrj} definierte Vergleichstrajektorie verwendet. Die Gewichtungsmatrizen für die Zielfunktion sind \secref{subsec:calctrj} zu entnehmen.
 
 
-\subsection{Ergebnisse}\label{subsec:trjParTestRes}
-
-Die Auswertung erfolgt mit Hilfe der Funktion \texttt{plot\_Jdev\_params}. Mit dieser werden die Gütemaße berechnet und über dem untersuchten Parameter in einem Koordinatensystem aufgetragen. Hierbei werden auch die Werte des Apprich- und des Ribeiro-Parametersatzes nach \secref{subsec:spdparams} als Vergleichswerte durch die Funktion hinzugefügt. Berechnete Trajektorien ohne lokale Konvergenz zu einem Optimum werden als ungültig gewertet und nicht dargestellt.
 
 
-Die Ergebnisse für die Parametervariationen + jeweils Ribeiro und Apprich Variation, falls nicht inklusive
 
-s1 in Berechnung...
 
-Diskussion in Bearbeitung...
+\subsection{Durchführung und Ergebnisse}\label{subsec:trjParTestRes}
+
+Die Auswertung erfolgt mit Hilfe der Funktion \texttt{plot\_Jdev\_params}. Mit dieser wird das Gütemaß berechnet und über dem untersuchten Parameter in einem Koordinatensystem aufgetragen. Hierbei werden auch die berechneten Werte des Apprich- und des Ribeiro-Parametersatzes nach \secref{subsec:spdparams} als Vergleichswerte durch die Funktion hinzugefügt. Es ist zu beachten, dass der eingefügte Ribeiro-Vergleichswert sich nur auf den untersuchten Parameter bezieht. Die übrigen Parameter werden weiterhin dem Apprich-Parametersatz entnommen. Liegen die Werte von Apprich und Ribeiro nicht auf einem durch \tabref{tab:Parametervariationen} definierten Variationswert, ist eine Erhöhung der Anzahl an berechneten Trajektorien zu berücksichtigen. Trajektorien ohne lokale Konvergenz zu einem Optimum werden als ungültig gewertet.
+
+Werden zunächst die relativen Häufigkeiten gültiger Trajektorien $\hg$ miteinander verglichen, zeigt sich, dass neben dem Massenträgheitsmoment von Stab 1 besonders die Variation der beiden Stabmassen einen vergleichsweise geringen Anteil an Trajektorien verzeichnet, bei denen der Optimierer lokal konvergiert \bzw eine gültige Lösung findet (\tabref{tab:statTrj}). Der Einfluss von $m_1$ und $m_2$ sowie $J_1$ auf die Trajektorienberechnung ist daher als hoch anzusehen. 
 
 \begin{table}[h]
 	\centering
 	\caption{Statistik gültiger Trajektorien}
 		\begin{tabular}{lllll}
 			\toprule
-			Parameter  & Unültig & Gültig & Gesamt & Gültigkeitsanteil \\
+			Parameter  & Ungültig & Gültig & Gesamt & Gültigkeitsanteil \hg \\
 			\midrule
 			$m_1 \ [\unit{kg}]$     & $177$ & $26$    & $203$   & $13 \% $ \\
 			$m_2 \ [\unit{kg}]$     & $189$ & $14$    & $203$   & $7 \% $ \\
 			$J_1 \ [\unit{kg m^2}]$  & $175$ & $28$    & $203$   & $14 \%$ \\
 			$J_2 \ [\unit{kg m^2}]$  & $79$  & $124$   & $203$   & $61 \%$ \\
-			$s_1 \ [\unit{m}]$      &    & &   &  \\
+			$s_1 \ [\unit{m}]$      &  $231$  & $62$ & $293$  &  $21 \%$\\
 			$s_2 \ [\unit{m}]$      & $190$ & $150$   & $340$  & $44 \%$ \\
 			\bottomrule
 		\end{tabular}
 	\label{tab:statTrj}
 \end{table}
 
-
-\begin{figure}
-	\centering
-		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/m1.pdf}
-	\caption{Variation $m_1$}
-	\label{fig:m1} % etwas allgemein oder?
-\end{figure}
+Besonders auffällig ist in diesem Zusammenhang $m_2$ mit einem Anteil gültiger Trajektorien von nur $\hg=7\%$. \figref{fig:trjvarm2} visualisiert die Ergebnisse der $m_2$-Variation. Die Datenpunkte für Apprich und Ribeiro werden allgemein durch Quadrate markiert, wobei Dunkelblau für Apprich und Dunkelorange für Ribeiro steht. Da für die Ribeiro-Masse in diesem Fall keine gültige Trajektorie gefunden wird, erscheint der Wert als "`x"'-Markierung auf der Abszisse. Die übrigen ungültigen Trajektorien sind hingegen im Sinne der Übersichtlichkeit nicht explizit dargestellt.
 
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/m2.pdf}
 	\caption{Variation $m_2$}
-	\label{fig:m2}
+	\label{fig:trjvarm2}
 \end{figure}
+
+In der Abbildung zu erkennen ist, dass 12 von 14 gefundenen Trajektorien im Bereich $\valunit{0,09}{kg}\leq m_2 \leq\valunit{0,39}{kg}$ liegen. Zwei weitere Trajektorien werden gefunden, wenn der Wertebereich bis \valunit{1,43}{kg} deutlich vergrößert wird. Eine Erweiterung bis \valunit{2}{kg} führt schließlich zu keiner weiteren Trajektorie mehr. Wird nur der Bereich $\valunit{0,09}{kg}\leq m_2 \leq\valunit{0,39}{kg}$ betrachtet, steigt die Häufigkeit gültiger Trajektorien von $\hg=7\%$ auf $\hg=38\%$. Es treten jedoch weiterhin auch ungültige Lösungen auf. Zwischen den diskret untersuchten Parametern (vgl. \tabref{tab:Parametervariationen}) existieren im Kontinuierlichen unendlich viele weitere, potentielle Parameterwerte, für die eine Trajektorie berechnet werden kann. Wird die relative Häufigkeit gültiger Trajektorien $\hg$ als Konvergenz-Wahrscheinlichkeit  $\hg\approx\Pkon$ der Optimierung interpretiert, dann kann auch eine Aussage über die weiteren, potentiellen Trajektorien im Kontinuierlichen innerhalb des betrachteten Bereichs getroffen werden. Der Bereich $\valunit{0,09}{kg}\leq m_2 \leq\valunit{0,39}{kg}$ signalisiert somit allgemein eine hohe Konvergenzwahrscheinlichkeit $\Pkon$. Der markierte Apprich-Wert für $m_2$ befindet sich bereits nahe der Grenze dieses Bereichs, der Ribeiro-Wert sogar leicht darüber. Im Sinne einer hohen Konvergenzwahrscheinlichkeit kommt daher nur eine Verringerung von $m_2$ in Frage. 
+
+Bei Betrachtung der Güte der gefundenen Trajektorien, fällt auf, dass für 12 von 14 Trajaktorien $J_\mrm{dev} = \left\| \Delta \ve{x_{\mrm{end}}} \right\|<0,1$ gilt. Besonders gut wird der Endwert für die beiden Trajektorien approximiert, die jedoch außerhalb des Bereichs von $\Pkon\approx38\%$ liegen und daher als "`Ausreißer"' bezeichnet werden. Die ungünstigeren Werte mit  $J_\mrm{dev}<0,1$ liegen hingegen im unteren Grenzbereich. Die Erfahrung in der Simulation hat gezeigt, dass für $J_\mrm{dev}\gg1$ ohne Weiteres keine QR-Matrizen für die Regelung gefunden werden, mit denen die Trajektorien stabilisiert werden können. Diese Trajektorien werden daher in Bezug auf Stabilisierbarkeit als ungünstig bis unbrauchbar eingeschätzt. Damit liegen die gefundenen Trajektorien mit $J_\mrm{dev}<1$ im akzeptablen Bereich. Ein eindeutiges Muster bezüglich der Trajektoriengüte lässt sich in \figref{fig:trjvarm2} jedoch nicht erkennen.
+
+Für $m_2$ wird schließlich der Bereich $\valunit{0,09}{kg}\leq m_2 \leq\valunit{0,39}{kg}$ mit einer Konvergenzwahrscheinlichkeit von $\Pkon\approx\hg=38 \%$ als Wertebereich gültiger Trajektorien formuliert, wobei die zwei identifizierten "`Ausreißer"' vernachlässigt werden. Für den aktuelle Ribeiro-Parameter wird zudem empfohlen, diesen im Sinne des formulierten Wertebereichs zu verringern.
 
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/J1.pdf}
-	\caption{Variation $J_1$}
-	\label{fig:J1}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/m1.pdf}
+	\caption{Variation $m_1$}
+	\label{fig:trjvarm1} % etwas allgemein oder?
 \end{figure}
+
+Für $m_1$ lässt sich ein ähnliches Verhalten beobachten. Auch hier zeichnet sich der Bereich gültiger Trajektorien durch eine gut erkennbare Obergrenze ab. Diese liegt mit $m_{1\mrm{,max}}=\valunit{1,07}{kg}$ allerdings deutlich über der von $m_2$. Auffällig ist darüber hinaus eine Häufung gültiger Trajektorien mit hoher Güte im stark eingeschränkten Bereich $\valunit{0,6}{kg}\leq m_1 \leq\valunit{0,66}{kg}$ mit $\hg=88\%$, wo auch der Apprich-Wert einzuordnen ist. Bei einer Erweiterung des Bereichs auf $\valunit{0,45}{kg}\leq m_1 \leq\valunit{1,07}{kg}$ wird noch ein Anteil von $\hg=29\%$ erreicht. Eine ähnliche Häufung tritt im Bereich $\valunit{0}{kg}\leq m_1 \leq\valunit{0,07}{kg}$ mit $\hg=75\%$ auf, wobei die Bereichsgröße stark eingeschränkt ist. Allgemein liegen wie bei $m_2$ auch für $m_1$ die Trajektorien mit einer geringeren Güte von $J_\mrm{dev}<0,1$ im unteren Bereich. Besonders ungünstige Trajektorien mit $J_\mrm{dev}\gg1$ treten allerdings erneut nicht auf. Auch wird wieder für den Ribeiro-Parameter keine Lösung gefunden, wobei dieser nun in einem Bereich liegt, in dem prinzipiell Lösungen gefunden werden.
+
+Allgemein wird als Wertebereich $\valunit{0}{kg}\leq m_1 \leq\valunit{1,07}{kg}$ formuliert, wobei $\Pkon\approx\hg=26 \%$ gilt. 
+
+Anders als bei den Massen unterscheiden sich die Massenträgheitsmomente in ihrem Verhalten recht deutlich. Während für $J_1$ bezogen auf die Anzahl untersuchter Werte nur ein Anteil gültiger Trajektorien von $14 \%$ vorliegt, werden für $J_2$ mit einem Anteil von $61\%$ überwiegend gültige Trajektorien gefunden. Dies deutet auf einen geringen Einfluss von $J_2$ auf die Trajektorienberechnung hin. Die in \figref{fig:trjvarJ2} dargestellten Ergebnisse zeigen, dass beinahe über den gesamten Variationsraum von $J_2$ Trajektorien gefunden werden. Lediglich im untersten Bereich $\valunit{0}{kg m^2}\leq J_2 < \valunit{0,004}{kg m^2}$ können keine Trajektorien gefunden werden. In diesem Bereich ist der Ribeiro-Parameter angesiedelt, für den entsprechend keine Trajektorie gefunden wird. Der Apprich-Parameter befindet sich mit \valunit{0,00407}{kg m^2} unmittelbar im Grenzbereich. Durch eine Untergrenze der Wertebereichs mit $\valunit{0,004}{kg m^2}\leq J_2 \leq \valunit{0,02}{kg m^2}$ liegt der Anteil gültiger Trajektorien bei $77\%$. Wird die Untergrenze auf $J_{2\mrm{min}} = \valunit{0,0152}{kg m^2}$ erhöht, ergeben sich mit $\hg=100 \%$ ausschließlich gültige Trajektorien über den gesamten Bereich. Die Trajektoriengüte unterliegt im Bereich von $\hg=100 \%$ jedoch starken Schwankungen
 
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/J2.pdf}
 	\caption{Variation $J_2$}
-	\label{fig:J2}
+	\label{fig:trjvarJ2}
 \end{figure}
+
+Anders als bei den Stabmassen treten für $J_2$ erstmals besonders hohe Werte der Gütefunktion von $J_\mrm{dev}>>1$. Die für $J_2=\valunit{0,0084}{kg m^2}$ gefundene Trajektorie erreicht einen Wert von $J_\mrm{dev}=18,02$ und ist damit als unbrauchbar anzusehen. Im Bereich $\valunit{0,0072}{kg m^2}\leq J_2 \leq \valunit{0,0113}{kg m^2}$ tritt eine leichte Häufung von Trajektorien mit hohem $J_\mrm{dev}$ auf. Da es sich dennoch um lokale Minima und somit aus Sicht des Optimierers um gültige Trajektorien handelt, entsteht der hohe Wert weiterhin alleine aufgrund der hohen Ungenauigkeit der Approximation der Endlage. Für die weitere Verwendung berechneter Trajektorien ist daher dringend die Approximationsgüte zu überprüfen. Auch im beschriebenen Bereich von $\hg=100 \%$ treten vereinzelt gültige Trajektorien sehr geringer Güte auf.
+
+Als Wertebereich gültiger Lösungen wird der Bereich $\valunit{0,004}{kg m^2}\leq J_2 \leq \valunit{0,02}{kg m^2}$ mit $\Pkon\approx\hg=77 \%$formuliert. Es wird zudem eine Erhöhung des aktuellen Ribeiro-Werts für $J_2$ empfohlen, sodass sich dieser zukünftig innerhalb des empfohlenen Wertebereichs befindet.
 
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/s2.pdf}
-	\caption{Variation $s_2$}
-	\label{fig:s2}
+		\includegraphics[width=0.8\textwidth]{Bilder/Trajektorien/J1.pdf}
+	\caption{Variation $J_1$}
+	\label{fig:trjvarJ1}
 \end{figure}
 
+Für $J_1$ werden mit insgesamt $\hg=14\%$ nur wenige gültige Trajektorien gefunden. Diese sind über den größten Teil des untersuchten Wertebereichs verteilt. Im Gegensatz zu den anderen Parametervariation wird hierbei auch eine Trajektorie für den Ribeiro-Wert gefunden. Dies lässt sich jedoch nicht mit einem Häufungsbereich weiterer gültiger Trajektorien begründen, wie \figref{fig:trjvarJ1} entnommen werden kann. Häufungen gültiger Trajektorien treten in den gegensätzlichen Bereichen $\valunit{0,0037}{kg m^2}\leq J_1 \leq \valunit{0,0065}{kg m^2}$ mit $\hg=33 \%$ und $\valunit{0,0141}{kg m^2}\leq J_1 \leq \valunit{0,0196}{kg m^2}$ mit $\hg=29 \%$ auf. Es können sich daher sowohl niedrige als hohe Werte für $J_1$ positiv auf die Konvergenz der Trajektorienberechnung auswirken. Der mittlere Bereich hingegen ist hingegen als ungünstig anzusehen, wobei dennoch gültige Lösungen gefunden werden können. Für sehr niedrige Werte existieren wie bei $J_2$ keine gültigen Trajektorien mehr, weshalb wieder eine Untergrenze $J_{2\mrm{min}} = \valunit{0,0037}{kg m^2}$ eingeführt wird.
+Trajektorien mit $J_\mrm{dev}>1$ kommen anders als bei $J_2$ nicht vor. Ein erhöhtes Vorkommen von Trajektorien geringerer Güte mit $J_\mrm{dev}>0,1$ wird im Bereich $\valunit{0,0141}{kg m^2}\leq J_1 \leq \valunit{0,0159}{kg m^2}$ beobachtet. Da dieser Bereich wieder einen Grenzbereich einer Häufung gültiger Trajektorien markiert wie bei $m_1$ und $m_2$, könnte dies als Hinweis auf ein Verhaltensmuster der Güte verstanden werden. Die Variationen von $J_2$, $s_1$ und $s_2$ bestätigen diese Interpretation jedoch nicht.  
+
+Mit der definierten Untergrenze wird ein Wertebereich für gültige Trajektorien von $\valunit{0,0037}{kg m^2}\leq J_2 \leq \valunit{0,0196}{kg m^2}$ mit $\Pkon\approx\hg=17 \%$ formuliert.
+
+Aus der Variation der Schwerpunkte $s_1$ und $s_2$ wird kein auffälliges Verhalten identifiziert. Für beide Schwerpunkte können näherungsweise über die gesamte jeweilige Stablänge gültige Lösungen gefunden werden, sodass eine Eingrenzung des Wertebereichs nicht notwendig erscheint. Der Anteil gültiger Trajektorien ist für $s_1$ jedoch deutlich geringer als für $s_2$. Die Trajektorienberechnung reagiert damit prinzipiell empfindlicher auf eine Veränderung von $s_1$. Eine Häufung gültiger Trajektorien tritt wieder im Bereich des Apprich-Wertes auf. Obwohl der Ribeiro-Wert beider Schwerpunkte jeweils in einem solchen Häufungsbereich liegt, wird jeweils keine Trajektorie gefunden. Für die scheinbar ungünstigen Ribeiro-Schwerpunkte ist daher in diesem Fall keine explizite Ursache erkennbar.
+
+Die formulierten Wertebereiche gültiger Trajektorien sind in \tabref{tab:Bereichsempfehlungen} noch einmal abschließend übersichtlich dargestellt. 
+
+\begin{table}[h]
+	\centering
+	\caption{Wertebereiche gültiger Trajektorien}
+		\begin{tabular}{lllll}
+			\toprule
+			Parameter  & Einfluss & min & max & $\Pkon$ \\
+			\midrule
+			{$m_1 \ [\unit{kg}]$}  &  hoch & $0$ & $1,07$  & $26 \%$ \\
+			\midrule			
+			$m_2 \ [\unit{kg}]$  &  hoch & $0,09$ & $0,39$  & $38 \%$ \\	
+			\midrule
+			$J_1 \ [\unit{kg m^2}]$  &  hoch & $0,0037$ & $0,0196$  & $17 \%$ \\
+		  \midrule
+			$J_2 \ [\unit{kg m^2}]$ & gering & $0,004$ & $0,02$  & $77 \%$ \\
+			\midrule
+			$s_1 \ [\unit{m}]$   &   mittel & $0$ & $0,29$  & $21 \%$ \\
+			\midrule
+			$s_2 \ [\unit{m}]$   &   gering & $0$ & $0,338$  & $44 \%$ \\
+			\bottomrule
+		\end{tabular}
+	\label{tab:Bereichsempfehlungen}
+\end{table}
 
 
-
-\chapter{Kommentare}
-
-ausführliche vorblicke mit referenzierungen zu abschnitten sind unnötig \\
---> Wo?
-
-Figures habe ich mal als gleitende abbildung gemacht \\
---> Sah hässlich aus, habs wieder rückgängig gemacht
-
-Warum referenzierst du Abschnitte als Kapitel?  charef{cha:...} secref{sec:...} \\
---> Das System dahinter: Abschnitte sind Teile des aktuellen Kapitels. "`Kapitel"'-Referenzen mach ich für alle Teile, die nicht zum aktuellen Kapitel gehören.
-
-B machen wir allgemein als Matrix, K auch \\
---> Wozu? In  3.1.1 haben wir den Vektor b bereits eingeführt. Da ich auch nicht u-Matrix, sondern F-Skalar verwende, ist b-Vektor nur konsistent
-
-Abschnitt Vorgehen 4.5.1 finde ich persönlich zu ausführlich \\
---> ich nicht. Was ist dir zu ausführlich?
-
-461 bewusst vernachlässigt, da in erster Linie der Einfluss der Modellparameter auf die Berechnungsergebnisse untersucht werden soll. - unklar \\
---> Ich finds verständlich (Eric scheinbar auch). Gehts dir um die Formulierung oder verstehst du tatsächlich die Aussage nicht?
-
-
-%%%%%%%%%%% Kommentare Motor
-
-vlt am anfang noch ausführen, dass wir zum ersten mal den motor genauer simulieren und andere immer überbrückt haben (Fsoll=Fout) \\
---> stimmt aber nicht. Insbesondere Franke und Apprich modellieren den Motor. Nur ohne Gegeninduktion.
-
-Spannungs-Strom-Wandlers ?? \\
---> Konsistenz zu Franke und co.. Hab den Begriff nur Übernommen.
-
-eq:Iconst  IaMAX(w)=Iwmax?
-Iamax(w): das sign passt hier nicht. es ist ja kein sprung. theoretisch gibts ja ein Iamax und Iamin \\
---> jaa... mh.. jaa.. Ich hatte es vorher anders, aber es sah viel hässlicher aus als mit sign. Eric hat die verkürzte mathematische Schreibweise ja nicht gestört
-
-wemk =? \\
---> wemk ist variabel, da KUI variabel ist. Man könnte es bei den Modellparametern hinzunehmen, nachdem KUI für die Arbeit festgelegt wird (hinter Fmax). Aber brauchen wir das?
-
-
-F=M/Kg fehlt \\
---> ist durch die Kinematik doch schon mitdefiniert

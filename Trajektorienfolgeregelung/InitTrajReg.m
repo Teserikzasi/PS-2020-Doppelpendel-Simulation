@@ -11,17 +11,18 @@ SchlittenPendelParams = SchlittenPendelParams_Apprich09();
 SchlittenPendelParams.Fc0 = 0;
 SchlittenPendelParams.Mc10 = 0;
 SchlittenPendelParams.Mc20 = 0;
+SchlittenPendelParams.J2 = 0.0084;
 InitSystem(SchlittenPendelParams)
 
 MotorParams = MotorParams_Franke97();% falls K_UI in MotorParams_Franke97 geändert 
 simparams.gesamtmodell.motor = MotorParams;
 %% Trajektorie
-trajPath = 'Trajektorien\searchResults\Results_app09_T0.005N500_RK4';
+% trajPath = 'Trajektorien\searchResults\Results_app09_T0.005N500_RK4';
 % trajPath = 'Trajektorien\TrajOhneGegenindunktion\searchResults\Results_odeTesGeb_rib20_T0.01N350\RK4_MPC';
-%trajPath = 'Trajektorien\ParameterExams_app09';
+trajPath = 'Trajektorien\ParameterExams_app09';
 
-trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_Fmax410';
-% trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_J1_0.002';
+trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_Fmax410_J2_0.0084';
+%trajName = 'Traj14_dev0_-3.14_-3.14_x0max0.8_J1_0.002';
 trj = load(fullfile(trajPath, [trajName '.mat']));
 vT = 0 : trj.T : (trj.T)*(trj.N);
 stTraj.T.data = vT';
