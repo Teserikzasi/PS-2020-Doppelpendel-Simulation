@@ -1,0 +1,17 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'Schlitten-Doppelpendel.blg'
+[98] biber-MSWIN64:322> INFO - === 
+[122] Biber.pm:415> INFO - Reading 'Schlitten-Doppelpendel.bcf'
+[255] Biber.pm:943> INFO - Found 17 citekeys in bib section 0
+[279] Biber.pm:4256> INFO - Processing section 0
+[280] Utils.pm:75> INFO - Globbing data source 'bib/literature.bib'
+[291] Utils.pm:91> INFO - Globbed data source 'bib/literature.bib' to bib/literature.bib
+[309] Biber.pm:4455> INFO - Looking for bibtex format file 'bib/literature.bib' for section 0
+[315] bibtex.pm:1653> INFO - LaTeX decoding ...
+[378] bibtex.pm:1471> INFO - Found BibTeX data source 'bib/literature.bib'
+[545] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[546] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[546] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[546] Biber.pm:4090> INFO - No sort tailoring available for locale 'de-DE'
+[580] bbl.pm:652> INFO - Writing 'Schlitten-Doppelpendel.bbl' with encoding 'UTF-8'
+[590] bbl.pm:755> INFO - Output to Schlitten-Doppelpendel.bbl

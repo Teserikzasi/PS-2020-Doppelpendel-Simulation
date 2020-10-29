@@ -1,0 +1,539 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{AdamyRT2}{book}{}
+      \name{author}{1}{}{%
+        {{hash=4edea4189187594eb2e98d5778052403}{%
+           family={Adamy},
+           familyi={A\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Shaker}%
+      }
+      \strng{namehash}{4edea4189187594eb2e98d5778052403}
+      \strng{fullhash}{4edea4189187594eb2e98d5778052403}
+      \strng{bibnamehash}{4edea4189187594eb2e98d5778052403}
+      \strng{authorbibnamehash}{4edea4189187594eb2e98d5778052403}
+      \strng{authornamehash}{4edea4189187594eb2e98d5778052403}
+      \strng{authorfullhash}{4edea4189187594eb2e98d5778052403}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Systemdynamik und Regelungstechnik II}
+      \field{year}{2019}
+    \endentry
+    \entry{Andersson2019}{article}{}
+      \name{author}{5}{}{%
+        {{hash=09710eddb25e528b0d0bae5a6fd11eb9}{%
+           family={Andersson},
+           familyi={A\bibinitperiod},
+           given={Joel\bibnamedelimb A\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=2ffda07362b7874e2f74f66dc2a225ac}{%
+           family={Gillis},
+           familyi={G\bibinitperiod},
+           given={Joris},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0fa126623a6142cf731907bb8a8df131}{%
+           family={Horn},
+           familyi={H\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=a28ab6b1da316879310a82410e4e8dc4}{%
+           family={Rawlings},
+           familyi={R\bibinitperiod},
+           given={James\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=ec732fd9120f390fd38c8132a3079900}{%
+           family={Diehl},
+           familyi={D\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b04d0d55940f67bd98ae0c9236807a4e}
+      \strng{fullhash}{d4ec04d8cc225f8dfb9d40f7c454951a}
+      \strng{bibnamehash}{b04d0d55940f67bd98ae0c9236807a4e}
+      \strng{authorbibnamehash}{b04d0d55940f67bd98ae0c9236807a4e}
+      \strng{authornamehash}{b04d0d55940f67bd98ae0c9236807a4e}
+      \strng{authorfullhash}{d4ec04d8cc225f8dfb9d40f7c454951a}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Programming Computation}
+      \field{number}{1}
+      \field{title}{{CasADi} -- {A} software framework for nonlinear optimization and optimal control}
+      \field{volume}{11}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 36}
+      \range{pages}{36}
+      \verb{doi}
+      \verb 10.1007/s12532-018-0139-4
+      \endverb
+    \endentry
+    \entry{apprich}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7060566cc16df82955cdbe472de7ad09}{%
+           family={Apprich},
+           familyi={A\bibinitperiod},
+           given={Stefanie},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{fullhash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{bibnamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authorbibnamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authornamehash}{7060566cc16df82955cdbe472de7ad09}
+      \strng{authorfullhash}{7060566cc16df82955cdbe472de7ad09}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Studienarbeit}
+      \field{title}{Konstruktion und Regelung eines inversiven Doppelpendels}
+      \field{year}{2009}
+    \endentry
+    \entry{binder}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9146ec5d9e19640ffa5991ea94027788}{%
+           family={Binder},
+           familyi={B\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Darmstadt}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag Berlin Heidelberg}%
+      }
+      \strng{namehash}{9146ec5d9e19640ffa5991ea94027788}
+      \strng{fullhash}{9146ec5d9e19640ffa5991ea94027788}
+      \strng{bibnamehash}{9146ec5d9e19640ffa5991ea94027788}
+      \strng{authorbibnamehash}{9146ec5d9e19640ffa5991ea94027788}
+      \strng{authornamehash}{9146ec5d9e19640ffa5991ea94027788}
+      \strng{authorfullhash}{9146ec5d9e19640ffa5991ea94027788}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elektrische Maschinen und Antriebe - Grundlagen, Betriebsverhalten}
+      \field{year}{2012}
+    \endentry
+    \entry{brehl}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=5f66a3d5c2f9d2be3c1a7a089e09fa50}{%
+           family={Brehl},
+           familyi={B\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{fullhash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{bibnamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authorbibnamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authornamehash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \strng{authorfullhash}{5f66a3d5c2f9d2be3c1a7a089e09fa50}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bachelorarbeit}
+      \field{title}{Implementierung und Vergleich verschiedener Reglervarianten zur Regelung eines inversen Doppelpendels}
+      \field{year}{2014}
+    \endentry
+    \entry{ipopt}{manual}{}
+      \field{sortinit}{c}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labeltitlesource}{title}
+      \field{title}{casadi::NlpSolver Class Reference}
+      \verb{urlraw}
+      \verb http://casadi.sourceforge.net/v2.0.0/api/html/d6/d07/classcasadi_1_1NlpSolver.html#plugin_NlpSolver_ipopt
+      \endverb
+      \verb{url}
+      \verb http://casadi.sourceforge.net/v2.0.0/api/html/d6/d07/classcasadi_1_1NlpSolver.html#plugin_NlpSolver_ipopt
+      \endverb
+    \endentry
+    \entry{Diehl2006}{inbook}{}
+      \name{author}{4}{}{%
+        {{hash=8788f23bb6883351e83deed5afeb80a1}{%
+           family={Diehl},
+           familyi={D\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=77eae1b99cbd1ebdb266589388212547}{%
+           family={Bock},
+           familyi={B\bibinitperiod},
+           given={H.G.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=f2cdc9399214a1675158d97c9b36607c}{%
+           family={Diedam},
+           familyi={D\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=26daaaac0c5d0504b6df541592047a5d}{%
+           family={Wieber},
+           familyi={W\bibinitperiod},
+           given={P.-B.},
+           giveni={P\bibinithyphendelim B\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=ec732fd9120f390fd38c8132a3079900}{%
+           family={Diehl},
+           familyi={D\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=52e791655dd0f52f8a6932f4555cc8bf}{%
+           family={Mombaur},
+           familyi={M\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{11caa64f34cf322b7527af746876663d}
+      \strng{fullhash}{6d794044c86a69b05921b7f8eb564991}
+      \strng{bibnamehash}{11caa64f34cf322b7527af746876663d}
+      \strng{authorbibnamehash}{11caa64f34cf322b7527af746876663d}
+      \strng{authornamehash}{11caa64f34cf322b7527af746876663d}
+      \strng{authorfullhash}{6d794044c86a69b05921b7f8eb564991}
+      \strng{editorbibnamehash}{70f939bf5e40a383637043da3055fc2f}
+      \strng{editornamehash}{70f939bf5e40a383637043da3055fc2f}
+      \strng{editorfullhash}{70f939bf5e40a383637043da3055fc2f}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this overview paper, we first survey numerical approaches to solve nonlinear optimal control problems, and second, we present our most recent algorithmic developments for real-time optimization in nonlinear model predictive control.}
+      \field{booktitle}{Fast Motions in Biomechanics and Robotics: Optimization and Feedback Control}
+      \field{isbn}{978-3-540-36119-0}
+      \field{title}{Fast Direct Multiple Shooting Algorithms for Optimal Robot Control}
+      \field{year}{2006}
+      \field{pages}{65\bibrangedash 93}
+      \range{pages}{29}
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-540-36119-0_4
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-540-36119-0_4
+      \endverb
+    \endentry
+    \entry{fauve}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=3161d03a54cd6310be6b25f0b17b373b}{%
+           family={Fauvé},
+           familyi={F\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{3161d03a54cd6310be6b25f0b17b373b}
+      \strng{fullhash}{3161d03a54cd6310be6b25f0b17b373b}
+      \strng{bibnamehash}{3161d03a54cd6310be6b25f0b17b373b}
+      \strng{authorbibnamehash}{3161d03a54cd6310be6b25f0b17b373b}
+      \strng{authornamehash}{3161d03a54cd6310be6b25f0b17b373b}
+      \strng{authorfullhash}{3161d03a54cd6310be6b25f0b17b373b}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Studienarbeit}
+      \field{title}{Nichtlineare MPC-Regelung eines Doppelpendels}
+      \field{year}{2020}
+    \endentry
+    \entry{franke}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0a2e7fbd071b77977840395a0b09a734}{%
+           family={Franke},
+           familyi={F\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Clausthal}%
+      }
+      \strng{namehash}{0a2e7fbd071b77977840395a0b09a734}
+      \strng{fullhash}{0a2e7fbd071b77977840395a0b09a734}
+      \strng{bibnamehash}{0a2e7fbd071b77977840395a0b09a734}
+      \strng{authorbibnamehash}{0a2e7fbd071b77977840395a0b09a734}
+      \strng{authornamehash}{0a2e7fbd071b77977840395a0b09a734}
+      \strng{authorfullhash}{0a2e7fbd071b77977840395a0b09a734}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modellierung und Regelung eines mechatronischen Systems - Eine Realisierung des invertierten Pendels mit momentgeregeltem Antriebsmotor}
+      \field{type}{Diplomarbeit}
+      \field{year}{1997}
+    \endentry
+    \entry{kämmerer}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=631e33adb301fae01ea42e2f760871ed}{%
+           family={Kämmerer},
+           familyi={K\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{631e33adb301fae01ea42e2f760871ed}
+      \strng{fullhash}{631e33adb301fae01ea42e2f760871ed}
+      \strng{bibnamehash}{631e33adb301fae01ea42e2f760871ed}
+      \strng{authorbibnamehash}{631e33adb301fae01ea42e2f760871ed}
+      \strng{authornamehash}{631e33adb301fae01ea42e2f760871ed}
+      \strng{authorfullhash}{631e33adb301fae01ea42e2f760871ed}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Studienarbeit}
+      \field{title}{Inbetriebnahme und Regelung eines inversen Doppelpendels}
+      \field{year}{2009}
+    \endentry
+    \entry{kisner}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=ab1741462cf8c984e6705d0ca1a485ac}{%
+           family={Kisner},
+           familyi={K\bibinitperiod},
+           given={Viktor},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \strng{fullhash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \strng{bibnamehash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \strng{authorbibnamehash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \strng{authornamehash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \strng{authorfullhash}{ab1741462cf8c984e6705d0ca1a485ac}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bachelorarbeit}
+      \field{title}{Trajektorienfolgerelung eines inversen Doppelpendels}
+      \field{year}{2011}
+    \endentry
+    \entry{modsim}{book}{}
+      \name{author}{1}{}{%
+        {{hash=aeb4b172e360880f7ff8d1548e7fcc3c}{%
+           family={Konigorski},
+           familyi={K\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Darmstadt}%
+      }
+      \strng{namehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{fullhash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{bibnamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authorbibnamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authornamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authorfullhash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modellbildung und Simulation, Skript}
+      \field{year}{2019}
+    \endentry
+    \entry{matPrakt2}{book}{}
+      \name{author}{1}{}{%
+        {{hash=aeb4b172e360880f7ff8d1548e7fcc3c}{%
+           family={Konigorski},
+           familyi={K\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Institut für Automatisierungstechnik, Fachgebiet Regelungstechnik und Mechatronik, TU Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Darmstadt}%
+      }
+      \strng{namehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{fullhash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{bibnamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authorbibnamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authornamehash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \strng{authorfullhash}{aeb4b172e360880f7ff8d1548e7fcc3c}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Praktikum MATLAB/Simulink II}
+      \field{type}{Skript}
+      \field{year}{2019}
+    \endentry
+    \entry{modpen}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=a9efff80974e8377561c4027a4ca8c3e}{%
+           family={Lenz},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt, Fachgebiet rtm}%
+      }
+      \strng{namehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{fullhash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{bibnamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authorbibnamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authornamehash}{a9efff80974e8377561c4027a4ca8c3e}
+      \strng{authorfullhash}{a9efff80974e8377561c4027a4ca8c3e}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modellierung Pendel}
+    \endentry
+    \entry{noupa}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=98df824f4689aa332e708f9b38403b47}{%
+           family={Noupa},
+           familyi={N\bibinitperiod},
+           given={Karl\bibnamedelimb Max\bibnamedelima Crépin},
+           giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{98df824f4689aa332e708f9b38403b47}
+      \strng{fullhash}{98df824f4689aa332e708f9b38403b47}
+      \strng{bibnamehash}{98df824f4689aa332e708f9b38403b47}
+      \strng{authorbibnamehash}{98df824f4689aa332e708f9b38403b47}
+      \strng{authornamehash}{98df824f4689aa332e708f9b38403b47}
+      \strng{authorfullhash}{98df824f4689aa332e708f9b38403b47}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bachelorarbeit}
+      \field{title}{Reibkompensation am Doppelpendel}
+      \field{year}{2011}
+    \endentry
+    \entry{ribeiro}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=33d5077f41e7b2f762fa139854745a1b}{%
+           family={Sousa\bibnamedelimb Ribeiro;\bibnamedelimb Thomas\bibnamedelimb Gassen;\bibnamedelimb Vitaliy\bibnamedelima Omelchuk},
+           familyi={S\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim O\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{fullhash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{bibnamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authorbibnamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authornamehash}{33d5077f41e7b2f762fa139854745a1b}
+      \strng{authorfullhash}{33d5077f41e7b2f762fa139854745a1b}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Projektseminar}
+      \field{title}{Steuerung und Regelung eines inversen Doppelpendels}
+      \field{year}{2020}
+    \endentry
+    \entry{chang}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=45c0ab62a648f5deceb53481ccd76a3f}{%
+           family={Tchoutchui},
+           familyi={T\bibinitperiod},
+           given={Feiyu\bibnamedelimb Chang;\bibnamedelimb Nicolas\bibnamedelimb Fauvé;\bibnamedelimb Antonia\bibnamedelimb Gießler;\bibnamedelimb Charles\bibnamedelima Studd},
+           giveni={F\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \list{location}{1}{%
+        {Technische Universität Darmstadt}%
+      }
+      \strng{namehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{fullhash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{bibnamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authorbibnamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authornamehash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \strng{authorfullhash}{45c0ab62a648f5deceb53481ccd76a3f}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Projektseminar}
+      \field{title}{Konstruktion und Regelung eines inversen Doppelpendels}
+      \field{year}{2019}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

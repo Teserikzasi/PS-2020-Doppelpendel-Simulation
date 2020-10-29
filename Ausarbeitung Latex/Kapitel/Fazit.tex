@@ -6,8 +6,8 @@ Diese Arbeit beschäftigt sich mit der Steuerung und Regelung eines Doppelpendel
 Das System wurde in dieser Arbeit rein simulativ betrachtet, wobei die Anwendung am realen Versuchsstand stets im Hintergrund behalten wurde.
 Es wurde ein umfassendes Simulationsmodell in \ml/\sm\ aufgebaut, welches in zukünftigen Arbeiten weiterverwendet werden kann. 
 
-Im Vergleich zu den bisherigen Arbeiten wurde hierbei erstmalig die Induktionsspannung des Motors berücksichtigt.
-Die Herleitung der \bwgl\ des \spds s wurde symbolisch umgesetzt, wodurch das System leicht erweiterbar ist.
+Im Vergleich zu den bisherigen Arbeiten wurden bei der Modellierung Nichtlinearitäten wie die \crb\ und die Gegeninduktion berücksichtigt.
+Die Herleitung der \bwgl\ des \spds s wurde symbolisch umgesetzt, wodurch das System leicht erweitert werden kann.
 Hierdurch konnten Fehler in den Systemgleichungen, die bislang in den vergangenen Arbeiten verwendet worden waren, aufgedeckt werden.
 Bei allen im Rahmen dieser Arbeit realisierten Implementierungen wurde auf eine sinnvolle Struktur und einen modularen Aufbau geachtet.
 Der zugehörige \ml-Code wurde funktional aufgebaut, wodurch unterschiedliche Parameter einfach getestet und verglichen werden können.
@@ -22,16 +22,17 @@ Es konnten dadurch für alle \ap e Parameter ermittelt werden, die das System ge
 
 In einem weiteren Schritt wurde der Einfluss der Parameter des \dpd s auf die Arbeitspunktregelung untersucht.
 Die Untersuchungen zeigen, dass Trägheits- und Geometrieparameter einen erheblichen Einfluss auf die Stabilisierbarkeit des Systems haben.
+Teilweise hat sich gezeigt, dass manche Parametervariationen die Regelbarkeit deutlich erhöhen können.
 Die Ergebnisse sind jedoch unter dem Vorbehalt zu betrachten, dass die Systeme mit geänderten Parametern durch eine zusätzliche Optimierung der Reglerparameter unter Umständen ein besseres Verhalten aufweisen können. 
 
-Außerdem zeigt sich, dass die erhöhte \crb\ des ersten Pendelgelenks aufgrund des bei der Neukonstruktion hinzugekommenen Schleifrings einen erkennbar negativen Einfluss hat.
+Außerdem zeigt sich, dass die erhöhte \crb\ des ersten Pendelgelenks einen erkennbar negativen Einfluss hat.
 Dies betrifft zum einen die Stabilisierbarkeit, aber auch das stationäre Verhalten, da sich dadurch ein nicht ausregelbarer Grenzzyklus einstellt.
 Insbesondere in Kombination mit dem \beob\ ist die Regelbarkeit wenig robust.
 
 Weiterhin wurden eine NMPC für die Trajektorienberechnung sowie eine Trajektorienfolgeregelung realisiert. Anknüpfend an die Ergebnisse der Vorgängerarbeit Fauvé \cite{fauve} konnte eine günstige Konfiguration der NMPC sowie eine geeignete Auslegung der Trajektorienfolgeregelung ermittelt werden, für die sich die betrachteten Aufschwungtrajektorien sowohl am Schlittenpendelmodell als auch am Gesamtmodell unter Berücksichtigung der Gegeninduktion des Motors stabilisieren lassen.
 
 Die Untersuchung des Einflusses der Systemparameter auf die Trajektorienberechnung zeigt, dass besonders die Pendelmassen eine erkennbare Eingrenzung des Bereichs, in dem Trajektorien gefunden werden, aufweisen. Neben der Analyse der Verteilung gültiger und ungültiger Trajektorien sowie der Trajektoriengüte, wurden daher Begrenzungen der Wertebereiche für die untersuchten Parameter formuliert, die zur Orientierung für zukünftige konstruktive Veränderungen am Versuchsstand dienen können. 
-Das ungünstige Verhalten der aktuellen Systemparameter in Bezug auf die Trajektorienberechnung wird durch die Untersuchung bestätigt, da im Vergleich zu den vorherigen Parametern nur weniger Trajektorien gefunden werden.
+Das ungünstige Verhalten der aktuellen Systemparameter in Bezug auf die Trajektorienberechnung wird durch die Untersuchung bestätigt, da im Vergleich zu den vorherigen Parametern nur wenige Trajektorien gefunden werden.
 Eine Begründung durch die ermittelten Bereichsgrenzen ist jedoch nur teilweise möglich, da oft auch dann keine Trajektorie gefunden wird, wenn sich der Parameter des aktuellen Versuchsstands im empfohlenen Wertebereich befindet. Einen erkennbaren Veränderungsbedarf signalisieren die Untersuchungen in erster Linie für das Trägheitsmoment von Stab 2. 
 Insgesamt sind die Ergebnisse jedoch aufgrund der vielfältigen Einflussgrößen auf die Optimierungslandschaft der NMPC zunächst nur für die im Rahmen dieser Arbeit festgelegten Voraussetzungen gültig und in Bezug auf Allgemeingültigkeit zu problematisieren. 
 
@@ -48,12 +49,13 @@ Um die Arbeitspunktregelung weiter zu verbessern, könnten die bisherigen Regelu
 Aktuell basiert die \aprg\ auf einer \lin, sodass ein linearer \zsr\ und \beob\ verwendet werden kann.
 Da die angesprochene \crb\ das System jedoch stark nichtlinear macht, sollte die Verwendung nichtlinearer Regelungen geprüft werden.
 In einem ersten Schritt sollte der \beob\ um die nichtlinearen Effekte ergänzt werden, da sich ansonsten große Schätzfehler ergeben, die das Regelverhalten verschlechtern.
-Alternativ kann die angesprochene Variante \diff\ als \ze\ möglicherweise bessere Ergebnisse erzielen, da hier keine \ap abhängigkeit oder weitere Modellungenauigkeiten beachtet werden müssen.
-Da selbst bei der Variante \zm\ Schwierigkeiten wie der Grenzzyklus auftreten, sollten auch beim \zsr\ nichtlineare Regelungskonzepte in Erwägung gezogen werden.
+Alternativ kann die angesprochene Variante \emph{\diff} als \ze\ möglicherweise bessere Ergebnisse erzielen, da hier keine \ap abhängigkeit oder weitere Modellungenauigkeiten beachtet werden müssen.
+Da selbst bei der Variante \emph{\zm} Schwierigkeiten wie der Grenzzyklus auftreten, sollten auch beim \zsr\ nichtlineare Regelungskonzepte in Erwägung gezogen werden.
 Im Gegensatz zum Schlitten lässt sich die \crb\ in den Gelenken nämlich nicht über eine Vorsteuerung kompensieren.
 Eventuell lässt sich der Grenzzyklus aber auch durch eine weitere Optimierung der Reglerparameter verringern, wobei für eine Einflussanalyse auf dem erstellten Code aufgebaut werden kann.
 
 Des Weiteren kann die Regelbarkeit durch Änderungen am System selbst beeinflusst werden.
+Mithilfe der Systemparametertests kann der Einfluss aller Parameter systematisch untersucht werden.
 Für eine Entscheidungsfindung und weitere Test- und Analysemöglichkeiten stellen die Ergebnisse dieser Arbeit eine Grundlage dar.
 Eine direkte Aussage zur Modifizierung des aktuellen Versuchsstands durch Anbringen zusätzlicher Gewichte am Pendel oder durch Neukonstruktion  ist problematisch, da die Konstruktionsparameter teilweise direkt voneinander abhängen und erste Parametertests gegensinnige Tendenzen zeigten, die sich zudem je nach \ap\ unterscheiden.
 Es muss daher stets ein Kompromiss getroffen werden.
@@ -62,16 +64,16 @@ Für weiterführende Analysen und Aussagen sind eine genauere Modellierung der M
 Die Ergebnisse der Parameteruntersuchungen, die für die Trajektorienberechnung mittels NMPC durchgeführt wurden, gelten für die im Rahmen dieser Arbeit definierten Voraussetzungen. %nicht wirklich aussagekräftig
 Als nächster Schritt steht somit die Überprüfung der Gültigkeit bei einer Änderung dieser Voraussetzungen durch beispielsweise die Variation der Vergleichstrajektorie, der Kraftbeschränkung und den Konfigurationsmöglichkeiten der NMPC aus. Die ermittelten Bereichsverfehlungen der aktuellen Systemparameter sind hierbei besonders zu beobachten und gegebenenfalls nach ausreichender Prüfung am Versuchsstand zu korrigieren. Es ist hierbei auf mögliche Kompromisse bezüglich der in dieser Arbeit untersuchten Einflüsse auf die Arbeitspunktregelung zu achten.
 
-Erste Tests in Bezug auf den Einfluss er \crb\ auf die Trajektorienberechnung weisen auf einen erkennbar negativen Einfluss hin. Eine Variation der Reibwerte ist daher für zukünftige Arbeiten denkbar.
+Erste Tests in Bezug auf den Einfluss der \crb\ auf die Trajektorienberechnung weisen auf einen erkennbar negativen Einfluss hin. Eine Variation der Reibwerte ist daher für zukünftige Arbeiten denkbar.
 
-Da die im Rahmen dieser Arbeit durchgeführten Untersuchungen zur Stabilisierbarkeit \bzw Regelbarkeit der berechneten Trajektorien sich auf die Tests zur Wahl einer günstigen Ausgangskonfiguration der NMPC für die anschließenden Parametertests beschränken, bleibt eine detaillierte Untersuchung der Stabilisierbarkeit in Abhängigkeit der Trajektoriengüte offen.
+Da sich die im Rahmen dieser Arbeit durchgeführten Untersuchungen zur Stabilisierbarkeit der berechneten Trajektorien auf die Tests zur Wahl einer günstigen Ausgangskonfiguration der NMPC für die anschließenden Parametertests beschränken, bleibt eine detaillierte Untersuchung der Stabilisierbarkeit in Abhängigkeit der Trajektoriengüte offen.
 
-Um die Qualität der Trajektorien zu steigern wurde ein im Vergleich zur Vorgängerarbeit aufwendigeres Integrationsverfahren mit kleinerem Schrittfehler für die NMPC implementiert. Zukünftig wäre an dieser Stelle eine weitere Untersuchung denkbar, um zu entscheiden, welche Integrationsverfahren sich für die Berechnung von Trajektorien mit Hilfe des NMPC-Verfahrens prinzipiell besonders eignen. 
+Um die Qualität der Trajektorien zu steigern, wurde ein im Vergleich zur Vorgängerarbeit aufwendigeres Integrationsverfahren mit kleinerem Schrittfehler für die NMPC implementiert. Zukünftig wäre an dieser Stelle eine weitere Untersuchung denkbar, um zu entscheiden, welche Integrationsverfahren sich für die Berechnung von Trajektorien mit Hilfe des NMPC-Verfahrens prinzipiell besonders eignen. 
 
 Der Einfluss der Systemparameter des Motors wurde in dieser Arbeit nicht betrachtet.
-Ebenso könnten die Parametervariationen daher auch für die Motorparameter durchgeführt werden.
+Ebenso könnten die Parametervariationen auch für die Motorparameter durchgeführt werden.
 Der Code müsste dafür nur geringfügig erweitert werden.
 Somit könnte der Einfluss des Motors untersucht und unter Umständen bei zukünftigen Änderungen am System berücksichtigt werden.
 
-%Der in dieser Arbeit erstellte Code ist allgemein für die Weiterverwendung in zukünftigen konzipiert.
-%Unsicherheiten
+Außerdem besteht die Möglichkeit, die Robustheit des Systems zu testen, indem Unsicherheiten von Parametern modelliert werden.
+Dazu könnten die Parameter des Modells, an dem die Reglerauslegung stattfindet, im Vergleich zu den Parametern, mit denen das Modell simuliert wird, mit Abweichungen versehen werden.
