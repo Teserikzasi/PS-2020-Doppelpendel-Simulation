@@ -1,0 +1,1086 @@
+
+
+---Beste Trajektorien bezüglich Anfangs- und Endwertfehler (Schwelle: 1.000000)---
+Trajektorie                              Endwertfehler     J_dev=sqrt(dev_end^2+dev_init^2)
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat     0.004069          0.004069
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat     0.005812          0.005812
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat   0.000763          0.000763
+Traj21_dev0_0.00_3.14_x0max1.4.mat       0.012018          0.012018
+Traj23_dev0.1_3.14_3.14_x0max1.4.mat     0.013941          0.013941
+Traj24                                   Inf               Inf
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat    0.018870          0.018870
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat    0.004953          0.004953
+Traj34                                   Inf               Inf
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat    0.004153          0.004153
+Traj42_dev0.1_-3.14_0.00_x0max1.mat      0.005014          0.005014
+Traj43_dev0_0.00_-3.14_x0max0.6.mat      0.001700          0.001700
+
+
+---Beste Trajektorien bezüglich Endwertfehler (Schwelle nur für Anfangswertfehler: 1.000000)---
+Trajektorie                              Endwertfehler/dev
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat     0.004069
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat     0.005812
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat   0.000763
+Traj21_dev0_0.00_3.14_x0max1.4.mat       0.012018
+Traj23_dev0.1_3.14_3.14_x0max1.4.mat     0.013941
+Traj24                                   Inf
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat    0.018870
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat    0.004953
+Traj34                                   Inf
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat    0.004153
+Traj42_dev0.1_-3.14_0.00_x0max1.mat      0.005014
+Traj43_dev0_0.00_-3.14_x0max0.6.mat      0.001700
+
+
+----------------gültige Trajektorien mit Endwertfehler<=0.010000----------------
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj43_dev0_0.00_-3.14_x0max0.6.mat
+Traj14_dev0_3.14_3.14_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.mat
+Traj32_dev0.3_-3.14_3.14_x0max1.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.mat
+Traj43_dev0.1_0.00_-3.14_x0max1.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.mat
+Traj13_dev0_3.14_0.00_x0max1.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.2.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat
+Traj13_dev0_3.14_0.00_x0max1.2.mat
+Traj43_dev0_0.00_-3.14_x0max1.2.mat
+Traj12_dev0.3_0.00_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat
+
+Ergebnis
+Traj12: 2
+Traj13: 3
+Traj14: 7
+Traj21: 0
+Traj23: 0
+Traj24: 0
+Traj31: 0
+Traj32: 5
+Traj34: 0
+Traj41: 8
+Traj42: 5
+Traj43: 4
+Gesamt: 34
+
+
+----------------gültige Trajektorien mit Endwertfehler<=0.100000----------------
+Traj41_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj21_dev0.5_0.00_3.14_x0max0.6.mat
+Traj32_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.3_3.14_0.00_x0max0.6.mat
+Traj21_dev0.3_0.00_3.14_x0max0.6.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat
+Traj14_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj21_dev0.1_0.00_3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj41_dev0_3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0_-3.14_0.00_x0max0.6.mat
+Traj21_dev0_0.00_3.14_x0max0.6.mat
+Traj32_dev0_-3.14_3.14_x0max0.6.mat
+Traj42_dev0_-3.14_0.00_x0max0.6.mat
+Traj43_dev0_0.00_-3.14_x0max0.6.mat
+Traj14_dev0_3.14_3.14_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.5_0.00_3.14_x0max0.8.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj41_dev0.3_3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.3_0.00_3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj41_dev0.1_3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.1_0.00_3.14_x0max0.8.mat
+Traj32_dev0.1_3.14_3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj13_dev0.1_3.14_0.00_x0max0.8.mat
+Traj41_dev0_3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0_-3.14_0.00_x0max0.8.mat
+Traj31_dev0_3.14_0.00_x0max0.8.mat
+Traj21_dev0_0.00_3.14_x0max0.8.mat
+Traj32_dev0_-3.14_3.14_x0max0.8.mat
+Traj42_dev0_-3.14_0.00_x0max0.8.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.mat
+Traj21_dev0.5_0.00_3.14_x0max1.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.mat
+Traj41_dev0.3_3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.mat
+Traj21_dev0.3_0.00_3.14_x0max1.mat
+Traj32_dev0.3_3.14_3.14_x0max1.mat
+Traj32_dev0.3_-3.14_3.14_x0max1.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.mat
+Traj41_dev0.1_3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.mat
+Traj21_dev0.1_0.00_3.14_x0max1.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.mat
+Traj43_dev0.1_0.00_-3.14_x0max1.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.mat
+Traj41_dev0_3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_-3.14_x0max1.mat
+Traj31_dev0_-3.14_0.00_x0max1.mat
+Traj31_dev0_3.14_0.00_x0max1.mat
+Traj21_dev0_0.00_3.14_x0max1.mat
+Traj42_dev0_-3.14_0.00_x0max1.mat
+Traj13_dev0_3.14_0.00_x0max1.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.5_0.00_3.14_x0max1.2.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj41_dev0.3_3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.3_0.00_3.14_x0max1.2.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj41_dev0.1_3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.1_0.00_3.14_x0max1.2.mat
+Traj32_dev0.1_3.14_3.14_x0max1.2.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat
+Traj41_dev0_3.14_3.14_x0max1.2.mat
+Traj41_dev0_-3.14_3.14_x0max1.2.mat
+Traj31_dev0_-3.14_0.00_x0max1.2.mat
+Traj21_dev0_0.00_3.14_x0max1.2.mat
+Traj42_dev0_-3.14_0.00_x0max1.2.mat
+Traj13_dev0_3.14_0.00_x0max1.2.mat
+Traj43_dev0_0.00_-3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj21_dev0.5_0.00_3.14_x0max1.4.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj41_dev0.3_3.14_3.14_x0max1.4.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.3_3.14_0.00_x0max1.4.mat
+Traj21_dev0.3_0.00_3.14_x0max1.4.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj12_dev0.3_0.00_3.14_x0max1.4.mat
+Traj41_dev0.1_3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.1_3.14_0.00_x0max1.4.mat
+Traj21_dev0.1_0.00_3.14_x0max1.4.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj23_dev0.1_3.14_3.14_x0max1.4.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj41_dev0_3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0_-3.14_0.00_x0max1.4.mat
+Traj21_dev0_0.00_3.14_x0max1.4.mat
+Traj42_dev0_-3.14_0.00_x0max1.4.mat
+Traj13_dev0_3.14_0.00_x0max1.4.mat
+
+Ergebnis
+Traj12: 2
+Traj13: 5
+Traj14: 8
+Traj21: 20
+Traj23: 1
+Traj24: 0
+Traj31: 25
+Traj32: 11
+Traj34: 0
+Traj41: 49
+Traj42: 20
+Traj43: 4
+Gesamt: 145
+
+
+----------------gültige Trajektorien mit Endwertfehler<=1.000000----------------
+Traj41_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj21_dev0.5_0.00_3.14_x0max0.6.mat
+Traj32_dev0.5_3.14_3.14_x0max0.6.mat
+Traj32_dev0.5_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.5_0.00_3.14_x0max0.6.mat
+Traj23_dev0.5_3.14_3.14_x0max0.6.mat
+Traj13_dev0.5_3.14_0.00_x0max0.6.mat
+Traj14_dev0.5_3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj31_dev0.3_3.14_0.00_x0max0.6.mat
+Traj21_dev0.3_0.00_3.14_x0max0.6.mat
+Traj32_dev0.3_3.14_3.14_x0max0.6.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.3_0.00_3.14_x0max0.6.mat
+Traj23_dev0.3_3.14_3.14_x0max0.6.mat
+Traj13_dev0.3_3.14_0.00_x0max0.6.mat
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat
+Traj14_dev0.3_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj21_dev0.1_0.00_3.14_x0max0.6.mat
+Traj32_dev0.1_3.14_3.14_x0max0.6.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat
+Traj12_dev0.1_0.00_3.14_x0max0.6.mat
+Traj23_dev0.1_3.14_3.14_x0max0.6.mat
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat
+Traj41_dev0_3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_3.14_x0max0.6.mat
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat
+Traj31_dev0_-3.14_0.00_x0max0.6.mat
+Traj31_dev0_3.14_0.00_x0max0.6.mat
+Traj21_dev0_0.00_3.14_x0max0.6.mat
+Traj32_dev0_3.14_3.14_x0max0.6.mat
+Traj32_dev0_-3.14_3.14_x0max0.6.mat
+Traj42_dev0_-3.14_0.00_x0max0.6.mat
+Traj43_dev0_0.00_-3.14_x0max0.6.mat
+Traj14_dev0_3.14_3.14_x0max0.6.mat
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat
+Traj41_dev0.5_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.5_0.00_3.14_x0max0.8.mat
+Traj42_dev0.5_-3.14_0.00_x0max0.8.mat
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat
+Traj41_dev0.3_3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj41_dev0.3_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.3_0.00_3.14_x0max0.8.mat
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat
+Traj41_dev0.1_3.14_3.14_x0max0.8.mat
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj21_dev0.1_0.00_3.14_x0max0.8.mat
+Traj32_dev0.1_3.14_3.14_x0max0.8.mat
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat
+Traj13_dev0.1_3.14_0.00_x0max0.8.mat
+Traj41_dev0_3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_3.14_x0max0.8.mat
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat
+Traj31_dev0_-3.14_0.00_x0max0.8.mat
+Traj31_dev0_3.14_0.00_x0max0.8.mat
+Traj21_dev0_0.00_3.14_x0max0.8.mat
+Traj32_dev0_3.14_3.14_x0max0.8.mat
+Traj32_dev0_-3.14_3.14_x0max0.8.mat
+Traj42_dev0_-3.14_0.00_x0max0.8.mat
+Traj12_dev0_0.00_3.14_x0max0.8.mat
+Traj13_dev0_3.14_0.00_x0max0.8.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.mat
+Traj21_dev0.5_0.00_3.14_x0max1.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.mat
+Traj41_dev0.3_3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.mat
+Traj31_dev0.3_3.14_0.00_x0max1.mat
+Traj21_dev0.3_0.00_3.14_x0max1.mat
+Traj32_dev0.3_3.14_3.14_x0max1.mat
+Traj32_dev0.3_-3.14_3.14_x0max1.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.mat
+Traj12_dev0.3_0.00_3.14_x0max1.mat
+Traj41_dev0.1_3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.mat
+Traj21_dev0.1_0.00_3.14_x0max1.mat
+Traj32_dev0.1_3.14_3.14_x0max1.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.mat
+Traj12_dev0.1_0.00_3.14_x0max1.mat
+Traj43_dev0.1_0.00_-3.14_x0max1.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.mat
+Traj41_dev0_3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_3.14_x0max1.mat
+Traj41_dev0_-3.14_-3.14_x0max1.mat
+Traj31_dev0_-3.14_0.00_x0max1.mat
+Traj31_dev0_3.14_0.00_x0max1.mat
+Traj21_dev0_0.00_3.14_x0max1.mat
+Traj42_dev0_-3.14_0.00_x0max1.mat
+Traj13_dev0_3.14_0.00_x0max1.mat
+Traj41_dev0.5_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.5_0.00_3.14_x0max1.2.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.2.mat
+Traj41_dev0.3_3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.3_0.00_3.14_x0max1.2.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.2.mat
+Traj41_dev0.1_3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.2.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj21_dev0.1_0.00_3.14_x0max1.2.mat
+Traj32_dev0.1_3.14_3.14_x0max1.2.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat
+Traj13_dev0.1_3.14_0.00_x0max1.2.mat
+Traj41_dev0_3.14_3.14_x0max1.2.mat
+Traj41_dev0_-3.14_3.14_x0max1.2.mat
+Traj41_dev0_-3.14_-3.14_x0max1.2.mat
+Traj31_dev0_-3.14_0.00_x0max1.2.mat
+Traj21_dev0_0.00_3.14_x0max1.2.mat
+Traj32_dev0_3.14_3.14_x0max1.2.mat
+Traj42_dev0_-3.14_0.00_x0max1.2.mat
+Traj12_dev0_0.00_3.14_x0max1.2.mat
+Traj13_dev0_3.14_0.00_x0max1.2.mat
+Traj43_dev0_0.00_-3.14_x0max1.2.mat
+Traj41_dev0.5_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj21_dev0.5_0.00_3.14_x0max1.4.mat
+Traj42_dev0.5_-3.14_0.00_x0max1.4.mat
+Traj41_dev0.3_3.14_3.14_x0max1.4.mat
+Traj41_dev0.3_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.3_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.3_3.14_0.00_x0max1.4.mat
+Traj21_dev0.3_0.00_3.14_x0max1.4.mat
+Traj42_dev0.3_-3.14_0.00_x0max1.4.mat
+Traj12_dev0.3_0.00_3.14_x0max1.4.mat
+Traj23_dev0.3_3.14_3.14_x0max1.4.mat
+Traj13_dev0.3_3.14_0.00_x0max1.4.mat
+Traj41_dev0.1_3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat
+Traj41_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj31_dev0.1_3.14_0.00_x0max1.4.mat
+Traj21_dev0.1_0.00_3.14_x0max1.4.mat
+Traj42_dev0.1_-3.14_0.00_x0max1.4.mat
+Traj12_dev0.1_0.00_3.14_x0max1.4.mat
+Traj23_dev0.1_3.14_3.14_x0max1.4.mat
+Traj14_dev0.1_-3.14_-3.14_x0max1.4.mat
+Traj41_dev0_3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_3.14_x0max1.4.mat
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat
+Traj31_dev0_-3.14_0.00_x0max1.4.mat
+Traj21_dev0_0.00_3.14_x0max1.4.mat
+Traj42_dev0_-3.14_0.00_x0max1.4.mat
+Traj13_dev0_3.14_0.00_x0max1.4.mat
+
+Ergebnis
+Traj12: 10
+Traj13: 10
+Traj14: 9
+Traj21: 20
+Traj23: 5
+Traj24: 0
+Traj31: 27
+Traj32: 18
+Traj34: 0
+Traj41: 51
+Traj42: 20
+Traj43: 4
+Gesamt: 174
+
+--- Anfangswertfehler und Endwertfehler für alle Trajektorien ---
+Trajektorie                              Anfangswertfehler Endwertfehler
+Traj41_dev0.5_3.14_3.14_x0max0.6.mat     0.001254          7.558855
+Traj41_dev0.5_-3.14_3.14_x0max0.6.mat    0.000000          0.017927
+Traj41_dev0.5_3.14_-3.14_x0max0.6.mat    0.001111          13.242062
+Traj41_dev0.5_-3.14_-3.14_x0max0.6.mat   0.000000          0.013507
+Traj31_dev0.5_-3.14_0.00_x0max0.6.mat    0.000000          0.020697
+Traj31_dev0.5_3.14_0.00_x0max0.6.mat     5.008664          12.192098
+Traj21_dev0.5_0.00_-3.14_x0max0.6.mat    2.921940          12.456916
+Traj21_dev0.5_0.00_3.14_x0max0.6.mat     0.000000          0.042770
+Traj32_dev0.5_3.14_3.14_x0max0.6.mat     0.000000          0.352899
+Traj32_dev0.5_-3.14_3.14_x0max0.6.mat    0.000000          0.042128
+Traj32_dev0.5_3.14_-3.14_x0max0.6.mat    6.901001          5.221692
+Traj32_dev0.5_-3.14_-3.14_x0max0.6.mat   2.686769          4.050559
+Traj42_dev0.5_-3.14_0.00_x0max0.6.mat    0.000000          0.020222
+Traj42_dev0.5_3.14_0.00_x0max0.6.mat     6.063040          11.857404
+Traj12_dev0.5_0.00_-3.14_x0max0.6.mat    4.193993          4.037009
+Traj12_dev0.5_0.00_3.14_x0max0.6.mat     0.000000          0.463069
+Traj23_dev0.5_3.14_3.14_x0max0.6.mat     0.000000          0.624952
+Traj23_dev0.5_-3.14_3.14_x0max0.6.mat    6.961131          5.419020
+Traj23_dev0.5_3.14_-3.14_x0max0.6.mat    2.921615          6.104780
+Traj23_dev0.5_-3.14_-3.14_x0max0.6.mat   2.732620          6.380518
+Traj13_dev0.5_-3.14_0.00_x0max0.6.mat    4.253481          2.525708
+Traj13_dev0.5_3.14_0.00_x0max0.6.mat     0.000000          0.297012
+Traj43_dev0.5_0.00_-3.14_x0max0.6.mat    0.000000          28.335440
+Traj43_dev0.5_0.00_3.14_x0max0.6.mat     6.178466          5.164062
+Traj14_dev0.5_3.14_3.14_x0max0.6.mat     0.000000          0.823644
+Traj14_dev0.5_-3.14_3.14_x0max0.6.mat    4.253960          0.886832
+Traj14_dev0.5_3.14_-3.14_x0max0.6.mat    4.192189          0.721959
+Traj14_dev0.5_-3.14_-3.14_x0max0.6.mat   1.253076          1.093007
+Traj24_dev0.5_-3.14_0.00_x0max0.6.mat    2.730016          1.085250
+Traj24_dev0.5_3.14_0.00_x0max0.6.mat     2.921358          1.142209
+Traj34_dev0.5_0.00_-3.14_x0max0.6.mat    2.682529          0.671650
+Traj34_dev0.5_0.00_3.14_x0max0.6.mat     3.036911          0.937413
+Traj41_dev0.3_3.14_3.14_x0max0.6.mat     7.091627          9.075367
+Traj41_dev0.3_-3.14_3.14_x0max0.6.mat    0.000000          0.024708
+Traj41_dev0.3_3.14_-3.14_x0max0.6.mat    5.943946          10.959348
+Traj41_dev0.3_-3.14_-3.14_x0max0.6.mat   0.000000          0.017792
+Traj31_dev0.3_-3.14_0.00_x0max0.6.mat    0.000000          0.020665
+Traj31_dev0.3_3.14_0.00_x0max0.6.mat     0.000000          0.050342
+Traj21_dev0.3_0.00_-3.14_x0max0.6.mat    2.802400          11.633045
+Traj21_dev0.3_0.00_3.14_x0max0.6.mat     0.000000          0.025033
+Traj32_dev0.3_3.14_3.14_x0max0.6.mat     0.000000          0.836889
+Traj32_dev0.3_-3.14_3.14_x0max0.6.mat    0.000000          0.004955
+Traj32_dev0.3_3.14_-3.14_x0max0.6.mat    6.780433          6.157696
+Traj32_dev0.3_-3.14_-3.14_x0max0.6.mat   2.767536          4.411952
+Traj42_dev0.3_-3.14_0.00_x0max0.6.mat    0.000000          0.007604
+Traj42_dev0.3_3.14_0.00_x0max0.6.mat     5.944652          4.711083
+Traj12_dev0.3_0.00_-3.14_x0max0.6.mat    4.163705          3.814061
+Traj12_dev0.3_0.00_3.14_x0max0.6.mat     0.000000          0.153192
+Traj23_dev0.3_3.14_3.14_x0max0.6.mat     0.000000          0.118687
+Traj23_dev0.3_-3.14_3.14_x0max0.6.mat    6.898021          6.767592
+Traj23_dev0.3_3.14_-3.14_x0max0.6.mat    2.802459          6.659229
+Traj23_dev0.3_-3.14_-3.14_x0max0.6.mat   2.803339          5.210395
+Traj13_dev0.3_-3.14_0.00_x0max0.6.mat    4.225507          7.382759
+Traj13_dev0.3_3.14_0.00_x0max0.6.mat     0.000000          0.132545
+Traj43_dev0.3_0.00_-3.14_x0max0.6.mat    0.000000          31.029628
+Traj43_dev0.3_0.00_3.14_x0max0.6.mat     6.069786          7.467400
+Traj14_dev0.3_3.14_3.14_x0max0.6.mat     0.000000          0.024975
+Traj14_dev0.3_-3.14_3.14_x0max0.6.mat    4.225354          0.807362
+Traj14_dev0.3_3.14_-3.14_x0max0.6.mat    4.162195          0.745765
+Traj14_dev0.3_-3.14_-3.14_x0max0.6.mat   0.000000          0.002450
+Traj24_dev0.3_-3.14_0.00_x0max0.6.mat    2.803456          0.885187
+Traj24_dev0.3_3.14_0.00_x0max0.6.mat     2.802410          0.287845
+Traj34_dev0.3_0.00_-3.14_x0max0.6.mat    2.766896          0.773032
+Traj34_dev0.3_0.00_3.14_x0max0.6.mat     2.928217          0.685878
+Traj41_dev0.1_3.14_3.14_x0max0.6.mat     0.000000          1.785416
+Traj41_dev0.1_-3.14_3.14_x0max0.6.mat    0.000000          0.050374
+Traj41_dev0.1_3.14_-3.14_x0max0.6.mat    5.925436          10.226700
+Traj41_dev0.1_-3.14_-3.14_x0max0.6.mat   0.000000          0.007906
+Traj31_dev0.1_-3.14_0.00_x0max0.6.mat    0.000000          0.032806
+Traj31_dev0.1_3.14_0.00_x0max0.6.mat     4.995710          8.443425
+Traj21_dev0.1_0.00_-3.14_x0max0.6.mat    2.783708          4.926995
+Traj21_dev0.1_0.00_3.14_x0max0.6.mat     0.000000          0.016273
+Traj32_dev0.1_3.14_3.14_x0max0.6.mat     0.000000          0.138634
+Traj32_dev0.1_-3.14_3.14_x0max0.6.mat    0.000000          0.005405
+Traj32_dev0.1_3.14_-3.14_x0max0.6.mat    6.754141          7.311839
+Traj32_dev0.1_-3.14_-3.14_x0max0.6.mat   2.807322          4.268640
+Traj42_dev0.1_-3.14_0.00_x0max0.6.mat    0.000000          0.005014
+Traj42_dev0.1_3.14_0.00_x0max0.6.mat     5.925396          6.689540
+Traj12_dev0.1_0.00_-3.14_x0max0.6.mat    4.179932          4.186606
+Traj12_dev0.1_0.00_3.14_x0max0.6.mat     0.000000          0.125631
+Traj23_dev0.1_3.14_3.14_x0max0.6.mat     0.000000          0.237016
+Traj23_dev0.1_-3.14_3.14_x0max0.6.mat    6.833220          4.569863
+Traj23_dev0.1_3.14_-3.14_x0max0.6.mat    2.783743          6.272545
+Traj23_dev0.1_-3.14_-3.14_x0max0.6.mat   2.799554          5.737790
+Traj13_dev0.1_-3.14_0.00_x0max0.6.mat    4.199937          3.489845
+Traj13_dev0.1_3.14_0.00_x0max0.6.mat     0.000000          0.005812
+Traj43_dev0.1_0.00_-3.14_x0max0.6.mat    0.000000          0.004621
+Traj43_dev0.1_0.00_3.14_x0max0.6.mat     6.000006          7.316801
+Traj14_dev0.1_3.14_3.14_x0max0.6.mat     0.000000          0.004333
+Traj14_dev0.1_-3.14_3.14_x0max0.6.mat    4.199946          0.745796
+Traj14_dev0.1_3.14_-3.14_x0max0.6.mat    4.179864          0.720113
+Traj14_dev0.1_-3.14_-3.14_x0max0.6.mat   1.717522          1.530901
+Traj24_dev0.1_-3.14_0.00_x0max0.6.mat    2.799567          0.511117
+Traj24_dev0.1_3.14_0.00_x0max0.6.mat     2.783737          0.500516
+Traj34_dev0.1_0.00_-3.14_x0max0.6.mat    2.806484          0.935717
+Traj34_dev0.1_0.00_3.14_x0max0.6.mat     2.858421          1.048272
+Traj41_dev0_3.14_3.14_x0max0.6.mat       0.000000          0.045248
+Traj41_dev0_-3.14_3.14_x0max0.6.mat      0.000000          0.053094
+Traj41_dev0_3.14_-3.14_x0max0.6.mat      5.932715          6.888853
+Traj41_dev0_-3.14_-3.14_x0max0.6.mat     0.000000          0.067591
+Traj31_dev0_-3.14_0.00_x0max0.6.mat      0.000000          0.024235
+Traj31_dev0_3.14_0.00_x0max0.6.mat       0.000000          0.641298
+Traj21_dev0_0.00_-3.14_x0max0.6.mat      2.793391          7.376955
+Traj21_dev0_0.00_3.14_x0max0.6.mat       0.000000          0.012054
+Traj32_dev0_3.14_3.14_x0max0.6.mat       0.000000          0.142792
+Traj32_dev0_-3.14_3.14_x0max0.6.mat      0.000000          0.026257
+Traj32_dev0_3.14_-3.14_x0max0.6.mat      6.752683          3.491099
+Traj32_dev0_-3.14_-3.14_x0max0.6.mat     2.830830          4.379351
+Traj42_dev0_-3.14_0.00_x0max0.6.mat      0.000000          0.013200
+Traj42_dev0_3.14_0.00_x0max0.6.mat       5.932739          6.433346
+Traj12_dev0_0.00_-3.14_x0max0.6.mat      4.191177          3.722542
+Traj12_dev0_0.00_3.14_x0max0.6.mat       0.000000          26.663854
+Traj23_dev0_3.14_3.14_x0max0.6.mat       0.000000          5.846215
+Traj23_dev0_-3.14_3.14_x0max0.6.mat      6.816505          7.151301
+Traj23_dev0_3.14_-3.14_x0max0.6.mat      2.791032          5.918350
+Traj23_dev0_-3.14_-3.14_x0max0.6.mat     2.794953          5.925788
+Traj13_dev0_-3.14_0.00_x0max0.6.mat      4.189774          9.599092
+Traj13_dev0_3.14_0.00_x0max0.6.mat       0.000000          6.749159
+Traj43_dev0_0.00_-3.14_x0max0.6.mat      0.000000          0.001700
+Traj43_dev0_0.00_3.14_x0max0.6.mat       5.972412          6.850014
+Traj14_dev0_3.14_3.14_x0max0.6.mat       0.000000          0.001446
+Traj14_dev0_-3.14_3.14_x0max0.6.mat      4.189629          0.715161
+Traj14_dev0_3.14_-3.14_x0max0.6.mat      4.189707          0.710997
+Traj14_dev0_-3.14_-3.14_x0max0.6.mat     0.000000          0.001384
+Traj24_dev0_-3.14_0.00_x0max0.6.mat      2.791263          0.603447
+Traj24_dev0_3.14_0.00_x0max0.6.mat       2.791263          0.603449
+Traj34_dev0_0.00_-3.14_x0max0.6.mat      2.830829          0.991472
+Traj34_dev0_0.00_3.14_x0max0.6.mat       2.830837          0.917484
+Traj41_dev0.5_3.14_3.14_x0max0.8.mat     0.000000          0.052980
+Traj41_dev0.5_-3.14_3.14_x0max0.8.mat    0.000000          0.017962
+Traj41_dev0.5_3.14_-3.14_x0max0.8.mat    5.940547          8.239267
+Traj41_dev0.5_-3.14_-3.14_x0max0.8.mat   0.000000          0.024531
+Traj31_dev0.5_-3.14_0.00_x0max0.8.mat    0.000000          0.019501
+Traj31_dev0.5_3.14_0.00_x0max0.8.mat     5.008517          10.838719
+Traj21_dev0.5_0.00_-3.14_x0max0.8.mat    2.799686          7.600110
+Traj21_dev0.5_0.00_3.14_x0max0.8.mat     0.000000          0.042198
+Traj32_dev0.5_3.14_3.14_x0max0.8.mat     3.102370          15.201793
+Traj32_dev0.5_-3.14_3.14_x0max0.8.mat    0.000000          0.016819
+Traj32_dev0.5_3.14_-3.14_x0max0.8.mat    6.777416          3.765846
+Traj32_dev0.5_-3.14_-3.14_x0max0.8.mat   2.709218          5.349818
+Traj42_dev0.5_-3.14_0.00_x0max0.8.mat    0.000000          0.020222
+Traj42_dev0.5_3.14_0.00_x0max0.8.mat     5.940579          12.020119
+Traj12_dev0.5_0.00_-3.14_x0max0.8.mat    4.134695          8.547151
+Traj12_dev0.5_0.00_3.14_x0max0.8.mat     0.000000          0.153478
+Traj23_dev0.5_3.14_3.14_x0max0.8.mat     0.000000          5.273056
+Traj23_dev0.5_-3.14_3.14_x0max0.8.mat    6.898084          5.640265
+Traj23_dev0.5_3.14_-3.14_x0max0.8.mat    2.799716          7.790976
+Traj23_dev0.5_-3.14_-3.14_x0max0.8.mat   2.803066          9.261793
+Traj13_dev0.5_-3.14_0.00_x0max0.8.mat    4.225545          9.075462
+Traj13_dev0.5_3.14_0.00_x0max0.8.mat     0.000000          11.274888
+Traj43_dev0.5_0.00_-3.14_x0max0.8.mat    0.000000          0.000929
+Traj43_dev0.5_0.00_3.14_x0max0.8.mat     6.069790          7.578464
+Traj14_dev0.5_3.14_3.14_x0max0.8.mat     0.000000          0.001057
+Traj14_dev0.5_-3.14_3.14_x0max0.8.mat    4.225617          0.996211
+Traj14_dev0.5_3.14_-3.14_x0max0.8.mat    4.133966          1.165623
+Traj14_dev0.5_-3.14_-3.14_x0max0.8.mat   0.000000          0.000763
+Traj24_dev0.5_-3.14_0.00_x0max0.8.mat    2.800642          1.291554
+Traj24_dev0.5_3.14_0.00_x0max0.8.mat     2.799042          1.155198
+Traj34_dev0.5_0.00_-3.14_x0max0.8.mat    2.709209          0.940448
+Traj34_dev0.5_0.00_3.14_x0max0.8.mat     2.928213          1.423250
+Traj41_dev0.3_3.14_3.14_x0max0.8.mat     0.000000          0.047763
+Traj41_dev0.3_-3.14_3.14_x0max0.8.mat    0.000000          0.011525
+Traj41_dev0.3_3.14_-3.14_x0max0.8.mat    5.905997          8.185539
+Traj41_dev0.3_-3.14_-3.14_x0max0.8.mat   0.000000          0.017819
+Traj31_dev0.3_-3.14_0.00_x0max0.8.mat    0.000000          0.020656
+Traj31_dev0.3_3.14_0.00_x0max0.8.mat     4.996105          10.832864
+Traj21_dev0.3_0.00_-3.14_x0max0.8.mat    2.764688          12.391957
+Traj21_dev0.3_0.00_3.14_x0max0.8.mat     0.000000          0.050273
+Traj32_dev0.3_3.14_3.14_x0max0.8.mat     4.996251          8.045999
+Traj32_dev0.3_-3.14_3.14_x0max0.8.mat    0.000000          0.004953
+Traj32_dev0.3_3.14_-3.14_x0max0.8.mat    6.777175          6.312167
+Traj32_dev0.3_-3.14_-3.14_x0max0.8.mat   2.735316          5.277445
+Traj42_dev0.3_-3.14_0.00_x0max0.8.mat    0.000000          0.010045
+Traj42_dev0.3_3.14_0.00_x0max0.8.mat     5.905900          9.934083
+Traj12_dev0.3_0.00_-3.14_x0max0.8.mat    4.146751          8.076312
+Traj12_dev0.3_0.00_3.14_x0max0.8.mat     0.000000          28.758103
+Traj23_dev0.3_3.14_3.14_x0max0.8.mat     0.000000          6.886463
+Traj23_dev0.3_-3.14_3.14_x0max0.8.mat    6.833295          9.868026
+Traj23_dev0.3_3.14_-3.14_x0max0.8.mat    2.764329          7.017608
+Traj23_dev0.3_-3.14_-3.14_x0max0.8.mat   2.799543          9.572162
+Traj13_dev0.3_-3.14_0.00_x0max0.8.mat    4.199854          8.598327
+Traj13_dev0.3_3.14_0.00_x0max0.8.mat     0.000000          8.202692
+Traj43_dev0.3_0.00_-3.14_x0max0.8.mat    0.000000          30.987643
+Traj43_dev0.3_0.00_3.14_x0max0.8.mat     6.000002          8.044334
+Traj14_dev0.3_3.14_3.14_x0max0.8.mat     0.000000          0.001455
+Traj14_dev0.3_-3.14_3.14_x0max0.8.mat    4.199867          0.856213
+Traj14_dev0.3_3.14_-3.14_x0max0.8.mat    4.146747          6.443353
+Traj14_dev0.3_-3.14_-3.14_x0max0.8.mat   0.000000          0.003612
+Traj24_dev0.3_-3.14_0.00_x0max0.8.mat    2.799604          5.786956
+Traj24_dev0.3_3.14_0.00_x0max0.8.mat     2.764330          0.444341
+Traj34_dev0.3_0.00_-3.14_x0max0.8.mat    2.735317          0.935407
+Traj34_dev0.3_0.00_3.14_x0max0.8.mat     2.858433          1.729914
+Traj41_dev0.1_3.14_3.14_x0max0.8.mat     0.000000          0.042153
+Traj41_dev0.1_-3.14_3.14_x0max0.8.mat    0.000000          2.115328
+Traj41_dev0.1_3.14_-3.14_x0max0.8.mat    5.914305          7.418213
+Traj41_dev0.1_-3.14_-3.14_x0max0.8.mat   0.000000          0.007906
+Traj31_dev0.1_-3.14_0.00_x0max0.8.mat    0.000000          0.019226
+Traj31_dev0.1_3.14_0.00_x0max0.8.mat     4.994925          8.281949
+Traj21_dev0.1_0.00_-3.14_x0max0.8.mat    2.773050          11.201152
+Traj21_dev0.1_0.00_3.14_x0max0.8.mat     0.000000          0.016318
+Traj32_dev0.1_3.14_3.14_x0max0.8.mat     0.000000          0.083809
+Traj32_dev0.1_-3.14_3.14_x0max0.8.mat    0.000000          0.005405
+Traj32_dev0.1_3.14_-3.14_x0max0.8.mat    6.780449          7.384084
+Traj32_dev0.1_-3.14_-3.14_x0max0.8.mat   2.766909          5.354187
+Traj42_dev0.1_-3.14_0.00_x0max0.8.mat    0.000000          0.044565
+Traj42_dev0.1_3.14_0.00_x0max0.8.mat     5.914182          4.322548
+Traj12_dev0.1_0.00_-3.14_x0max0.8.mat    4.162224          4.849986
+Traj12_dev0.1_0.00_3.14_x0max0.8.mat     0.000000          1.274370
+Traj23_dev0.1_3.14_3.14_x0max0.8.mat     0.000000          4.922524
+Traj23_dev0.1_-3.14_3.14_x0max0.8.mat    6.795134          9.954283
+Traj23_dev0.1_3.14_-3.14_x0max0.8.mat    2.772715          6.289423
+Traj23_dev0.1_-3.14_-3.14_x0max0.8.mat   2.783838          3.872873
+Traj13_dev0.1_-3.14_0.00_x0max0.8.mat    4.180015          2.439228
+Traj13_dev0.1_3.14_0.00_x0max0.8.mat     0.000000          0.025834
+Traj43_dev0.1_0.00_-3.14_x0max0.8.mat    0.000000          0.014180
+Traj43_dev0.1_0.00_3.14_x0max0.8.mat     5.948047          7.583877
+Traj14_dev0.1_3.14_3.14_x0max0.8.mat     0.000000          0.014608
+Traj14_dev0.1_-3.14_3.14_x0max0.8.mat    4.180149          0.853662
+Traj14_dev0.1_3.14_-3.14_x0max0.8.mat    4.162209          0.890142
+Traj14_dev0.1_-3.14_-3.14_x0max0.8.mat   1.717177          1.674269
+Traj24_dev0.1_-3.14_0.00_x0max0.8.mat    2.783757          0.740572
+Traj24_dev0.1_3.14_0.00_x0max0.8.mat     2.772583          0.391435
+Traj34_dev0.1_0.00_-3.14_x0max0.8.mat    2.766895          1.037263
+Traj34_dev0.1_0.00_3.14_x0max0.8.mat     2.806476          1.057211
+Traj41_dev0_3.14_3.14_x0max0.8.mat       0.000000          0.045248
+Traj41_dev0_-3.14_3.14_x0max0.8.mat      0.000000          0.053048
+Traj41_dev0_3.14_-3.14_x0max0.8.mat      5.919305          9.277355
+Traj41_dev0_-3.14_-3.14_x0max0.8.mat     0.000000          0.068308
+Traj31_dev0_-3.14_0.00_x0max0.8.mat      0.000000          0.024250
+Traj31_dev0_3.14_0.00_x0max0.8.mat       0.000000          0.034673
+Traj21_dev0_0.00_-3.14_x0max0.8.mat      2.777594          5.095490
+Traj21_dev0_0.00_3.14_x0max0.8.mat       0.000000          0.045237
+Traj32_dev0_3.14_3.14_x0max0.8.mat       0.000000          0.130330
+Traj32_dev0_-3.14_3.14_x0max0.8.mat      0.000000          0.012493
+Traj32_dev0_3.14_-3.14_x0max0.8.mat      6.772559          7.496183
+Traj32_dev0_-3.14_-3.14_x0max0.8.mat     2.785228          4.806648
+Traj42_dev0_-3.14_0.00_x0max0.8.mat      0.000000          0.013200
+Traj42_dev0_3.14_0.00_x0max0.8.mat       5.919194          4.199819
+Traj12_dev0_0.00_-3.14_x0max0.8.mat      4.170676          7.831766
+Traj12_dev0_0.00_3.14_x0max0.8.mat       0.000000          0.216817
+Traj23_dev0_3.14_3.14_x0max0.8.mat       0.000000          5.624229
+Traj23_dev0_-3.14_3.14_x0max0.8.mat      6.761585          4.976495
+Traj23_dev0_3.14_-3.14_x0max0.8.mat      2.777780          6.005307
+Traj23_dev0_-3.14_-3.14_x0max0.8.mat     2.777736          8.449017
+Traj13_dev0_-3.14_0.00_x0max0.8.mat      4.170654          3.807621
+Traj13_dev0_3.14_0.00_x0max0.8.mat       0.000000          0.274798
+Traj43_dev0_0.00_-3.14_x0max0.8.mat      0.000000          24.829616
+Traj43_dev0_0.00_3.14_x0max0.8.mat       5.926811          6.866844
+Traj14_dev0_3.14_3.14_x0max0.8.mat       0.000000          2.487657
+Traj14_dev0_-3.14_3.14_x0max0.8.mat      4.170667          0.847972
+Traj14_dev0_3.14_-3.14_x0max0.8.mat      4.170667          0.847973
+Traj14_dev0_-3.14_-3.14_x0max0.8.mat     0.000000          0.001941
+Traj24_dev0_-3.14_0.00_x0max0.8.mat      2.777556          0.582442
+Traj24_dev0_3.14_0.00_x0max0.8.mat       2.777556          0.582442
+Traj34_dev0_0.00_-3.14_x0max0.8.mat      2.785236          1.035524
+Traj34_dev0_0.00_3.14_x0max0.8.mat       2.785236          1.035524
+Traj41_dev0.5_3.14_3.14_x0max1.mat       0.000000          0.052994
+Traj41_dev0.5_-3.14_3.14_x0max1.mat      0.000000          0.017962
+Traj41_dev0.5_3.14_-3.14_x0max1.mat      5.893973          8.507116
+Traj41_dev0.5_-3.14_-3.14_x0max1.mat     0.000000          0.024740
+Traj31_dev0.5_-3.14_0.00_x0max1.mat      0.000000          0.019497
+Traj31_dev0.5_3.14_0.00_x0max1.mat       0.000000          0.141459
+Traj21_dev0.5_0.00_-3.14_x0max1.mat      2.753690          10.610906
+Traj21_dev0.5_0.00_3.14_x0max1.mat       0.000000          0.036491
+Traj32_dev0.5_3.14_3.14_x0max1.mat       0.000000          0.530159
+Traj32_dev0.5_-3.14_3.14_x0max1.mat      2.858442          5.858461
+Traj32_dev0.5_3.14_-3.14_x0max1.mat      6.796894          3.240663
+Traj32_dev0.5_-3.14_-3.14_x0max1.mat     2.687420          5.920989
+Traj42_dev0.5_-3.14_0.00_x0max1.mat      0.000000          0.020222
+Traj42_dev0.5_3.14_0.00_x0max1.mat       5.893865          5.039871
+Traj12_dev0.5_0.00_-3.14_x0max1.mat      4.125172          6.403941
+Traj12_dev0.5_0.00_3.14_x0max1.mat       0.000000          25.301171
+Traj23_dev0.5_3.14_3.14_x0max1.mat       0.000000          0.124001
+Traj23_dev0.5_-3.14_3.14_x0max1.mat      6.833289          9.837524
+Traj23_dev0.5_3.14_-3.14_x0max1.mat      2.752237          8.623321
+Traj23_dev0.5_-3.14_-3.14_x0max1.mat     2.802918          5.851615
+Traj13_dev0.5_-3.14_0.00_x0max1.mat      4.199852          11.050293
+Traj13_dev0.5_3.14_0.00_x0max1.mat       0.000000          4.592930
+Traj43_dev0.5_0.00_-3.14_x0max1.mat      0.000000          0.000929
+Traj43_dev0.5_0.00_3.14_x0max1.mat       6.000003          7.889906
+Traj14_dev0.5_3.14_3.14_x0max1.mat       0.000000          1.492570
+Traj14_dev0.5_-3.14_3.14_x0max1.mat      4.199825          1.157451
+Traj14_dev0.5_3.14_-3.14_x0max1.mat      4.125146          0.974979
+Traj14_dev0.5_-3.14_-3.14_x0max1.mat     0.000000          0.006324
+Traj24_dev0.5_-3.14_0.00_x0max1.mat      2.799773          1.545280
+Traj24_dev0.5_3.14_0.00_x0max1.mat       2.752398          1.203363
+Traj34_dev0.5_0.00_-3.14_x0max1.mat      2.687412          1.122568
+Traj34_dev0.5_0.00_3.14_x0max1.mat       2.858428          1.209659
+Traj41_dev0.3_3.14_3.14_x0max1.mat       0.000000          0.047672
+Traj41_dev0.3_-3.14_3.14_x0max1.mat      0.000000          0.008732
+Traj41_dev0.3_3.14_-3.14_x0max1.mat      5.899360          7.067373
+Traj41_dev0.3_-3.14_-3.14_x0max1.mat     0.000000          0.039477
+Traj31_dev0.3_-3.14_0.00_x0max1.mat      0.000000          0.020672
+Traj31_dev0.3_3.14_0.00_x0max1.mat       0.000000          0.540958
+Traj21_dev0.3_0.00_-3.14_x0max1.mat      2.757886          8.762853
+Traj21_dev0.3_0.00_3.14_x0max1.mat       0.000000          0.050129
+Traj32_dev0.3_3.14_3.14_x0max1.mat       0.000000          0.061572
+Traj32_dev0.3_-3.14_3.14_x0max1.mat      0.000000          0.004955
+Traj32_dev0.3_3.14_-3.14_x0max1.mat      6.777415          3.919616
+Traj32_dev0.3_-3.14_-3.14_x0max1.mat     2.709563          5.444679
+Traj42_dev0.3_-3.14_0.00_x0max1.mat      0.000000          0.010045
+Traj42_dev0.3_3.14_0.00_x0max1.mat       5.899331          4.664340
+Traj12_dev0.3_0.00_-3.14_x0max1.mat      4.133890          8.278428
+Traj12_dev0.3_0.00_3.14_x0max1.mat       0.000000          0.156138
+Traj23_dev0.3_3.14_3.14_x0max1.mat       0.000000          7.017190
+Traj23_dev0.3_-3.14_3.14_x0max1.mat      6.792018          9.855679
+Traj23_dev0.3_3.14_-3.14_x0max1.mat      2.757651          6.945716
+Traj23_dev0.3_-3.14_-3.14_x0max1.mat     2.783717          4.356086
+Traj13_dev0.3_-3.14_0.00_x0max1.mat      4.180385          9.033291
+Traj13_dev0.3_3.14_0.00_x0max1.mat       0.000000          0.162878
+Traj43_dev0.3_0.00_-3.14_x0max1.mat      0.000000          30.624097
+Traj43_dev0.3_0.00_3.14_x0max1.mat       5.948049          6.937864
+Traj14_dev0.3_3.14_3.14_x0max1.mat       0.000000          1.199041
+Traj14_dev0.3_-3.14_3.14_x0max1.mat      4.180230          1.054318
+Traj14_dev0.3_3.14_-3.14_x0max1.mat      4.134026          2.012129
+Traj14_dev0.3_-3.14_-3.14_x0max1.mat     0.000000          0.679479
+Traj24_dev0.3_-3.14_0.00_x0max1.mat      2.784173          1.321787
+Traj24_dev0.3_3.14_0.00_x0max1.mat       2.759881          0.451188
+Traj34_dev0.3_0.00_-3.14_x0max1.mat      2.709211          0.937994
+Traj34_dev0.3_0.00_3.14_x0max1.mat       2.806500          0.586253
+Traj41_dev0.1_3.14_3.14_x0max1.mat       0.000000          0.042180
+Traj41_dev0.1_-3.14_3.14_x0max1.mat      0.000000          0.050209
+Traj41_dev0.1_3.14_-3.14_x0max1.mat      5.906007          7.597197
+Traj41_dev0.1_-3.14_-3.14_x0max1.mat     0.000000          0.057921
+Traj31_dev0.1_-3.14_0.00_x0max1.mat      0.000000          0.018872
+Traj31_dev0.1_3.14_0.00_x0max1.mat       4.987071          7.687316
+Traj21_dev0.1_0.00_-3.14_x0max1.mat      2.765009          9.301011
+Traj21_dev0.1_0.00_3.14_x0max1.mat       0.000000          0.037574
+Traj32_dev0.1_3.14_3.14_x0max1.mat       0.000000          0.271233
+Traj32_dev0.1_-3.14_3.14_x0max1.mat      2.767908          5.739811
+Traj32_dev0.1_3.14_-3.14_x0max1.mat      6.777204          7.841112
+Traj32_dev0.1_-3.14_-3.14_x0max1.mat     2.735719          5.683986
+Traj42_dev0.1_-3.14_0.00_x0max1.mat      0.000000          0.005014
+Traj42_dev0.1_3.14_0.00_x0max1.mat       5.905964          6.161246
+Traj12_dev0.1_0.00_-3.14_x0max1.mat      4.146748          4.673276
+Traj12_dev0.1_0.00_3.14_x0max1.mat       0.000000          0.168332
+Traj23_dev0.1_3.14_3.14_x0max1.mat       0.000000          5.887804
+Traj23_dev0.1_-3.14_3.14_x0max1.mat      6.737372          5.527861
+Traj23_dev0.1_3.14_-3.14_x0max1.mat      2.764385          6.359482
+Traj23_dev0.1_-3.14_-3.14_x0max1.mat     2.772626          5.271369
+Traj13_dev0.1_-3.14_0.00_x0max1.mat      4.162230          8.941804
+Traj13_dev0.1_3.14_0.00_x0max1.mat       0.000000          6.759563
+Traj43_dev0.1_0.00_-3.14_x0max1.mat      0.000000          0.003763
+Traj43_dev0.1_0.00_3.14_x0max1.mat       5.909194          7.869211
+Traj14_dev0.1_3.14_3.14_x0max1.mat       0.000000          5.829885
+Traj14_dev0.1_-3.14_3.14_x0max1.mat      4.162249          0.885123
+Traj14_dev0.1_3.14_-3.14_x0max1.mat      4.146741          6.503061
+Traj14_dev0.1_-3.14_-3.14_x0max1.mat     0.000000          0.001402
+Traj24_dev0.1_-3.14_0.00_x0max1.mat      2.772649          6.402245
+Traj24_dev0.1_3.14_0.00_x0max1.mat       2.764490          1.764790
+Traj34_dev0.1_0.00_-3.14_x0max1.mat      2.735489          0.913149
+Traj34_dev0.1_0.00_3.14_x0max1.mat       2.766894          1.323536
+Traj41_dev0_3.14_3.14_x0max1.mat         0.000000          0.045248
+Traj41_dev0_-3.14_3.14_x0max1.mat        0.000000          0.053097
+Traj41_dev0_3.14_-3.14_x0max1.mat        5.909946          7.706987
+Traj41_dev0_-3.14_-3.14_x0max1.mat       0.000000          0.049793
+Traj31_dev0_-3.14_0.00_x0max1.mat        0.000000          0.024357
+Traj31_dev0_3.14_0.00_x0max1.mat         0.000000          0.038320
+Traj21_dev0_0.00_-3.14_x0max1.mat        2.769492          7.830757
+Traj21_dev0_0.00_3.14_x0max1.mat         0.000000          0.012083
+Traj32_dev0_3.14_3.14_x0max1.mat         6.038826          6.218020
+Traj32_dev0_-3.14_3.14_x0max1.mat        2.751018          5.907122
+Traj32_dev0_3.14_-3.14_x0max1.mat        6.778777          7.822906
+Traj32_dev0_-3.14_-3.14_x0max1.mat       2.750270          5.448088
+Traj42_dev0_-3.14_0.00_x0max1.mat        0.000000          0.013196
+Traj42_dev0_3.14_0.00_x0max1.mat         5.909789          4.251189
+Traj12_dev0_0.00_-3.14_x0max1.mat        4.155766          4.296486
+Traj12_dev0_0.00_3.14_x0max1.mat         0.000000          1.213325
+Traj23_dev0_3.14_3.14_x0max1.mat         0.000000          6.768557
+Traj23_dev0_-3.14_3.14_x0max1.mat        6.723592          5.324675
+Traj23_dev0_3.14_-3.14_x0max1.mat        2.768326          6.033693
+Traj23_dev0_-3.14_-3.14_x0max1.mat       2.768248          8.289484
+Traj13_dev0_-3.14_0.00_x0max1.mat        4.154246          9.530268
+Traj13_dev0_3.14_0.00_x0max1.mat         0.000000          0.007916
+Traj43_dev0_0.00_-3.14_x0max1.mat        0.000000          30.989990
+Traj43_dev0_0.00_3.14_x0max1.mat         5.891855          7.786415
+Traj14_dev0_3.14_3.14_x0max1.mat         0.000000          3.280889
+Traj14_dev0_-3.14_3.14_x0max1.mat        4.154325          2.233872
+Traj14_dev0_3.14_-3.14_x0max1.mat        4.154403          10.884807
+Traj14_dev0_-3.14_-3.14_x0max1.mat       0.000000          0.002146
+Traj24_dev0_-3.14_0.00_x0max1.mat        2.769027          1.523409
+Traj24_dev0_3.14_0.00_x0max1.mat         2.769027          1.523409
+Traj34_dev0_0.00_-3.14_x0max1.mat        2.750286          1.100480
+Traj34_dev0_0.00_3.14_x0max1.mat         2.750286          1.100480
+Traj41_dev0.5_3.14_3.14_x0max1.2.mat     0.000000          0.052994
+Traj41_dev0.5_-3.14_3.14_x0max1.2.mat    0.000000          0.017965
+Traj41_dev0.5_3.14_-3.14_x0max1.2.mat    5.889383          6.112387
+Traj41_dev0.5_-3.14_-3.14_x0max1.2.mat   0.000000          0.024616
+Traj31_dev0.5_-3.14_0.00_x0max1.2.mat    0.000000          0.019533
+Traj31_dev0.5_3.14_0.00_x0max1.2.mat     1.018702          7.638154
+Traj21_dev0.5_0.00_-3.14_x0max1.2.mat    2.747966          15.374298
+Traj21_dev0.5_0.00_3.14_x0max1.2.mat     0.000000          0.035861
+Traj32_dev0.5_3.14_3.14_x0max1.2.mat     0.000000          0.857146
+Traj32_dev0.5_-3.14_3.14_x0max1.2.mat    2.806484          5.995765
+Traj32_dev0.5_3.14_-3.14_x0max1.2.mat    6.814572          4.356069
+Traj32_dev0.5_-3.14_-3.14_x0max1.2.mat   2.668987          6.380204
+Traj42_dev0.5_-3.14_0.00_x0max1.2.mat    0.000000          0.020222
+Traj42_dev0.5_3.14_0.00_x0max1.2.mat     5.889476          9.186244
+Traj12_dev0.5_0.00_-3.14_x0max1.2.mat    4.119064          11.201829
+Traj12_dev0.5_0.00_3.14_x0max1.2.mat     0.000000          0.160253
+Traj23_dev0.5_3.14_3.14_x0max1.2.mat     0.000000          2.776074
+Traj23_dev0.5_-3.14_3.14_x0max1.2.mat    6.795804          7.138760
+Traj23_dev0.5_3.14_-3.14_x0max1.2.mat    2.747831          8.904835
+Traj23_dev0.5_-3.14_-3.14_x0max1.2.mat   2.783687          7.908956
+Traj13_dev0.5_-3.14_0.00_x0max1.2.mat    4.181446          2.815110
+Traj13_dev0.5_3.14_0.00_x0max1.2.mat     0.000000          6.258785
+Traj43_dev0.5_0.00_-3.14_x0max1.2.mat    0.000000          0.000929
+Traj43_dev0.5_0.00_3.14_x0max1.2.mat     5.948091          7.153987
+Traj14_dev0.5_3.14_3.14_x0max1.2.mat     0.000000          2.548146
+Traj14_dev0.5_-3.14_3.14_x0max1.2.mat    4.180499          1.346981
+Traj14_dev0.5_3.14_-3.14_x0max1.2.mat    4.119834          1.100795
+Traj14_dev0.5_-3.14_-3.14_x0max1.2.mat   0.000000          1.368149
+Traj24_dev0.5_-3.14_0.00_x0max1.2.mat    2.783664          1.768083
+Traj24_dev0.5_3.14_0.00_x0max1.2.mat     2.747896          2.194776
+Traj34_dev0.5_0.00_-3.14_x0max1.2.mat    2.668926          1.343085
+Traj34_dev0.5_0.00_3.14_x0max1.2.mat     2.806486          1.314558
+Traj41_dev0.3_3.14_3.14_x0max1.2.mat     0.000000          0.047673
+Traj41_dev0.3_-3.14_3.14_x0max1.2.mat    0.000000          0.008732
+Traj41_dev0.3_3.14_-3.14_x0max1.2.mat    5.894054          7.035450
+Traj41_dev0.3_-3.14_-3.14_x0max1.2.mat   0.000000          0.017748
+Traj31_dev0.3_-3.14_0.00_x0max1.2.mat    0.000000          0.022264
+Traj31_dev0.3_3.14_0.00_x0max1.2.mat     1.942607          12.544142
+Traj21_dev0.3_0.00_-3.14_x0max1.2.mat    2.752665          3.609945
+Traj21_dev0.3_0.00_3.14_x0max1.2.mat     0.000000          0.025039
+Traj32_dev0.3_3.14_3.14_x0max1.2.mat     4.986107          8.262918
+Traj32_dev0.3_-3.14_3.14_x0max1.2.mat    2.769777          5.751483
+Traj32_dev0.3_3.14_-3.14_x0max1.2.mat    6.796892          3.395163
+Traj32_dev0.3_-3.14_-3.14_x0max1.2.mat   2.687483          5.607548
+Traj42_dev0.3_-3.14_0.00_x0max1.2.mat    0.000000          0.010045
+Traj42_dev0.3_3.14_0.00_x0max1.2.mat     5.893957          4.749211
+Traj12_dev0.3_0.00_-3.14_x0max1.2.mat    4.124643          12.745867
+Traj12_dev0.3_0.00_3.14_x0max1.2.mat     0.000000          23.032839
+Traj23_dev0.3_3.14_3.14_x0max1.2.mat     0.000000          3.865340
+Traj23_dev0.3_-3.14_3.14_x0max1.2.mat    6.737453          10.070351
+Traj23_dev0.3_3.14_-3.14_x0max1.2.mat    2.752324          6.888152
+Traj23_dev0.3_-3.14_-3.14_x0max1.2.mat   2.775042          3.357693
+Traj13_dev0.3_-3.14_0.00_x0max1.2.mat    4.162317          3.497165
+Traj13_dev0.3_3.14_0.00_x0max1.2.mat     0.000000          9.167732
+Traj43_dev0.3_0.00_-3.14_x0max1.2.mat    0.000000          31.018433
+Traj43_dev0.3_0.00_3.14_x0max1.2.mat     5.908608          8.715314
+Traj14_dev0.3_3.14_3.14_x0max1.2.mat     0.000000          0.789180
+Traj14_dev0.3_-3.14_3.14_x0max1.2.mat    4.162638          1.237414
+Traj14_dev0.3_3.14_-3.14_x0max1.2.mat    4.125316          1.563418
+Traj14_dev0.3_-3.14_-3.14_x0max1.2.mat   0.000000          0.887753
+Traj24_dev0.3_-3.14_0.00_x0max1.2.mat    2.772825          1.533338
+Traj24_dev0.3_3.14_0.00_x0max1.2.mat     2.752244          1.578081
+Traj34_dev0.3_0.00_-3.14_x0max1.2.mat    2.687418          0.947674
+Traj34_dev0.3_0.00_3.14_x0max1.2.mat     2.767290          1.385273
+Traj41_dev0.1_3.14_3.14_x0max1.2.mat     0.000000          0.014039
+Traj41_dev0.1_-3.14_3.14_x0max1.2.mat    0.000000          0.050168
+Traj41_dev0.1_3.14_-3.14_x0max1.2.mat    5.899388          7.711137
+Traj41_dev0.1_-3.14_-3.14_x0max1.2.mat   0.000000          0.007906
+Traj31_dev0.1_-3.14_0.00_x0max1.2.mat    0.000000          0.018870
+Traj31_dev0.1_3.14_0.00_x0max1.2.mat     4.975666          4.610102
+Traj21_dev0.1_0.00_-3.14_x0max1.2.mat    2.758000          8.630658
+Traj21_dev0.1_0.00_3.14_x0max1.2.mat     0.000000          0.016286
+Traj32_dev0.1_3.14_3.14_x0max1.2.mat     0.000000          0.097426
+Traj32_dev0.1_-3.14_3.14_x0max1.2.mat    2.736518          6.073670
+Traj32_dev0.1_3.14_-3.14_x0max1.2.mat    6.777427          3.353510
+Traj32_dev0.1_-3.14_-3.14_x0max1.2.mat   2.709210          5.873219
+Traj42_dev0.1_-3.14_0.00_x0max1.2.mat    0.000000          0.005014
+Traj42_dev0.1_3.14_0.00_x0max1.2.mat     5.899312          5.304325
+Traj12_dev0.1_0.00_-3.14_x0max1.2.mat    4.136100          4.725663
+Traj12_dev0.1_0.00_3.14_x0max1.2.mat     0.000000          0.004069
+Traj23_dev0.1_3.14_3.14_x0max1.2.mat     0.000000          5.618999
+Traj23_dev0.1_-3.14_3.14_x0max1.2.mat    6.710955          10.179455
+Traj23_dev0.1_3.14_-3.14_x0max1.2.mat    2.757683          6.402028
+Traj23_dev0.1_-3.14_-3.14_x0max1.2.mat   2.765105          7.545779
+Traj13_dev0.1_-3.14_0.00_x0max1.2.mat    4.146790          7.799305
+Traj13_dev0.1_3.14_0.00_x0max1.2.mat     0.000000          0.211896
+Traj43_dev0.1_0.00_-3.14_x0max1.2.mat    0.000000          30.988544
+Traj43_dev0.1_0.00_3.14_x0max1.2.mat     5.876894          6.950941
+Traj14_dev0.1_3.14_3.14_x0max1.2.mat     0.000000          1.441872
+Traj14_dev0.1_-3.14_3.14_x0max1.2.mat    4.146742          1.046555
+Traj14_dev0.1_3.14_-3.14_x0max1.2.mat    4.133784          0.934067
+Traj14_dev0.1_-3.14_-3.14_x0max1.2.mat   0.000000          1.542329
+Traj24_dev0.1_-3.14_0.00_x0max1.2.mat    2.764285          1.809892
+Traj24_dev0.1_3.14_0.00_x0max1.2.mat     2.757664          1.077560
+Traj34_dev0.1_0.00_-3.14_x0max1.2.mat    2.709320          1.300433
+Traj34_dev0.1_0.00_3.14_x0max1.2.mat     2.735324          1.345735
+Traj41_dev0_3.14_3.14_x0max1.2.mat       0.000000          0.044613
+Traj41_dev0_-3.14_3.14_x0max1.2.mat      0.000000          0.047865
+Traj41_dev0_3.14_-3.14_x0max1.2.mat      5.902596          9.633751
+Traj41_dev0_-3.14_-3.14_x0max1.2.mat     0.000000          0.643489
+Traj31_dev0_-3.14_0.00_x0max1.2.mat      0.000000          0.024403
+Traj31_dev0_3.14_0.00_x0max1.2.mat       5.003870          5.099235
+Traj21_dev0_0.00_-3.14_x0max1.2.mat      2.761022          14.634260
+Traj21_dev0_0.00_3.14_x0max1.2.mat       0.000000          0.012018
+Traj32_dev0_3.14_3.14_x0max1.2.mat       0.000000          0.143108
+Traj32_dev0_-3.14_3.14_x0max1.2.mat      2.722004          6.370964
+Traj32_dev0_3.14_-3.14_x0max1.2.mat      6.775628          3.398554
+Traj32_dev0_-3.14_-3.14_x0max1.2.mat     2.721723          5.907031
+Traj42_dev0_-3.14_0.00_x0max1.2.mat      0.000000          0.013200
+Traj42_dev0_3.14_0.00_x0max1.2.mat       5.906559          29.937809
+Traj12_dev0_0.00_-3.14_x0max1.2.mat      4.140091          9.337397
+Traj12_dev0_0.00_3.14_x0max1.2.mat       0.000000          0.166173
+Traj23_dev0_3.14_3.14_x0max1.2.mat       0.000000          6.624461
+Traj23_dev0_-3.14_3.14_x0max1.2.mat      6.699274          10.193831
+Traj23_dev0_3.14_-3.14_x0max1.2.mat      2.760841          6.098148
+Traj23_dev0_-3.14_-3.14_x0max1.2.mat     2.760894          7.614260
+Traj13_dev0_-3.14_0.00_x0max1.2.mat      4.140057          6.017084
+Traj13_dev0_3.14_0.00_x0max1.2.mat       0.000000          0.007889
+Traj43_dev0_0.00_-3.14_x0max1.2.mat      0.000000          0.001700
+Traj43_dev0_0.00_3.14_x0max1.2.mat       5.863268          6.913213
+Traj14_dev0_3.14_3.14_x0max1.2.mat       0.443019          1.992920
+Traj14_dev0_-3.14_3.14_x0max1.2.mat      4.140328          0.956495
+Traj14_dev0_3.14_-3.14_x0max1.2.mat      4.140328          0.956503
+Traj14_dev0_-3.14_-3.14_x0max1.2.mat     0.443019          1.873455
+Traj24_dev0_-3.14_0.00_x0max1.2.mat      2.760916          5.900534
+Traj24_dev0_3.14_0.00_x0max1.2.mat       2.760916          5.900541
+Traj34_dev0_0.00_-3.14_x0max1.2.mat      2.721701          1.085777
+Traj34_dev0_0.00_3.14_x0max1.2.mat       2.721701          1.085777
+Traj41_dev0.5_3.14_3.14_x0max1.4.mat     0.000000          0.052994
+Traj41_dev0.5_-3.14_3.14_x0max1.4.mat    0.000000          0.133987
+Traj41_dev0.5_3.14_-3.14_x0max1.4.mat    5.885811          6.122810
+Traj41_dev0.5_-3.14_-3.14_x0max1.4.mat   0.000000          0.024501
+Traj31_dev0.5_-3.14_0.00_x0max1.4.mat    0.000000          0.019499
+Traj31_dev0.5_3.14_0.00_x0max1.4.mat     0.000000          0.034945
+Traj21_dev0.5_0.00_-3.14_x0max1.4.mat    2.744576          7.891862
+Traj21_dev0.5_0.00_3.14_x0max1.4.mat     0.000000          0.035898
+Traj32_dev0.5_3.14_3.14_x0max1.4.mat     4.986279          9.318327
+Traj32_dev0.5_-3.14_3.14_x0max1.4.mat    2.766933          6.092845
+Traj32_dev0.5_3.14_-3.14_x0max1.4.mat    6.812799          4.146166
+Traj32_dev0.5_-3.14_-3.14_x0max1.4.mat   2.653187          6.597450
+Traj42_dev0.5_-3.14_0.00_x0max1.4.mat    0.000000          0.020224
+Traj42_dev0.5_3.14_0.00_x0max1.4.mat     5.886081          5.081188
+Traj12_dev0.5_0.00_-3.14_x0max1.4.mat    4.109716          5.561371
+Traj12_dev0.5_0.00_3.14_x0max1.4.mat     0.000000          1.123354
+Traj23_dev0.5_3.14_3.14_x0max1.4.mat     0.000000          6.830407
+Traj23_dev0.5_-3.14_3.14_x0max1.4.mat    6.737378          8.946377
+Traj23_dev0.5_3.14_-3.14_x0max1.4.mat    2.744331          9.636100
+Traj23_dev0.5_-3.14_-3.14_x0max1.4.mat   2.772593          4.441696
+Traj13_dev0.5_-3.14_0.00_x0max1.4.mat    4.162181          6.739325
+Traj13_dev0.5_3.14_0.00_x0max1.4.mat     0.000000          4.952925
+Traj43_dev0.5_0.00_-3.14_x0max1.4.mat    0.000000          0.000929
+Traj43_dev0.5_0.00_3.14_x0max1.4.mat     5.908480          7.134462
+Traj14_dev0.5_3.14_3.14_x0max1.4.mat     0.000000          0.000410
+Traj14_dev0.5_-3.14_3.14_x0max1.4.mat    4.162193          1.601335
+Traj14_dev0.5_3.14_-3.14_x0max1.4.mat    4.109679          1.294893
+Traj14_dev0.5_-3.14_-3.14_x0max1.4.mat   0.380943          2.513850
+Traj24_dev0.5_-3.14_0.00_x0max1.4.mat    2.772600          1.976436
+Traj24_dev0.5_3.14_0.00_x0max1.4.mat     2.744308          1.614713
+Traj34_dev0.5_0.00_-3.14_x0max1.4.mat    2.653136          1.367337
+Traj34_dev0.5_0.00_3.14_x0max1.4.mat     2.767471          2.027314
+Traj41_dev0.3_3.14_3.14_x0max1.4.mat     0.000000          0.047524
+Traj41_dev0.3_-3.14_3.14_x0max1.4.mat    0.000000          0.145992
+Traj41_dev0.3_3.14_-3.14_x0max1.4.mat    5.889408          8.009313
+Traj41_dev0.3_-3.14_-3.14_x0max1.4.mat   0.000000          0.036351
+Traj31_dev0.3_-3.14_0.00_x0max1.4.mat    0.000000          0.022274
+Traj31_dev0.3_3.14_0.00_x0max1.4.mat     0.000000          0.037154
+Traj21_dev0.3_0.00_-3.14_x0max1.4.mat    2.747985          8.868844
+Traj21_dev0.3_0.00_3.14_x0max1.4.mat     0.000000          0.025224
+Traj32_dev0.3_3.14_3.14_x0max1.4.mat     2.035814          7.770745
+Traj32_dev0.3_-3.14_3.14_x0max1.4.mat    2.735336          6.211704
+Traj32_dev0.3_3.14_-3.14_x0max1.4.mat    6.814584          3.774014
+Traj32_dev0.3_-3.14_-3.14_x0max1.4.mat   2.668939          6.343132
+Traj42_dev0.3_-3.14_0.00_x0max1.4.mat    0.000000          0.010045
+Traj42_dev0.3_3.14_0.00_x0max1.4.mat     5.889588          6.810361
+Traj12_dev0.3_0.00_-3.14_x0max1.4.mat    4.118714          15.211003
+Traj12_dev0.3_0.00_3.14_x0max1.4.mat     0.000000          0.007694
+Traj23_dev0.3_3.14_3.14_x0max1.4.mat     0.000000          0.233484
+Traj23_dev0.3_-3.14_3.14_x0max1.4.mat    6.710979          9.676168
+Traj23_dev0.3_3.14_-3.14_x0max1.4.mat    2.747785          12.261842
+Traj23_dev0.3_-3.14_-3.14_x0max1.4.mat   2.764278          4.652514
+Traj13_dev0.3_-3.14_0.00_x0max1.4.mat    4.146821          3.987764
+Traj13_dev0.3_3.14_0.00_x0max1.4.mat     0.000000          0.111214
+Traj43_dev0.3_0.00_-3.14_x0max1.4.mat    0.000000          31.018433
+Traj43_dev0.3_0.00_3.14_x0max1.4.mat     5.877340          7.031570
+Traj14_dev0.3_3.14_3.14_x0max1.4.mat     0.000000          2.517580
+Traj14_dev0.3_-3.14_3.14_x0max1.4.mat    4.147239          1.445202
+Traj14_dev0.3_3.14_-3.14_x0max1.4.mat    4.118448          0.900324
+Traj14_dev0.3_-3.14_-3.14_x0max1.4.mat   0.380640          3.637531
+Traj24_dev0.3_-3.14_0.00_x0max1.4.mat    2.764459          1.738937
+Traj24_dev0.3_3.14_0.00_x0max1.4.mat     2.747759          1.518688
+Traj34_dev0.3_0.00_-3.14_x0max1.4.mat    2.668925          1.515322
+Traj34_dev0.3_0.00_3.14_x0max1.4.mat     2.735326          1.143128
+Traj41_dev0.1_3.14_3.14_x0max1.4.mat     0.000000          0.042180
+Traj41_dev0.1_-3.14_3.14_x0max1.4.mat    0.000000          0.004153
+Traj41_dev0.1_3.14_-3.14_x0max1.4.mat    5.894061          7.781443
+Traj41_dev0.1_-3.14_-3.14_x0max1.4.mat   0.000000          0.007954
+Traj31_dev0.1_-3.14_0.00_x0max1.4.mat    0.000000          0.019021
+Traj31_dev0.1_3.14_0.00_x0max1.4.mat     0.000000          0.038072
+Traj21_dev0.1_0.00_-3.14_x0max1.4.mat    2.752487          5.762665
+Traj21_dev0.1_0.00_3.14_x0max1.4.mat     0.000000          0.016250
+Traj32_dev0.1_3.14_3.14_x0max1.4.mat     5.935936          6.717252
+Traj32_dev0.1_-3.14_3.14_x0max1.4.mat    2.709786          6.413610
+Traj32_dev0.1_3.14_-3.14_x0max1.4.mat    6.796892          3.767745
+Traj32_dev0.1_-3.14_-3.14_x0max1.4.mat   2.687429          6.212330
+Traj42_dev0.1_-3.14_0.00_x0max1.4.mat    0.000000          0.005014
+Traj42_dev0.1_3.14_0.00_x0max1.4.mat     5.893873          5.695800
+Traj12_dev0.1_0.00_-3.14_x0max1.4.mat    4.125182          4.860870
+Traj12_dev0.1_0.00_3.14_x0max1.4.mat     0.000000          0.146626
+Traj23_dev0.1_3.14_3.14_x0max1.4.mat     0.000000          0.013941
+Traj23_dev0.1_-3.14_3.14_x0max1.4.mat    6.685484          5.305038
+Traj23_dev0.1_3.14_-3.14_x0max1.4.mat    2.752317          6.450229
+Traj23_dev0.1_-3.14_-3.14_x0max1.4.mat   2.757671          5.201879
+Traj13_dev0.1_-3.14_0.00_x0max1.4.mat    4.151306          7.752919
+Traj13_dev0.1_3.14_0.00_x0max1.4.mat     0.000000          9.242055
+Traj43_dev0.1_0.00_-3.14_x0max1.4.mat    0.000000          31.071708
+Traj43_dev0.1_0.00_3.14_x0max1.4.mat     5.850789          6.958193
+Traj14_dev0.1_3.14_3.14_x0max1.4.mat     0.443324          2.360987
+Traj14_dev0.1_-3.14_3.14_x0max1.4.mat    4.133724          1.251833
+Traj14_dev0.1_3.14_-3.14_x0max1.4.mat    4.125150          1.110798
+Traj14_dev0.1_-3.14_-3.14_x0max1.4.mat   0.000000          0.001402
+Traj24_dev0.1_-3.14_0.00_x0max1.4.mat    2.757665          2.046165
+Traj24_dev0.1_3.14_0.00_x0max1.4.mat     2.752387          1.325777
+Traj34_dev0.1_0.00_-3.14_x0max1.4.mat    2.687413          1.273413
+Traj34_dev0.1_0.00_3.14_x0max1.4.mat     2.709211          1.768270
+Traj41_dev0_3.14_3.14_x0max1.4.mat       0.000000          0.045248
+Traj41_dev0_-3.14_3.14_x0max1.4.mat      0.000000          0.053809
+Traj41_dev0_3.14_-3.14_x0max1.4.mat      5.896451          7.490595
+Traj41_dev0_-3.14_-3.14_x0max1.4.mat     0.000000          0.006064
+Traj31_dev0_-3.14_0.00_x0max1.4.mat      0.000000          0.024152
+Traj31_dev0_3.14_0.00_x0max1.4.mat       5.006153          12.936634
+Traj21_dev0_0.00_-3.14_x0max1.4.mat      2.755147          15.123415
+Traj21_dev0_0.00_3.14_x0max1.4.mat       0.000000          0.012018
+Traj32_dev0_3.14_3.14_x0max1.4.mat       5.908180          6.172210
+Traj32_dev0_-3.14_3.14_x0max1.4.mat      2.698427          6.417697
+Traj32_dev0_3.14_-3.14_x0max1.4.mat      6.783981          3.776418
+Traj32_dev0_-3.14_-3.14_x0max1.4.mat     2.697886          6.081581
+Traj42_dev0_-3.14_0.00_x0max1.4.mat      0.000000          0.013195
+Traj42_dev0_3.14_0.00_x0max1.4.mat       5.896451          6.633492
+Traj12_dev0_0.00_-3.14_x0max1.4.mat      4.128810          14.225199
+Traj12_dev0_0.00_3.14_x0max1.4.mat       0.852108          9.589954
+Traj23_dev0_3.14_3.14_x0max1.4.mat       0.000000          6.061735
+Traj23_dev0_-3.14_3.14_x0max1.4.mat      6.668571          5.224961
+Traj23_dev0_3.14_-3.14_x0max1.4.mat      2.754957          6.149636
+Traj23_dev0_-3.14_-3.14_x0max1.4.mat     2.754818          9.193728
+Traj13_dev0_-3.14_0.00_x0max1.4.mat      4.128681          5.297852
+Traj13_dev0_3.14_0.00_x0max1.4.mat       0.000000          0.011167
+Traj43_dev0_0.00_-3.14_x0max1.4.mat      0.000000          31.021195
+Traj43_dev0_0.00_3.14_x0max1.4.mat       5.839419          6.948229
+Traj14_dev0_3.14_3.14_x0max1.4.mat       0.443189          2.387250
+Traj14_dev0_-3.14_3.14_x0max1.4.mat      4.128755          1.126483
+Traj14_dev0_3.14_-3.14_x0max1.4.mat      4.128861          1.121388
+Traj14_dev0_-3.14_-3.14_x0max1.4.mat     0.000000          1.942693
+Traj24_dev0_-3.14_0.00_x0max1.4.mat      2.754893          2.218419
+Traj24_dev0_3.14_0.00_x0max1.4.mat       2.754893          2.218419
+Traj34_dev0_0.00_-3.14_x0max1.4.mat      2.697856          1.160738
+Traj34_dev0_0.00_3.14_x0max1.4.mat       2.697856          1.160738
+Maximaler Endwertfehler
+Traj43_dev0.1_0.00_-3.14_x0max1.4.mat                      31.071708
+Maximaler Anfangswertfehler
+Traj43_dev0.1_0.00_-3.14_x0max1.4.mat    7.091627
