@@ -18,7 +18,7 @@ Um Testreihen effektiv auswerten zu können, wurden die \xots-Funktionen program
 
 Nach einzelnen Weiterentwicklungen der \vorst\ und des \beob s wurde eine weitere Erhöhung der Regelgüte durch Variation der Reglerparameter erreicht.
 Dazu wurden die Güteparameter des \ricc-Reglers schrittweise variiert und deren Einfluss mithilfe verschiedener Diagramme analysiert.
-Durch die Optimierung wurden für alle \ap e Parameter ermittelt, die das System gegenüber den vorherigen Werten besser stabilisieren können.
+Es konnten dadurch für alle \ap e Parameter ermittelt werden, die das System gegenüber den vorherigen Werten besser stabilisieren können.
 
 In einem weiteren Schritt wurde der Einfluss der Parameter des \dpd s auf die Arbeitspunktregelung untersucht.
 Die Untersuchungen zeigen, dass Trägheits- und Geometrieparameter einen erheblichen Einfluss auf die Stabilisierbarkeit des Systems haben.
@@ -32,9 +32,9 @@ Insbesondere in Kombination mit dem \beob\ ist die Regelbarkeit wenig robust.
 Weiterhin wurden eine NMPC für die Trajektorienberechnung sowie eine Trajektorienfolgeregelung realisiert. Anknüpfend an die Ergebnisse der Vorgängerarbeit Fauvé \cite{fauve} konnte eine günstige Konfiguration der NMPC sowie eine geeignete Auslegung der Trajektorienfolgeregelung ermittelt werden, für die sich die betrachteten Aufschwungtrajektorien sowohl am Schlittenpendelmodell als auch am Gesamtmodell unter Berücksichtigung der Gegeninduktion des Motors stabilisieren lassen.
 
 Die Untersuchung des Einflusses der Systemparameter auf die Trajektorienberechnung zeigt, dass besonders die Pendelmassen eine erkennbare Eingrenzung des Bereichs, in dem Trajektorien gefunden werden, aufweisen. Neben der Analyse der Verteilung gültiger und ungültiger Trajektorien sowie der Trajektoriengüte, wurden daher Begrenzungen der Wertebereiche für die untersuchten Parameter formuliert, die zur Orientierung für zukünftige konstruktive Veränderungen am Versuchsstand dienen können. 
-Das ungünstige Verhalten der aktuellen Systemparameter in Bezug auf die Trajektorienberechnung wird durch die Untersuchung bestätigt, indem überwiegend keine Trajektorien gefunden werden. %unklar vgl alte und neue parameter
+Das ungünstige Verhalten der aktuellen Systemparameter in Bezug auf die Trajektorienberechnung wird durch die Untersuchung bestätigt, da im Vergleich zu den vorherigen Parametern nur wenige Trajektorien gefunden werden.
 Eine Begründung durch die ermittelten Bereichsgrenzen ist jedoch nur teilweise möglich, da oft auch dann keine Trajektorie gefunden wird, wenn sich der Parameter des aktuellen Versuchsstands im empfohlenen Wertebereich befindet. Einen erkennbaren Veränderungsbedarf signalisieren die Untersuchungen in erster Linie für das Trägheitsmoment von Stab 2. 
-Insgesamt sind die Ergebnisse jedoch aufgrund der vielfältigen Einflussgrößen auf die Optimierungslandschaft der NMPC zu problematisieren. %unklar
+Insgesamt sind die Ergebnisse jedoch aufgrund der vielfältigen Einflussgrößen auf die Optimierungslandschaft der NMPC zunächst nur für die im Rahmen dieser Arbeit festgelegten Voraussetzungen gültig und in Bezug auf Allgemeingültigkeit zu problematisieren. 
 
   
 
@@ -62,11 +62,11 @@ Es muss daher stets ein Kompromiss getroffen werden.
 Für weiterführende Analysen und Aussagen sind eine genauere Modellierung der Massenverteilung sowie weitere Tests und Auswertungen nötig.
 
 Die Ergebnisse der Parameteruntersuchungen, die für die Trajektorienberechnung mittels NMPC durchgeführt wurden, gelten für die im Rahmen dieser Arbeit definierten Voraussetzungen. %nicht wirklich aussagekräftig
-Als nächster Schritt steht somit die Überprüfung der Gültigkeit bei einer Änderung der Voraussetzungen wie beispielsweise der Variation der Vergleichstrajektorie, der Kraftbeschränkung und den Konfigurationsmöglichkeiten der NMPC aus. Die ermittelten Bereichsverfehlungen der aktuellen Systemparameter der Versuchsstands, wie beispielsweise für das Massenträgheitsmoment von Stab 2, sind hierbei besonders zu beobachten und nach ausreichender Prüfung am Versuchsstand gegebenenfalls zu korrigieren. Es ist hierbei immer auf mögliche Kompromisse bezüglich der in dieser Arbeit untersuchten Einflüsse auf die Arbeitspunktregelung zu achten.
+Als nächster Schritt steht somit die Überprüfung der Gültigkeit bei einer Änderung dieser Voraussetzungen durch beispielsweise die Variation der Vergleichstrajektorie, der Kraftbeschränkung und den Konfigurationsmöglichkeiten der NMPC aus. Die ermittelten Bereichsverfehlungen der aktuellen Systemparameter sind hierbei besonders zu beobachten und gegebenenfalls nach ausreichender Prüfung am Versuchsstand zu korrigieren. Es ist hierbei auf mögliche Kompromisse bezüglich der in dieser Arbeit untersuchten Einflüsse auf die Arbeitspunktregelung zu achten.
 
-Der Einfluss der \crb\ in Bezug auf die Trajektorienberechnung wurde nicht näher untersucht. Erste Tests weisen jedoch auf einen erkennbar negativen Einfluss hin. Eine Variation der Reibwerte ist daher für zukünftige Arbeiten denkbar.
+Erste Tests in Bezug auf den Einfluss der \crb\ auf die Trajektorienberechnung weisen auf einen erkennbar negativen Einfluss hin. Eine Variation der Reibwerte ist daher für zukünftige Arbeiten denkbar.
 
-Die Güte der Trajektorien wurde in die Wahl der Bereichsgrenzen zunächst nicht näher einbezogen und in der Analyse durch Erfahrungswerte für die spätere Stabilisierbarkeit in der Simulation eingeordnet. Da sich die durchgeführten Untersuchungen zur Stabilisierbarkeit der berechneten Trajektorien auf die Tests zur Wahl einer günstigen Ausgangskonfiguration der NMPC für die anschließenden Parametertests im Rahmen dieser Arbeit beschränken, bleibt eine detailliertere Untersuchung der Stabilisierbarkeit in Bezug auf die Trajektoriengüte offen.
+Da sich die im Rahmen dieser Arbeit durchgeführten Untersuchungen zur Stabilisierbarkeit der berechneten Trajektorien auf die Tests zur Wahl einer günstigen Ausgangskonfiguration der NMPC für die anschließenden Parametertests beschränken, bleibt eine detaillierte Untersuchung der Stabilisierbarkeit in Abhängigkeit der Trajektoriengüte offen.
 
 Um die Qualität der Trajektorien zu steigern, wurde ein im Vergleich zur Vorgängerarbeit aufwendigeres Integrationsverfahren mit kleinerem Schrittfehler für die NMPC implementiert. Zukünftig wäre an dieser Stelle eine weitere Untersuchung denkbar, um zu entscheiden, welche Integrationsverfahren sich für die Berechnung von Trajektorien mit Hilfe des NMPC-Verfahrens prinzipiell besonders eignen. 
 
