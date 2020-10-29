@@ -1,5 +1,11 @@
 \chapter{Trajektorien}\label{cha:trj}
 
+%bei der TFR?
+Da es bei der Trajektorienfolgeregelung aufgrund der Beschränkung einiger Systemzustände immer wieder zu Schwierigkeiten bei der Berechnung und Umsetzung von Trajektorien kam, wurde durch Fauvé \cite{fauve} der Ansatz der Modellprädiktiven Regelung (engl.: \textit{Model Predictive Control}, MPC), die im Gegensatz zu den klassischen Regelungsverfahren eine Berücksichtigung der Systembeschränkungen ermöglicht, für das bestehende Pendelsystem untersucht. Obwohl sich der Ansatz aufgrund ungenügender Echtzeitfähigkeit nicht für die Regelung eignete, erwies er sich in Bezug auf die Berechnung von Trajektorien für Arbeitspunktwechsel als vielversprechend. 
+%Erste Versuche, die erfolgreich berechneten Trajektorien in der Simulation mit Hilfe einer Trajektorienfolgeregelung zu stabilisieren, gelangen jedoch nicht. Daher bleibt zu zeigen, dass die mittels NMPC gefundenen Trajektorien am System stabilisiert werden können. Zudem wird vermutet, dass neben der Regelbarkeit auch das Finden von Trajektorien durch die Systemparameter beeinflusst wird. 
+% zu spezifisch für Einleitung
+
+
 \section{Trajektorienberechnung}
 
 Die Implementierung der Trajektorienberechnung basiert auf den Erkenntnissen der Vorgängerarbeit Fauvé \cite{fauve} und erfolgt in \Matlab\ mit Hilfe des \casadi-Frameworks \cite{Andersson2019}. Es wird einerseits auf eine Erhöhung der Modularisierung im Vergleich zur Vorgängerarbeit geachtet, andererseits werden weitere Funktionalitäten ergänzt, um die Trajektorienberechnung für die Anwendungen im Rahmen dieser Arbeit und die zukünftige Weiterverwendung zu optimieren.
@@ -17,7 +23,7 @@ Vom Anwender aufgerufen wird lediglich \texttt{searchTrajectories}. Die weiteren
 
 Die implementierten Werkzeuge zur Trajektoriensuche eignen sich für eine weitere Verwendung in zukünftigen Arbeiten. Obwohl im Rahmen dieser Arbeit in erster Linie eine definierte Vergleichstrajektorie verwendet wird, ist eine systematische Suche für alle zwölf Trajektorien im Sinne zukünftiger Anwendungen vorgesehen. Diese wurde im Rahmen dieser Arbeit erfolgreich durch eine Reproduktion der Ergebnisse von Fauvé \cite{fauve} getestet.
 
-Im Folgenden werden die beiden wichtigsten Funktionen \texttt{searchTrajectories} und \texttt{calculateTrajectory} genauer beschrieben, wobei auch auf die Verwendung der anderen Funktionen eingegangen wird.
+Im Folgenden werden die wichtigsten Funktionen \texttt{searchTrajectories} und \texttt{calculateTrajectory} genauer beschrieben, wobei auch auf die Verwendung der anderen Funktionen eingegangen wird.
 
 
 
@@ -228,9 +234,9 @@ Die Trajektorien werden der Simulation als \texttt{timeseries} mithilfe von \tex
 
 
 
-\section{Weitere Funktionen in \Matlab}
-...
-
+%\section{Weitere Funktionen in \Matlab}
+%...
+%
 
 
 
@@ -625,15 +631,15 @@ Die formulierten Wertebereiche gültiger Trajektorien sind in \tabref{tab:Bereic
 			Parameter  & Einfluss & min & max & $\Pkon$ \\
 			\midrule
 			{$m_1 \ [\unit{kg}]$}  &  hoch & $0$ & $1,07$  & $26 \%$ \\
-			\midrule			
+			%\midrule			
 			$m_2 \ [\unit{kg}]$  &  hoch & $0,09$ & $0,39$  & $38 \%$ \\	
-			\midrule
+			%\midrule
 			$J_1 \ [\unit{kg m^2}]$  &  hoch & $0,0037$ & $0,0196$  & $17 \%$ \\
-		  \midrule
+		  %\midrule
 			$J_2 \ [\unit{kg m^2}]$ & gering & $0,004$ & $0,02$  & $77 \%$ \\
-			\midrule
+			%\midrule
 			$s_1 \ [\unit{m}]$   &   mittel & $0$ & $0,29$  & $21 \%$ \\
-			\midrule
+			%\midrule
 			$s_2 \ [\unit{m}]$   &   gering & $0$ & $0,338$  & $44 \%$ \\
 			\bottomrule
 		\end{tabular}
