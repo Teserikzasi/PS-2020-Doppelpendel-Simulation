@@ -1,9 +1,12 @@
 \chapter{Trajektorien}\label{cha:trj}
 
-%bei der TFR?
-Da es bei der Trajektorienfolgeregelung aufgrund der Beschränkung einiger Systemzustände immer wieder zu Schwierigkeiten bei der Berechnung und Umsetzung von Trajektorien kam, wurde durch Fauvé \cite{fauve} der Ansatz der Modellprädiktiven Regelung (engl.: \textit{Model Predictive Control}, MPC), die im Gegensatz zu den klassischen Regelungsverfahren eine Berücksichtigung der Systembeschränkungen ermöglicht, für das bestehende Pendelsystem untersucht. Obwohl sich der Ansatz aufgrund ungenügender Echtzeitfähigkeit nicht für die Regelung eignete, erwies er sich in Bezug auf die Berechnung von Trajektorien für Arbeitspunktwechsel als vielversprechend. 
-%Erste Versuche, die erfolgreich berechneten Trajektorien in der Simulation mit Hilfe einer Trajektorienfolgeregelung zu stabilisieren, gelangen jedoch nicht. Daher bleibt zu zeigen, dass die mittels NMPC gefundenen Trajektorien am System stabilisiert werden können. Zudem wird vermutet, dass neben der Regelbarkeit auch das Finden von Trajektorien durch die Systemparameter beeinflusst wird. 
-% zu spezifisch für Einleitung
+Da es bei der Trajektorienfolgeregelung aufgrund der Beschränkung einiger Systemzustände in der Vergangenheit immer wieder zu Schwierigkeiten bei der Berechnung und Umsetzung von Trajektorien kam, wurde durch Fauvé \cite{fauve} der Ansatz der Modellprädiktiven Regelung (engl.: \textit{Model Predictive Control}, MPC), die im Gegensatz zu den klassischen Regelungsverfahren eine Berücksichtigung der Systembeschränkungen ermöglicht, für das bestehende Pendelsystem untersucht. Obwohl sich der Ansatz aufgrund ungenügender Echtzeitfähigkeit nicht für die Regelung eignete, erwies er sich in Bezug auf die Berechnung von Trajektorien für Arbeitspunktwechsel als vielversprechend. 
+Zur Trajektorienberechnung wurden die nichtlinearen Systemgleichungen verwendet, sodass hierbei eine nichtlineare MPC, kurz NMPC, vorliegt.
+Erste Versuche, die mit der NMPC berechneten Trajektorien in der Simulation mit Hilfe einer Trajektorienfolgeregelung zu stabilisieren, gelangen jedoch nicht. Daher bleibt zu zeigen, dass die gefundenen Trajektorien am System stabilisiert werden können. Zudem wird vermutet, dass neben der bereits betrachteten Regelbarkeit auch das Ergebnis der Trajektorienberechnung durch die Systemparameter beeinflusst wird. 
+
+Zunächst wird daher überprüft, inwiefern die berechneten Trajektorien durch eine Trajektorienfolgeregelung stabilisiert werden können. Außerdem wird eine geeignete Konfiguration für die NMPC ermittelt, die anschließend zur Durchführung einer Einflussuntersuchung der Systemparameter auf die Trajektorienberechnung verwendet wird. 
+
+Um das geplante Untersuchungsvorhaben durchführen zu können, werden im ersten Schritt eine Trajektorienberechnung und eine Trajektorienfolgeregelung sowie die benötigten Auswertungsfunktionen implementiert.
 
 
 \section{Trajektorienberechnung}
@@ -23,7 +26,7 @@ Vom Anwender aufgerufen wird lediglich \texttt{searchTrajectories}. Die weiteren
 
 Die implementierten Werkzeuge zur Trajektoriensuche eignen sich für eine weitere Verwendung in zukünftigen Arbeiten. Obwohl im Rahmen dieser Arbeit in erster Linie eine definierte Vergleichstrajektorie verwendet wird, ist eine systematische Suche für alle zwölf Trajektorien im Sinne zukünftiger Anwendungen vorgesehen. Diese wurde im Rahmen dieser Arbeit erfolgreich durch eine Reproduktion der Ergebnisse von Fauvé \cite{fauve} getestet.
 
-Im Folgenden werden die wichtigsten Funktionen \texttt{searchTrajectories} und \texttt{calculateTrajectory} genauer beschrieben, wobei auch auf die Verwendung der anderen Funktionen eingegangen wird.
+Im Folgenden werden die wichtigsten Funktionen \texttt{searchTrajectories} und \texttt{calculateTrajectory} genauer beschrieben, wobei auch auf die Verwendung der darüber hinaus genannten Funktionen eingegangen wird.
 
 
 
